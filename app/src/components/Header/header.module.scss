@@ -1,0 +1,42 @@
+@use "../../app/variables";
+@use "../../app/mixins.scss";
+
+.header {
+  &.light {
+    @include mixins.color-scheme(variables.$scheme-1...)
+  }
+  &.dark {
+    @include mixins.color-scheme(variables.$scheme-2...)
+  }
+
+  display: flex;
+  align-items: center;
+  height: 70px;
+  padding: 0 12px;
+
+  .logo {
+    width: 180px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+  }
+
+  .headerNav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    .navElement {
+      font: {
+        weight: 400;
+        size: 25px;
+      }
+    }
+  }
+}

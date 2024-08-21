@@ -1,0 +1,10 @@
+@mixin color-scheme($base, $base2, $text, $active) {
+  background-color: $base;
+  color: $text;
+  .active {
+    color: $active
+  }
+  .base2 {
+    background-color: $base2;
+  }
+}
