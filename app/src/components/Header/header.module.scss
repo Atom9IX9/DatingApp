@@ -1,16 +1,17 @@
-@use "../../app/variables";
-@use "../../app/mixins.scss";
+@use "../../variables";
+@use "../../mixins.scss";
 
 .header {
   &.light {
-    @include mixins.color-scheme(variables.$scheme-1...)
+    @include mixins.color-scheme(variables.$scheme-1...);
   }
   &.dark {
-    @include mixins.color-scheme(variables.$scheme-2...)
+    @include mixins.color-scheme(variables.$scheme-2...);
   }
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 70px;
   padding: 0 12px;
 
@@ -33,10 +34,33 @@
     align-items: center;
     gap: 22px;
     .navElement {
+      padding-top: 8px;
       font: {
         weight: 400;
         size: 25px;
       }
+    }
+  }
+
+  .loginBlock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    a {
+      padding: 7px 5px 0 0;
+      transition: all 200ms;
+      -webkit-transition: all 200ms;
+      -moz-transition: all 200ms;
+      -ms-transition: all 200ms;
+      -o-transition: all 200ms;
+
+      &:hover {
+        @extend .active;
+      }
+    }
+    & :first-child {
+      display: block;
+      border-right: 2px solid;
     }
   }
 }

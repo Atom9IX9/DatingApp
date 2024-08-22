@@ -1,0 +1,16 @@
+@mixin color-scheme($primary, $secondary, $text, $active, $highlighted) {
+  background-color: $primary;
+  color: $text;
+  * {
+    border-color: $highlighted !important;
+  }
+  .active {
+    color: $active;
+  }
+  .secondary {
+    background-color: $secondary;
+  }
+  .highlighted {
+    color: $highlighted;
+  }
+}

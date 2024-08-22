@@ -1,20 +1,18 @@
-import Link from "next/link";
-import NavElement from "./HeaderNavElement";
-import style from "./header.module.scss"
+"use client";
+
+import style from "./header.module.scss";
+import { useTheme } from "@/Providers/ThemeProvider";
+import cn from "classnames";
+import HeaderNav from "./HeaderNav/HeaderNav";
+import UserActions from "./UserActions/UserActions";
 
 const Header = () => {
+  const theme = useTheme();
+
   return (
-    <header className={`${style.header} ${style.light}`}>
-      <div className={style.links}>
-        <Link href="/">
-          <div className={`${style.logo} ${style.base2}`}>logo 180x50</div>
-        </Link>
-        <nav className={style.headerNav}>
-          <NavElement title="home" to="/" />
-          <NavElement title="users" to="/users" />
-          <NavElement title="messages" to="/messages" />
-        </nav>
-      </div>
+    <header className={cn(style.header, style[theme])}>
+      <HeaderNav />
+      <UserActions />
     </header>
   );
 };
