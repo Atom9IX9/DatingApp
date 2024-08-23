@@ -3,7 +3,7 @@
 import { TChildren } from "@/types/types";
 import ThemeProvider from "./ThemeProvider";
 
-const Providers: React.FC<TChildren> = ({ children }) => {
+const Providers: React.FC<{ children: TChildren }> = ({ children }) => {
   return <ThemeProvider>{children}</ThemeProvider>;
 };
 
