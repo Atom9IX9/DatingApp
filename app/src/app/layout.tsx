@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Anek_Devanagari } from "next/font/google";
-import "./globals.scss";
+import "../globals.scss";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Providers from "@/Providers";
-import { useTheme } from "@emotion/react";
 
 const anek = Anek_Devanagari({ subsets: ["latin"], weight: ["400", "700"] });
 

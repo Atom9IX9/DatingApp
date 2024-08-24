@@ -1,13 +1,13 @@
-$primary-light: #821131;
-$secondary-light: #C7253E;
+$primary-light: #e3507c;
+$secondary-light: #50e3b7;
+$triadic-light: #e3b750;
 
 $primary-dark: #1E201E;
 $secondary-dark: #3C3D37;
 
 $light: #ECDFCC;
 $green-dark: #697565;
-$gold: #fabc3f;
 $gray: #8b8b8b;
 
-$scheme-1: $primary-light, $secondary-light, $primary-dark, $secondary-light, $primary-light;
-$scheme-2: $primary-dark, $secondary-dark,  $light, $gold, $secondary-dark;
+$scheme-1: $primary-light, $secondary-light, $primary-dark, $triadic-light, $secondary-light;
+$scheme-2: $primary-dark, $secondary-dark,  $light, $triadic-light, $secondary-dark;

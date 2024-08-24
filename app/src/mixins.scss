@@ -1,11 +1,8 @@
-@mixin color-scheme($primary, $secondary, $text, $active, $highlighted) {
+@mixin color-scheme($primary, $secondary, $text, $triadic, $highlighted) {
   background-color: $primary;
   color: $text;
-  * {
-    border-color: $highlighted !important;
-  }
   .active {
-    color: $active;
+    color: $triadic;
   }
   .secondary {
     background-color: $secondary;

@@ -1,6 +1,7 @@
 import style from "@/components/Header/header.module.scss";
 import Link from "next/link";
 import AccountMenu from "./AccountMenu";
+import AppSettingsMenu from "./AppSettingsMenu";
 
 const UserActions = () => {
   return (
@@ -10,6 +11,7 @@ const UserActions = () => {
         <Link href="/sign-up">Sign up</Link>
       </div>
       <AccountMenu />
+      <AppSettingsMenu />
     </div>
   );
 };

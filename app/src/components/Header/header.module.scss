@@ -4,7 +4,8 @@
 .header {
   &.light {
     @include mixins.color-scheme(variables.$scheme-1...);
-    background-color: #ffe7e7 !important;
+    background-color: #7e264e !important;
+    color: #ffffff;
   }
   &.dark {
     @include mixins.color-scheme(variables.$scheme-2...);
@@ -62,7 +63,7 @@
     }
     & :first-child {
       display: block;
-      border-right: 2px solid;
+      border-right: 2px solid variables.$secondary-light;
     }
   }
 

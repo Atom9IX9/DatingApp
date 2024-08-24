@@ -28,7 +28,7 @@ const AccountMenuBtn: React.FC<TProps> = ({
   }
 
   return (
-    <UIIconMenuButton handleClick={handleClick} isOpen={isOpen}>
+    <UIIconMenuButton title="Account menu" handleClick={handleClick} isOpen={isOpen}>
       <Avatar
         {...stringAvatar(
           firstName && lastName ? `${firstName} ${lastName}` : ""

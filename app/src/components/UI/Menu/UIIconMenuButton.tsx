@@ -9,10 +9,11 @@ const UIIconMenuButton: React.FC<TProps> = ({
   handleClick,
   isOpen,
   children,
+  title
 }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-      <Tooltip title="Account settings">
+      <Tooltip title={title}>
         <IconButton
           onClick={handleClick}
           size="small"
@@ -33,4 +34,5 @@ type TProps = {
   children: TChildren;
   handleClick: MouseEventHandler;
   isOpen: boolean;
+  title: string;
 };

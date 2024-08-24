@@ -4,39 +4,31 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import PeopleIcon from "@mui/icons-material/People";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import EditIcon from '@mui/icons-material/Edit';
 import Logout from "@mui/icons-material/Logout";
-import { useCallback, useState } from "react";
 import { Colors } from "@/types/types";
-import style from "@/components/Header/header.module.scss";
 import AccountMenuBtn from "./AccountMenuBtn";
 import { useTheme } from "@/Providers/ThemeProvider";
 import UIMenu from "@/components/UI/Menu/UIMenu";
+import { useMenu } from "@/hooks/useMenu";
 
 const AccountMenu = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  }, []);
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const { anchorEl, handleClick, handleClose, isOpen } = useMenu()
 
   const theme = useTheme();
 
   return (
     <>
       <AccountMenuBtn
-        firstName="User"
-        lastName="Name"
+        firstName="MyNew"
+        lastName="User"
         handleClick={handleClick}
-        isOpen={open}
+        isOpen={isOpen}
       />
       <UIMenu
         anchorEl={anchorEl}
         handleClose={handleClose}
-        isOpen={open}
+        isOpen={isOpen}
         theme={theme}
       >
         <MenuItem onClick={handleClose}>
@@ -46,7 +38,7 @@ const AccountMenu = () => {
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <ManageAccountsIcon
+            <EditIcon
               sx={{ color: theme === "dark" ? Colors.Light : "" }}
               fontSize="small"
             />
