@@ -14,3 +14,4 @@ export enum Colors {
   TriadicLight = "#e3b750",
   TriadicLight900 = "#dd7400",
 }
+export type TTheme = "dark" | "light"

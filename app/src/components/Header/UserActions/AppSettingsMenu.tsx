@@ -11,6 +11,8 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { IconButton } from "@mui/material";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { useAppDispatch } from "@/lib/store/hooks";
+import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
 
 const AppSettingsMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();
@@ -64,12 +66,14 @@ const AppSettingsMenu = () => {
 
 const SwitchColorTheme = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch()
 
   return (
     <>
       <ListItemIcon>
         <IconButton
           size="large"
+          onClick={() => dispatch(setTheme("light"))}
           sx={{
             borderRadius: "15px",
             bgcolor:
@@ -93,6 +97,7 @@ const SwitchColorTheme = () => {
       <ListItemIcon>
         <IconButton
           size="large"
+          onClick={() => dispatch(setTheme("dark"))}
           sx={{
             borderRadius: "15px",
             bgcolor:
