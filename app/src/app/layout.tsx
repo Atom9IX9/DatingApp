@@ -4,6 +4,9 @@ import "../globals.scss";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Providers from "@/Providers";
+import { useAppDispatch } from "@/lib/store/hooks";
+import { setUser } from "@/lib/store/slices/appSlice/authSlice";
+import { useEffect } from "react";
 
 const anek = Anek_Devanagari({ subsets: ["latin"], weight: ["400", "700"] });
 

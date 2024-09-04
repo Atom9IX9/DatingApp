@@ -1,3 +1,5 @@
+"use client"
+
 import { TChildren, TTheme } from "@/types/types";
 import { createContext, useContext, useEffect } from "react";
 import "../globals.scss";
@@ -26,7 +28,7 @@ const ThemeProvider: React.FC<{ children: TChildren }> = ({ children }) => {
 
   useEffect(() => {
     dispatch(setTheme((localStorage.getItem("theme") as TTheme) || "light"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <ThemeContext.Provider value={currentTheme}>

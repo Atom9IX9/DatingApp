@@ -11,17 +11,19 @@ import AccountMenuBtn from "./AccountMenuBtn";
 import { useTheme } from "@/Providers/ThemeProvider";
 import UIMenu from "@/components/UI/Menu/UIMenu";
 import { useMenu } from "@/hooks/useMenu";
+import { useAuth } from "@/Providers/AuthProvider";
 
 const AccountMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu()
 
   const theme = useTheme();
+  const auth = useAuth()
 
   return (
     <>
       <AccountMenuBtn
-        firstName="MyNew"
-        lastName="User"
+        firstName={auth?.firstName}
+        lastName={auth?.lastName}
         handleClick={handleClick}
         isOpen={isOpen}
       />
