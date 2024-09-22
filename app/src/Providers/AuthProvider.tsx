@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppDispatch } from "@/lib/store/hooks";
-import { setUser } from "@/lib/store/slices/appSlice/authSlice";
+import { setUser } from "@/lib/store/slices/authSlice/authSlice";
 import { selectAuth } from "@/selectors/accountSelector";
 import { TChildren } from "@/types/types";
 import { User } from "@/types/User";
@@ -23,6 +23,10 @@ const AuthProvider: React.FC<{ children: TChildren }> = ({ children }) => {
         firstName: "Ultroler",
         gender: "male",
         lastName: "Ahahasik",
+        photos: {
+          avatar: null,
+          all: []
+        }
       })
     );
   }, [dispatch]);

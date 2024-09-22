@@ -8,7 +8,7 @@ export class User implements TCreateUserData {
   gender: TGender;
   location: string | null;
   seekingParams: TUserSeekingParams | null;
-  photos: string[] // array of urls
+  photos: TPhotos
 
   constructor(
     id: string,
@@ -16,6 +16,7 @@ export class User implements TCreateUserData {
     lastName: string,
     age: number,
     gender: TGender,
+    photos: TPhotos
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -24,7 +25,7 @@ export class User implements TCreateUserData {
     this.gender = gender;
     this.location = null;
     this.seekingParams = null;
-    this.photos = [];
+    this.photos = photos;
   }
 
   public getUsername() {
@@ -46,4 +47,10 @@ export type TCreateUserData = {
   lastName: string;
   age: number;
   gender: TGender;
+  photos: TPhotos;
 }
+
+export type TPhotos = {
+  avatar: string | null; // url
+  all: string[]; // array of urls
+} 

@@ -61,6 +61,10 @@
         @extend .active;
       }
     }
+    .userNameLink {
+      padding-top: 5px;
+      border: 0 !important;
+    }
     & :first-child {
       display: block;
       border-right: 2px solid variables.$secondary-light;

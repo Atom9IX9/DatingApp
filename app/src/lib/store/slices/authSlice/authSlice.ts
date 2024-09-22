@@ -15,7 +15,8 @@ const authSlice = createSlice({
         action.payload.firstName,
         action.payload.lastName,
         action.payload.age,
-        action.payload.gender
+        action.payload.gender,
+        action.payload.photos
       );
     },
   },

@@ -10,6 +10,7 @@ const AccountMenuBtn: React.FC<TProps> = ({
   isOpen,
   firstName,
   lastName,
+  avatar
 }) => {
   const theme = useTheme();
 
@@ -22,6 +23,7 @@ const AccountMenuBtn: React.FC<TProps> = ({
             : name
             ? stringToColor(name)
             : Colors.SecondaryDark,
+        border: avatar ? "2px solid #00000050" : "none"
       },
       children: name ? `${name.split(" ")[0][0]}${name.split(" ")[1][0]}` : "",
     };
@@ -31,8 +33,9 @@ const AccountMenuBtn: React.FC<TProps> = ({
     <UIIconMenuButton title="Account menu" handleClick={handleClick} isOpen={isOpen}>
       <Avatar
         {...stringAvatar(
-          firstName && lastName ? `${firstName} ${lastName}` : ""
+          (firstName && lastName) ? `${firstName} ${lastName}` : ""
         )}
+        src={avatar || undefined}
       />
     </UIIconMenuButton>
   );
@@ -44,4 +47,5 @@ type TProps = {
   isOpen: boolean;
   firstName?: string;
   lastName?: string;
+  avatar: string | null;
 };
