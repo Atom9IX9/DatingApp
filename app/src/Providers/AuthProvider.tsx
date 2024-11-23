@@ -1,35 +1,30 @@
-"use client";
-
-import { useAppDispatch } from "@/lib/store/hooks";
-import { setUser } from "@/lib/store/slices/authSlice/authSlice";
+import { useLoginMutation } from "@/api/authAPI";
 import { selectAuth } from "@/selectors/accountSelector";
 import { TChildren } from "@/types/types";
-import { User } from "@/types/User";
+import { User } from "@/models/user.model";
 import { createContext, useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useAppDispatch } from "@/lib/store/hooks";
+import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
 
-const AuthContext = createContext<User | null>(null);
+const AuthContext = createContext<User | undefined>(undefined);
 
 const AuthProvider: React.FC<{ children: TChildren }> = ({ children }) => {
   const auth = useSelector(selectAuth);
-
   const dispatch = useAppDispatch();
+  const [login, result] = useLoginMutation();
 
   useEffect(() => {
-    dispatch(
-      setUser({
-        id: "myuserid",
-        age: 23,
-        firstName: "Ultroler",
-        gender: "male",
-        lastName: "Ahahasik",
-        photos: {
-          avatar: null,
-          all: []
-        }
-      })
-    );
-  }, [dispatch]);
+    if (!auth) {
+      // todo: checkAuth() method
+    }
+  }, [dispatch, login, auth]);
+
+  useEffect(() => {
+    if (result.data) {
+      dispatch(setAuth(result.data));
+    }
+  }, [dispatch, result.data]);
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };

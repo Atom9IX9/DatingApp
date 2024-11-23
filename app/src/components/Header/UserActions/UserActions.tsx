@@ -12,13 +12,13 @@ const UserActions = () => {
       <div className={style.loginBlock}>
         {!auth ? (
           <>
-            <Link href="/sign-in">
-              Sign in
-            </Link>
+            <Link href="/sign-in">Sign in</Link>
             <Link href="/sign-up">Sign up</Link>
           </>
         ) : (
-          <Link className={style.userNameLink} href="/profile">{auth.getUsername()}</Link>
+          <Link className={style.userNameLink} href="/profile">
+            {auth.firstName} {auth.lastName}
+          </Link>
         )}
       </div>
       <AccountMenu />

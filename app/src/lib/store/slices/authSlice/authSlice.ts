@@ -1,27 +1,24 @@
-import { TCreateUserData, User } from "@/types/User";
+import { UserAuth } from "@/api/authAPI";
+import { User } from "@/models/user.model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: null as User | null,
+  user: undefined as User | undefined,
 };
 
 const authSlice = createSlice({
-  name: "account",
+  name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<TCreateUserData>) => {
-      state.user = new User(
-        action.payload.id,
-        action.payload.firstName,
-        action.payload.lastName,
-        action.payload.age,
-        action.payload.gender,
-        action.payload.photos
-      );
+    setAuth: (state, action: PayloadAction<UserAuth>) => {
+      if (action.payload) {
+        state.user = action.payload.user;
+        localStorage.setItem("token", action.payload.token);
+      }
     },
   },
 });
 
 export default authSlice.reducer;
-export const { setUser } = authSlice.actions
+export const { setAuth } = authSlice.actions;
 export type TInitialState = typeof initialState;
