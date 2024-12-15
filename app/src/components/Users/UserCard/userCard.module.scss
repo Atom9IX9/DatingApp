@@ -1,0 +1,200 @@
+@use "../../../variables";
+@use "../../../mixins.scss";
+
+.userCard {
+  &.dark {
+    @include mixins.color-scheme(variables.$scheme-2...);
+    background-color: variables.$primary-dark;
+    border-top: 3px solid variables.$primary-light;
+  }
+  &.dark:hover {
+    -webkit-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
+    -moz-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
+    box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
+  }
+  &.dark.even {
+    border-top: 3px solid variables.$secondary-light;
+  }
+  &.dark.even:hover {
+    -webkit-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
+    -moz-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
+    box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
+  }
+
+  padding: 0 20px;
+  width: 280px;
+  height: 398px;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+
+  position: relative;
+
+  .userAge {
+    position: absolute;
+    top: 10px;
+    right: 27px;
+
+    span {
+      display: block;
+      text-align: center;
+      line-height: 21px;
+    }
+
+    .userAgeText {
+      font-size: 15px;
+      color: variables.$primary-light;
+    }
+
+    .userAgeNumber {
+      font-weight: 600;
+      font-size: 20px;
+      color: variables.$secondary-light;
+    }
+  }
+
+  .avatarBlock {
+    position: relative;
+    width: min-content;
+
+    .userAvatar {
+      margin-top: 37px;
+      width: 158px;
+      height: 158px;
+    }
+
+    .onlineStatus {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      width: 37px;
+      height: 37px;
+
+      background: variables.$green;
+
+      border: 6px solid variables.$primary-dark;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+  }
+
+  .userInfoSection {
+    margin-top: 18px;
+
+    .userFullName {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 27 px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-top: 5px;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        font-style: italic;
+        color: #838281;
+      }
+    }
+
+    .userDescription {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  }
+
+  transition: all 300ms;
+
+  .matchBtn {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+    height: 9%;
+    background-color: variables.$primary-light;
+    -webkit-box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
+    -moz-box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    color: #ffffff;
+    overflow: hidden;
+    
+    -webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+
+    .matchBtnText {
+      z-index: 1;
+    }
+
+    &:hover {
+      background-color: variables.$secondary-light;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      width: 50%;
+      height: 100%;
+      background-color: variables.$secondary-light;
+      display: none;
+    }
+
+    &:hover::before {
+      display: block;
+      animation: hoverAnimationBefore 200ms forwards;
+      -webkit-animation: hoverAnimationBefore 200ms forwards;
+    }
+    &:hover::after {
+      display: block;
+      animation: hoverAnimationAfter 200ms forwards;
+      -webkit-animation: hoverAnimationAfter 200ms forwards;
+    }
+
+    @keyframes hoverAnimationBefore {
+      0% {
+        left: -50%;
+      }
+
+      100% {
+        left: 0;
+        display: none;
+      }
+    }
+    @keyframes hoverAnimationAfter {
+      0% {
+        right: -50%;
+      }
+
+      100% {
+        right: 0;
+        display: none;
+      }
+    }
+    // @keyframes hoverBtnAnimation {
+    //   0% {
+    //     background-color: variables.$primary-light;
+    //   }
+
+    //   100% {
+    //     background-color: variables.$secondary-light;
+    //   }
+    // }
+  }
+}

@@ -1,11 +1,24 @@
-export interface User {
+type User = {
   uid: string;
   firstName: string;
   lastName: string;
-  email: string;
   age: number;
-  gender: TGender;
   dateOfBD: string;
+  email: string;
+  gender: Gender;
+  location?: TLocation;
+  isOnline: boolean;
+  description?: string; //125 sb
+  // todo: matchStatus
 }
 
-export type TGender = "male" | "female";
+export  default User 
+export enum Gender {
+  Male = "male",
+  Female = "female",
+}
+export type TLocation = {
+  country: string;
+  region: string;
+  city?: string;
+};
