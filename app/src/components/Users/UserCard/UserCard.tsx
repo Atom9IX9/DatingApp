@@ -30,7 +30,8 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
         <div
           className={classNames(
             style.onlineStatus,
-            user.isOnline ? style.online : style.offline
+            user.isOnline ? style.online : style.offline,
+            style[theme]
           )}
         ></div>
       </div>

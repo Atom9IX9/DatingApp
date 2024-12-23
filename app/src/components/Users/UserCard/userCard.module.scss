@@ -2,23 +2,26 @@
 @use "../../../mixins.scss";
 
 .userCard {
+  border-top: 3px solid variables.$primary-light;
+  &.even {
+    border-top: 3px solid variables.$secondary-light;
+  }
+
   &.dark {
     @include mixins.color-scheme(variables.$scheme-2...);
     background-color: variables.$primary-dark;
-    border-top: 3px solid variables.$primary-light;
   }
-  &.dark:hover {
+  &:hover {
     -webkit-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
     -moz-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
     box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
+    border-top: 5px solid variables.$primary-light;
   }
-  &.dark.even {
-    border-top: 3px solid variables.$secondary-light;
-  }
-  &.dark.even:hover {
+  &.even:hover {
     -webkit-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
     -moz-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
     box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
+    border-top: 5px solid variables.$secondary-light;
   }
 
   padding: 0 20px;
@@ -75,12 +78,23 @@
 
       background: variables.$green;
 
-      border: 6px solid variables.$primary-dark;
       border-radius: 50%;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       -ms-border-radius: 50%;
       -o-border-radius: 50%;
+
+      &.dark {
+        border: 6px solid variables.$primary-dark;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+      &.light {
+        border: 6px solid #ffffff;
+      }
     }
   }
 
@@ -131,7 +145,7 @@
     cursor: pointer;
     color: #ffffff;
     overflow: hidden;
-    
+
     -webkit-transition: background-color 200ms linear;
     -moz-transition: background-color 200ms linear;
     -o-transition: background-color 200ms linear;

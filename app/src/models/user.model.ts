@@ -8,8 +8,8 @@ type User = {
   gender: Gender;
   location?: TLocation;
   isOnline: boolean;
-  description?: string; //125 sb
-  // todo: matchStatus
+  description?: string;
+  matchStatus?: TMatchStatus;
 }
 
 export  default User 
@@ -22,3 +22,8 @@ export type TLocation = {
   region: string;
   city?: string;
 };
+export enum TMatchStatus {
+  Accepted = "accepted",
+  Rejected = "rejected",
+  Pending = "pending",
+}
