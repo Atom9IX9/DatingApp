@@ -1,6 +1,5 @@
-"use client"; //todo: remove classes and do server
 import UserCard from "@/components/Users/UserCard/UserCard";
-import User, { Gender } from "@/models/user.model";
+import { Gender } from "@/models/user.model";
 
 const UsersPage = () => {
   return (

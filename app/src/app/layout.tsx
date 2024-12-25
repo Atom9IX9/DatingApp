@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "../globals.scss";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import Providers from "@/Providers";
 
-const nunito_sans = Nunito_Sans({ subsets: ["latin"], weight: ["400", "600", "700"] });
+const nunito_sans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -21,9 +22,7 @@ const RootLayout = ({
     <html lang="en">
       <body className={`${nunito_sans.className}`}>
         <Providers>
-          <Header />
-          <main className="main">{children}</main>
-          <Footer />
+          {children}
         </Providers>
       </body>
     </html>

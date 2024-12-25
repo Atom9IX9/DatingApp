@@ -3,8 +3,8 @@ type User = {
   firstName: string;
   lastName: string;
   age: number;
-  dateOfBD: string;
-  email: string;
+  dateOfBD: string; //~fet exclude
+  email: string; //~fet exclude
   gender: Gender;
   location?: TLocation;
   isOnline: boolean;

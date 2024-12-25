@@ -1,3 +1,4 @@
+"use client"
 import User, { Gender } from "@/models/user.model";
 import { useTheme } from "@/Providers/ThemeProvider";
 import { Colors } from "@/types/types";
