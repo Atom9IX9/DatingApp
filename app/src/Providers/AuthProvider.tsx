@@ -1,7 +1,7 @@
 import { useLoginMutation } from "@/api/authAPI";
 import { selectAuth } from "@/selectors/accountSelector";
 import { TChildren } from "@/types/types";
-import { User } from "@/models/user.model";
+import User from "@/models/user.model";
 import { createContext, useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/lib/store/hooks";

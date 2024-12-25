@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Anek_Devanagari } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "../globals.scss";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import Providers from "@/Providers";
-import { useAppDispatch } from "@/lib/store/hooks";
-import { setUser } from "@/lib/store/slices/authSlice/authSlice";
-import { useEffect } from "react";
 
-const anek = Anek_Devanagari({ subsets: ["latin"], weight: ["400", "700"] });
+const nunito_sans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -22,11 +20,9 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={`${anek.className}`}>
+      <body className={`${nunito_sans.className}`}>
         <Providers>
-          <Header />
-          <main className="main">{children}</main>
-          <Footer />
+          {children}
         </Providers>
       </body>
     </html>

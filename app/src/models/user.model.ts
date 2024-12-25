@@ -1,11 +1,29 @@
-export interface User {
+type User = {
   uid: string;
   firstName: string;
   lastName: string;
-  email: string;
   age: number;
-  gender: TGender;
-  dateOfBD: string;
+  dateOfBD: string; //~fet exclude
+  email: string; //~fet exclude
+  gender: Gender;
+  location?: TLocation;
+  isOnline: boolean;
+  description?: string;
+  matchStatus?: TMatchStatus;
 }
 
-export type TGender = "male" | "female";
+export  default User 
+export enum Gender {
+  Male = "male",
+  Female = "female",
+}
+export type TLocation = {
+  country: string;
+  region: string;
+  city?: string;
+};
+export enum TMatchStatus {
+  Accepted = "accepted",
+  Rejected = "rejected",
+  Pending = "pending",
+}

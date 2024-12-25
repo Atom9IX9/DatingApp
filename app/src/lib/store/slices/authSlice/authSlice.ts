@@ -1,5 +1,5 @@
 import { UserAuth } from "@/api/authAPI";
-import { User } from "@/models/user.model";
+import User from "@/models/user.model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -12,8 +12,9 @@ const authSlice = createSlice({
   reducers: {
     setAuth: (state, action: PayloadAction<UserAuth>) => {
       if (action.payload) {
-        state.user = action.payload.user;
-        localStorage.setItem("token", action.payload.token);
+        const { user, token } = action.payload;
+        state.user = user;
+        localStorage.setItem("token", token);
       }
     },
   },
