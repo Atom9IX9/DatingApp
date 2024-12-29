@@ -16,7 +16,7 @@ const AuthProvider: React.FC<{ children: TChildren }> = ({ children }) => {
 
   useEffect(() => {
     if (!auth) {
-      // todo: checkAuth() method
+      // ! TODO: checkAuth() method WITH GET SERVER SIDE PROPS!!
     }
   }, [dispatch, login, auth]);
 
