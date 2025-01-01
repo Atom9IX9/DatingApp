@@ -4,41 +4,84 @@
   width: 40%;
   margin: auto;
 
+  .signInPageTitle {
+    font-size: 35px;
+    font-weight: 700;
+    color: variables.$primary-light;
+    margin: 0;
+  }
+
+  .signInPageText {
+    margin-top: 20px;
+    font-size: 18px;
+    color: variables.$primary-dark;
+  }
+
   .signInForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+
     width: 100%;
 
     .formIcon {
       position: relative;
       top: 50px;
-    
+
       width: 100px;
       height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: rgba(variables.$primary-dark, 0.9); //rgba(variables.$secondary-dark);
+      background-color: rgba(
+        variables.$primary-dark,
+        0.9
+      ); //rgba(variables.$secondary-dark);
       border-radius: 50%;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       -ms-border-radius: 50%;
       -o-border-radius: 50%;
     }
-    
+
     .fields {
+      position: relative;
+      box-sizing: border-box;
       background-color: rgba(variables.$primary-dark, 0.3);
-      padding: 80px 25px 100px 25px;
+      padding: 80px 5% 100px 5%;
       width: 100%;
 
+      .rootError {
+        position: absolute;
+        bottom: 110px;
+        color: #ff2c2c;
+        font-size: 15px;
+      }
+
       .fieldContainer {
-        margin-bottom: 20px;
+        position: relative;
+        margin-bottom: 50px;
 
         .fieldLabel {
           display: flex;
           align-items: center;
+
+          &.error {
+            border: 2px solid #ff2c2c;
+
+            .fieldError {
+              position: absolute;
+              top: -20px;
+              color: #ff2c2c;
+              font-size: 15px;
+            }
+
+            .errorIcon {
+              position: absolute;
+              right: 20px;
+              color: #ff2c2c;
+            }
+          }
 
           .field {
             display: block;
@@ -57,11 +100,11 @@
         }
       }
     }
-    
+
     .submitBtn {
       position: relative;
       bottom: 90px;
-      width: 100%;
+      width: 90%;
       height: 70px;
       background-color: variables.$primary-dark;
       border-radius: 0;
@@ -69,8 +112,10 @@
       -moz-border-radius: 0;
       -ms-border-radius: 0;
       -o-border-radius: 0;
-}
+
+      &:hover {
+        background-color: variables.$secondary-dark;
+      }
+    }
   }
 }
-
-

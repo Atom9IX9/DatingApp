@@ -1,4 +1,4 @@
-import User, { Gender, TLocation } from "@/models/user.model";
+import User, { Gender } from "@/models/user.model";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authAPI = createApi({
