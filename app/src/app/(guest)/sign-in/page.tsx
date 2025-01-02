@@ -1,6 +1,6 @@
 import WelcomeBlock from "@/components/SignIn/WelcomeBlock/WelcomeBlock";
 import style from "../guestPages.module.scss";
-import SignInForm from "@/components/SignIn/Form/SignInForm";
+import SignInFormController from "@/components/SignIn/Form/SignInFormController";
 import classNames from "classnames";
 
 const SignIn = () => {
@@ -9,7 +9,7 @@ const SignIn = () => {
       <div className={style.welcomeBlockContainer}>
         <WelcomeBlock />
       </div>
-      <SignInForm />
+      <SignInFormController />
     </div>
   );
 };

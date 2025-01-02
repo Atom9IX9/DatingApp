@@ -5,7 +5,7 @@ export const authAPI = createApi({
   reducerPath: "authAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/auth/" }),
   endpoints: (builder) => ({
-    login: builder.mutation<UserAuth, LoginReqBody>({
+    login: builder.mutation<UserAuth, DataForLogin>({
       query: (body) => ({
         url: "login",
         method: "POST",
@@ -23,7 +23,7 @@ export const authAPI = createApi({
 });
 
 export const { useLoginMutation } = authAPI
-export type LoginReqBody = {
+export type DataForLogin = {
   email: string;
   password: string;
 }

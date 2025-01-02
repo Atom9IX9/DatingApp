@@ -4,7 +4,6 @@ import {
   FieldErrors,
   FieldPath,
   FieldValues,
-  useFormState,
 } from "react-hook-form";
 import style from "../signInForm.module.scss";
 import { TValidationFunction } from "@/types/types";
@@ -16,7 +15,7 @@ function SignInFieldController<FV extends FieldValues>({
   inputParams,
   icon,
   validate,
-  errors
+  rootError
 }: Props<FV>) {
   return (
     <div className={style.fieldContainer}>
@@ -29,7 +28,7 @@ function SignInFieldController<FV extends FieldValues>({
             inputParams={inputParams}
             error={{
               field: fieldState.error?.message,
-              root: errors.root?.message,
+              root: rootError,
             }}
             field={field}
             icon={icon}
@@ -49,6 +48,6 @@ type Props<V extends FieldValues> = {
   validate?: {
     [key: string]: TValidationFunction;
   };
-  errors: FieldErrors<V>
+  rootError?: string;
 };
 
