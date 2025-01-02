@@ -21,9 +21,10 @@ const SignInForm = ({}) => {
   };
 
   useEffect(() => {
+    console.log(loginResult.error)
     if (loginResult.error) {
       setError("root", {
-        message: (loginResult.error as TApiError).data.message,
+        message: (loginResult.error as TApiError).data?.message || "Failed to send data",
       });
     }
   }, [loginResult.error, setError]);
@@ -60,7 +61,7 @@ const SignInForm = ({}) => {
           />
           {!!loginResult.error && (
             <div className={style.rootError}>
-              {(loginResult.error as TApiError).data.message}
+              {(loginResult.error as TApiError).data?.message || "Failed to send data"}
             </div>
           )}
         </div>
