@@ -16,7 +16,6 @@ const SignInFormController = () => {
   };
 
   useEffect(() => {
-    console.log(loginResult.error);
     if (loginResult.error) {
       setError("root", {
         message:
