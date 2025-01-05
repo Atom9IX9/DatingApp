@@ -26,6 +26,7 @@ export const { useLoginMutation } = authAPI
 export type DataForLogin = {
   email: string;
   password: string;
+  rememberMe?: boolean;
 }
 export type RegisterReqBody = {
   firstName: string;

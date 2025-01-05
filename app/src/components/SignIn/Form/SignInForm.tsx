@@ -3,16 +3,19 @@ import style from "./signInForm.module.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import SignInFieldController from "./Field/FieldController.tsx";
-import { Control } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import { DataForLogin } from "@/api/authAPI";
 import { validateEmail } from "@/utils/validation/singInValidation";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { Button } from "@mui/material";
+import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import { TApiError } from "@/types/types";
 
-
-const SignInForm: React.FC<SignInFormProps> = ({ onSubmit, control, result }) => {
+const SignInForm: React.FC<SignInFormProps> = ({
+  onSubmit,
+  control,
+  result,
+}) => {
   return (
     <form className={style.signInForm} onSubmit={onSubmit}>
       <div className={style.formIcon}>
@@ -38,10 +41,13 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit, control, result }) =>
           icon={<LockIcon sx={{ width: 30, height: 30 }} />}
           rootError={result.rootError}
         />
+        <FormControlLabel
+          label="Remember me"
+          control={<Checkbox {...control.register("rememberMe")} />}
+        />
         {!!result.error && (
           <div className={style.rootError}>
-            {(result.error as TApiError).data?.message ||
-              "Failed to send data"}
+            {(result.error as TApiError).data?.message || "Failed to send data"}
           </div>
         )}
       </div>
@@ -66,5 +72,5 @@ type SignInFormProps = {
     error?: TApiError;
     status: QueryStatus;
     rootError?: string;
-  }
+  };
 };

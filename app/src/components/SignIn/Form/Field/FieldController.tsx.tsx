@@ -1,7 +1,6 @@
 import {
   Control,
   Controller,
-  FieldErrors,
   FieldPath,
   FieldValues,
 } from "react-hook-form";
