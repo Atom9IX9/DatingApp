@@ -5,11 +5,16 @@ import { DataForLogin, useLoginMutation } from "@/api/authAPI";
 import { useEffect } from "react";
 import { TApiError } from "@/types/types";
 import SignInForm from "./SignInForm";
+import { useAppDispatch } from "@/lib/store/hooks";
+import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
+import { useRouter } from "next/navigation";
 
 const SignInFormController = () => {
   const { control, handleSubmit, setError, formState } =
     useForm<DataForLogin>();
   const [signIn, loginResult] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<DataForLogin> = (data) => {
     signIn(data);
@@ -24,6 +29,13 @@ const SignInFormController = () => {
       });
     }
   }, [loginResult.error, setError]);
+
+  useEffect(() => {
+    if (loginResult.data) {
+      dispatch(setAuth(loginResult.data));
+      router.push("users");
+    }
+  }, [dispatch, loginResult.data, router]);
 
   return (
     <section className={style.signInSection}>
