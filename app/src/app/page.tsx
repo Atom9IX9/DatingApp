@@ -1,6 +1,7 @@
+import { AuthUser } from "@/models/user.model";
 import Link from "next/link";
 
-const HomePage = () => {
+const HomePage: React.FC<Props> = ({ auth }) => {
   return (
     <div>
       start unauth page 
@@ -15,3 +16,6 @@ const HomePage = () => {
 };
 
 export default HomePage;
+type Props = {
+  auth: AuthUser
+}

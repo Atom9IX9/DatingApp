@@ -3,16 +3,22 @@ type User = {
   firstName: string;
   lastName: string;
   age: number;
-  dateOfBD: string; //~fet exclude
-  email: string; //~fet exclude
   gender: Gender;
   location?: TLocation;
-  isOnline: boolean;
   description?: string;
-  matchStatus?: TMatchStatus;
-}
+};
 
-export  default User 
+export type AuthUser = User & {
+  dateOfBD: string;
+  email: string;
+};
+
+export type PublicUser = User & {
+  isOnline: boolean;
+  matchStatus?: TMatchStatus;
+};
+
+export default User;
 export enum Gender {
   Male = "male",
   Female = "female",

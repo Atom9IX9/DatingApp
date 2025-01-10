@@ -1,4 +1,4 @@
-import User, { Gender } from "@/models/user.model";
+import User, { AuthUser, Gender } from "@/models/user.model";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authAPI = createApi({
@@ -12,22 +12,29 @@ export const authAPI = createApi({
         body,
       }),
     }),
-    register: builder.mutation<unknown, RegisterReqBody>({
+    register: builder.mutation<UserAuth, RegisterReqBody>({
       query: (body) => ({
         url: "register",
         method: "POST",
-        body
-      })
-    })
-  })
+        body,
+      }),
+    }),
+    checkAuth: builder.query<AuthUser, void>({
+      query: () => ({
+        url: "/",
+        method: "GET",
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      }),
+    }),
+  }),
 });
 
-export const { useLoginMutation } = authAPI
+export const { useLoginMutation, useCheckAuthQuery } = authAPI;
 export type DataForLogin = {
   email: string;
   password: string;
   rememberMe?: boolean;
-}
+};
 export type RegisterReqBody = {
   firstName: string;
   lastName: string;
@@ -37,8 +44,8 @@ export type RegisterReqBody = {
   gender: Gender;
   location?: string;
   description?: string;
-}
+};
 export type UserAuth = {
-  user: User;
-  token: string;
-}
+  user: AuthUser;
+  token?: string;
+};

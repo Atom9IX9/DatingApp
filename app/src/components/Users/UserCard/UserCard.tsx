@@ -1,5 +1,5 @@
 "use client"
-import User, { Gender } from "@/models/user.model";
+import { Gender, PublicUser } from "@/models/user.model";
 import { useTheme } from "@/Providers/ThemeProvider";
 import { Colors } from "@/types/types";
 import { Avatar, Button, Card } from "@mui/material";
@@ -77,6 +77,6 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
 
 export default UserCard;
 type TUserCardProps = {
-  user: User;
+  user: PublicUser;
   isEven?: boolean;
 };
