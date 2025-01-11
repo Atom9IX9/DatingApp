@@ -5,7 +5,7 @@ import { QueryStatus } from "@reduxjs/toolkit/query";
 
 const initialState = {
   user: undefined as AuthUser | undefined,
-  fetchAuthStatus: QueryStatus,
+  fetchAuthStatus: undefined as QueryStatus | undefined,
 };
 
 export const initialize = createAsyncThunk(
@@ -13,6 +13,7 @@ export const initialize = createAsyncThunk(
   async (_, { dispatch }) => {
     const auth = await dispatch(authAPI.endpoints.checkAuth.initiate());
     if (auth.data) dispatch(setAuth({ user: auth.data }));
+    dispatch(setFetchAuthStatus(auth.status))
   }
 );
 
@@ -30,22 +31,12 @@ const authSlice = createSlice({
       }
     },
     setFetchAuthStatus: (state, action: PayloadAction<QueryStatus>) => {
-      //@ts-ignore
       state.fetchAuthStatus = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(initialize.pending, (state) => {
-      //@ts-ignore
       state.fetchAuthStatus = QueryStatus.pending;
-    });
-    builder.addCase(initialize.rejected, (state) => {
-      //@ts-ignore
-      state.fetchAuthStatus = QueryStatus.rejected;
-    });
-    builder.addCase(initialize.fulfilled, (state) => {
-      //@ts-ignore
-      state.fetchAuthStatus = QueryStatus.fulfilled;
     });
   },
 });

@@ -5,9 +5,8 @@ import { TChildren } from "@/types/types";
 import { AuthUser } from "@/models/user.model";
 import { createContext, useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useCheckAuthQuery } from "@/api/authAPI";
 import { useAppDispatch } from "@/lib/store/hooks";
-import { initialize, setAuth } from "@/lib/store/slices/authSlice/authSlice";
+import { initialize } from "@/lib/store/slices/authSlice/authSlice";
 import { useRouter } from "next/navigation";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 
@@ -24,11 +23,9 @@ const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    //@ts-ignore
     if (fetchAuthStatus === QueryStatus.fulfilled) {
       router.push("/users");
-      //@ts-ignore
-    } else if (QueryStatus.rejected) {
+    } else if (fetchAuthStatus === QueryStatus.rejected) {
       if (!auth) {
         router.push("/");
       }
@@ -37,14 +34,11 @@ const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
 
   return (
     <>
-      {
-        //@ts-ignore
-        fetchAuthStatus === QueryStatus.pending ? (
-          <>Loading...</>
-        ) : (
-          <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
-        )
-      }
+      {fetchAuthStatus === QueryStatus.pending ? (
+        <>Loading...</>
+      ) : (
+        <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+      )}
     </>
   );
 };
