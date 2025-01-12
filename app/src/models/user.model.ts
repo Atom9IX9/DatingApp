@@ -8,7 +8,7 @@ type User = {
   description?: string;
 };
 
-export type AuthUser = User & {
+export type UserAuthInfo = User & {
   dateOfBD: string;
   email: string;
 };

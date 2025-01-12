@@ -2,7 +2,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./signInForm.module.scss";
 import { DataForLogin, useLoginMutation } from "@/api/authAPI";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TApiError } from "@/types/types";
 import SignInForm from "./SignInForm";
 import { useAppDispatch } from "@/lib/store/hooks";
@@ -15,9 +15,11 @@ const SignInFormController = () => {
   const [signIn, loginResult] = useLoginMutation();
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [rememberMe, setRememberMe] = useState<boolean | undefined>(false);
 
   const onSubmit: SubmitHandler<DataForLogin> = (data) => {
     signIn(data);
+    setRememberMe(data.rememberMe);
   };
 
   useEffect(() => {
@@ -32,10 +34,10 @@ const SignInFormController = () => {
 
   useEffect(() => {
     if (loginResult.data) {
-      dispatch(setAuth(loginResult.data));
+      dispatch(setAuth({ remembering: rememberMe, auth: loginResult.data }));
       router.push("users");
     }
-  }, [dispatch, loginResult.data, router]);
+  }, [dispatch, loginResult.data, router, rememberMe]);
 
   return (
     <section className={style.signInSection}>

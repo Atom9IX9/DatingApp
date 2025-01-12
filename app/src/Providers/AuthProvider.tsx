@@ -2,7 +2,7 @@
 
 import { selectAuth, selectFetchAuthStatus } from "@/selectors/accountSelector";
 import { TChildren } from "@/types/types";
-import { AuthUser } from "@/models/user.model";
+import { UserAuthInfo } from "@/models/user.model";
 import { createContext, useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/lib/store/hooks";
@@ -10,7 +10,7 @@ import { initialize } from "@/lib/store/slices/authSlice/authSlice";
 import { useRouter } from "next/navigation";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 
-const AuthContext = createContext<AuthUser | undefined>(undefined);
+const AuthContext = createContext<UserAuthInfo | undefined>(undefined);
 
 const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   const dispatch = useAppDispatch();

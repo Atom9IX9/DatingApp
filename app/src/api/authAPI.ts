@@ -1,29 +1,31 @@
-import User, { AuthUser, Gender } from "@/models/user.model";
+import { UserAuthInfo, Gender } from "@/models/user.model";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie"
 
 export const authAPI = createApi({
   reducerPath: "authAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/auth/" }),
   endpoints: (builder) => ({
-    login: builder.mutation<UserAuth, DataForLogin>({
+    login: builder.mutation<UserAuthResponse, DataForLogin>({
       query: (body) => ({
         url: "login",
         method: "POST",
         body,
       }),
     }),
-    register: builder.mutation<UserAuth, RegisterReqBody>({
+    register: builder.mutation<UserAuthResponse, RegisterReqBody>({
       query: (body) => ({
         url: "register",
         method: "POST",
         body,
       }),
+
     }),
-    checkAuth: builder.query<AuthUser, void>({
+    checkAuth: builder.query<UserAuthInfo, void>({
       query: () => ({
         url: "/",
         method: "GET",
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
       }),
     }),
   }),
@@ -45,7 +47,7 @@ export type RegisterReqBody = {
   location?: string;
   description?: string;
 };
-export type UserAuth = {
-  user: AuthUser;
+export type UserAuthResponse = {
+  user: UserAuthInfo;
   token?: string;
 };
