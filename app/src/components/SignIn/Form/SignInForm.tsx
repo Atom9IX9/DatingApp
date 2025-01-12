@@ -42,6 +42,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
           rootError={result.rootError}
         />
         <FormControlLabel
+          className={style.rememberMeLabel}
           label="Remember me"
           control={<Checkbox {...control.register("rememberMe")} />}
         />
