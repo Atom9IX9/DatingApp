@@ -1,0 +1,43 @@
+@use "../../../../variables";
+
+.fieldContainer {
+  position: relative;
+  margin-bottom: 50px;
+
+  .fieldLabel {
+    display: flex;
+    align-items: center;
+
+    &.error {
+      border: 2px solid #ff2c2c;
+
+      .fieldError {
+        position: absolute;
+        top: -20px;
+        color: #ff2c2c;
+        font-size: 15px;
+      }
+
+      .errorIcon {
+        position: absolute;
+        right: 20px;
+        color: #ff2c2c;
+      }
+    }
+
+    .field {
+      display: block;
+      background-color: #ffffff;
+    }
+
+    .fieldIcon {
+      background-color: rgba(variables.$primary-dark, 0.2);
+      color: variables.$primary-dark;
+      height: 56px;
+      width: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

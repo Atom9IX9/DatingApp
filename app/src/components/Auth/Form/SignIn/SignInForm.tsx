@@ -2,7 +2,7 @@ import React from "react";
 import style from "./signInForm.module.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
-import SignInFieldController from "./Field/FieldController";
+import SignInFieldController from "../Field/FieldController";
 import { Control } from "react-hook-form";
 import { DataForLogin } from "@/api/authAPI";
 import { validateEmail } from "@/utils/validation/singInValidation";
