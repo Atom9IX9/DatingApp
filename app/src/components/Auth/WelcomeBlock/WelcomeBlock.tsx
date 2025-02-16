@@ -13,7 +13,6 @@ const WelcomeBlock = () => {
           </span>
         </div>
 
-        <div className={style.logo}></div>
       </div>
       <div className={style.creatorLink}>
         <a href="https://github.com/Atom9IX9" target="_blank">
@@ -24,9 +23,6 @@ const WelcomeBlock = () => {
         </a>
       </div>
       <div className={style.decorationBlockRightBottom}></div>
-      <div className={style.decorationBlockRightTopWrap}>
-        <div className={style.decorationBlockRightTop}></div>
-      </div>
     </div>
   );
 };

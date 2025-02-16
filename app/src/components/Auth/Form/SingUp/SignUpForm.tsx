@@ -11,7 +11,7 @@ import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import { TApiError } from "@/types/types";
 
-const SignUpForm: React.FC<SignInFormProps> = ({
+const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
   onSubmit,
   control,
   result,
@@ -65,7 +65,7 @@ const SignUpForm: React.FC<SignInFormProps> = ({
   );
 };
 
-export default SignUpForm;
+export default SignUpMultiStepForm;
 type SignInFormProps = {
   onSubmit: () => void;
   control: Control<DataForLogin>;
