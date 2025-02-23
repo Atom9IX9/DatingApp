@@ -7,9 +7,14 @@
   .fieldLabel {
     display: flex;
     align-items: center;
+    border: 2px solid variables.$secondary-dark;
 
     &.error {
       border: 2px solid #ff454f;
+
+      &:has(input:focus) {
+        border: 2px solid variables.$secondary-dark;
+      }
 
       .fieldError {
         position: absolute;
