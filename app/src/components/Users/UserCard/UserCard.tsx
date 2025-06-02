@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import { Gender, PublicUser } from "@/models/user.model";
 import { useTheme } from "@/Providers/ThemeProvider";
 import { Colors } from "@/types/types";
-import { Avatar, Button, Card } from "@mui/material";
+import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
 import classNames from "classnames";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -10,21 +10,25 @@ import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import { capitalize } from "@/utils/capitalize";
 import { getUserStringLocation } from "@/utils/getUserStringLocation";
+import UIBox from "@/components/UI/Menu/UIBox";
 
 const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
   const theme = useTheme();
 
   return (
     <Card
+      sx={{
+        bgcolor: theme === "dark" ? Colors.PrimaryDark : Colors.PrimaryLight,
+      }}
       className={classNames(style.userCard, style[theme], {
         [style.even]: isEven,
       })}
     >
-      <div className={style.avatarBlock}>
+      <Box className={style.avatarBlock}>
         <Avatar
           sx={{
             bgcolor:
-              theme === "light" ? Colors.PrimaryLight : Colors.SecondaryDark600,
+              theme === "light" ? Colors.Primary : Colors.SecondaryDark600,
           }}
           className={style.userAvatar}
         />
@@ -35,15 +39,21 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
             style[theme]
           )}
         ></div>
-      </div>
-      <div className={style.userAge}>
+      </Box>
+      <Box className={style.userAge}>
         <span className={style.userAgeText}>age</span>
         <span className={style.userAgeNumber}>{user.age}</span>
-      </div>
-      <section className={style.userInfoSection}>
-        <h3 className={style.userFullName}>
+      </Box>
+      <Box component="section" className={style.userInfoSection}>
+        <Typography
+          variant="h3"
+          color={
+            theme === "dark" ? Colors.PrimaryContrastText : Colors.PrimaryDark
+          }
+          className={style.userFullName}
+        >
           {user.firstName} {user.lastName}
-        </h3>
+        </Typography>
         <ul className={style.details}>
           {!!user.location && (
             <li>
@@ -58,16 +68,16 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
           <li>
             <div className={style.marker}>
               {user.gender === Gender.Male ? (
-                <MaleIcon sx={{ fontSize: 24, color: Colors.PrimaryLight }} />
+                <MaleIcon sx={{ fontSize: 24, color: Colors.Primary }} />
               ) : (
-                <FemaleIcon sx={{ fontSize: 24, color: Colors.PrimaryLight }} />
+                <FemaleIcon sx={{ fontSize: 24, color: Colors.Primary }} />
               )}{" "}
             </div>
             <div>{capitalize(user.gender)}</div>
           </li>
         </ul>
-        <div className={style.userDescription}>{user.description}</div>
-      </section>
+        <UIBox className={style.userDescription}>{user.description}</UIBox>
+      </Box>
       <Button className={style.matchBtn}>
         <span className={style.matchBtnText}>match</span>
       </Button>

@@ -8,7 +8,7 @@ import { DataForLogin } from "@/api/authAPI";
 import { validateEmail } from "@/utils/validation/singInValidation";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { Button, Checkbox, darken, FormControlLabel } from "@mui/material";
+import { Box, Button, Checkbox, darken, FormControlLabel } from "@mui/material";
 import { Colors, TApiError } from "@/types/types";
 
 const SignInForm: React.FC<SignInFormProps> = ({
@@ -18,10 +18,10 @@ const SignInForm: React.FC<SignInFormProps> = ({
 }) => {
   return (
     <form className={style.signInForm} onSubmit={onSubmit}>
-      <div className={style.formIcon}>
+      <Box className={style.formIcon}>
         <PersonOutlineIcon sx={{ width: 50, height: 50, color: "#ffffff" }} />
-      </div>
-      <div className={style.fields}>
+      </Box>
+      <Box className={style.fields}>
         <SignInFieldController
           control={control}
           name="email"
@@ -51,11 +51,12 @@ const SignInForm: React.FC<SignInFormProps> = ({
             {(result.error as TApiError).data?.message || "Failed to send data"}
           </div>
         )}
-      </div>
+      </Box>
 
       <Button
         type="submit"
         variant="contained"
+        color="primary"
         className={style.submitBtn}
         disabled={result.status === QueryStatus.pending}
       >

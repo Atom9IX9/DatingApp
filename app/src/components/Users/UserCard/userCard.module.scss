@@ -7,10 +7,6 @@
     border-top: 3px solid variables.$secondary-light;
   }
 
-  &.dark {
-    @include mixins.color-scheme(variables.$scheme-2...);
-    background-color: variables.$primary-dark;
-  }
   &:hover {
     -webkit-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
     -moz-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);

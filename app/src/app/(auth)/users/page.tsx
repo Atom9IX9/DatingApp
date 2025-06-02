@@ -10,8 +10,6 @@ const UsersPage = () => {
           firstName: "Yaroslav",
           lastName: "Vorobyov",
           age: 15,
-          dateOfBD: "01-01-2024",
-          email: "sdfsa@gmail.com",
           gender: Gender.Male,
           isOnline: true,
           description:
@@ -26,12 +24,14 @@ const UsersPage = () => {
           firstName: "Oksana",
           lastName: "Vorobyova",
           age: 45,
-          dateOfBD: "05-019-1980",
-          email: "sdfsa@gmail.com",
           gender: Gender.Male,
           isOnline: true,
           description: undefined,
-          location: { region: "Poltavska oblast", country: "Ukraine", city: "v. Orzhica" },
+          location: {
+            region: "Poltavska oblast",
+            country: "Ukraine",
+            city: "v. Orzhica",
+          },
         }}
       />
     </div>

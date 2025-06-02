@@ -3,12 +3,13 @@ import Link from "next/link";
 import AccountMenu from "./AccountMenu";
 import AppSettingsMenu from "./AppSettingsMenu";
 import { useAuth } from "@/Providers/AuthProvider";
+import { Box } from "@mui/material";
 
 const UserActions = () => {
   const auth = useAuth();
 
   return (
-    <div className={style.userActions}>
+    <Box display="flex" className={style.userActions}>
       <div className={style.loginBlock}>
         {!auth ? (
           <>
@@ -23,7 +24,7 @@ const UserActions = () => {
       </div>
       <AccountMenu />
       <AppSettingsMenu />
-    </div>
+    </Box>
   );
 };
 

@@ -1,4 +1,4 @@
-@use "../../../../variables";
+@use "../../../../variables" as v;
 
 .signInSection {
   width: 40%;
@@ -7,14 +7,14 @@
   .signInPageTitle {
     font-size: 35px;
     font-weight: 700;
-    color: variables.$primary-light;
+    color: v.$primary-light;
     margin-top: 30px;
   }
 
   .signInPageText {
     margin-top: 20px;
     font-size: 18px;
-    color: variables.$light;
+    color: v.$light;
   }
 
   .signInForm {
@@ -33,7 +33,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: rgba(variables.$secondary-light, 0.7);
+      background-color: rgba(v.$secondary-light, 0.7);
       border-radius: 50%;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
@@ -45,7 +45,7 @@
 
     .fields {
       position: relative;
-      background-color: rgba(variables.$secondary-dark, 0.8);
+      background-color: rgba(v.$secondary-dark, 0.8);
       padding: 80px 5% 100px 5%;
       width: 100%;
 
@@ -63,7 +63,7 @@
       }
 
       .rememberMeLabel {
-        color: variables.$light;
+        color: v.$light;
       }
     }
   }
@@ -73,7 +73,7 @@
     bottom: 90px;
     width: 100%;
     height: 70px;
-    background-color: variables.$primary-light;
+    background-color: v.$primary-light;
     border-radius: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -81,7 +81,7 @@
     -o-border-radius: 0;
 
     &:hover {
-      background-color: lighten(variables.$primary-light, 6);
+      background-color: lighten(v.$primary-light, 6);
     }
 
     &:disabled {

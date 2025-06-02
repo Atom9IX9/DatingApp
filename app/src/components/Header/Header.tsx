@@ -5,15 +5,25 @@ import { useTheme } from "@/Providers/ThemeProvider";
 import cn from "classnames";
 import HeaderNav from "./HeaderNav/HeaderNav";
 import UserActions from "./UserActions/UserActions";
+import { AppBar, IconButton, Toolbar } from "@mui/material";
+import { Colors } from "@/types/types";
 
 const Header = () => {
   const theme = useTheme();
 
   return (
-    <header className={cn(style.header, style[theme])}>
-      <HeaderNav />
-      <UserActions />
-    </header>
+    <AppBar
+      position="static"
+      sx={{
+        bgcolor: theme === "dark" ? Colors.PrimaryDark : Colors.PrimaryLight,
+      }}
+      className={cn(style.header, style[theme])}
+    >
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <HeaderNav />
+        <UserActions />
+      </Toolbar>
+    </AppBar>
   );
 };
 

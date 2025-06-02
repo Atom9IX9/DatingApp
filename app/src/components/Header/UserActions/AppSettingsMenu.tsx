@@ -10,7 +10,7 @@ import UIIconMenuButton from "@/components/UI/Menu/UIIconMenuButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { IconButton } from "@mui/material";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { useAppDispatch } from "@/lib/store/hooks";
 import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
 
@@ -66,7 +66,7 @@ const AppSettingsMenu = () => {
 
 const SwitchColorTheme = () => {
   const theme = useTheme();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -82,7 +82,7 @@ const SwitchColorTheme = () => {
               bgcolor:
                 theme === "light"
                   ? Colors.SecondaryLight + "40"
-                  : "transparent",
+                  : "#00000010",
             },
           }}
         >
@@ -100,10 +100,9 @@ const SwitchColorTheme = () => {
           onClick={() => dispatch(setTheme("dark"))}
           sx={{
             borderRadius: "15px",
-            bgcolor:
-              theme === "dark" ? Colors.PrimaryLight + "30" : "transparent",
+            bgcolor: theme === "dark" ? "#e3507c43" : "transparent",
             "&:hover": {
-              bgcolor: theme === "dark" ? Colors.PrimaryLight + "30" : "",
+              bgcolor: theme === "dark" ? "#e3507c43" : "",
             },
           }}
         >
