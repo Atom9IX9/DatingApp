@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import classNames from "classnames";
 import ErrorIcon from "@mui/icons-material/Error";
-import style from "../signInForm.module.scss";
+import style from "./field.module.scss";
 import { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 
 function SignInField<FV extends FieldValues>({

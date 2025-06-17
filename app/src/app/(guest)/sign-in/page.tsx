@@ -1,6 +1,6 @@
-import WelcomeBlock from "@/components/SignIn/WelcomeBlock/WelcomeBlock";
+import WelcomeBlock from "@/components/Auth/WelcomeBlock/WelcomeBlock";
 import style from "../guestPages.module.scss";
-import SignInFormController from "@/components/SignIn/Form/SignInFormController";
+import SignInFormController from "@/components/Auth/Form/SignIn/SignInFormController";
 import classNames from "classnames";
 
 const SignIn = () => {

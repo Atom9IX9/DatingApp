@@ -4,7 +4,7 @@ import {
   FieldPath,
   FieldValues,
 } from "react-hook-form";
-import style from "../signInForm.module.scss";
+import style from "./field.module.scss";
 import { TValidationFunction } from "@/types/types";
 import SignInField, { InputParams } from "./Field";
 

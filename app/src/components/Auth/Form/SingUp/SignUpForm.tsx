@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./signInForm.module.scss";
+import style from "./signUpForm.module.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
-import SignInFieldController from "./Field/FieldController";
+import FieldController from "@/components/Auth/Form/Field/FieldController";
 import { Control } from "react-hook-form";
 import { DataForLogin } from "@/api/authAPI";
 import { validateEmail } from "@/utils/validation/singInValidation";
@@ -11,7 +11,7 @@ import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import { TApiError } from "@/types/types";
 
-const SignInForm: React.FC<SignInFormProps> = ({
+const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
   onSubmit,
   control,
   result,
@@ -22,7 +22,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
         <PersonOutlineIcon sx={{ width: 50, height: 50, color: "#ffffff" }} />
       </div>
       <div className={style.fields}>
-        <SignInFieldController
+        <FieldController
           control={control}
           name="email"
           inputParams={{ isRequired: true, label: "Email" }}
@@ -30,7 +30,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
           validate={{ validateEmail }}
           rootError={result.rootError}
         />
-        <SignInFieldController
+        <FieldController
           control={control}
           name="password"
           inputParams={{
@@ -65,7 +65,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
   );
 };
 
-export default SignInForm;
+export default SignUpMultiStepForm;
 type SignInFormProps = {
   onSubmit: () => void;
   control: Control<DataForLogin>;

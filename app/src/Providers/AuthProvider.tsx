@@ -25,10 +25,6 @@ const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   useEffect(() => {
     if (fetchAuthStatus === QueryStatus.fulfilled) {
       router.push("/users");
-    } else if (fetchAuthStatus === QueryStatus.rejected) {
-      if (!auth) {
-        router.push("/");
-      }
     }
   }, [router, fetchAuthStatus, auth]);
 
