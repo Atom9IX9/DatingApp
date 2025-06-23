@@ -2,7 +2,7 @@ import { useTheme } from "@/Providers/ThemeProvider";
 import { Colors, TChildren } from "@/types/types";
 import { Box } from "@mui/material";
 
-const UIBox: React.FC<Props> = ({ children, bg = "prymary", className }) => {
+const UIBox: React.FC<Props> = ({ children, bg = Colors.InfoDark, className }) => {
   const theme = useTheme();
 
   return (
@@ -10,8 +10,7 @@ const UIBox: React.FC<Props> = ({ children, bg = "prymary", className }) => {
       className={className}
       sx={{
         bgcolor: theme === "dark" ? bg : Colors.White,
-        color:
-          theme === "dark" ? Colors.PrimaryContrastText : Colors.PrimaryDark,
+        color: Colors.InfoDark
       }}
     >
       {children}
@@ -22,6 +21,6 @@ const UIBox: React.FC<Props> = ({ children, bg = "prymary", className }) => {
 export default UIBox;
 type Props = {
   children: TChildren;
-  bg?: "secondary" | "primary";
+  bg?: Colors;
   className?: string;
 };

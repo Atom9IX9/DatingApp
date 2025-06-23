@@ -1,4 +1,4 @@
-@use "../../../variables";
+@use "../../../variables" as v;
 
 .container {
   position: relative;
@@ -7,7 +7,7 @@
   height: 100%;
 
   .mainPart {
-    //background-color: variables.$primary-dark;
+    //background-color: variables.$info-dark--dark;
     background: no-repeat url(../../../../public/imgs/sign-in-img.jpg);
     background-size: cover;
 
@@ -23,9 +23,9 @@
     color: #ffffff;
     flex-direction: column;
 
-    -webkit-box-shadow: inset -121px -49px 66px -18px rgba(30, 32, 30, 1);
-    -moz-box-shadow: inset -121px -49px 66px -18px rgba(30, 32, 30, 1);
-    box-shadow: inset -121px -49px 66px -18px rgba(30, 32, 30, 1);
+    -webkit-box-shadow: inset -121px -49px 66px -18px v.$info-dark--dark;
+    -moz-box-shadow: inset -121px -49px 66px -18px v.$info-dark--dark;
+    box-shadow: inset -121px -49px 66px -18px v.$info-dark--dark;
 
     .bold {
       display: inline;

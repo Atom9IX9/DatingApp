@@ -18,7 +18,7 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
   return (
     <Card
       sx={{
-        bgcolor: theme === "dark" ? Colors.PrimaryDark : Colors.PrimaryLight,
+        bgcolor: Colors.InfoDark,
       }}
       className={classNames(style.userCard, style[theme], {
         [style.even]: isEven,
@@ -27,18 +27,18 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
       <Box className={style.avatarBlock}>
         <Avatar
           sx={{
-            bgcolor:
-              theme === "light" ? Colors.Primary : Colors.SecondaryDark600,
+            bgcolor: Colors.Info,
           }}
           className={style.userAvatar}
         />
-        <div
+        <Box
           className={classNames(
             style.onlineStatus,
             user.isOnline ? style.online : style.offline,
             style[theme]
           )}
-        ></div>
+          sx={{ border: 5, borderColor: Colors.InfoDark }}
+        ></Box>
       </Box>
       <Box className={style.userAge}>
         <span className={style.userAgeText}>age</span>
@@ -68,15 +68,15 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
           <li>
             <div className={style.marker}>
               {user.gender === Gender.Male ? (
-                <MaleIcon sx={{ fontSize: 24, color: Colors.Primary }} />
+                <MaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />
               ) : (
-                <FemaleIcon sx={{ fontSize: 24, color: Colors.Primary }} />
+                <FemaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />
               )}{" "}
             </div>
             <div>{capitalize(user.gender)}</div>
           </li>
         </ul>
-        <UIBox className={style.userDescription}>{user.description}</UIBox>
+        <Box className={style.userDescription} sx={{ color: Colors.InfoContrastText }}>{user.description}</Box>
       </Box>
       <Button className={style.matchBtn}>
         <span className={style.matchBtnText}>match</span>

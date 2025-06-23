@@ -21,16 +21,16 @@ const UsersPage = () => {
         isEven
         user={{
           uid: "dfnddsfjndfsaaad",
-          firstName: "Oksana",
-          lastName: "Vorobyova",
+          firstName: "Polina",
+          lastName: "Shapranova",
           age: 45,
-          gender: Gender.Male,
+          gender: Gender.Female,
           isOnline: true,
           description: undefined,
           location: {
             region: "Poltavska oblast",
             country: "Ukraine",
-            city: "v. Orzhica",
+            city: "v. Anyone",
           },
         }}
       />

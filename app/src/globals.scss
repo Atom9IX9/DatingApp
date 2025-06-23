@@ -1,4 +1,4 @@
-@use "./variables";
+@use "./variables" as v;
 @use "./mixins.scss";
 
 html,
@@ -134,8 +134,11 @@ a {
 .theme-wrap {
   height: 100vh;
   &.dark {
-    @include mixins.color-scheme(variables.$scheme-2...);
-    background: #3c3d37;
+    @include mixins.color-scheme(v.$scheme-2...);
+    background: v.$info--dark;
+  }
+  &.light {
+    background: #E4FDFF;
   }
 }
 

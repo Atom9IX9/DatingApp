@@ -14,10 +14,9 @@ const Header = () => {
   return (
     <AppBar
       position="static"
-      sx={{
-        bgcolor: theme === "dark" ? Colors.PrimaryDark : Colors.PrimaryLight,
-      }}
+      variant="outlined"
       className={cn(style.header, style[theme])}
+      sx={{bgcolor: "info.dark"}}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <HeaderNav />

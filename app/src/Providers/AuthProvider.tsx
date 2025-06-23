@@ -15,28 +15,12 @@ const AuthContext = createContext<UserAuthInfo | undefined>(undefined);
 const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   const dispatch = useAppDispatch();
   const auth = useSelector(selectAuth);
-  const fetchAuthStatus = useSelector(selectFetchAuthStatus);
-  const router = useRouter();
 
   useEffect(() => {
     dispatch(initialize());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (fetchAuthStatus === QueryStatus.fulfilled) {
-      router.push("/users");
-    }
-  }, [router, fetchAuthStatus, auth]);
-
-  return (
-    <>
-      {fetchAuthStatus === QueryStatus.pending ? (
-        <>Loading...</>
-      ) : (
-        <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
-      )}
-    </>
-  );
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

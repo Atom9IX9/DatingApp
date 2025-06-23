@@ -7,13 +7,12 @@
   .fieldLabel {
     display: flex;
     align-items: center;
-    border: 2px solid variables.$secondary-dark;
 
     &.error {
       border: 2px solid #ff454f;
 
       &:has(input:focus) {
-        border: 2px solid variables.$secondary-dark;
+        border: 2px solid variables.$info--dark;
       }
 
       .fieldError {
@@ -36,7 +35,7 @@
     }
 
     .fieldIcon {
-      background-color: variables.$primary-dark;
+      background-color: variables.$info-dark--dark;
       color: #fff;
       height: 56px;
       width: 56px;
