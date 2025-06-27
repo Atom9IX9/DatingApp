@@ -21,9 +21,7 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body className={`${nunito_sans.className}`}>
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

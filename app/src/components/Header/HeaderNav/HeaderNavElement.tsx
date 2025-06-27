@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import style from "../header.module.scss";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import cn from "classnames";
-import { Colors, TChildren } from "@/types/types";
+import { TChildren } from "@/types/types";
+import { Colors } from "@/types/colors";
 import { IconButton, Tooltip } from "@mui/material";
 
 const NavElement: React.FC<TProps> = ({
@@ -14,15 +15,18 @@ const NavElement: React.FC<TProps> = ({
   color = "default",
 }) => {
   const pathname = usePathname();
+  const router = useRouter()
 
   return (
     <Tooltip title={title}>
       <IconButton
         color={color}
-        href={to}
         className={cn(style.navElement, {
           [style[Colors.Active]]: pathname === to,
         })}
+        onClick={() => {
+          router.push(to)
+        }}
       >
         {children}
       </IconButton>
@@ -35,5 +39,5 @@ type TProps = {
   title: string;
   to: string;
   children: TChildren;
-  color?: "secondary" | "primary" | "default"
+  color?: "secondary" | "primary" | "default";
 };

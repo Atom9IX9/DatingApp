@@ -80,20 +80,6 @@
       -moz-border-radius: 50%;
       -ms-border-radius: 50%;
       -o-border-radius: 50%;
-
-      // border: 6px solid;
-
-      // &.dark {
-      //   border: 6px solid variables.$info-dark--dark;
-      //   border-radius: 50%;
-      //   -webkit-border-radius: 50%;
-      //   -moz-border-radius: 50%;
-      //   -ms-border-radius: 50%;
-      //   -o-border-radius: 50%;
-      // }
-      // &.light {
-      //   border: 6px solid #ffffff;
-      // }
     }
   }
 
@@ -200,14 +186,5 @@
         display: none;
       }
     }
-    // @keyframes hoverBtnAnimation {
-    //   0% {
-    //     background-color: variables.$primary-light;
-    //   }
-
-    //   100% {
-    //     background-color: variables.$secondary-light;
-    //   }
-    // }
   }
 }

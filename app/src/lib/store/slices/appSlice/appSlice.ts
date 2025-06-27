@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: TInitialState = {
   currentTheme: "light",
+  isInitialized: false
 };
 
 const appSlice = createSlice({
@@ -12,13 +13,17 @@ const appSlice = createSlice({
     setTheme: (state, action: PayloadAction<TTheme>) => {
       localStorage.setItem("theme", action.payload)
       state.currentTheme = action.payload
+    },
+    initialize: (state) => {
+      state.isInitialized = true;
     }
   }
 })
 
 export default appSlice.reducer
-export const { setTheme } = appSlice.actions
+export const { setTheme, initialize } = appSlice.actions
 
 export type TInitialState = {
   currentTheme: TTheme;
+  isInitialized: boolean;
 };

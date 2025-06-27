@@ -1,7 +1,7 @@
 "use client";
 import { Gender, PublicUser } from "@/models/user.model";
 import { useTheme } from "@/Providers/ThemeProvider";
-import { Colors } from "@/types/types";
+import { Colors } from "@/types/colors";
 import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
 import classNames from "classnames";
@@ -76,7 +76,12 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
             <div>{capitalize(user.gender)}</div>
           </li>
         </ul>
-        <Box className={style.userDescription} sx={{ color: Colors.InfoContrastText }}>{user.description}</Box>
+        <Box
+          className={style.userDescription}
+          sx={{ color: Colors.InfoContrastText }}
+        >
+          {user.description}
+        </Box>
       </Box>
       <Button className={style.matchBtn}>
         <span className={style.matchBtnText}>match</span>

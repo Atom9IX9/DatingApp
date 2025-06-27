@@ -1,10 +1,10 @@
 import { UserAuthInfo, Gender } from "@/models/user.model";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie"
 
 export const authAPI = createApi({
   reducerPath: "authAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/auth/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/auth/" }) as BaseQueryFn<string | FetchArgs, unknown, AuthApiError>,
   endpoints: (builder) => ({
     login: builder.mutation<UserAuthResponse, DataForLogin>({
       query: (body) => ({
@@ -51,3 +51,10 @@ export type UserAuthResponse = {
   user: UserAuthInfo;
   token?: string;
 };
+export type AuthApiError = {
+  data: {
+    message: string,
+    statusCode: number
+  },
+  status: number
+}

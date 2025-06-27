@@ -131,6 +131,7 @@ a {
 }
 
 /* ############### */
+
 .theme-wrap {
   height: 100vh;
   &.dark {
@@ -138,7 +139,7 @@ a {
     background: v.$info--dark;
   }
   &.light {
-    background: #E4FDFF;
+    background: #e4fdff;
   }
 }
 

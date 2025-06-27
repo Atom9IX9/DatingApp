@@ -1,5 +1,6 @@
 import { useTheme } from "../../../Providers/ThemeProvider";
-import { Colors, TChildren } from "../../../types/types";
+import { TChildren } from "../../../types/types";
+import { Colors } from "@/types/colors";
 import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
 import { MouseEventHandler } from "react";
 import React from "react";
@@ -9,7 +10,7 @@ const UIIconMenuButton: React.FC<TProps> = ({
   handleClick,
   isOpen,
   children,
-  title
+  title,
 }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>

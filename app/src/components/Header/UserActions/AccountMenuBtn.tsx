@@ -1,5 +1,5 @@
 import { useTheme } from "@/Providers/ThemeProvider";
-import { Colors } from "@/types/types";
+import { Colors } from "@/types/colors";
 import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
 import { MouseEventHandler } from "react";
 import { stringToColor } from "../../../utils/stringToColor";
@@ -10,7 +10,7 @@ const AccountMenuBtn: React.FC<TProps> = ({
   isOpen,
   firstName,
   lastName,
-  avatar
+  avatar,
 }) => {
   const theme = useTheme();
 
@@ -23,17 +23,21 @@ const AccountMenuBtn: React.FC<TProps> = ({
             : name
             ? stringToColor(name)
             : Colors.SecondaryDark,
-        border: avatar ? "2px solid #00000050" : "none"
+        border: avatar ? "2px solid #00000050" : "none",
       },
       children: name ? `${name.split(" ")[0][0]}${name.split(" ")[1][0]}` : "",
     };
   }
 
   return (
-    <UIIconMenuButton title="Account menu" handleClick={handleClick} isOpen={isOpen}>
+    <UIIconMenuButton
+      title="Account menu"
+      handleClick={handleClick}
+      isOpen={isOpen}
+    >
       <Avatar
         {...stringAvatar(
-          (firstName && lastName) ? `${firstName} ${lastName}` : ""
+          firstName && lastName ? `${firstName} ${lastName}` : ""
         )}
         src={avatar || undefined}
       />

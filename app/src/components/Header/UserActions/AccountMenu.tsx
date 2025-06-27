@@ -4,9 +4,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import PeopleIcon from "@mui/icons-material/People";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
-import { Colors } from "@/types/types";
+import { Colors } from "@/types/colors";
 import AccountMenuBtn from "./AccountMenuBtn";
 import { useTheme } from "@/Providers/ThemeProvider";
 import UIMenu from "@/components/UI/Menu/UIMenu";
@@ -14,10 +14,10 @@ import { useMenu } from "@/hooks/useMenu";
 import { useAuth } from "@/Providers/AuthProvider";
 
 const AccountMenu = () => {
-  const { anchorEl, handleClick, handleClose, isOpen } = useMenu()
+  const { anchorEl, handleClick, handleClose, isOpen } = useMenu();
 
   const theme = useTheme();
-  const auth = useAuth()
+  const auth = useAuth();
 
   return (
     <>

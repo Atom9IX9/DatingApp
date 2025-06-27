@@ -1,5 +1,6 @@
-import { authAPI, UserAuthResponse } from "@/api/authAPI";
+import { authAPI, AuthApiError, UserAuthResponse } from "@/api/authAPI";
 import { UserAuthInfo } from "@/models/user.model";
+import { AuthApiErrorCodes } from "@/types/statusCodes";
 import { getJwtExpiresDateFromSeconds } from "@/utils/getJwtExpiresDateFromSeconds";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { QueryStatus } from "@reduxjs/toolkit/query";
@@ -7,15 +8,20 @@ import Cookies from "js-cookie";
 
 const initialState = {
   user: undefined as UserAuthInfo | undefined,
-  fetchAuthStatus: undefined as QueryStatus | undefined,
+  fetchAuthStatus: undefined as number | QueryStatus | undefined,
 };
 
-export const initialize = createAsyncThunk(
-  "auth/init",
+export const checkAuth = createAsyncThunk(
+  "auth/checkAuth",
   async (_, { dispatch }) => {
     const auth = await dispatch(authAPI.endpoints.checkAuth.initiate());
     if (auth.data) dispatch(setAuth({ auth: { user: auth.data } }));
-    dispatch(setFetchAuthStatus(auth.status));
+    dispatch(
+      setFetchAuthStatus(
+        (auth.error as AuthApiError)?.data.statusCode || auth.status
+      )
+    );
+    console.log(auth);
   }
 );
 
@@ -42,12 +48,12 @@ const authSlice = createSlice({
         }
       }
     },
-    setFetchAuthStatus: (state, action: PayloadAction<QueryStatus>) => {
+    setFetchAuthStatus: (state, action: PayloadAction<QueryStatus | number>) => {
       state.fetchAuthStatus = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(initialize.pending, (state) => {
+    builder.addCase(checkAuth.pending, (state) => {
       state.fetchAuthStatus = QueryStatus.pending;
     });
   },
