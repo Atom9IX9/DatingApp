@@ -2,7 +2,7 @@ import { TTheme } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: TInitialState = {
-  currentTheme: "light",
+  currentTheme: "dark",
   isInitialized: false
 };
 

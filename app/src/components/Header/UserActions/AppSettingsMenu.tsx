@@ -109,7 +109,7 @@ const SwitchColorTheme = () => {
               color:
                 theme === "dark"
                   ? Colors.TriadicLight
-                  : Colors.SecondaryDark600,
+                  : Colors.Gray,
             }}
             fontSize="large"
           />
