@@ -15,11 +15,9 @@ const SignInFormController = () => {
   const [signIn, loginResult] = useLoginMutation();
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const [rememberMe, setRememberMe] = useState<boolean | undefined>(false);
 
   const onSubmit: SubmitHandler<DataForLogin> = (data) => {
     signIn(data);
-    setRememberMe(data.rememberMe);
   };
 
   useEffect(() => {
@@ -34,10 +32,10 @@ const SignInFormController = () => {
 
   useEffect(() => {
     if (loginResult.data) {
-      dispatch(setAuth({ remembering: rememberMe, auth: loginResult.data }));
+      dispatch(setAuth({ auth: loginResult.data }));
       router.push("users");
     }
-  }, [dispatch, loginResult.data, router, rememberMe]);
+  }, [dispatch, loginResult.data, router]);
 
   return (
     <section className={style.signInSection}>
