@@ -5,8 +5,7 @@ import { useTheme } from "@/Providers/ThemeProvider";
 import cn from "classnames";
 import HeaderNav from "./HeaderNav/HeaderNav";
 import UserActions from "./UserActions/UserActions";
-import { AppBar, IconButton, Toolbar } from "@mui/material";
-import { Colors } from "@/types/types";
+import { AppBar, Toolbar } from "@mui/material";
 
 const Header = () => {
   const theme = useTheme();

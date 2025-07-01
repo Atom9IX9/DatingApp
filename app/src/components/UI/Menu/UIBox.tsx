@@ -1,8 +1,13 @@
 import { useTheme } from "@/Providers/ThemeProvider";
-import { Colors, TChildren } from "@/types/types";
+import { TChildren } from "@/types/types";
+import { Colors } from "@/types/colors";
 import { Box } from "@mui/material";
 
-const UIBox: React.FC<Props> = ({ children, bg = Colors.InfoDark, className }) => {
+const UIBox: React.FC<Props> = ({
+  children,
+  bg = Colors.InfoDark,
+  className,
+}) => {
   const theme = useTheme();
 
   return (
@@ -10,7 +15,7 @@ const UIBox: React.FC<Props> = ({ children, bg = Colors.InfoDark, className }) =
       className={className}
       sx={{
         bgcolor: theme === "dark" ? bg : Colors.White,
-        color: Colors.InfoDark
+        color: Colors.InfoDark,
       }}
     >
       {children}

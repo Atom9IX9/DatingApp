@@ -9,7 +9,8 @@ import { validateEmail } from "@/utils/validation/singInValidation";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Box, Button, Checkbox, darken, FormControlLabel } from "@mui/material";
-import { Colors, TApiError } from "@/types/types";
+import { TApiError } from "@/types/types";
+import { Colors } from "@/types/colors";
 
 const SignInForm: React.FC<SignInFormProps> = ({
   onSubmit,
@@ -44,7 +45,13 @@ const SignInForm: React.FC<SignInFormProps> = ({
         <FormControlLabel
           className={style.rememberMeLabel}
           label="Remember me"
-          control={<Checkbox color="secondary" sx={{color: Colors.SecondaryLight}} {...control.register("rememberMe")} />}
+          control={
+            <Checkbox
+              color="secondary"
+              sx={{ color: Colors.SecondaryLight }}
+              {...control.register("rememberMe")}
+            />
+          }
         />
         {!!result.error && (
           <div className={style.rootError}>

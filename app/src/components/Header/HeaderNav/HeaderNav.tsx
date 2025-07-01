@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NavElement from "./HeaderNavElement";
-import { Colors } from "@/types/types";
+import { Colors } from "@/types/colors";
 import style from "@/components/Header/header.module.scss";
 import cn from "classnames";
 import { Box, Toolbar } from "@mui/material";

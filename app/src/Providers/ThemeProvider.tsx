@@ -16,22 +16,11 @@ import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
 import dark from "@/themes/dark";
 import light from "@/themes/light";
 
-const ThemeContext = createContext<"light" | "dark">("light");
+const ThemeContext = createContext<"light" | "dark">("dark");
 
 const ThemeProvider: React.FC<{ children: TChildren }> = ({ children }) => {
   let currentTheme = useSelector(selectTheme);
-  const storageTheme = localStorage.getItem("theme") as TTheme;
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(setTheme(storageTheme || currentTheme));
-    if (storageTheme) currentTheme = storageTheme;
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(setTheme(currentTheme));
-    localStorage.setItem("theme", currentTheme);
-  }, [dispatch, currentTheme]);
 
   return (
     <ThemeContext.Provider value={currentTheme}>

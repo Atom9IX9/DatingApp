@@ -1,7 +1,7 @@
 "use client";
 import { Gender, PublicUser } from "@/models/user.model";
 import { useTheme } from "@/Providers/ThemeProvider";
-import { Colors } from "@/types/types";
+import { Colors } from "@/types/colors";
 import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
 import classNames from "classnames";
@@ -10,7 +10,6 @@ import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import { capitalize } from "@/utils/capitalize";
 import { getUserStringLocation } from "@/utils/getUserStringLocation";
-import UIBox from "@/components/UI/Menu/UIBox";
 
 const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
   const theme = useTheme();
@@ -19,6 +18,7 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
     <Card
       sx={{
         bgcolor: Colors.InfoDark,
+        borderRadius: "14px"
       }}
       className={classNames(style.userCard, style[theme], {
         [style.even]: isEven,
@@ -76,7 +76,12 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
             <div>{capitalize(user.gender)}</div>
           </li>
         </ul>
-        <Box className={style.userDescription} sx={{ color: Colors.InfoContrastText }}>{user.description}</Box>
+        <Box
+          className={style.userDescription}
+          sx={{ color: Colors.InfoContrastText }}
+        >
+          {user.description}
+        </Box>
       </Box>
       <Button className={style.matchBtn}>
         <span className={style.matchBtnText}>match</span>

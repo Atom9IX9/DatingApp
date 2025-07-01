@@ -2,7 +2,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Colors } from "@/types/types";
+import { Colors } from "@/types/colors";
 import { useTheme } from "@/Providers/ThemeProvider";
 import UIMenu from "@/components/UI/Menu/UIMenu";
 import { useMenu } from "@/hooks/useMenu";
@@ -80,9 +80,7 @@ const SwitchColorTheme = () => {
               theme === "light" ? Colors.SecondaryLight + "40" : "transparent",
             "&:hover": {
               bgcolor:
-                theme === "light"
-                  ? Colors.SecondaryLight + "40"
-                  : "#00000010",
+                theme === "light" ? Colors.SecondaryLight + "40" : "#00000010",
             },
           }}
         >
@@ -111,7 +109,7 @@ const SwitchColorTheme = () => {
               color:
                 theme === "dark"
                   ? Colors.TriadicLight
-                  : Colors.SecondaryDark600,
+                  : Colors.Gray,
             }}
             fontSize="large"
           />
