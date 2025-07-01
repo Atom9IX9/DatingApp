@@ -10,7 +10,6 @@ import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import { capitalize } from "@/utils/capitalize";
 import { getUserStringLocation } from "@/utils/getUserStringLocation";
-import UIBox from "@/components/UI/Menu/UIBox";
 
 const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
   const theme = useTheme();
@@ -19,6 +18,7 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
     <Card
       sx={{
         bgcolor: Colors.InfoDark,
+        borderRadius: "14px"
       }}
       className={classNames(style.userCard, style[theme], {
         [style.even]: isEven,

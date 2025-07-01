@@ -27,8 +27,10 @@ const SignInFormController = () => {
           (loginResult.error as TApiError).data?.message ||
           "Failed to send data",
       });
+    } else if (loginResult.data) {
+      dispatch(setAuth({ auth: loginResult.data }));
     }
-  }, [loginResult.error, setError]);
+  }, [loginResult.error, setError, loginResult.data, dispatch]);
 
   useEffect(() => {
     if (loginResult.data) {

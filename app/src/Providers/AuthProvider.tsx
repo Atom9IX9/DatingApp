@@ -13,19 +13,26 @@ import { StatusCodes } from "@/types/statusCodes";
 
 const AuthContext = createContext<UserAuthInfo | undefined>(undefined);
 
-const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
+const AuthProvider: React.FC<ProviderProps> = ({ children, cookiesAuth }) => {
   const dispatch = useAppDispatch();
-  const fetchAuthStatus = useSelector(selectFetchAuthStatus);
+  const storeAuth = useSelector(selectAuth);
 
   useEffect(() => {
-    if (auth) {
-      dispatch(setAuth({ auth: { user: auth } }));
+    if (cookiesAuth) {
+      dispatch(setAuth({ auth: { user: cookiesAuth } }));
     }
-  }, [dispatch, auth]);
+  }, [dispatch, cookiesAuth]);
 
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={cookiesAuth ? cookiesAuth : storeAuth}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);
 export default AuthProvider;
-type ProviderProps = { children: TChildren; auth: UserAuthInfo | undefined };
+type ProviderProps = {
+  children: TChildren;
+  cookiesAuth: UserAuthInfo | undefined;
+};
