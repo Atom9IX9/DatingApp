@@ -5,9 +5,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import "../globals.scss";
 import classNames from "classnames";
 import {
-  createTheme,
   ThemeProvider as Provider,
-  ThemeOptions,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectTheme } from "@/selectors/appSelectors";
@@ -22,11 +20,21 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
   const storeTheme = useSelector(selectTheme);
   const dispatch = useAppDispatch();
 
-  const [currentTheme, setCurrentTheme] = useState<TTheme>(cookiesTheme || storeTheme)
+  const [currentTheme, setCurrentTheme] = useState<TTheme>(
+    cookiesTheme || storeTheme
+  );
 
   useEffect(() => {
-    
-  }, [currentTheme, storeTheme])
+    if (cookiesTheme && cookiesTheme !== storeTheme) {
+      dispatch(setTheme(cookiesTheme));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (storeTheme !== currentTheme) {
+      setCurrentTheme(storeTheme);
+    }
+  }, [storeTheme, currentTheme]);
 
   return (
     <ThemeContext.Provider value={currentTheme}>
@@ -39,4 +47,4 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
 
 export default ThemeProvider;
 export const useTheme = () => useContext(ThemeContext);
-export type Props = { children: TChildren, cookiesTheme?: TTheme }
+export type Props = { children: TChildren; cookiesTheme?: TTheme };
