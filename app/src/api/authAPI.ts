@@ -29,9 +29,9 @@ export const authAPI = createApi({
   }),
 });
 
-export const checkAuth = async (token?: string) => {
+export const checkAuth: CheckAuthFn = async (token?: string) => {
   if (!token) {
-    return { errCode: 401 }
+    return { statusCode: 401 };
   }
   try {
     const res = await fetch("http://localhost:5000/api/auth", {
@@ -40,10 +40,13 @@ export const checkAuth = async (token?: string) => {
         Authorization: "Bearer " + token,
       },
     });
-
-    return { user: await res.json() };
+    if (res.ok) {
+      return { user: await res.json() };
+    } else {
+      return { statusCode: res.status }
+    }
   } catch (e: any) {
-    return { errCode: e.code }
+    return { statusCode: e.code };
   }
 };
 
@@ -74,3 +77,5 @@ export type AuthApiError = {
   };
   status: number;
 };
+export type CheckAuthResponse = { user?: UserAuthInfo, statusCode?: number }
+export type CheckAuthFn = (token?: string) => Promise<CheckAuthResponse>;
