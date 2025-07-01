@@ -12,7 +12,7 @@ const RootLayout = async ({
   const token = cookies().get("token")?.value;
   const authRes = await checkAuth(token);
 
-  if (authRes.errCode === 401) {
+  if (authRes.statusCode === 401) {
     redirect("/");
   }
 

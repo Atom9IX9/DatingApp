@@ -8,7 +8,7 @@ const ProvidedLayout = async ({ children }: Props) => {
   const theme = cookies().get("theme")?.value;
   const response = await checkAuth(token);
 
-  return <Providers cookiesAuth={response.user}>{children}</Providers>;
+  return <Providers cookiesAuth={response.user }>{children}</Providers>;
 };
 
 type Props = { children: TChildren };

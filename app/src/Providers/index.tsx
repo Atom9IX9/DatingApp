@@ -20,4 +20,4 @@ const Providers: React.FC<Props> = ({ children, cookiesAuth }) => {
 };
 
 export default Providers;
-export type Props = { children: TChildren; cookiesAuth: UserAuthInfo };
+export type Props = { children: TChildren; cookiesAuth: UserAuthInfo | undefined };

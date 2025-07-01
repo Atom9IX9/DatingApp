@@ -1,7 +1,7 @@
 "use client";
 
 import { TChildren, TTheme } from "@/types/types";
-import { createContext, useContext, useEffect, useMemo } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import "../globals.scss";
 import classNames from "classnames";
 import {
@@ -18,9 +18,15 @@ import light from "@/themes/light";
 
 const ThemeContext = createContext<"light" | "dark">("dark");
 
-const ThemeProvider: React.FC<{ children: TChildren }> = ({ children }) => {
-  let currentTheme = useSelector(selectTheme);
+const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
+  const storeTheme = useSelector(selectTheme);
   const dispatch = useAppDispatch();
+
+  const [currentTheme, setCurrentTheme] = useState<TTheme>(cookiesTheme || storeTheme)
+
+  useEffect(() => {
+    
+  }, [currentTheme, storeTheme])
 
   return (
     <ThemeContext.Provider value={currentTheme}>
@@ -33,3 +39,4 @@ const ThemeProvider: React.FC<{ children: TChildren }> = ({ children }) => {
 
 export default ThemeProvider;
 export const useTheme = () => useContext(ThemeContext);
+export type Props = { children: TChildren, cookiesTheme?: TTheme }
