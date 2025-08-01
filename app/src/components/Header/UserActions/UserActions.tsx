@@ -2,7 +2,7 @@ import style from "@/components/Header/header.module.scss";
 import Link from "next/link";
 import AccountMenu from "./AccountMenu";
 import AppSettingsMenu from "./AppSettingsMenu";
-import { useAuth } from "@/Providers/AuthProvider";
+import { useAuth } from "@/shared";
 import { Box } from "@mui/material";
 
 const UserActions = () => {

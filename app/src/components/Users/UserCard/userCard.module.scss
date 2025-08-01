@@ -1,5 +1,5 @@
-@use "../../../variables";
-@use "../../../mixins.scss";
+@use "@/shared/styles/_variables.scss" as variables;
+@use "@/shared/styles/mixins.scss";
 
 .userCard {
   border-top: 3px solid variables.$primary-light;

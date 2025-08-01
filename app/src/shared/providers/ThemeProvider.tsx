@@ -1,23 +1,22 @@
 "use client";
-
 import { TChildren, TTheme } from "@/types/types";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import "../globals.scss";
+import { createContext, useEffect, useState } from "react";
+import "@/shared/styles/globals.scss";
 import classNames from "classnames";
 import {
   ThemeProvider as Provider,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/shared/lib/hooks/useAppSelector";
 import { selectTheme } from "@/selectors/appSelectors";
-import { useAppDispatch } from "@/lib/store/hooks";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
 import dark from "@/themes/dark";
 import light from "@/themes/light";
 
-const ThemeContext = createContext<"light" | "dark">("dark");
+export const ThemeContext = createContext<"light" | "dark">("dark");
 
 const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
-  const storeTheme = useSelector(selectTheme);
+  const storeTheme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
 
   const [currentTheme, setCurrentTheme] = useState<TTheme>(
@@ -46,5 +45,4 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
 };
 
 export default ThemeProvider;
-export const useTheme = () => useContext(ThemeContext);
 export type Props = { children: TChildren; cookiesTheme?: TTheme };

@@ -1,4 +1,4 @@
-import { useTheme } from "@/Providers/ThemeProvider";
+import { useTheme } from "@/shared";
 import { Colors } from "@/types/colors";
 import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
 import { MouseEventHandler } from "react";
@@ -22,7 +22,7 @@ const AccountMenuBtn: React.FC<TProps> = ({
             ? Colors.PrimaryLight
             : name
             ? stringToColor(name)
-            : Colors.SecondaryDark,
+            : Colors.Secondary,
         border: avatar ? "2px solid #00000050" : "none",
       },
       children: name ? `${name.split(" ")[0][0]}${name.split(" ")[1][0]}` : "",

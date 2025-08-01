@@ -1,5 +1,5 @@
 import { checkAuth } from "@/api/authAPI";
-import Providers from "@/Providers";
+import { Providers } from "@/shared/providers";
 import { TChildren, TTheme } from "@/types/types";
 import { cookies } from "next/headers";
 

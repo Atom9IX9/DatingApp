@@ -1,7 +1,7 @@
 "use client";
 
 import style from "./header.module.scss";
-import { useTheme } from "@/Providers/ThemeProvider";
+import { useTheme } from "@/shared";
 import cn from "classnames";
 import HeaderNav from "./HeaderNav/HeaderNav";
 import UserActions from "./UserActions/UserActions";

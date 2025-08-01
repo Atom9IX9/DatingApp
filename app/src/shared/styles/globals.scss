@@ -1,5 +1,5 @@
-@use "./variables" as v;
-@use "./mixins.scss";
+@use "@/shared/styles/_variables.scss" as v;
+@use "@/shared/styles/mixins.scss";
 
 html,
 body,

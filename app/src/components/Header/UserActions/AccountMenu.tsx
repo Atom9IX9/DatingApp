@@ -8,10 +8,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
 import { Colors } from "@/types/colors";
 import AccountMenuBtn from "./AccountMenuBtn";
-import { useTheme } from "@/Providers/ThemeProvider";
+import { useTheme } from "@/shared";
 import UIMenu from "@/components/UI/Menu/UIMenu";
 import { useMenu } from "@/hooks/useMenu";
-import { useAuth } from "@/Providers/AuthProvider";
+import { useAuth } from "@/shared";
 
 const AccountMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();

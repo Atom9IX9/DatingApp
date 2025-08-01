@@ -1,6 +1,6 @@
 "use client";
 import { Gender, PublicUser } from "@/models/user.model";
-import { useTheme } from "@/Providers/ThemeProvider";
+import { useTheme } from "@/shared";
 import { Colors } from "@/types/colors";
 import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
@@ -18,7 +18,7 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
     <Card
       sx={{
         bgcolor: Colors.InfoDark,
-        borderRadius: "14px"
+        borderRadius: "14px",
       }}
       className={classNames(style.userCard, style[theme], {
         [style.even]: isEven,

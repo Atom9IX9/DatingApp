@@ -1,21 +1,17 @@
 "use client";
-
-import { selectAuth, selectFetchAuthStatus } from "@/selectors/accountSelector";
+import { selectAuth } from "@/selectors/accountSelector";
 import { TChildren } from "@/types/types";
 import { UserAuthInfo } from "@/models/user.model";
 import { createContext, useContext, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "@/lib/store/hooks";
+import { useAppSelector } from "@/shared/lib/hooks/useAppSelector";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
-import { redirect, useRouter } from "next/navigation";
-import { QueryStatus } from "@reduxjs/toolkit/query";
-import { StatusCodes } from "@/types/statusCodes";
 
-const AuthContext = createContext<UserAuthInfo | undefined>(undefined);
+export const AuthContext = createContext<UserAuthInfo | undefined>(undefined);
 
 const AuthProvider: React.FC<ProviderProps> = ({ children, cookiesAuth }) => {
   const dispatch = useAppDispatch();
-  const storeAuth = useSelector(selectAuth);
+  const storeAuth = useAppSelector(selectAuth);
 
   useEffect(() => {
     if (cookiesAuth) {
@@ -30,7 +26,6 @@ const AuthProvider: React.FC<ProviderProps> = ({ children, cookiesAuth }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
 export default AuthProvider;
 type ProviderProps = {
   children: TChildren;

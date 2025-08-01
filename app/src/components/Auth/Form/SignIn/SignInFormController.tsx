@@ -5,7 +5,7 @@ import { DataForLogin, useLoginMutation } from "@/api/authAPI";
 import { useEffect, useState } from "react";
 import { TApiError } from "@/types/types";
 import SignInForm from "./SignInForm";
-import { useAppDispatch } from "@/lib/store/hooks";
+import { useAppDispatch } from "@/shared";
 import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
 import { useRouter } from "next/navigation";
 

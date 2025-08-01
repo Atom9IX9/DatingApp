@@ -3,7 +3,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Colors } from "@/types/colors";
-import { useTheme } from "@/Providers/ThemeProvider";
+import { useTheme } from "@/shared";
 import UIMenu from "@/components/UI/Menu/UIMenu";
 import { useMenu } from "@/hooks/useMenu";
 import UIIconMenuButton from "@/components/UI/Menu/UIIconMenuButton";
@@ -11,7 +11,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { IconButton } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import { useAppDispatch } from "@/lib/store/hooks";
+import { useAppDispatch } from "@/shared";
 import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
 
 const AppSettingsMenu = () => {
