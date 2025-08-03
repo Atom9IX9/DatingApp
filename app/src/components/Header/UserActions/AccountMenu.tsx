@@ -8,8 +8,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
 import { Colors } from "@/types/colors";
 import AccountMenuBtn from "./AccountMenuBtn";
-import { useTheme } from "@/shared";
-import UIMenu from "@/components/UI/Menu/UIMenu";
+import { useTheme } from "@/shared/lib/hooks/useTheme";
+import  UIMenu from "@/shared/ui/UIMenu";
 import { useMenu } from "@/hooks/useMenu";
 import { useAuth } from "@/shared";
 

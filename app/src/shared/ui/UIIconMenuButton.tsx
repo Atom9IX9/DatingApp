@@ -1,10 +1,7 @@
-import { useTheme } from "../../../Providers/ThemeProvider";
-import { TChildren } from "../../../types/types";
-import { Colors } from "@/types/colors";
-import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
+import { TChildren } from "@/types/types";
+import { Box, IconButton, Tooltip } from "@mui/material";
 import { MouseEventHandler } from "react";
 import React from "react";
-import { stringToColor } from "../../../utils/stringToColor";
 
 const UIIconMenuButton: React.FC<TProps> = ({
   handleClick,

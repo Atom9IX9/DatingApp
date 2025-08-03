@@ -4,9 +4,9 @@ import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Colors } from "@/types/colors";
 import { useTheme } from "@/shared";
-import UIMenu from "@/components/UI/Menu/UIMenu";
+import UIMenu from "@/shared/ui/UIMenu";
 import { useMenu } from "@/hooks/useMenu";
-import UIIconMenuButton from "@/components/UI/Menu/UIIconMenuButton";
+import UIIconMenuButton from "@/shared/ui/UIIconMenuButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { IconButton } from "@mui/material";
@@ -106,10 +106,7 @@ const SwitchColorTheme = () => {
         >
           <DarkModeIcon
             sx={{
-              color:
-                theme === "dark"
-                  ? Colors.TriadicLight
-                  : Colors.Gray,
+              color: theme === "dark" ? Colors.TriadicLight : Colors.Gray,
             }}
             fontSize="large"
           />

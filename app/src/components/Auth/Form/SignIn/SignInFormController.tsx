@@ -2,7 +2,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./signInForm.module.scss";
 import { DataForLogin, useLoginMutation } from "@/api/authAPI";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { TApiError } from "@/types/types";
 import SignInForm from "./SignInForm";
 import { useAppDispatch } from "@/shared";

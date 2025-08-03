@@ -1,8 +1,14 @@
 import { Menu, PopoverVirtualElement } from "@mui/material";
-import { TChildren } from "../../../types/types";
-import React, { MouseEventHandler } from "react"
+import { TChildren } from "@/types/types";
+import React, { MouseEventHandler } from "react";
 
-const UIMenu: React.FC<TProps> = ({ children, anchorEl, isOpen, handleClose, theme }) => {
+const UIMenu: React.FC<TProps> = ({
+  children,
+  anchorEl,
+  isOpen,
+  handleClose,
+  theme,
+}) => {
   return (
     <Menu
       anchorEl={anchorEl}
@@ -41,7 +47,7 @@ const UIMenu: React.FC<TProps> = ({ children, anchorEl, isOpen, handleClose, the
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
     >
-      { children }
+      {children}
     </Menu>
   );
 };
@@ -49,8 +55,14 @@ const UIMenu: React.FC<TProps> = ({ children, anchorEl, isOpen, handleClose, the
 export default UIMenu;
 type TProps = {
   children: TChildren;
-  anchorEl: Element | (() => Element) | PopoverVirtualElement | (() => PopoverVirtualElement) | null | undefined;
+  anchorEl:
+    | Element
+    | (() => Element)
+    | PopoverVirtualElement
+    | (() => PopoverVirtualElement)
+    | null
+    | undefined;
   isOpen: boolean;
   handleClose: MouseEventHandler<HTMLDivElement>;
-  theme: "dark" | "light"
+  theme: "dark" | "light";
 };

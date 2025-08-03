@@ -3,7 +3,7 @@ import { Colors } from "@/types/colors";
 import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
 import { MouseEventHandler } from "react";
 import { stringToColor } from "../../../utils/stringToColor";
-import UIIconMenuButton from "@/components/UI/Menu/UIIconMenuButton";
+import UIIconMenuButton from "@/shared/ui/UIIconMenuButton";
 
 const AccountMenuBtn: React.FC<TProps> = ({
   handleClick,
