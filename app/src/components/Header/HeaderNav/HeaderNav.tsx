@@ -1,9 +1,7 @@
-import Link from "next/link";
 import NavElement from "./HeaderNavElement";
 import { Colors } from "@/types/colors";
 import style from "@/components/Header/header.module.scss";
-import cn from "classnames";
-import { Box, Toolbar } from "@mui/material";
+import { Box } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import ChatIcon from "@mui/icons-material/Chat";

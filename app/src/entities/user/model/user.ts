@@ -1,11 +1,20 @@
-type User = {
+export type User = {
   uid: string;
   firstName: string;
   lastName: string;
   age: number;
-  gender: Gender;
-  location?: TLocation;
+  gender: UserGender;
+  location?: UserLocation;
   description?: string;
+};
+export enum UserGender {
+  Male = "male",
+  Female = "female",
+}
+export type UserLocation = {
+  country: string;
+  region: string;
+  city?: string;
 };
 
 export type UserAuthInfo = User & {
@@ -15,20 +24,9 @@ export type UserAuthInfo = User & {
 
 export type PublicUser = User & {
   isOnline: boolean;
-  matchStatus?: TMatchStatus;
+  matchStatus?: UserMatchStatus;
 };
-
-export default User;
-export enum Gender {
-  Male = "male",
-  Female = "female",
-}
-export type TLocation = {
-  country: string;
-  region: string;
-  city?: string;
-};
-export enum TMatchStatus {
+export enum UserMatchStatus {
   Accepted = "accepted",
   Rejected = "rejected",
   Pending = "pending",

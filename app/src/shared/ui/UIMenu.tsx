@@ -1,6 +1,6 @@
 import { Menu, PopoverVirtualElement } from "@mui/material";
-import { TChildren } from "@/types/types";
 import React, { MouseEventHandler } from "react";
+import { TChildren } from "../types";
 
 const UIMenu: React.FC<TProps> = ({
   children,

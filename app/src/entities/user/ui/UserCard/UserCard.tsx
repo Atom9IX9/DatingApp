@@ -1,6 +1,6 @@
 "use client";
-import { Gender, PublicUser } from "@/models/user.model";
-import { useTheme } from "@/shared";
+import { UserGender, PublicUser } from "@/entities/user/model/user";
+import { capitalize, useTheme } from "@/shared";
 import { Colors } from "@/types/colors";
 import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
@@ -8,8 +8,7 @@ import classNames from "classnames";
 import PlaceIcon from "@mui/icons-material/Place";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
-import { capitalize } from "@/utils/capitalize";
-import { getUserStringLocation } from "@/utils/getUserStringLocation";
+import { getUserStringLocation } from "../../lib/helpers/getUserStringLocation";
 
 const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
   const theme = useTheme();
@@ -67,7 +66,7 @@ const UserCard: React.FC<TUserCardProps> = ({ user, isEven }) => {
           )}
           <li>
             <div className={style.marker}>
-              {user.gender === Gender.Male ? (
+              {user.gender === UserGender.Male ? (
                 <MaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />
               ) : (
                 <FemaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />

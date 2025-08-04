@@ -5,9 +5,9 @@ import { DataForLogin, useLoginMutation } from "@/api/authAPI";
 import { useEffect, useState } from "react";
 import { TApiError } from "@/types/types";
 import SignUpForm from "./SignUpForm";
-import { useAppDispatch } from "@/lib/store/hooks";
 import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/shared";
 
 const SignUpFormController = () => {
   const { control, handleSubmit, setError, formState } =

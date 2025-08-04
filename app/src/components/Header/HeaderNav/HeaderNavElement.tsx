@@ -4,9 +4,9 @@ import Link from "next/link";
 import style from "../header.module.scss";
 import { usePathname, useRouter } from "next/navigation";
 import cn from "classnames";
-import { TChildren } from "@/types/types";
 import { Colors } from "@/types/colors";
 import { IconButton, Tooltip } from "@mui/material";
+import { TChildren } from "@/shared";
 
 const NavElement: React.FC<TProps> = ({
   title,
@@ -15,7 +15,7 @@ const NavElement: React.FC<TProps> = ({
   color = "default",
 }) => {
   const pathname = usePathname();
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Tooltip title={title}>
@@ -25,7 +25,7 @@ const NavElement: React.FC<TProps> = ({
           [style[Colors.Active]]: pathname === to,
         })}
         onClick={() => {
-          router.push(to)
+          router.push(to);
         }}
       >
         {children}

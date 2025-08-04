@@ -1,6 +1,5 @@
 import { checkAuth } from "@/api/authAPI";
-import { Providers } from "@/shared";
-import { TChildren, TTheme } from "@/types/types";
+import { Providers, TChildren, TTheme } from "@/shared";
 import { cookies } from "next/headers";
 
 const ProvidedLayout = async ({ children }: Props) => {

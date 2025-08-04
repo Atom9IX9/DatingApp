@@ -1,5 +1,5 @@
 import { UserAuthResponse } from "@/api/authAPI";
-import { UserAuthInfo } from "@/models/user.model";
+import { UserAuthInfo } from "@/entities/user/model/user";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import Cookies from "js-cookie";

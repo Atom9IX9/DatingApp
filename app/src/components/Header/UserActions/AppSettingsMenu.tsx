@@ -4,7 +4,7 @@ import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Colors } from "@/types/colors";
 import { UIMenu, useTheme } from "@/shared";
-import { useMenu } from "@/hooks/useMenu";
+import { useMenu } from "@/shared/lib/hooks/useMenu";
 import { UIIconMenuButton } from "@/shared";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";

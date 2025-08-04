@@ -1,9 +1,8 @@
 "use client";
 import { selectAuth } from "@/selectors/accountSelector";
-import { TChildren } from "@/types/types";
-import { UserAuthInfo } from "@/models/user.model";
+import { UserAuthInfo } from "@/entities/user/model/user";
 import { createContext, useEffect } from "react";
-import { useAppSelector } from "@/shared";
+import { TChildren, useAppSelector } from "@/shared";
 import { useAppDispatch } from "@/shared";
 import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
 

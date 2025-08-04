@@ -10,7 +10,7 @@ import { Colors } from "@/types/colors";
 import AccountMenuBtn from "./AccountMenuBtn";
 import { useTheme } from "@/shared";
 import { UIMenu } from "@/shared";
-import { useMenu } from "@/hooks/useMenu";
+import { useMenu } from "@/shared/lib/hooks/useMenu";
 import { useAuth } from "@/shared";
 
 const AccountMenu = () => {

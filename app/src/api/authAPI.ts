@@ -1,4 +1,4 @@
-import { UserAuthInfo, Gender } from "@/models/user.model";
+import { UserAuthInfo, UserGender } from "@/entities/user/model/user";
 import {
   BaseQueryFn,
   createApi,
@@ -43,7 +43,7 @@ export const checkAuth: CheckAuthFn = async (token?: string) => {
     if (res.ok) {
       return { user: await res.json() };
     } else {
-      return { statusCode: res.status }
+      return { statusCode: res.status };
     }
   } catch (e: any) {
     return { statusCode: e.code };
@@ -62,7 +62,7 @@ export type RegisterReqBody = {
   email: string;
   password: string;
   dateOfBd: string; //($date-time)
-  gender: Gender;
+  gender: UserGender;
   location?: string;
   description?: string;
 };
@@ -77,5 +77,5 @@ export type AuthApiError = {
   };
   status: number;
 };
-export type CheckAuthResponse = { user?: UserAuthInfo, statusCode?: number }
+export type CheckAuthResponse = { user?: UserAuthInfo; statusCode?: number };
 export type CheckAuthFn = (token?: string) => Promise<CheckAuthResponse>;

@@ -1,12 +1,11 @@
 "use client";
-import { TChildren, TTheme } from "@/types/types";
 import { createContext, useEffect, useState } from "react";
 import "@/shared/styles/globals.scss";
 import classNames from "classnames";
 import {
   ThemeProvider as Provider,
 } from "@mui/material";
-import { useAppSelector } from "@/shared";
+import { TChildren, TTheme, useAppSelector } from "@/shared";
 import { selectTheme } from "@/selectors/appSelectors";
 import { useAppDispatch } from "@/shared";
 import { setTheme } from "@/lib/store/slices/appSlice/appSlice";

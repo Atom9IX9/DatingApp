@@ -1,5 +1,5 @@
-import UserCard from "@/components/Users/UserCard/UserCard";
-import { Gender } from "@/models/user.model";
+import UserCard from "@/entities/user/ui/UserCard/UserCard";
+import { UserGender } from "@/entities/user/model/user";
 
 const UsersPage = () => {
   return (
@@ -10,7 +10,7 @@ const UsersPage = () => {
           firstName: "Yaroslav",
           lastName: "Vorobyov",
           age: 15,
-          gender: Gender.Male,
+          gender: UserGender.Male,
           isOnline: true,
           description:
             "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. fdd ddfdf  df dfdf.d d dd",
@@ -24,7 +24,7 @@ const UsersPage = () => {
           firstName: "Polina",
           lastName: "Shapranova",
           age: 45,
-          gender: Gender.Female,
+          gender: UserGender.Female,
           isOnline: true,
           description: undefined,
           location: {

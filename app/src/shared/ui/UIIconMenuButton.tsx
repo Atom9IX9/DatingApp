@@ -1,7 +1,7 @@
-import { TChildren } from "@/types/types";
 import { Box, IconButton, Tooltip } from "@mui/material";
 import { MouseEventHandler } from "react";
 import React from "react";
+import { TChildren } from "../types";
 
 const UIIconMenuButton: React.FC<TProps> = ({
   handleClick,
