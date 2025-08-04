@@ -6,9 +6,9 @@ import classNames from "classnames";
 import {
   ThemeProvider as Provider,
 } from "@mui/material";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector";
+import { useAppSelector } from "@/shared";
 import { selectTheme } from "@/selectors/appSelectors";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
+import { useAppDispatch } from "@/shared";
 import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
 import dark from "@/themes/dark";
 import light from "@/themes/light";

@@ -2,9 +2,9 @@
 import { selectAuth } from "@/selectors/accountSelector";
 import { TChildren } from "@/types/types";
 import { UserAuthInfo } from "@/models/user.model";
-import { createContext, useContext, useEffect } from "react";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
+import { createContext, useEffect } from "react";
+import { useAppSelector } from "@/shared";
+import { useAppDispatch } from "@/shared";
 import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
 
 export const AuthContext = createContext<UserAuthInfo | undefined>(undefined);
