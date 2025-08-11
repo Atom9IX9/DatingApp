@@ -1,40 +1,42 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./signInForm.module.scss";
-import { DataForLogin, useLoginMutation } from "@/api/authAPI";
 import { useEffect } from "react";
-import { TApiError } from "@/types/types";
+import { RtkQueryResultError } from "@/shared";
 import SignInForm from "./SignInForm";
 import { useAppDispatch } from "@/shared";
-import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
 import { useRouter } from "next/navigation";
+import { DataForLogin } from "../../api/signInAPI";
+import { useLogin } from "../../hooks/useLogin";
+import { setUser } from "@/entities";
 
 const SignInFormController = () => {
-  const { control, handleSubmit, setError, formState } =
-    useForm<DataForLogin>();
-  const [signIn, loginResult] = useLoginMutation();
+  const { control, handleSubmit, setError, formState } = useForm<DataForLogin>({
+    defaultValues: { email: "", password: "", rememberMe: false },
+  });
+  const {login, ...loginResult} = useLogin();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<DataForLogin> = (data) => {
-    signIn(data);
+    login(data);
   };
 
   useEffect(() => {
     if (loginResult.error) {
       setError("root", {
         message:
-          (loginResult.error as TApiError).data?.message ||
+          (loginResult.error as RtkQueryResultError).data?.message ||
           "Failed to send data",
       });
     } else if (loginResult.data) {
-      dispatch(setAuth({ auth: loginResult.data }));
+      dispatch(setUser(loginResult.data.user));
     }
   }, [loginResult.error, setError, loginResult.data, dispatch]);
 
   useEffect(() => {
     if (loginResult.data) {
-      dispatch(setAuth({ auth: loginResult.data }));
+      dispatch(setUser(loginResult.data.user));
       router.push("users");
     }
   }, [dispatch, loginResult.data, router]);
@@ -49,7 +51,7 @@ const SignInFormController = () => {
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
-          error: loginResult.error as TApiError,
+          error: loginResult.error as RtkQueryResultError,
           status: loginResult.status,
           rootError: formState.errors.root?.message,
         }}

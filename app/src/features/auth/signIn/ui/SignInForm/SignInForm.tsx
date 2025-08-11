@@ -1,28 +1,28 @@
 import React from "react";
-import style from "./signUpForm.module.scss";
+import style from "./signInForm.module.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
-import FieldController from "@/components/Auth/Form/Field/FieldController";
 import { Control } from "react-hook-form";
-import { DataForLogin } from "@/api/authAPI";
 import { validateEmail } from "@/utils/validation/singInValidation";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { Button, Checkbox, FormControlLabel } from "@mui/material";
-import { TApiError } from "@/types/types";
+import { Box, Button, Checkbox, FormControlLabel } from "@mui/material";
+import { Colors } from "@/types/colors";
+import { DataForLogin } from "../../api/signInAPI";
+import { RtkQueryResultError, UIIconInputField } from "@/shared";
 
-const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
+const SignInForm: React.FC<SignInFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
   return (
     <form className={style.signInForm} onSubmit={onSubmit}>
-      <div className={style.formIcon}>
+      <Box className={style.formIcon}>
         <PersonOutlineIcon sx={{ width: 50, height: 50, color: "#ffffff" }} />
-      </div>
-      <div className={style.fields}>
-        <FieldController
+      </Box>
+      <Box className={style.fields}>
+        <UIIconInputField
           control={control}
           name="email"
           inputParams={{ isRequired: true, label: "Email" }}
@@ -30,7 +30,7 @@ const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
           validate={{ validateEmail }}
           rootError={result.rootError}
         />
-        <FieldController
+        <UIIconInputField
           control={control}
           name="password"
           inputParams={{
@@ -44,18 +44,25 @@ const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
         <FormControlLabel
           className={style.rememberMeLabel}
           label="Remember me"
-          control={<Checkbox {...control.register("rememberMe")} />}
+          control={
+            <Checkbox
+              color="secondary"
+              sx={{ color: Colors.SecondaryLight }}
+              {...control.register("rememberMe")}
+            />
+          }
         />
         {!!result.error && (
           <div className={style.rootError}>
-            {(result.error as TApiError).data?.message || "Failed to send data"}
+            {(result.error as RtkQueryResultError).data?.message || "Failed to send data"}
           </div>
         )}
-      </div>
+      </Box>
 
       <Button
         type="submit"
         variant="contained"
+        color="primary"
         className={style.submitBtn}
         disabled={result.status === QueryStatus.pending}
       >
@@ -65,12 +72,12 @@ const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
   );
 };
 
-export default SignUpMultiStepForm;
+export default SignInForm;
 type SignInFormProps = {
   onSubmit: () => void;
   control: Control<DataForLogin>;
   result: {
-    error?: TApiError;
+    error?: RtkQueryResultError;
     status: QueryStatus;
     rootError?: string;
   };

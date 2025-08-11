@@ -1,12 +1,12 @@
-export type User = {
-  uid: string;
-  firstName: string;
-  lastName: string;
+export type User = UserInfo & UserAuth;
+
+export type UserInfo = {
   age: number;
   gender: UserGender;
   location?: UserLocation;
-  description?: string;
+  description?: string; // hobbies
 };
+
 export enum UserGender {
   Male = "male",
   Female = "female",
@@ -17,15 +17,22 @@ export type UserLocation = {
   city?: string;
 };
 
-export type UserAuthInfo = User & {
-  dateOfBD: string;
-  email: string;
-};
-
-export type PublicUser = User & {
+export type PublicUser = {
   isOnline: boolean;
   matchStatus?: UserMatchStatus;
+} & UserInfo & UserIdentifiers;
+
+export type UserAuth = {
+  email: string;
+  dateOfBD: string;
+} & UserIdentifiers;
+
+export type UserIdentifiers = {
+  uid: string;
+  firstName: string;
+  lastName: string;
 };
+
 export enum UserMatchStatus {
   Accepted = "accepted",
   Rejected = "rejected",

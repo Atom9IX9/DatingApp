@@ -1,4 +1,4 @@
-import { TTheme } from "@/shared";
+import { reducerManager, TTheme } from "@/shared";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 

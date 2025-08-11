@@ -1,15 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./rootReducer";
-import { authAPI } from "@/api/authAPI";
+import { rtkAuthAPI } from "../../api/auth/rtkQueryInstance";
+import { reducerManager } from "./reducerManager";
+import appSlice from "@/lib/store/slices/appSlice/appSlice";
 
 export const makeStore = () => {
+  reducerManager.add(rtkAuthAPI.reducerPath, rtkAuthAPI.reducer);
+  reducerManager.add("app", appSlice);
+
+
   return configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(authAPI.middleware),
+    reducer: reducerManager.reduce,
+    middleware: (getDefaultMiddleware: any) =>
+      getDefaultMiddleware().concat(rtkAuthAPI.middleware),
   });
 };
 
 export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore["getState"]>;
+export type RootState = ReturnType<typeof reducerManager.reduce>;
 export type AppDispatch = AppStore["dispatch"];

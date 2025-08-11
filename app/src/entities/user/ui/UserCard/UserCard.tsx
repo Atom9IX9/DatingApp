@@ -1,5 +1,5 @@
 "use client";
-import { UserGender, PublicUser } from "@/entities/user/model/user";
+import { UserGender, PublicUser } from "@/entities";
 import { capitalize, useTheme } from "@/shared";
 import { Colors } from "@/types/colors";
 import { Avatar, Box, Button, Card, Typography } from "@mui/material";

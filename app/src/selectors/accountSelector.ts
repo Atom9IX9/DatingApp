@@ -1,4 +1,3 @@
-import { RootState } from "@/lib/store/store";
-
-export const selectAuth = (state: RootState) => state.auth.user
+import { RootState } from "@/shared";
+ 
 export const selectFetchAuthStatus = (state: RootState) => state.auth.fetchAuthStatus

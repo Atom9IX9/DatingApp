@@ -1,30 +1,29 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./signUpForm.module.scss";
-import { DataForLogin, useLoginMutation } from "@/api/authAPI";
-import { useEffect, useState } from "react";
-import { TApiError } from "@/types/types";
+import { useEffect } from "react";
 import SignUpForm from "./SignUpForm";
-import { setAuth } from "@/lib/store/slices/authSlice/authSlice";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/shared";
+import { RtkQueryResultError, useAppDispatch } from "@/shared";
+import { useLogin, DataForLogin } from "@/features";
+import { setUser } from "@/entities";
 
 const SignUpFormController = () => {
   const { control, handleSubmit, setError, formState } =
     useForm<DataForLogin>();
-  const [signIn, loginResult] = useLoginMutation();
+  const { login, ...loginResult } = useLogin();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<DataForLogin> = (data) => {
-    signIn(data);
+    login(data);
   };
 
   useEffect(() => {
     if (loginResult.error) {
       setError("root", {
         message:
-          (loginResult.error as TApiError).data?.message ||
+          (loginResult.error as RtkQueryResultError).data?.message ||
           "Failed to send data",
       });
     }
@@ -32,7 +31,7 @@ const SignUpFormController = () => {
 
   useEffect(() => {
     if (loginResult.data) {
-      dispatch(setAuth({ auth: loginResult.data }));
+      dispatch(setUser(loginResult.data.user));
       router.push("users");
     }
   }, [dispatch, loginResult.data, router]);
@@ -45,7 +44,7 @@ const SignUpFormController = () => {
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
-          error: loginResult.error as TApiError,
+          error: loginResult.error as RtkQueryResultError,
           status: loginResult.status,
           rootError: formState.errors.root?.message,
         }}

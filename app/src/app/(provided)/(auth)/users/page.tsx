@@ -1,5 +1,5 @@
-import UserCard from "@/entities/user/ui/UserCard/UserCard";
-import { UserGender } from "@/entities/user/model/user";
+import { UserCard } from "@/entities";
+import { UserGender } from "@/entities";
 
 const UsersPage = () => {
   return (

@@ -8,7 +8,7 @@ const ProvidedLayout = async ({ children }: Props) => {
   const response = await checkAuth(token);
 
   return (
-    <Providers cookies={{ auth: response.user, theme }}>{children}</Providers>
+    <Providers cookies={{ user: response.user, theme }}>{children}</Providers>
   );
 };
 
