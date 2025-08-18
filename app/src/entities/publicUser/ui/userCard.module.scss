@@ -1,0 +1,116 @@
+@use "@/shared/styles/_variables.scss" as v;
+@use "@/shared/styles/mixins.scss";
+
+.userCard {
+  border-top: 3px solid v.$primary-light;
+  box-sizing: border-box;
+  &.even {
+    border-top: 3px solid v.$secondary-light;
+  }
+
+  &:hover {
+    -webkit-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
+    -moz-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
+    box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
+    border-top: 5px solid v.$primary-light;
+  }
+  &.even:hover {
+    -webkit-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
+    -moz-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
+    box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
+    border-top: 5px solid v.$secondary-light;
+  }
+
+  padding: 0 20px;
+  width: 280px;
+  height: 398px;
+
+  position: relative;
+
+  .userAge {
+    position: absolute;
+    top: 10px;
+    right: 27px;
+
+    span {
+      display: block;
+      text-align: center;
+      line-height: 21px;
+    }
+
+    .userAgeText {
+      font-size: 15px;
+      color: v.$primary-light;
+    }
+
+    .userAgeNumber {
+      font-weight: 600;
+      font-size: 20px;
+      color: v.$secondary-light;
+    }
+  }
+
+  .avatarBlock {
+    position: relative;
+    width: min-content;
+
+    .userAvatar {
+      margin-top: 37px;
+      width: 158px;
+      height: 158px;
+    }
+
+    .onlineStatus {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      width: 37px;
+      height: 37px;
+
+      background: v.$green;
+
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+  }
+
+  .userInfoSection {
+    margin-top: 18px;
+
+    .userFullName {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 27 px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-top: 5px;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        font-style: italic;
+        color: #838281;
+      }
+    }
+
+    .userDescription {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  }
+
+  transition: border 100ms;
+
+  
+}

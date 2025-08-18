@@ -1,7 +1,5 @@
-export type { User, PublicUser, UserAuth, UserLocation } from "./model/user";
-export { UserGender } from "./model/user";
-
-export { default as UserCard } from "./ui/UserCard/UserCard";
+export type { User, UserAuth, UserLocation } from "./types/user";
+export { UserGender } from "./types/user";
 
 export { default as userReducer, setUser } from "./model/user.slice";
 

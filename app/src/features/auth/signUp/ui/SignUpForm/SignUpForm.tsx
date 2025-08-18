@@ -3,12 +3,11 @@ import style from "./signUpForm.module.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import { Control } from "react-hook-form";
-import { validateEmail } from "@/utils/validation/singInValidation";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import { RtkQueryResultError, UIIconInputField } from "@/shared";
-import { DataForLogin } from "@/features";
+import { DataForLogin, validateEmail } from "@/features";
 
 const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
   onSubmit,

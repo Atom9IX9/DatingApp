@@ -1,5 +1,4 @@
 import { User } from "@/entities";
-import { reducerManager } from "@/shared";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -15,8 +14,6 @@ const userSlice = createSlice({
     }
   },
 });
-
-reducerManager.add("user", userSlice.reducer);
 
 export default userSlice.reducer;
 export const { setUser } = userSlice.actions;

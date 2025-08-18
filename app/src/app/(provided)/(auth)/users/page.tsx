@@ -1,5 +1,6 @@
 import { UserCard } from "@/entities";
 import { UserGender } from "@/entities";
+import { MatchBtn } from "@/features";
 
 const UsersPage = () => {
   return (
@@ -13,9 +14,10 @@ const UsersPage = () => {
           gender: UserGender.Male,
           isOnline: true,
           description:
-            "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. fdd ddfdf  df dfdf.d d dd",
+            "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
           location: { region: "Poltavska oblast", country: "Ukraine" },
         }}
+        bottomSection={<MatchBtn />}
       />
       <UserCard
         isEven
@@ -33,6 +35,7 @@ const UsersPage = () => {
             city: "v. Anyone",
           },
         }}
+        bottomSection={<MatchBtn />}
       />
     </div>
   );

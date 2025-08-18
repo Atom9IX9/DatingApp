@@ -2,15 +2,19 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Colors } from "@/types/colors";
-import { UIMenu, useTheme } from "@/shared";
-import { UIIconMenuButton } from "@/shared";
+import {
+  Colors,
+  setTheme,
+  UIMenu,
+  useTheme,
+  UIIconMenuButton,
+  useAppDispatch,
+  useMenu,
+} from "@/shared";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { IconButton } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import { useAppDispatch, useMenu } from "@/shared";
-import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
 
 const AppSettingsMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();

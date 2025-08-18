@@ -1,4 +1,4 @@
-import { checkAuth } from "@/api/authAPI";
+import { verifyAuth } from "@/features";
 import style from "./guestPages.module.scss";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -9,9 +9,9 @@ const GuestLayout = async ({
   children: React.ReactNode;
 }>) => {
   const token = cookies().get("token")?.value
-  const authRes = await checkAuth(token) 
+  const { user } = await verifyAuth(token) 
 
-  if (authRes.user) {
+  if (user) {
     redirect("/users")
   }
 

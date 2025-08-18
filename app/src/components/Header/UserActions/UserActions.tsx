@@ -2,8 +2,8 @@ import style from "@/components/Header/header.module.scss";
 import Link from "next/link";
 import AccountMenu from "./AccountMenu";
 import AppSettingsMenu from "./AppSettingsMenu";
-import { useAuth } from "@/shared";
 import { Box } from "@mui/material";
+import { useAuth } from "@/features";
 
 const UserActions = () => {
   const auth = useAuth();

@@ -3,13 +3,11 @@ import style from "./signInForm.module.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import { Control } from "react-hook-form";
-import { validateEmail } from "@/utils/validation/singInValidation";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Box, Button, Checkbox, FormControlLabel } from "@mui/material";
-import { Colors } from "@/types/colors";
-import { DataForLogin } from "../../api/signInAPI";
-import { RtkQueryResultError, UIIconInputField } from "@/shared";
+import { RtkQueryResultError, UIIconInputField, Colors } from "@/shared";
+import { DataForLogin, validateEmail } from "@/features";
 
 const SignInForm: React.FC<SignInFormProps> = ({
   onSubmit,
@@ -54,7 +52,8 @@ const SignInForm: React.FC<SignInFormProps> = ({
         />
         {!!result.error && (
           <div className={style.rootError}>
-            {(result.error as RtkQueryResultError).data?.message || "Failed to send data"}
+            {(result.error as RtkQueryResultError).data?.message ||
+              "Failed to send data"}
           </div>
         )}
       </Box>

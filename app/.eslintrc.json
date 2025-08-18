@@ -7,7 +7,8 @@
       "entities",
       "features",
       "widgets",
-      "pages"
+      "pages",
+      "root"
     ],
     "import/resolver": {
       "typescript": {}
@@ -28,11 +29,19 @@
             "from": "shared",
             "allow": ["shared"]
           },
+          {
+            "from": "entities",
+            "allow": ["shared"]
+          },
           { "from": "features", "allow": ["shared", "entities"] },
           { "from": "widgets", "allow": ["features", "shared", "entities"] },
           {
             "from": "pages",
             "allow": ["widgets", "features", "shared", "entities"]
+          },
+          {
+            "from": "root",
+            "allow": ["widgets", "features", "shared", "entities", "pages", "root"]
           }
         ]
       }

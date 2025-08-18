@@ -1,5 +1,5 @@
 import { stringToColor, useTheme } from "@/shared";
-import { Colors } from "@/types/colors";
+import { Colors } from "@/shared";
 import { Avatar } from "@mui/material";
 import { MouseEventHandler } from "react";
 import { UIIconMenuButton } from "@/shared";

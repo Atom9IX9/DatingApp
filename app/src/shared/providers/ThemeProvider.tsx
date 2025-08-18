@@ -5,12 +5,11 @@ import classNames from "classnames";
 import {
   ThemeProvider as Provider,
 } from "@mui/material";
-import { TChildren, TTheme, useAppSelector } from "@/shared";
-import { selectTheme } from "@/selectors/appSelectors";
+import { setTheme, TChildren, TTheme, useAppSelector } from "@/shared";
 import { useAppDispatch } from "@/shared";
-import { setTheme } from "@/lib/store/slices/appSlice/appSlice";
-import dark from "@/themes/dark";
-import light from "@/themes/light";
+import { selectTheme } from "../model/selectors/appSelectors";
+import dark from "../themes/dark";
+import light from "../themes/light";
 
 export const ThemeContext = createContext<"light" | "dark">("dark");
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import style from "../header.module.scss";
 import { usePathname, useRouter } from "next/navigation";
 import cn from "classnames";
-import { Colors } from "@/types/colors";
+import { Colors } from "@/shared";
 import { IconButton, Tooltip } from "@mui/material";
 import { TChildren } from "@/shared";
 
