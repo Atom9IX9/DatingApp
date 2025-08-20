@@ -1,12 +1,6 @@
 @use "@/shared/styles/_variables.scss" as v;
 
 .matchBtn {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-  right: 20px;
-  height: 9%;
-  background-color: v.$primary-light;
   -webkit-box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
   -moz-box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
   box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);

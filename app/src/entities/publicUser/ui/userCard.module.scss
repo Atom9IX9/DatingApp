@@ -110,7 +110,12 @@
     }
   }
 
-  transition: border 100ms;
+  .bottomSection {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 8px;
+  }
 
-  
+  transition: border 100ms;
 }

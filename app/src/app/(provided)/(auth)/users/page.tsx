@@ -1,11 +1,11 @@
-import { UserCard } from "@/entities";
 import { UserGender } from "@/entities";
-import { MatchBtn } from "@/features";
+import { UserMatchCard } from "@/widgets";
+import { Box } from "@mui/material";
 
 const UsersPage = () => {
   return (
-    <div style={{ display: "flex", gap: 30 }}>
-      <UserCard
+    <Box style={{ display: "flex", gap: 30 }}>
+      <UserMatchCard
         user={{
           uid: "dfnjndfsaaad",
           firstName: "Yaroslav",
@@ -17,9 +17,8 @@ const UsersPage = () => {
             "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
           location: { region: "Poltavska oblast", country: "Ukraine" },
         }}
-        bottomSection={<MatchBtn />}
       />
-      <UserCard
+      <UserMatchCard
         isEven
         user={{
           uid: "dfnddsfjndfsaaad",
@@ -35,9 +34,8 @@ const UsersPage = () => {
             city: "v. Anyone",
           },
         }}
-        bottomSection={<MatchBtn />}
       />
-    </div>
+    </Box>
   );
 };
 

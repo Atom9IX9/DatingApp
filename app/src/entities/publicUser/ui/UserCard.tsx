@@ -2,7 +2,7 @@
 import { UserGender, PublicUser } from "@/entities";
 import { capitalize, useTheme } from "@/shared";
 import { Colors } from "@/shared";
-import { Avatar, Box, Button, Card, Typography } from "@mui/material";
+import { Avatar, Box, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
 import classNames from "classnames";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -86,10 +86,8 @@ const UserCard: React.FC<TUserCardProps> = ({
           {user.description}
         </Box>
       </Box>
-      <Box>
-        {/* todo: BOTOM SECTION */}
+      <Box className={style.bottomSection}>
         {bottomSection}
-
       </Box>
     </Card>
   );

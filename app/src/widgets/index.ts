@@ -1,0 +1,1 @@
+export { default as UserMatchCard } from "./userMatchCard/ui/UserMatchCard";
