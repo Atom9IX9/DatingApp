@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { nunito, quicksand } from "@/shared/fonts";
+import { Nunito_Sans } from "next/font/google";
 import "@/shared/styles/globals.scss";
+
+const nunito_sans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -14,9 +19,7 @@ const RootLayout = async ({
 }>) => {
   return (
     <html lang="en">
-      <body className={`${quicksand.variable} ${nunito.variable}`}>
-        {children}
-      </body>
+      <body className={`${nunito_sans.className}`}>{children}</body>
     </html>
   );
 };

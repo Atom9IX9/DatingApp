@@ -1,8 +1,18 @@
-import StartPage from "@/pages/startPage/ui/StartPage";
+import Link from "next/link";
 
-const Page: React.FC = () => {
-  return <StartPage />
+const HomePage: React.FC = () => {
+  return (
+    <div>
+      start unauth page 
+      <div>
+        <Link href="sign-in">Sign in</Link>
+      </div>
+      <div>
+        <Link href="sign-up">Sign up</Link>
+      </div>
+    </div>
+  );
 };
 
-export default Page;
+export default HomePage;
 
