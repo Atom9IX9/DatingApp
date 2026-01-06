@@ -1,6 +1,6 @@
 import NavElement from "./HeaderNavElement";
 import { Colors } from "@/shared";
-import style from "@/components/Header/header.module.scss";
+import style from "../header.module.scss";
 import { Box } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Diversity1Icon from "@mui/icons-material/Diversity1";

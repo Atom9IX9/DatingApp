@@ -1,8 +1,9 @@
+import { Box } from "@mui/material";
 import Link from "next/link";
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC = async () => {
   return (
-    <div>
+    <Box>
       start unauth page 
       <div>
         <Link href="sign-in">Sign in</Link>
@@ -10,7 +11,7 @@ const HomePage: React.FC = () => {
       <div>
         <Link href="sign-up">Sign up</Link>
       </div>
-    </div>
+    </Box>
   );
 };
 

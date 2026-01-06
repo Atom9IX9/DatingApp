@@ -1,4 +1,4 @@
-import style from "@/components/Header/header.module.scss";
+import style from "../header.module.scss";
 import Link from "next/link";
 import AccountMenu from "./AccountMenu";
 import AppSettingsMenu from "./AppSettingsMenu";
