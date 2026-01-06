@@ -1,0 +1,66 @@
+@use "@/shared/styles/_variables.scss" as v;
+
+.matchBtn {
+  -webkit-box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0px 0px 20px 4px rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  color: #ffffff;
+  overflow: hidden;
+
+  -webkit-transition: background-color 200ms linear;
+  -moz-transition: background-color 200ms linear;
+  -o-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+
+  .matchBtnText {
+    z-index: 1;
+  }
+
+  &:hover {
+    background-color: v.$secondary-light;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    width: 50%;
+    height: 100%;
+    background-color: v.$secondary-light;
+    display: none;
+  }
+
+  &:hover::before {
+    display: block;
+    animation: hoverAnimationBefore 200ms forwards;
+    -webkit-animation: hoverAnimationBefore 200ms forwards;
+  }
+  &:hover::after {
+    display: block;
+    animation: hoverAnimationAfter 200ms forwards;
+    -webkit-animation: hoverAnimationAfter 200ms forwards;
+  }
+
+  @keyframes hoverAnimationBefore {
+    0% {
+      left: -50%;
+    }
+
+    100% {
+      left: 0;
+      display: none;
+    }
+  }
+  @keyframes hoverAnimationAfter {
+    0% {
+      right: -50%;
+    }
+
+    100% {
+      right: 0;
+      display: none;
+    }
+  }
+}

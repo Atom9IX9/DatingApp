@@ -1,9 +1,9 @@
-import SignUpFormController from "@/components/Auth/Form/SingUp/SignUpFormController";
+import { SignUpForm } from "@/features";
 
 const SignUp = () => {
   return (
     <div>
-      <SignUpFormController />
+      <SignUpForm />
     </div>
   );
 };

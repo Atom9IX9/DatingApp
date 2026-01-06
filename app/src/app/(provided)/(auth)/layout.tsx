@@ -1,8 +1,7 @@
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import { cookies } from "next/headers";
-import { checkAuth } from "@/api/authAPI";
 import { redirect } from "next/navigation";
+import { verifyAuth } from "@/features";
+import { Footer, Header } from "@/widgets";
 
 const RootLayout = async ({
   children,
@@ -10,7 +9,7 @@ const RootLayout = async ({
   children: React.ReactNode;
 }>) => {
   const token = cookies().get("token")?.value;
-  const authRes = await checkAuth(token);
+  const authRes = await verifyAuth(token);
 
   if (authRes.statusCode === 401 || !authRes.user) {
     redirect("/");

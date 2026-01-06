@@ -1,0 +1,47 @@
+@use "@/shared/styles/_variables.scss" as variables;
+
+.fieldContainer {
+  position: relative;
+  margin-bottom: 50px;
+
+  .fieldLabel {
+    display: flex;
+    align-items: center;
+
+    &.error {
+      border: 2px solid #ff454f;
+
+      &:has(input:focus) {
+        border: 2px solid variables.$info--dark;
+      }
+
+      .fieldError {
+        position: absolute;
+        top: -20px;
+        color: #ff454f;
+        font-size: 15px;
+      }
+
+      .errorIcon {
+        position: absolute;
+        right: 20px;
+        color: #ff454f;
+      }
+    }
+
+    .field {
+      display: block;
+      background-color: #ffffff;
+    }
+
+    .fieldIcon {
+      background-color: variables.$info-dark--dark;
+      color: #fff;
+      height: 56px;
+      width: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

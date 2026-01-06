@@ -1,3 +1,61 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": ["boundaries", "import"],
+  "settings": {
+    "boundaries/elements": [
+      "shared",
+      "entities",
+      "features",
+      "widgets",
+      "pages",
+      "root"
+    ],
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "boundaries/element-types": [
+      2,
+      {
+        "default": "disallow",
+        "rules": [
+          {
+            "from": "*",
+            "allow": ["shared", "entities", "features", "widgets", "pages"]
+          },
+
+          {
+            "from": "shared",
+            "allow": ["shared"]
+          },
+          {
+            "from": "entities",
+            "allow": ["shared"]
+          },
+          { "from": "features", "allow": ["shared", "entities"] },
+          { "from": "widgets", "allow": ["features", "shared", "entities"] },
+          {
+            "from": "pages",
+            "allow": ["widgets", "features", "shared", "entities"]
+          },
+          {
+            "from": "root",
+            "allow": ["widgets", "features", "shared", "entities", "pages", "root"]
+          }
+        ]
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["@/features/*/*", "@/entities/*/*", "@/shared/*/*", "!@/shared/styles/*"],
+            "message": "Import only with public API (index.ts)"
+          }
+        ]
+      }
+    ]
+  }
 }
