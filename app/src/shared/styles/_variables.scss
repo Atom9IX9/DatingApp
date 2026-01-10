@@ -1,21 +1,22 @@
-$primary-light: #e3507c;
-$secondary-light: #50e3b7;
+$info-dark--dark: #212530; // todo: reset
 $triadic-light: #e3b750;
-
-$info-dark--dark: #212530;
-$info--dark: #312956;
 $secondary-text-dark: #838281;
-
 $green: #0abe55;
-
-$light: #ecdfcc;
+$light: #ffffff;
 $green-dark: #697565;
 $gray: #8b8b8b;
 
-$scheme-1: $primary-light, $secondary-light, $info-dark--dark, $triadic-light,
-  $secondary-light;
-$scheme-2: $info-dark--dark, $info--dark, $light, $triadic-light, $info--dark;
 
-.c {
-  color: #e3507c63;
-}
+
+// All theme colors
+$primary: #e3507c;
+$secondary: #00ffc8;
+$light-scheme: $primary, $secondary, $info-dark--dark, $triadic-light,
+  $secondary;
+
+// Dark theme colors
+$info--dark: #2a2a37;
+
+$dark-scheme: $info-dark--dark, $info--dark, $light, $triadic-light, $info--dark;
+
+

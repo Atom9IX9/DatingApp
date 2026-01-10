@@ -19,7 +19,7 @@
   }
 
   &:hover {
-    background-color: v.$secondary-light;
+    background-color: v.$secondary;
   }
 
   &::before,
@@ -28,7 +28,7 @@
     content: "";
     width: 50%;
     height: 100%;
-    background-color: v.$secondary-light;
+    background-color: v.$secondary;
     display: none;
   }
 
