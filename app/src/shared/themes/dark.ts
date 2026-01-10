@@ -13,14 +13,14 @@ export default createTheme({
   },
   palette: {
     primary: {
-      main: "#e3507c",
+      main: "#FF1D4A",
     },
     secondary: {
-      main: "#50e3b7",
+      main: "#00FFC8",
     },
     info: {
-      main: "#312956",
-      dark: "#212530",
+      main: "#2A2A37",
+      dark: "#ff0000ff",
     }
   },
 } as ThemeOptions);
