@@ -14,6 +14,7 @@ export { useMenu } from "./lib/hooks/useMenu";
 export { default as UIMenu } from "./ui/UIMenu";
 export { default as UIIconMenuButton } from "./ui/UIIconMenuButton";
 export { default as UIIconInputField } from "./ui/UIIconInputField/FieldController";
+export { default as GradientButton } from "./ui/GradientButton/GradientButton";
 
 // helpers
 export { stringToColor } from "./lib/helpers/stringToColor";

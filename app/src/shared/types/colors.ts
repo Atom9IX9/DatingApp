@@ -11,7 +11,7 @@ export enum Colors {
   Gray = "#8b8b8b",
   Light = "#ECDFCC",
   PrimaryLight = "primary.light",
-  SecondaryLight = "#50e3b7",
+  SecondaryLight = "#00FFC8",
   TriadicLight2 = "#7ce350",
   TriadicLight = "#e3b750",
   TriadicLight900 = "#dd7400",
