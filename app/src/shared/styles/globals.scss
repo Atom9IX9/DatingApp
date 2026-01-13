@@ -134,6 +134,7 @@ a {
 
 .theme-wrap {
   height: 100vh;
+
   &.dark {
     @include mixins.color-scheme(v.$dark-scheme...);
     background: v.$info--dark;
@@ -145,4 +146,8 @@ a {
 
 .main {
   padding: 20px 30px;
+}
+
+body {
+  font-family: var(--font-primary);
 }
