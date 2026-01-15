@@ -28,8 +28,9 @@ const Startpage: React.FC = async () => {
           fill
           style={{
             objectFit: "contain",
-            objectPosition: "100% 50%",
+            objectPosition: "100% 50%",    
           }}
+          draggable={false}
         />
       </Box>
       <Box className={style.textSectionContainer}>
