@@ -1,4 +1,4 @@
-import { rtkAuthAPI } from "@/shared";
+import { rtkAuthAPI } from "@/shared/api";
 import { UserAuthResponse } from "../../types";
 
 export const loginEndpoint = rtkAuthAPI.injectEndpoints({

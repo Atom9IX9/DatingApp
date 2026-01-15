@@ -21,11 +21,6 @@
         "default": "disallow",
         "rules": [
           {
-            "from": "*",
-            "allow": ["shared", "entities", "features", "widgets", "pages"]
-          },
-
-          {
             "from": "shared",
             "allow": ["shared"]
           },
@@ -36,12 +31,15 @@
           { "from": "features", "allow": ["shared", "entities"] },
           { "from": "widgets", "allow": ["features", "shared", "entities"] },
           {
-            "from": "pages",
-            "allow": ["widgets", "features", "shared", "entities"]
-          },
-          {
             "from": "root",
-            "allow": ["widgets", "features", "shared", "entities", "pages", "root"]
+            "allow": [
+              "widgets",
+              "features",
+              "shared",
+              "entities",
+              "pages",
+              "root"
+            ]
           }
         ]
       }
@@ -51,7 +49,19 @@
       {
         "patterns": [
           {
-            "group": ["@/features/*/*", "@/entities/*/*", "@/shared/*/*", "!@/shared/styles/*"],
+            "group": [
+              "@/features/**/**",
+              "@/entities/**/**",
+              "@/shared/**/**",
+              "@/widgets/**/**",
+              "@/processes/**/**",
+              "!@/shared/*",
+              "!@/shared/styles/*",
+              "!@/entities/*",
+              "!@/features/*",
+              "!@/widgets/*",
+              "!@/processes/*"
+            ],
             "message": "Import only with public API (index.ts)"
           }
         ]

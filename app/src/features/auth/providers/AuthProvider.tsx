@@ -1,10 +1,10 @@
 "use client";
 import { selectUser, User } from "@/entities";
 import { useEffect } from "react";
-import { TChildren, useAppSelector } from "@/shared";
-import { useAppDispatch } from "@/shared";
 import { setUser } from "@/entities";
 import { createContext } from "react";
+import { useAppDispatch, useAppSelector } from "@/shared/lib";
+import { TChildren } from "@/shared/types";
 
 export const AuthContext = createContext<User | undefined>(undefined);
 

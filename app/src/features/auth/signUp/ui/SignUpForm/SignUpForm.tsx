@@ -6,8 +6,9 @@ import { Control } from "react-hook-form";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
-import { RtkQueryResultError, UIIconInputField } from "@/shared";
 import { DataForLogin, validateEmail } from "@/features";
+import { UIIconInputField } from "@/shared/ui";
+import { RtkQueryResultError } from "@/shared/types";
 
 const SignUpMultiStepForm: React.FC<SignInFormProps> = ({
   onSubmit,

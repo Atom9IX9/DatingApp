@@ -4,9 +4,10 @@ import style from "./signUpForm.module.scss";
 import { useEffect } from "react";
 import SignUpForm from "./SignUpForm";
 import { useRouter } from "next/navigation";
-import { RtkQueryResultError, useAppDispatch } from "@/shared";
 import { useLogin, DataForLogin } from "@/features";
 import { setUser } from "@/entities";
+import { useAppDispatch } from "@/shared/lib";
+import { RtkQueryResultError } from "@/shared/types";
 
 const SignUpFormController = () => {
   const { control, handleSubmit, setError, formState } =

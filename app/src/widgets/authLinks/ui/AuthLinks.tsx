@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import style from "./auhtLinks.module.scss";
-import { GradientButton } from "@/shared";
+import { GradientButton } from "@/shared/ui";
 import Link from "next/link";
 
 const AuthLinks = () => {

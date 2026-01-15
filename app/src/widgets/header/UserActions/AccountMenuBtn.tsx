@@ -1,8 +1,8 @@
-import { stringToColor, useTheme } from "@/shared";
-import { Colors } from "@/shared";
+import { stringToColor, useTheme } from "@/shared/lib";
+import { Colors } from "@/shared/types";
+import { UIIconMenuButton } from "@/shared/ui";
 import { Avatar } from "@mui/material";
 import { MouseEventHandler } from "react";
-import { UIIconMenuButton } from "@/shared";
 
 const AccountMenuBtn: React.FC<TProps> = ({
   handleClick,
