@@ -1,4 +1,4 @@
-import { UserGender } from "@/entities";
+import { UserGender } from "@/entities/user";
 import { UserMatchCard } from "@/widgets";
 import { Box } from "@mui/material";
 

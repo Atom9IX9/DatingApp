@@ -6,7 +6,7 @@ import SignInForm from "./SignInForm";
 import { useRouter } from "next/navigation";
 import { DataForLogin } from "../../api/signInAPI";
 import { useLogin } from "../../hooks/useLogin";
-import { setUser } from "@/entities";
+import { setUser } from "@/entities/user";
 import { RtkQueryResultError } from "@/shared/types";
 import { useAppDispatch } from "@/shared/lib";
 

@@ -60,7 +60,8 @@
               "!@/entities/*",
               "!@/features/*",
               "!@/widgets/*",
-              "!@/processes/*"
+              "!@/processes/*",
+              "!@x-entities/*" // todo: remove this exception later
             ],
             "message": "Import only with public API (index.ts)"
           }

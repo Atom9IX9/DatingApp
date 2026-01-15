@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { userReducer } from "@/entities";
 import { appReducer } from "@/shared/model";
 import { rtkAuthAPI } from "@/shared/api";
+import { userReducer } from "@/entities/user";
 
 export const rootReducer = combineReducers({
   app: appReducer,

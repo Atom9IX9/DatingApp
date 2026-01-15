@@ -1,4 +1,4 @@
-import type { UserIdentifiers, UserInfo, UserMatchStatus } from "../../user/types/user";
+import type { UserIdentifiers, UserInfo, UserMatchStatus } from "@x-entities/user/types/user";
 
 export type PublicUser = {
   isOnline: boolean;

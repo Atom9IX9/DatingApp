@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import SignUpForm from "./SignUpForm";
 import { useRouter } from "next/navigation";
 import { useLogin, DataForLogin } from "@/features";
-import { setUser } from "@/entities";
+import { setUser } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
 import { RtkQueryResultError } from "@/shared/types";
 

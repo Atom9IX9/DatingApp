@@ -1,7 +1,6 @@
 "use client";
-import { selectUser, User } from "@/entities";
+import { selectUser, User, setUser } from "@/entities/user";
 import { useEffect } from "react";
-import { setUser } from "@/entities";
 import { createContext } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
