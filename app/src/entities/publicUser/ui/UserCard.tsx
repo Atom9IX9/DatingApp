@@ -1,7 +1,5 @@
 "use client";
 import { UserGender, PublicUser } from "@/entities";
-import { capitalize, useTheme } from "@/shared";
-import { Colors } from "@/shared";
 import { Avatar, Box, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
 import classNames from "classnames";
@@ -9,6 +7,8 @@ import PlaceIcon from "@mui/icons-material/Place";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import { getUserStringLocation } from "../helpers/getUserStringLocation";
+import { capitalize, useTheme } from "@/shared/lib";
+import { Colors } from "@/shared/types";
 
 const UserCard: React.FC<TUserCardProps> = ({
   user,

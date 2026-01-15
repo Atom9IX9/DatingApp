@@ -2,13 +2,13 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./signInForm.module.scss";
 import { useEffect } from "react";
-import { RtkQueryResultError } from "@/shared";
 import SignInForm from "./SignInForm";
-import { useAppDispatch } from "@/shared";
 import { useRouter } from "next/navigation";
 import { DataForLogin } from "../../api/signInAPI";
 import { useLogin } from "../../hooks/useLogin";
 import { setUser } from "@/entities";
+import { RtkQueryResultError } from "@/shared/types";
+import { useAppDispatch } from "@/shared/lib";
 
 const SignInFormController = () => {
   const { control, handleSubmit, setError, formState } = useForm<DataForLogin>({

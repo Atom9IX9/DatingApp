@@ -1,0 +1,1 @@
+export { rtkAuthAPI } from "./auth/rtkQueryInstance";

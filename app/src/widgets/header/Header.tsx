@@ -1,11 +1,11 @@
 "use client";
 
 import style from "./header.module.scss";
-import { useTheme } from "@/shared";
 import cn from "classnames";
 import HeaderNav from "./HeaderNav/HeaderNav";
 import UserActions from "./UserActions/UserActions";
 import { AppBar, Toolbar } from "@mui/material";
+import { useTheme } from "@/shared/lib";
 
 const Header = () => {
   const theme = useTheme();
