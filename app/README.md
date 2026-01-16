@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dating App — Frontend
 
-## Getting Started
+Frontend part of a web application for dating and social interaction between users.
 
-First, run the development server:
+## Tech Stack
+
+* **TypeScript** — type-safe development
+* **Next.js** — React framework with SSR/SSG support
+* **Redux Toolkit** — global state management
+* **SCSS** — component styling
+
+## Project Goal
+
+Provide a convenient and secure platform for interaction between users of a dating service.
+
+Features:
+
+* user registration and authentication;
+* profile creation and editing;
+* searching and browsing other users;
+* real-time messaging (chat);
+* public and private meetings;
+* displaying meetings and activities on a map using geo-markers.
+
+The project is designed with future scalability and feature expansion in mind.
+
+## Architecture
+
+The project follows the **Feature-Sliced Design (FSD)** methodology, which allows:
+
+* scalable application growth;
+* clear separation of responsibilities;
+* easier maintenance and testing.
+
+### Main layers:
+
+* **root/** — application initialization, providers (my variant for NextJS)
+* **app/** — Next.js routing (basic for NextJS)
+* **processes** - long-running cross-feature flows that represent business processes
+* **widgets/** — large UI blocks (e.g. profile, chat list)
+* **features/** — user interaction scenarios (login, like, create meeting)
+* **entities/** — business entities (User, Chat, Meeting)
+* **shared/** — reusable components, UI kit, utilities, API layer
+
+## State Management
+
+Global state is handled with **Redux Toolkit**:
+
+* slices for individual features;
+* async thunks for API communication (+ RTK query);
+* centralized store configuration.
+
+## Styling
+
+* SCSS with a modular approach;
+* shared variables and mixins;
+* responsive and adaptive layout;
+* MUI
+
+## Project Setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ℹ️ Additional Information — Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> This section is provided for reference. Experienced developers may skip it.
 
-## Learn More
+Before running the project, make sure you have the following installed:
 
-To learn more about Next.js, take a look at the following resources:
+* **Node.js** version **18.x or higher**
+* **npm**, **yarn**, or **pnpm** package manager
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You can download Node.js from the official website:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+* [https://nodejs.org/](https://nodejs.org/)
 
-## Deploy on Vercel
+To verify the installation:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+node -v
+npm -v
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Notes
+
+* The project is prepared for backend integration (REST).
+* The architecture makes it easy to add new features without breaking existing logic.
