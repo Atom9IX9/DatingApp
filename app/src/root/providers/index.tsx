@@ -1,6 +1,6 @@
 "use client";
+import { User } from "@/entities/user";
 import StoreProvider from "./StoreProvider";
-import { User } from "@/entities";
 import { AuthProvider } from "@/features";
 import { ThemeProvider } from "@/shared/providers";
 import { TChildren, TTheme } from "@/shared/types";
