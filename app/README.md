@@ -60,6 +60,7 @@ Global state is handled with **Redux Toolkit**:
 ## Project Setup
 
 ```bash
+cd app
 npm install
 npm run dev
 ```
