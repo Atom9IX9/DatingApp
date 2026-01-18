@@ -67,6 +67,13 @@ npm run dev
 
 The application will be available at: `http://localhost:3000`
 
+## Environment Variables
+
+Create a `.env.local` file in the root and define:
+
+NEXT_PUBLIC_API_URL=http://localhost:5000/api (for client components)
+API_URL=http://localhost:5000/api (for server components)
+
 ## ℹ️ Additional Information — Prerequisites
 
 > This section is provided for reference. Experienced developers may skip it.
