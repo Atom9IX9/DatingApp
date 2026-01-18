@@ -26,7 +26,7 @@
           },
           {
             "from": "entities",
-            "allow": ["shared"]
+            "allow": ["shared", "entities"] // todo: remove entities later
           },
           { "from": "features", "allow": ["shared", "entities"] },
           { "from": "widgets", "allow": ["features", "shared", "entities"] },
