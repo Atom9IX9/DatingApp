@@ -1,4 +1,4 @@
-import { TValidationFunction } from "@/shared";
+import { TValidationFunction } from "@/shared/types";
 
 export const validateEmail: TValidationFunction = (value) => {
   const reg =

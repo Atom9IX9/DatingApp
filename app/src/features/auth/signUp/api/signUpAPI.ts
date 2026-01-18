@@ -1,6 +1,6 @@
-import { rtkAuthAPI } from "@/shared";
+import { rtkAuthAPI } from "@/shared/api";
 import { UserAuthResponse } from "../../types";
-import { UserGender } from "@/entities";
+import { UserGender } from "@/entities/user";
 
 export const registerEndpoint = rtkAuthAPI.injectEndpoints({
   endpoints: (builder) => ({
