@@ -6,7 +6,7 @@ import {
 } from "react-hook-form";
 import style from "./field.module.scss";
 import SignInField, { InputParams } from "./Field";
-import { TValidationFunction } from "@/shared";
+import { TValidationFunction } from "@/shared/types";
 
 function SignInFieldController<FV extends FieldValues>({
   control,
