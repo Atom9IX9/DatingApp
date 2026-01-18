@@ -1,11 +1,12 @@
-import { User } from "@/entities";
+import { User } from "@/entities/user";
 
+//todo: axios refactor
 export const verifyAuth: VerifyAuthFn = async (token?: string) => {
   if (!token) {
     return { statusCode: 401 };
   }
   try {
-    const res = await fetch("http://localhost:5000/api/auth", {
+    const res = await fetch(`${process.env.API_URL}/auth`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,

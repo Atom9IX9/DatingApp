@@ -1,6 +1,6 @@
 import { verifyAuth } from "@/features";
 import { Providers } from "@/root";
-import { TChildren, TTheme } from "@/shared";
+import { TChildren, TTheme } from "@/shared/types";
 import { cookies } from "next/headers";
 
 const ProvidedLayout = async ({ children }: Props) => {
