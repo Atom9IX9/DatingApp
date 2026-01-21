@@ -36,7 +36,7 @@ The project follows the **Feature-Sliced Design (FSD)** methodology, which allow
 
 * **root/** — application initialization, providers (my variant for NextJS)
 * **app/** — Next.js routing (basic for NextJS)
-* **processes** - long-running cross-feature flows that represent business processes
+* **processes/** - long-running cross-feature flows that represent business processes
 * **widgets/** — large UI blocks (e.g. profile, chat list)
 * **features/** — user interaction scenarios (login, like, create meeting)
 * **entities/** — business entities (User, Chat, Meeting)
