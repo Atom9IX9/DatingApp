@@ -7,7 +7,7 @@ import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
 import AccountMenuBtn from "./AccountMenuBtn";
-import { useAuth } from "@/features";
+import { useAuth } from "@/features/auth";
 import { useMenu, useTheme } from "@/shared/lib";
 import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";

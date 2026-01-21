@@ -1,4 +1,4 @@
-import { verifyAuth } from "@/features";
+import { verifyAuth } from "@/features/auth";
 import style from "./guestPages.module.scss";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";

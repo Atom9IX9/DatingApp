@@ -1,4 +1,4 @@
-import { verifyAuth } from "@/features";
+import { verifyAuth } from "@/features/auth";
 import { Providers } from "@/root";
 import { TChildren, TTheme } from "@/shared/types";
 import { cookies } from "next/headers";

@@ -1,5 +1,5 @@
 import { UserGender } from "@/entities/user";
-import { UserMatchCard } from "@/widgets";
+import { UserMatchCard } from "@/widgets/userMatchCard";
 import { Box } from "@mui/material";
 
 const UsersPage = () => {

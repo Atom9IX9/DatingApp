@@ -27,4 +27,3 @@ export type RegisterReqBody = {
   location?: string;
   description?: string;
 };
-

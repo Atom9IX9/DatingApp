@@ -1,36 +1,42 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
 import style from "./guestPages.module.scss";
-import { AuthLinks } from "@/widgets";
-
+import { AuthLinks } from "@/widgets/authLinks";
+import heroImg from "../../../../public/assets/imgs/hero-hq.jpg";
+import heroDecoration from "../../../../public/assets/imgs/hero-decoration.png";
+// todo: animation for text
 const Startpage: React.FC = async () => {
   return (
     <Box className={style.startpage}>
       <Box className={style.heroBlock}>
         <Image
-          src="/imgs/hero-hq.jpg"
+          src={heroDecoration}
+          alt="hero"
+          sizes="64vw"
+          priority
+          fill
+          style={{
+            objectFit: "contain",
+            objectPosition: "100% 50%",
+            zIndex: 1,
+          }}
+          loading="eager"
+          draggable={false}
+        />
+        <Image
+          src={heroImg}
           alt="hero"
           sizes="64vw"
           fill
           priority
           className={style.heroImg}
+          placeholder="empty"
           style={{
             objectFit: "cover",
             objectPosition: "center 45%",
             transform: "scaleX(-1)",
             height: "100%",
           }}
-        />
-        <Image
-          src="/imgs/hero-decoration.png"
-          alt="hero"
-          sizes="64vw"
-          fill
-          style={{
-            objectFit: "contain",
-            objectPosition: "100% 50%",    
-          }}
-          draggable={false}
         />
       </Box>
       <Box className={style.textSectionContainer}>

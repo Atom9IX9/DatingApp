@@ -3,7 +3,7 @@ import Link from "next/link";
 import AccountMenu from "./AccountMenu";
 import AppSettingsMenu from "./AppSettingsMenu";
 import { Box } from "@mui/material";
-import { useAuth } from "@/features";
+import { useAuth } from "@/features/auth";
 
 const UserActions = () => {
   const auth = useAuth();
