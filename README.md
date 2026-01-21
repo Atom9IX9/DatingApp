@@ -36,7 +36,15 @@ The project follows the **Feature-Sliced Design (FSD)** methodology, which allow
 
 * **root/** — application initialization, providers (my variant for NextJS)
 * **app/** — Next.js routing (basic for NextJS)
+<<<<<<< HEAD
 * **processes/** - long-running cross-feature flows that represent business processes
+=======
+<<<<<<< HEAD
+* **processes/** - long-running cross-feature flows that represent business processes
+=======
+* **processes** - long-running cross-feature flows that represent business processes
+>>>>>>> a4067dff64034d5cae00a06f36c25bcaf2560870
+>>>>>>> d89345849c1a6a12ec61fde75f5a40d1a5ab277f
 * **widgets/** — large UI blocks (e.g. profile, chat list)
 * **features/** — user interaction scenarios (login, like, create meeting)
 * **entities/** — business entities (User, Chat, Meeting)
@@ -60,6 +68,10 @@ Global state is handled with **Redux Toolkit**:
 ## Project Setup
 
 ```bash
+<<<<<<< HEAD
+cd app
+=======
+>>>>>>> a4067dff64034d5cae00a06f36c25bcaf2560870
 npm install
 npm run dev
 ```
