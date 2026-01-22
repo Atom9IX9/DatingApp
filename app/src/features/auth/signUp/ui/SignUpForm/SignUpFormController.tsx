@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { setUser } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
 import { RtkQueryResultError } from "@/shared/types";
-import { DataForLogin } from "@/features/auth/signIn/api/signInAPI";
 import { useLogin } from "../../hooks/useRegister";
+import { DataForLogin } from "../../../signIn/api/signInAPI";
 
 const SignUpFormController = () => {
   const { control, handleSubmit, setError, formState } =

@@ -23,6 +23,7 @@
     position: relative;
     right: 116px;
     margin-top: 10%;
+    animation: appear 1.3s forwards ease-in-out;
 
     .textSection {
       .heading {
@@ -45,5 +46,16 @@
         width: 351px;
       }
     }
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateX(30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
   }
 }
