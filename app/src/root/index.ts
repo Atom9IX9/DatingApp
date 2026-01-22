@@ -1,3 +1,3 @@
 export type { AppDispatch, AppStore, RootState } from "./model";
 
-export { Providers} from "./providers";
+export { Providers } from "./providers";

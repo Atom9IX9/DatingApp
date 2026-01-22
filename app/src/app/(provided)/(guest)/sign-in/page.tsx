@@ -1,5 +1,5 @@
 import style from "../guestPages.module.scss";
-import { SignInForm } from "@/features";
+import { SignInForm } from "@/features/auth";
 import classNames from "classnames";
 
 const SignIn = () => {

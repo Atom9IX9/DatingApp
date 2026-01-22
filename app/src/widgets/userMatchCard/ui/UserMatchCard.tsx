@@ -1,5 +1,5 @@
-import { PublicUser, UserCard } from "@/entities";
-import { MatchBtn } from "@/features";
+import { PublicUser, UserCard } from "@/entities/publicUser";
+import { MatchBtn } from "@/features/matchmaking";
 
 const UserMatchCard: React.FC<Props> = ({ user, isEven }) => {
   return <UserCard user={user} bottomSection={<MatchBtn />} isEven={isEven} />;

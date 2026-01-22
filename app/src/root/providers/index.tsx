@@ -1,8 +1,9 @@
 "use client";
+import { User } from "@/entities/user";
 import StoreProvider from "./StoreProvider";
-import { User } from "@/entities";
-import { TChildren, TTheme, ThemeProvider } from "@/shared";
-import { AuthProvider } from "@/features";
+import { AuthProvider } from "@/features/auth";
+import { ThemeProvider } from "@/shared/providers";
+import { TChildren, TTheme } from "@/shared/types";
 
 export const Providers: React.FC<Props> = ({ children, cookies }) => {
   return (

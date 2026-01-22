@@ -4,19 +4,21 @@ import style from "./signUpForm.module.scss";
 import { useEffect } from "react";
 import SignUpForm from "./SignUpForm";
 import { useRouter } from "next/navigation";
-import { RtkQueryResultError, useAppDispatch } from "@/shared";
-import { useLogin, DataForLogin } from "@/features";
-import { setUser } from "@/entities";
+import { setUser } from "@/entities/user";
+import { useAppDispatch } from "@/shared/lib";
+import { RtkQueryResultError } from "@/shared/types";
+import { useLogin } from "../../hooks/useRegister";
+import { DataForLogin } from "../../../signIn/api/signInAPI";
 
 const SignUpFormController = () => {
   const { control, handleSubmit, setError, formState } =
     useForm<DataForLogin>();
-  const { login, ...loginResult } = useLogin();
+  const { registerUser, ...loginResult } = useLogin();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<DataForLogin> = (data) => {
-    login(data);
+    //registerUser(data);
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
-@use "@/shared/styles/_variables.scss" as v;
-@use "@/shared/styles/mixins.scss";
+@use "variables" as v;
+@use "mixins";
 
 html,
 body,
@@ -134,8 +134,9 @@ a {
 
 .theme-wrap {
   height: 100vh;
+
   &.dark {
-    @include mixins.color-scheme(v.$scheme-2...);
+    @include mixins.color-scheme(v.$dark-scheme...);
     background: v.$info--dark;
   }
   &.light {
@@ -145,4 +146,8 @@ a {
 
 .main {
   padding: 20px 30px;
+}
+
+body {
+  font-family: var(--font-primary);
 }

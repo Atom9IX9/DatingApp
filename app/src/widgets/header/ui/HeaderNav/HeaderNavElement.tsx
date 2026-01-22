@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import style from "../header.module.scss";
 import { usePathname, useRouter } from "next/navigation";
 import cn from "classnames";
-import { Colors } from "@/shared";
 import { IconButton, Tooltip } from "@mui/material";
-import { TChildren } from "@/shared";
+import { Colors, TChildren } from "@/shared/types";
 
 const NavElement: React.FC<TProps> = ({
   title,

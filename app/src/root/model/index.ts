@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "./rootReducer";
-import { rtkAuthAPI } from "@/shared";
+import { rtkAuthAPI } from "@/shared/api";
 
 export const makeStore = () => {
   return configureStore({

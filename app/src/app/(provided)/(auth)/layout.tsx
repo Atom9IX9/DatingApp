@@ -1,7 +1,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { verifyAuth } from "@/features";
-import { Footer, Header } from "@/widgets";
+import { verifyAuth } from "@/features/auth";
+import { Header } from "@/widgets/header";
+import { Footer } from "@/widgets/footer";
 
 const RootLayout = async ({
   children,

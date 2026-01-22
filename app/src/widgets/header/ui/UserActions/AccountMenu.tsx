@@ -6,10 +6,11 @@ import PeopleIcon from "@mui/icons-material/People";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
-import { Colors } from "@/shared";
 import AccountMenuBtn from "./AccountMenuBtn";
-import { useMenu, useTheme, UIMenu } from "@/shared";
-import { useAuth } from "@/features";
+import { useAuth } from "@/features/auth";
+import { useMenu, useTheme } from "@/shared/lib";
+import { UIMenu } from "@/shared/ui";
+import { Colors } from "@/shared/types";
 
 const AccountMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();

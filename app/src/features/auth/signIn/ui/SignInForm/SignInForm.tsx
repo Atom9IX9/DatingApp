@@ -6,8 +6,9 @@ import { Control } from "react-hook-form";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Box, Button, Checkbox, FormControlLabel } from "@mui/material";
-import { RtkQueryResultError, UIIconInputField, Colors } from "@/shared";
-import { DataForLogin, validateEmail } from "@/features";
+import { DataForLogin, validateEmail } from "@/features/auth";
+import { UIIconInputField } from "@/shared/ui";
+import { Colors, RtkQueryResultError } from "@/shared/types";
 
 const SignInForm: React.FC<SignInFormProps> = ({
   onSubmit,

@@ -9,7 +9,7 @@ import {
 export const rtkAuthAPI = createApi({
   reducerPath: "authAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/auth/",
+    baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth`,
   }) as BaseQueryFn<string | FetchArgs, unknown, AuthApiError>,
   endpoints: () => ({}),
 });

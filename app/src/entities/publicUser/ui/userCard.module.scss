@@ -2,23 +2,23 @@
 @use "@/shared/styles/mixins.scss";
 
 .userCard {
-  border-top: 3px solid v.$primary-light;
+  border-top: 3px solid v.$primary;
   box-sizing: border-box;
   &.even {
-    border-top: 3px solid v.$secondary-light;
+    border-top: 3px solid v.$secondary;
   }
 
   &:hover {
     -webkit-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
     -moz-box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
     box-shadow: 0px 18px 45px 9px rgba(80, 227, 183, 0.21);
-    border-top: 5px solid v.$primary-light;
+    border-top: 5px solid v.$primary;
   }
   &.even:hover {
     -webkit-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
     -moz-box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
     box-shadow: 0px 18px 45px 9px rgba(227, 80, 124, 0.21);
-    border-top: 5px solid v.$secondary-light;
+    border-top: 5px solid v.$secondary;
   }
 
   padding: 0 20px;
@@ -40,13 +40,13 @@
 
     .userAgeText {
       font-size: 15px;
-      color: v.$primary-light;
+      color: v.$primary;
     }
 
     .userAgeNumber {
       font-weight: 600;
       font-size: 20px;
-      color: v.$secondary-light;
+      color: v.$secondary;
     }
   }
 

@@ -1,19 +1,32 @@
 import { Box } from "@mui/material";
-import Link from "next/link";
+import style from "./guestPages.module.scss";
+import { AuthLinks } from "@/widgets/authLinks";
+import HeroBlock from "./HeroBlock";
 
-const HomePage: React.FC = async () => {
+const Startpage: React.FC = async () => {
   return (
-    <Box>
-      start unauth page 
-      <div>
-        <Link href="sign-in">Sign in</Link>
-      </div>
-      <div>
-        <Link href="sign-up">Sign up</Link>
-      </div>
+    <Box className={style.startpage}>
+      <HeroBlock />
+      <Box className={style.textSectionContainer}>
+        <Box component="section" className={style.textSection}>
+          <Box
+            component={"h1"}
+            color={"secondary.main"}
+            className={style.heading}
+          >
+            WELCOME TO <br /> DatingApp!
+          </Box>
+          <Box component="p" className={style.subheading}>
+            Find new friends, meaningful connections, or someone special — all
+            in one place. Join thousands of people meeting every day!
+          </Box>
+          <Box className={style.ctaButtons}>
+            <AuthLinks />
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };
 
-export default HomePage;
-
+export default Startpage;
