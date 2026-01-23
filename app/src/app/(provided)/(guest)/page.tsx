@@ -13,6 +13,7 @@ const Startpage: React.FC = async () => {
             component={"h1"}
             color={"secondary.main"}
             className={style.heading}
+            translate="no"
           >
             WELCOME TO <br /> DatingApp!
           </Box>
