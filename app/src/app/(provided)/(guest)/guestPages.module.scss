@@ -34,16 +34,14 @@
         }
         line-height: 80px;
         height: 171px;
+        max-width: 500px;
       }
 
       .subheading {
         margin: 8px 0 47px 2px;
         line-height: 30px;
-        text-transform: capitalize;
-      }
-
-      .ctaButtons {
-        width: 351px;
+        font-size: 20px;
+        font-weight: 300;
       }
     }
   }

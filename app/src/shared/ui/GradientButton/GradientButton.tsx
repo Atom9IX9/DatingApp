@@ -64,7 +64,7 @@ const GradientButton: React.FC<Props> = ({
         boxShadow: "0",
         boxSizing: "border-box",
         borderRadius: "50px",
-        width: "152px",
+        minWidth: "152px",
         height: "48px",
         textTransform,
         ...(color === "primary" ? primaryStyle : secondaryStyle),
