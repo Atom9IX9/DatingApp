@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-.startpage {
+.mainBlock {
   display: flex;
   height: 100%;
 
@@ -42,6 +42,44 @@
         line-height: 30px;
         font-size: 20px;
         font-weight: 300;
+      }
+    }
+  }
+
+  &.signUpPage,
+  &.signInPage {
+    .heroBlock {
+      opacity: 1;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0.3;
+        mix-blend-mode: hard-light;
+      }
+    }
+  }
+
+  &.signUpPage {
+    background: linear-gradient(
+      -55deg,
+      rgba(255, 29, 74, 1) 6%,
+      rgba(255, 176, 59, 1) 71%
+    );
+    background-size: 100%;
+    background-position: center center;
+
+    .heroBlock {
+      &::after {
+        background: linear-gradient(
+          -74deg,
+          rgba(255, 29, 74, 1) 0%,
+          rgba(255, 176, 59, 1) 100%
+        );
       }
     }
   }

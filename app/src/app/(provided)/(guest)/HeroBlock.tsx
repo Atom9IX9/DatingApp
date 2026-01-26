@@ -4,14 +4,23 @@ import { Box } from "@mui/material";
 import Image from "next/image";
 import heroImg from "../../../../public/assets/imgs/hero-hq.jpg";
 import heroDecoration from "../../../../public/assets/imgs/hero-decoration.png";
+import signInHeroDecoration from "../../../../public/assets/imgs/hero-decoration.png";
+import signUpHeroDecoration from "../../../../public/assets/imgs/hero-decoration-sign-up.png";
 import style from "./guestPages.module.scss";
-import { useState } from "react";
 
-const HeroBlock = () => {
+const HeroBlock: React.FC<Props> = ({ forPage }) => {
   return (
     <Box className={style.heroBlock}>
       <Image
-        src={heroDecoration}
+        src={
+          forPage === "startpage"
+            ? heroDecoration
+            : forPage === "signInPage"
+              ? signInHeroDecoration
+              : forPage === "signUpPage"
+                ? signUpHeroDecoration
+                : ""
+        }
         alt="hero"
         sizes="64vw"
         priority
@@ -20,6 +29,7 @@ const HeroBlock = () => {
           objectFit: "contain",
           objectPosition: "100% 50%",
           zIndex: 1,
+          left: "1px"
         }}
         loading="eager"
         draggable={false}
@@ -42,7 +52,11 @@ const HeroBlock = () => {
           transition: "all 1s",
         }}
         onLoad={(e) => {
-          e.currentTarget.style.opacity = "1";
+          if (forPage === "startpage") {
+            e.currentTarget.style.opacity = "0.75";
+          } else {
+            e.currentTarget.style.opacity = "1";
+          }
         }}
       />
     </Box>
@@ -50,3 +64,6 @@ const HeroBlock = () => {
 };
 
 export default HeroBlock;
+type Props = {
+  forPage: "startpage" | "signUpPage" | "signInPage";
+};

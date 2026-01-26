@@ -1,11 +1,15 @@
-import { SignUpForm } from "@/features/auth";
+import { Box } from "@mui/material";
+import style from "../guestPages.module.scss";
+import { AuthLinks } from "@/widgets/authLinks";
+import HeroBlock from "../HeroBlock";
 
-const SignUp = () => {
+const Startpage: React.FC = async () => {
   return (
-    <div>
-      <SignUpForm />
-    </div>
+    <Box className={`${style.mainBlock} ${style.signUpPage}`}>
+      <HeroBlock forPage="signUpPage" />
+      
+    </Box>
   );
 };
 
-export default SignUp;
+export default Startpage;
