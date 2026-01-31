@@ -1,0 +1,25 @@
+.registerStepsContainer {
+  width: 352px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: auto;
+
+  .step {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: {
+        weight: 600;
+        size: 11px;
+        family: var(--font-secondary)
+    };
+
+  }
+}
