@@ -2,6 +2,13 @@ import { createTheme, ThemeOptions } from "@mui/material";
 
 export default createTheme({
   components: {
+    typography: {
+    fontFamily: [
+      'var(--font-primary)', // Primary font
+      'Arial',         // Fallback fonts
+      'sans-serif',
+    ].join(','),
+  },
     MuiTypography: {
       defaultProps: {
         variantMapping: {
@@ -12,6 +19,7 @@ export default createTheme({
     },
   },
   palette: {
+    mode: "dark",
     primary: {
       main: "#FF1D4A",
     },

@@ -14,7 +14,7 @@ function SignInFieldController<FV extends FieldValues>({
   inputParams,
   icon,
   validate,
-  rootError
+  rootError,
 }: Props<FV>) {
   return (
     <div className={style.fieldContainer}>
@@ -30,7 +30,6 @@ function SignInFieldController<FV extends FieldValues>({
               root: rootError,
             }}
             field={field}
-            icon={icon}
           />
         )}
       />

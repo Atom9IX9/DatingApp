@@ -1,25 +1,35 @@
 .registerProcessContainer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
 }
 
 .registerProcess {
   max-width: 480px;
   max-height: 655px;
-  background-color: #00000099;
-  backdrop-filter: blur(9px);
-  padding: 14px 30px 0 30px;
+  background-color: rgba(0, 0, 0, 0.65);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: -1;
+    border-radius: 10px;
+  }
+
+  will-change: transform;
+  padding: 14px 30px 28px 30px;
   margin: auto;
   border-radius: 10px;
+  isolation: isolate;
 
-  box-sizing: border-box;
-  
   h2 {
     width: 146px;
     height: 45px;

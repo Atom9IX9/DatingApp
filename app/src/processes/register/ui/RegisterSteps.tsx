@@ -2,32 +2,34 @@ import { Box } from "@mui/material";
 import React from "react";
 import style from "./registerStepsStyle.module.scss";
 
-const Step: React.FC<StepProps> = ({ isCurrent, isPassed, number, stepsCount }) => {
-  return (
-    <>
-      <Box
-        className={style.step}
-        sx={{
-          border: 3,
-          borderColor: isCurrent || isPassed ? "success.main" : "#000000",
-          bgcolor: isPassed ? "success.main" : "transparent",
-        }}
-      >
-        {number}
-      </Box>
-      {number !== stepsCount.toString() && (
+const Step: React.FC<StepProps> = React.memo(
+  ({ isCurrent, isPassed, number, stepsCount }) => {
+    return (
+      <>
         <Box
+          className={style.step}
           sx={{
-            height: 3,
-            width: 83,
-            bgcolor: isPassed || isCurrent ? "success.main" : "#000000",
-            opacity: isCurrent ? 0.3 : 1,
+            border: 3,
+            borderColor: isCurrent || isPassed ? "success.main" : "#000000",
+            bgcolor: isPassed ? "success.main" : "transparent",
           }}
-        ></Box>
-      )}
-    </>
-  );
-};
+        >
+          {number}
+        </Box>
+        {number !== stepsCount.toString() && (
+          <Box
+            sx={{
+              height: 3,
+              width: 83,
+              bgcolor: isPassed || isCurrent ? "success.main" : "#000000",
+              opacity: isCurrent ? 0.3 : 1,
+            }}
+          ></Box>
+        )}
+      </>
+    );
+  },
+);
 
 const RegisterSteps: React.FC<Props> = ({ currentStep, stepsCount }) => {
   const renderSteps = () => {
@@ -35,11 +37,27 @@ const RegisterSteps: React.FC<Props> = ({ currentStep, stepsCount }) => {
 
     for (let i = 1; i <= stepsCount; i++) {
       if (i < currentStep) {
-        steps.push(<Step stepsCount={stepsCount} key={i} number={i.toString()} isPassed={true} />);
+        steps.push(
+          <Step
+            stepsCount={stepsCount}
+            key={i}
+            number={i.toString()}
+            isPassed={true}
+          />,
+        );
       } else if (i === currentStep) {
-        steps.push(<Step stepsCount={stepsCount} key={i} number={i.toString()} isCurrent={true} />);
+        steps.push(
+          <Step
+            stepsCount={stepsCount}
+            key={i}
+            number={i.toString()}
+            isCurrent={true}
+          />,
+        );
       } else {
-        steps.push(<Step stepsCount={stepsCount} key={i} number={i.toString()} />);
+        steps.push(
+          <Step stepsCount={stepsCount} key={i} number={i.toString()} />,
+        );
       }
     }
 
@@ -49,7 +67,7 @@ const RegisterSteps: React.FC<Props> = ({ currentStep, stepsCount }) => {
   return <Box className={style.registerStepsContainer}>{renderSteps()}</Box>;
 };
 
-export default RegisterSteps;
+export default React.memo(RegisterSteps);
 type Props = {
   currentStep: number;
   stepsCount: number;

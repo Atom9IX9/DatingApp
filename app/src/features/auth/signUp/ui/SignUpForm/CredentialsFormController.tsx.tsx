@@ -1,23 +1,23 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import style from "./signUpForm.module.scss";
+import style from "./credentialsForm.module.scss";
 import { useEffect } from "react";
-import SignUpForm from "./SignUpForm";
+import SignUpForm from "./CredentialsForm";
 import { useRouter } from "next/navigation";
 import { setUser } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
 import { RtkQueryResultError } from "@/shared/types";
 import { useLogin } from "../../hooks/useRegister";
-import { DataForLogin } from "../../../signIn/api/signInAPI";
+import { CredentialsData } from "../../types/form";
 
 const SignUpFormController = () => {
   const { control, handleSubmit, setError, formState } =
-    useForm<DataForLogin>();
+    useForm<CredentialsData>();
   const { registerUser, ...loginResult } = useLogin();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<DataForLogin> = (data) => {
+  const onSubmit: SubmitHandler<CredentialsData> = (data) => {
     //registerUser(data);
   };
 
@@ -40,8 +40,6 @@ const SignUpFormController = () => {
 
   return (
     <section className={style.signUpSection}>
-      <h3 className={style.signUpPageTitle}>Sign Up</h3>
-
       <SignUpForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
