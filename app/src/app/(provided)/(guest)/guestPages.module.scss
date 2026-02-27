@@ -1,7 +1,7 @@
 @use "@/shared/styles/_variables.scss" as variables;
 
 .layout {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
@@ -47,20 +47,13 @@
   }
 
   &.signUpPage,
-  &.signInPage {    
+  &.signInPage {
     .heroBlock {
       opacity: 1;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        opacity: 0.3;
-        mix-blend-mode: hard-light;
-      }
+    }
+    .heroBlock img {
+      //mix-blend-mode: luminosity;
+      mix-blend-mode: hard-light;
     }
   }
 

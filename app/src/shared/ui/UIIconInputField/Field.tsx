@@ -48,6 +48,7 @@ function SignInField<FV extends FieldValues>({
         required={inputParams?.isRequired}
         type={inputParams?.type || "text"}
         autoComplete={inputParams?.autocomplete ? "on" : "new-password"}
+        error={ !!(error.field || error.root) }
       />
       {(error.field || error.root) && (
         <div className={style.errorIcon}>

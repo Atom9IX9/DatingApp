@@ -16,4 +16,5 @@ export enum Colors {
   TriadicLight = "#e3b750",
   TriadicLight900 = "#dd7400",
   White = "#ffffff",
+  Success = "success.main"
 }

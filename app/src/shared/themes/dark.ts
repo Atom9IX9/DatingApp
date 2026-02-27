@@ -32,6 +32,9 @@ export default createTheme({
     },
     success: {
       main: "#27CC7F",
+    },
+    error: {
+      main: "#ff454f"
     }
   },
 } as ThemeOptions);

@@ -5,10 +5,11 @@ import { Control } from "react-hook-form";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { DataForLogin, validateEmail } from "@/features/auth";
-import { UIIconInputField } from "@/shared/ui";
+import { UIIconInputField, StyledLink } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
 import SubmitBtn from "./SubmitBtn";
+import { Box } from "@mui/material";
 
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
@@ -16,8 +17,8 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   result,
 }) => {
   return (
-    <form className={style.credentialsForm} onSubmit={onSubmit}>
-      <div className={style.fields}>
+    <Box component="form" className={style.credentialsForm} onSubmit={onSubmit}>
+      <Box className={style.fields}>
         <UIIconInputField
           control={control}
           name="email"
@@ -48,15 +49,25 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
           icon={<LockIcon sx={{ width: 30, height: 30 }} />}
           rootError={result.rootError}
         />
-        {!!result.error && (
-          <div className={style.rootError}>
-            {(result.error as RtkQueryResultError).data?.message ||
-              "Failed to send data"}
-          </div>
-        )}
+        {!!result.error ||
+          (result.rootError && (
+            <Box
+              color="error"
+              className={style.rootError}
+              sx={{ color: "error.main" }}
+            >
+              {(result.error as RtkQueryResultError | undefined)?.data
+                ?.message ||
+                result.rootError ||
+                "Failed to send data"}
+            </Box>
+          ))}
         <SubmitBtn />
-      </div>
-    </form>
+      </Box>
+      <Box className={style.signInLink}>
+        Already have an account? <StyledLink href="sign-in">Log in</StyledLink>
+      </Box>
+    </Box>
   );
 };
 

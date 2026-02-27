@@ -10,28 +10,28 @@
     display: block;
 
     &.error {
-      border: 2px solid #ff454f;
-
       &:has(input:focus) {
-        border: 2px solid variables.$info--dark;
+        border: 0;
       }
 
       .fieldError {
         position: absolute;
-        top: -20px;
+        bottom: -15px;
         color: #ff454f;
         font-size: 15px;
       }
 
       .errorIcon {
         position: absolute;
-        right: 20px;
+        right: 15px;
+        top: 40px;
         color: #ff454f;
       }
     }
 
     .field {
       display: block;
+      background: #000;
     }
   }
 }

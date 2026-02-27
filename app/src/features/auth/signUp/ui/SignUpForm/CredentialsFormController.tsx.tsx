@@ -2,15 +2,16 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./credentialsForm.module.scss";
 import { useEffect } from "react";
-import SignUpForm from "./CredentialsForm";
+import CredentialsForm from "./CredentialsForm";
 import { useRouter } from "next/navigation";
 import { setUser } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
 import { RtkQueryResultError } from "@/shared/types";
 import { useLogin } from "../../hooks/useRegister";
 import { CredentialsData } from "../../types/form";
+import { Box } from "@mui/material";
 
-const SignUpFormController = () => {
+const CredentialsFormController = () => {
   const { control, handleSubmit, setError, formState } =
     useForm<CredentialsData>();
   const { registerUser, ...loginResult } = useLogin();
@@ -18,7 +19,8 @@ const SignUpFormController = () => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<CredentialsData> = (data) => {
-    //registerUser(data);
+    setError("root", {message: "Test of errors"})
+    console.log(data)
   };
 
   useEffect(() => {
@@ -39,8 +41,8 @@ const SignUpFormController = () => {
   }, [dispatch, loginResult.data, router]);
 
   return (
-    <section className={style.signUpSection}>
-      <SignUpForm
+    <Box component="section" className={style.signUpSection}>
+      <CredentialsForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
@@ -49,8 +51,8 @@ const SignUpFormController = () => {
           rootError: formState.errors.root?.message,
         }}
       />
-    </section>
+    </Box>
   );
 };
 
-export default SignUpFormController;
+export default CredentialsFormController;
