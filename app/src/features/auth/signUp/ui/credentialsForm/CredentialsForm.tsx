@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./credentialsForm.module.scss";
 import PersonIcon from "@mui/icons-material/Person";
-import { Control } from "react-hook-form";
+import { Control, SubmitErrorHandler, SubmitHandler } from "react-hook-form";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { DataForLogin, validateEmail } from "@/features/auth";
+import { DataForLogin, validateEmail } from "../../../../auth";
 import { UIIconInputField, StyledLink } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
@@ -17,7 +17,13 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   result,
 }) => {
   return (
-    <Box component="form" className={style.credentialsForm} onSubmit={onSubmit}>
+    <Box
+      component="form"
+      className={style.credentialsForm}
+      onSubmit={onSubmit}
+      action="#"
+      noValidate
+    >
       <Box className={style.fields}>
         <UIIconInputField
           control={control}
@@ -49,19 +55,15 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
           icon={<LockIcon sx={{ width: 30, height: 30 }} />}
           rootError={result.rootError}
         />
-        {!!result.error ||
-          (result.rootError && (
-            <Box
-              color="error"
-              className={style.rootError}
-              sx={{ color: "error.main" }}
-            >
-              {(result.error as RtkQueryResultError | undefined)?.data
-                ?.message ||
-                result.rootError ||
-                "Failed to send data"}
-            </Box>
-          ))}
+        {result.rootError && (
+          <Box
+            color="error"
+            className={style.rootError}
+            sx={{ color: "error.main" }}
+          >
+            {result.rootError || "Failed to send data"}
+          </Box>
+        )}
         <SubmitBtn />
       </Box>
       <Box className={style.signInLink}>
@@ -73,7 +75,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
 
 export default CredentialsForm;
 type CredentialsFormProps = {
-  onSubmit: () => void;
+  onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<CredentialsData>;
   result: {
     error?: RtkQueryResultError;

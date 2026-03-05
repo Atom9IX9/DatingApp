@@ -1,9 +1,23 @@
 import { CredentialsForm } from "@/features/auth";
+import { useAppDispatch } from "@/shared/lib";
+import { setCurrentStep } from "../model/registerProcess.slice";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
+  const dispatch = useAppDispatch();
+
+  const nextStep = () => {
+    dispatch(setCurrentStep(currentStep + 1));
+  };
+
   switch (currentStep) {
     case 1:
-      return <CredentialsForm />;
+      return (
+        <CredentialsForm
+          onSuccess={() => {
+            nextStep();
+          }}
+        />
+      );
     case 2:
       return <div>Form for Step 2</div>;
     case 3:
