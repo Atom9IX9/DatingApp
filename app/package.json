@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
+    "@mui/material-nextjs": "^7.3.9",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",

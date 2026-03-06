@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./credentialsForm.module.scss";
 import PersonIcon from "@mui/icons-material/Person";
 import { Control, SubmitErrorHandler, SubmitHandler } from "react-hook-form";
 import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { DataForLogin, validateEmail } from "../../../../auth";
-import { UIIconInputField, StyledLink } from "@/shared/ui";
+import { UIIconInputField, StyledLink, BackdropLoader } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
 import SubmitBtn from "./SubmitBtn";
@@ -16,14 +16,19 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   control,
   result,
 }) => {
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
   return (
     <Box
       component="form"
       className={style.credentialsForm}
       onSubmit={onSubmit}
-      action="#"
-      noValidate
     >
+      <BackdropLoader isOpen={!isHydrated} renderBeforeHydration={true} />
       <Box className={style.fields}>
         <UIIconInputField
           control={control}

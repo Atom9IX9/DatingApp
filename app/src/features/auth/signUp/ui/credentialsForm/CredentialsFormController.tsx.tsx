@@ -20,6 +20,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
         confirmPassword: "",
       },
     });
+
   const { registerCredentials, ...registerCredentialsResult } =
     useRegisterCredentials();
 
