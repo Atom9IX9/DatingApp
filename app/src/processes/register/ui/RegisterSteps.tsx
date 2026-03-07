@@ -11,6 +11,7 @@ const Step: React.FC<StepProps> = React.memo(
           sx={{
             border: 3,
             borderColor: isCurrent || isPassed ? "success.main" : "#000000",
+            color: isCurrent || isPassed ? "#ffffff" : "#000000",
             bgcolor: isPassed ? "success.main" : "transparent",
           }}
         >
@@ -67,6 +68,8 @@ const RegisterSteps: React.FC<Props> = ({ currentStep, stepsCount }) => {
   return <Box className={style.registerStepsContainer}>{renderSteps()}</Box>;
 };
 
+Step.displayName = "Step";
+
 export default React.memo(RegisterSteps);
 type Props = {
   currentStep: number;
@@ -75,7 +78,6 @@ type Props = {
 type StepProps = {
   isPassed?: boolean;
   isCurrent?: boolean;
-  key: number;
   number: string;
   stepsCount: number;
 };

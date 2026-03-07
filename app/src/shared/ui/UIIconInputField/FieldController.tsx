@@ -6,13 +6,12 @@ import {
 } from "react-hook-form";
 import style from "./field.module.scss";
 import SignInField, { InputParams } from "./Field";
-import { TValidationFunction } from "@/shared/types";
+import { TDateValidationFunction, TValidationFunction } from "@/shared/types";
 
-function SignInFieldController<FV extends FieldValues>({
+function FieldController<FV extends FieldValues>({
   control,
   name,
   inputParams,
-  icon,
   validate,
   rootError,
 }: Props<FV>) {
@@ -37,14 +36,13 @@ function SignInFieldController<FV extends FieldValues>({
   );
 }
 
-export default SignInFieldController;
+export default FieldController;
 type Props<V extends FieldValues> = {
   control: Control<V>;
   name: FieldPath<V>;
   inputParams?: InputParams;
-  icon: JSX.Element;
   validate?: {
-    [key: string]: TValidationFunction;
+    [key: string]: TValidationFunction | TDateValidationFunction;
   };
   rootError?: string;
 };

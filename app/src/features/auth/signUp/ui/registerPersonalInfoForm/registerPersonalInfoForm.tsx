@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import style from "./credentialsForm.module.scss";
+import style from "./registerPersonalInfoForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { validateEmail } from "../../../../auth";
-import { UIInputField, StyledLink, BackdropLoader } from "@/shared/ui";
+import { UIInputField, BackdropLoader } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
-import { CredentialsData } from "../../types/form";
+import { UserPersonalInfoFormData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
+import { validateAdult } from "../../../lib/validation/validateAdult";
 
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
@@ -21,38 +21,33 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   }, []);
 
   return (
-    <Box
-      component="form"
-      className={style.credentialsForm}
-      onSubmit={onSubmit}
-    >
+    <Box component="form" className={style.credentialsForm} onSubmit={onSubmit}>
       <BackdropLoader isOpen={!isHydrated} renderBeforeHydration={true} />
       <Box className={style.fields}>
         <UIInputField
           control={control}
-          name="email"
-          inputParams={{ isRequired: true, label: "Email" }}
-          validate={{ validateEmail }}
+          name="firstName"
+          inputParams={{ isRequired: true, label: "First name" }}
           rootError={result.rootError}
         />
         <UIInputField
           control={control}
-          name="password"
+          name="lastName"
           inputParams={{
             isRequired: true,
-            label: "Password",
-            type: "password",
+            label: "Last name",
           }}
           rootError={result.rootError}
         />
         <UIInputField
           control={control}
-          name="confirmPassword"
+          name="dateOfBD"
           inputParams={{
             isRequired: true,
-            label: "Confirm password",
-            type: "password",
+            label: "Date of birth",
+            type: "date",
           }}
+          validate={{ validateAdult }}
           rootError={result.rootError}
         />
         {result.rootError && (
@@ -66,9 +61,6 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         )}
         <SubmitBtn />
       </Box>
-      <Box className={style.signInLink}>
-        Already have an account? <StyledLink href="sign-in">Log in</StyledLink>
-      </Box>
     </Box>
   );
 };
@@ -76,7 +68,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
 export default CredentialsForm;
 type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
-  control: Control<CredentialsData>;
+  control: Control<UserPersonalInfoFormData>;
   result: {
     error?: RtkQueryResultError;
     status: QueryStatus;
