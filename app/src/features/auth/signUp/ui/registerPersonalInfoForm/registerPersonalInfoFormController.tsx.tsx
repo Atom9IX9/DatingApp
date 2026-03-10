@@ -22,6 +22,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
       },
     });
 
+    //todo: reusable hook/hoc after backend
   // const { registerCredentials, ...registerCredentialsResult } = 
   //   useRegisterCredentials();
 

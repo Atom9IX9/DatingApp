@@ -7,6 +7,7 @@ import {
 import style from "./field.module.scss";
 import SignInField, { InputParams } from "./Field";
 import { TDateValidationFunction, TValidationFunction } from "@/shared/types";
+import { Box } from "@mui/material";
 
 function FieldController<FV extends FieldValues>({
   control,
@@ -16,7 +17,7 @@ function FieldController<FV extends FieldValues>({
   rootError,
 }: Props<FV>) {
   return (
-    <div className={style.fieldContainer}>
+    <Box className={style.fieldContainer}>
       <Controller
         control={control}
         name={name}
@@ -32,7 +33,7 @@ function FieldController<FV extends FieldValues>({
           />
         )}
       />
-    </div>
+    </Box>
   );
 }
 

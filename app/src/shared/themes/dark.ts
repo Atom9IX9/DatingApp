@@ -29,6 +29,7 @@ export default createTheme({
     info: {
       main: "#2A2A37",
       dark: "#ff0000ff",
+      light: "#3C66FF"
     },
     success: {
       main: "#27CC7F",

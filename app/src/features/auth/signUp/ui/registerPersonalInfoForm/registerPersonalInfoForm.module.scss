@@ -5,7 +5,6 @@
 
   .fields {
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 42px;
 
@@ -17,11 +16,5 @@
   .rootError {
     position: absolute;
     bottom: 140px;
-  }
-
-  .signInLink {
-    font-weight: 300;
-    position: absolute;
-    bottom: 18px;
   }
 }

@@ -1,10 +1,12 @@
 export enum Colors {
   Primary = "primary",
+  PrimaryMain = "primary.main", // todo: del
   Secondary = "secondary",
   PrimaryDark = "primary.dark",
   PrimaryContrastText = "primary.contrastText",
   Info = "info",
   InfoDark = "info.dark",
+  InfoLight = "info.light",
   InfoContrastText = "info.contrastText",
   Active = "active",
   Danger = "#ff474c",
