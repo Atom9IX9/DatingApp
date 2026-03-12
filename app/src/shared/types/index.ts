@@ -23,5 +23,8 @@ export type RtkQueryResultError = {
 };
 
 export { Colors } from "./colors";
+export { PaletteColors } from "./colors"
+export { type PaletteShade } from "./colors"
+export { type ThemeColor } from "./colors"
 
 export * from "./statusCodes";

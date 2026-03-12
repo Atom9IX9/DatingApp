@@ -21,7 +21,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   }, []);
 
   return (
-    <Box component="form" className={style.credentialsForm} onSubmit={onSubmit}>
+    <Box component="form" className={style.personalInfoForm} onSubmit={onSubmit}>
       <BackdropLoader isOpen={!isHydrated} renderBeforeHydration={true} />
       <Box className={style.fields}>
         <Box>
@@ -63,6 +63,10 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
                 text: Sex.Female,
                 bgColor: Colors.PrimaryMain,
               },
+              {
+                value: Sex.Custom,
+                text: Sex.Custom,
+              }
             ]}
           />
         </Box>

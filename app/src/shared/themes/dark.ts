@@ -36,6 +36,6 @@ export default createTheme({
     },
     error: {
       main: "#ff454f"
-    }
+    },
   },
 } as ThemeOptions);

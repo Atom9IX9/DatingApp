@@ -1,4 +1,12 @@
-import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  Box,
+  FormControlLabel,
+  Palette,
+  Radio,
+  RadioGroup,
+  styled,
+  useTheme,
+} from "@mui/material";
 import style from "./radioGroup.module.scss";
 import { useState } from "react";
 import { Sex } from "../../../features/auth/signUp/types/form";
@@ -8,13 +16,67 @@ import {
   FieldValues,
   Path,
 } from "react-hook-form";
-import { Colors } from "@/shared/types";
+import { PaletteColors, PaletteShade, ThemeColor } from "@/shared/types";
+
+const BpIcon = styled("span")(() => ({
+  borderRadius: "50%",
+  width: 20,
+  height: 20,
+  border: "1px solid #ffffff",
+  backgroundColor: "transparent",
+}));
+
+const BpCheckedIcon = styled(BpIcon, {
+  shouldForwardProp: (prop) => prop !== "markerBgColor",
+})<BpCheckedIconProps>(({ theme, markerBgColor }) => {
+  const themeColorParams = markerBgColor?.split(".") as [
+    PaletteColors,
+    PaletteShade,
+  ];
+
+  const color = themeColorParams
+    ? theme.palette[themeColorParams[0]][themeColorParams[1]]
+    : null;
+
+  return {
+    backgroundColor: "#ffffff",
+    backgroundImage:
+      "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
+    "&::before": {
+      display: "block",
+      width: 20,
+      height: 20,
+      background: `radial-gradient(${color || "#B650F1"}, ${color || "#B650F1"} 28%,transparent 32%)`,
+      content: '""',
+    },
+    "input:hover ~ &": {
+      backgroundColor: "#ffffff",
+    },
+  };
+});
 
 const RadioItem: React.FC<RadioItemProps> = ({
   item: { bgColor, text, value },
 }) => {
   return (
-    <FormControlLabel control={<Radio />} label={text} value={value} className={style.radioItem} sx={{ bgcolor: bgColor }} />
+    <FormControlLabel
+      control={
+        <Radio
+          icon={<BpIcon />}
+          checkedIcon={<BpCheckedIcon markerBgColor={bgColor} />}
+        />
+      }
+      label={<Box sx={{ fontFamily: "var(--font-primary)" }}>{text}</Box>}
+      value={value}
+      className={style.radioItem}
+      sx={(theme) => ({
+        bgcolor: bgColor || "#B650F1",
+        borderRadius: "10px",
+        width: 105,
+        height: 42,
+        fontFamily: "var(--font-primary)",
+      })}
+    />
   );
 };
 
@@ -27,7 +89,15 @@ function RadioGroupUI<FV extends FieldValues>({
     <RadioItem item={item} key={index} />
   ));
 
-  return <RadioGroup className={style.radioGropContainer}>{mappedItems}</RadioGroup>;
+  return (
+    <RadioGroup
+      value={field.value || ""}
+      onChange={(e) => field.onChange(e.target.value)}
+      className={style.radioGropContainer}
+    >
+      {mappedItems}
+    </RadioGroup>
+  );
 }
 
 export default RadioGroupUI;
@@ -43,6 +113,10 @@ type RadioItemProps = {
 
 export type RadioItem = {
   text: string;
-  bgColor: Colors;
+  bgColor?: ThemeColor;
   value: string;
+};
+
+type BpCheckedIconProps = {
+  markerBgColor?: ThemeColor;
 };

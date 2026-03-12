@@ -1,3 +1,5 @@
+import { Theme } from "@mui/material";
+
 export enum Colors {
   Primary = "primary",
   PrimaryMain = "primary.main", // todo: del
@@ -20,3 +22,14 @@ export enum Colors {
   White = "#ffffff",
   Success = "success.main"
 }
+
+export enum PaletteColors {
+  Primary = "primary",
+  Secondary = "secondary",
+  Info = "info",
+  Success = "success"
+}
+
+export type PaletteShade = "main" | "light" | "dark"
+
+export type ThemeColor = `${PaletteColors}.${PaletteShade}`;
