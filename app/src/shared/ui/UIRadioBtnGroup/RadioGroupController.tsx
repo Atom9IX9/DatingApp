@@ -9,12 +9,12 @@ import {
 import style from "./radioGroup.module.scss";
 import { Box } from "@mui/material";
 import RadioGroupUI, { RadioItem } from "./RadioGroup";
-import { Colors } from "@/shared/types";
 
 function RadioGroupController<FV extends FieldValues>({
   control,
   name,
-  items
+  items, 
+  required
 }: Props<FV>) {
   return (
     <Box className={style.radioGroupContainer}>
@@ -26,6 +26,7 @@ function RadioGroupController<FV extends FieldValues>({
             field={field}
             fieldState={fieldState}
             items={items}
+            required={required}
           />
         )}
       />
@@ -37,6 +38,7 @@ export default RadioGroupController;
 type Props<V extends FieldValues> = {
   control: Control<V>;
   name: FieldPath<V>;
-  items: RadioItem[]
+  items: RadioItem[];
+  required?: boolean;
 };
 

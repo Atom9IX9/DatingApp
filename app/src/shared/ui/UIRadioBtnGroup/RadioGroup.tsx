@@ -1,7 +1,9 @@
 "use client";
 import {
   Box,
+  FormControl,
   FormControlLabel,
+  FormLabel,
   Palette,
   Radio,
   RadioGroup,
@@ -67,7 +69,7 @@ const RadioItem: React.FC<RadioItemProps> = ({
           checkedIcon={<BpCheckedIcon markerBgColor={bgColor} />}
         />
       }
-      label={<Box sx={{ fontFamily: "var(--font-primary)" }}>{text}</Box>}
+      label={<Box sx={{ fontFamily: "var(--font-primary)", marginLeft: "-3px" }}>{text}</Box>}
       value={value}
       className={style.radioItem}
       sx={(theme) => ({
@@ -76,6 +78,7 @@ const RadioItem: React.FC<RadioItemProps> = ({
         width: 105,
         height: 42,
         fontFamily: "var(--font-primary)",
+        margin: 0,
       })}
     />
   );
@@ -85,19 +88,40 @@ function RadioGroupUI<FV extends FieldValues>({
   field,
   fieldState,
   items,
+  required
 }: Props<FV>) {
   const mappedItems = items.map((item, index) => (
     <RadioItem item={item} key={index} />
   ));
 
   return (
-    <RadioGroup
-      value={field.value || ""}
-      onChange={(e) => field.onChange(e.target.value)}
-      className={style.radioGropContainer}
-    >
-      {mappedItems}
-    </RadioGroup>
+    <FormControl required={required}>
+      <FormLabel
+        sx={{
+          color: "#ffffff",
+          fontSize: 14,
+          marginBottom: "7px",
+          fontWeight: 600,
+          fontFamily: "var(--font-primary)",
+          "&.Mui-focused": {
+            color: "#ffffff",
+          },
+        }}
+        
+        htmlFor={field.name}
+      >
+        Sex
+      </FormLabel>
+      <RadioGroup
+        row
+        value={field.value || ""}
+        onChange={(e) => field.onChange(e.target.value)}
+        className={style.radioGroupContainer}
+        sx={{ flexWrap: "nowrap" }}
+      >
+        {mappedItems}
+      </RadioGroup>
+    </FormControl>
   );
 }
 
@@ -106,6 +130,7 @@ type Props<FV extends FieldValues> = {
   field: ControllerRenderProps<FV, Path<FV>>;
   fieldState: ControllerFieldState;
   items: RadioItem[];
+  required?: boolean;
 };
 
 type RadioItemProps = {

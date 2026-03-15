@@ -1,4 +1,5 @@
 import { Dayjs } from "dayjs";
+import { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 
 export type TChildren = Readonly<React.ReactNode>;
 export type TTheme = "dark" | "light";
@@ -21,6 +22,7 @@ export type RtkQueryResultError = {
     message: string;
   };
 };
+export type TControllerField<FV extends FieldValues> = ControllerRenderProps<FV, Path<FV>>
 
 export { Colors } from "./colors";
 export { PaletteColors } from "./colors"

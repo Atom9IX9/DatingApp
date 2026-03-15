@@ -3,15 +3,23 @@
   align-items: center;
   flex-direction: column;
   width: 912px;
+  height: 570px;
 
   .fields {
-    display: flex;
-    align-items: center;
-    gap: 42px;
+    display: grid;
+    align-items: last baseline;
+    gap: 19px;
+    column-gap: 32px;
+
+    grid-template-areas:
+      "fn sx"
+      "ln gi"
+      "bd gi"
+      "sb sb";
 
     width: 827px;
-    padding: 17px 17px 0 17px;
-    margin-bottom: 30px;
+    padding-top: 38px;
+    margin-top: 16px;
   }
 
   .rootError {

@@ -21,16 +21,25 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   }, []);
 
   return (
-    <Box component="form" className={style.personalInfoForm} onSubmit={onSubmit}>
+    <Box
+      component="form"
+      className={style.personalInfoForm}
+      onSubmit={onSubmit}
+    >
       <BackdropLoader isOpen={!isHydrated} renderBeforeHydration={true} />
       <Box className={style.fields}>
-        <Box>
-          <UIInputField
-            control={control}
-            name="firstName"
-            inputParams={{ isRequired: true, label: "First name" }}
-            rootError={result.rootError}
-          />
+        <Box className={style.textField}>
+          <Box sx={{ gridArea: "fn", width: 383 }}>
+            <UIInputField
+              control={control}
+              name="firstName"
+              inputParams={{ isRequired: true, label: "First name" }}
+              rootError={result.rootError}
+            />
+          </Box>
+        </Box>
+
+        <Box sx={{ gridArea: "ln" }}>
           <UIInputField
             control={control}
             name="lastName"
@@ -40,6 +49,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             }}
             rootError={result.rootError}
           />
+        </Box>
+
+        <Box sx={{ gridArea: "bd" }}>
           <UIInputField
             control={control}
             name="dateOfBD"
@@ -52,7 +64,8 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             rootError={result.rootError}
           />
         </Box>
-        <Box>
+
+        <Box sx={{ height: 102, gridArea: "sx", position: "relative", top: "10px" }}>
           <RadioBtnGroup
             control={control}
             name="sex"
@@ -66,8 +79,20 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
               {
                 value: Sex.Custom,
                 text: Sex.Custom,
-              }
+              },
             ]}
+          />
+        </Box>
+
+         <Box sx={{ gridArea: "gi", height: "100%", width: "100%", margin: "auto"}}>
+          <UIInputField
+            control={control}
+            name="genderInfo"
+            inputParams={{
+              label: "Gender information (optional)",
+              type: "multilineText"
+            }}
+            rootError={result.rootError}
           />
         </Box>
 
@@ -80,7 +105,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             {result.rootError || "Failed to send data"}
           </Box>
         )}
-        <SubmitBtn />
+        <Box sx={{ gridArea: "sb", margin: "auto", marginTop: "42px" }}>
+          <SubmitBtn />
+        </Box>
       </Box>
     </Box>
   );
