@@ -1,25 +1,33 @@
 "use client";
-import { selectUser, User, setUser } from "@/entities/user";
+import {
+  selectUser,
+  User,
+  setUserAuth,
+  setUserAccountInfo,
+} from "@/entities/user";
 import { useEffect } from "react";
 import { createContext } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
+import { CheckAuthResponseData, VerifyAuthResponse } from "../verifyAuth/api/verifyAuthAPI";
 
 export const AuthContext = createContext<User | undefined>(undefined);
 
-
-const AuthProvider: React.FC<ProviderProps> = ({ children, cookiesUser }) => {
+const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
   const dispatch = useAppDispatch();
   const storeUser = useAppSelector(selectUser);
 
   useEffect(() => {
-    if (cookiesUser) {
-      dispatch(setUser(cookiesUser));
+    if (auth) {
+      dispatch(setUserAuth(auth.authCredentials));
+      dispatch(
+        setUserAccountInfo(auth.user),
+      );
     }
-  }, [dispatch, cookiesUser]);
+  }, [dispatch, auth]);
 
   return (
-    <AuthContext.Provider value={cookiesUser ? cookiesUser : storeUser}>
+    <AuthContext.Provider value={auth ? auth : storeUser}>
       {children}
     </AuthContext.Provider>
   );
@@ -28,5 +36,5 @@ const AuthProvider: React.FC<ProviderProps> = ({ children, cookiesUser }) => {
 export default AuthProvider;
 type ProviderProps = {
   children: TChildren;
-  cookiesUser: User | undefined;
+  auth: CheckAuthResponseData | undefined;
 };

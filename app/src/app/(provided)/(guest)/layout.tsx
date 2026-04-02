@@ -1,21 +1,32 @@
 import { verifyAuth } from "@/features/auth";
-import style from "./guestPages.module.scss";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { GuestLayoutClient } from "@/processes/register";
+import { VerifyAuthResponse } from "@/features/auth";
 
 const GuestLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const token = cookies().get("token")?.value
-  const { user } = await verifyAuth(token) 
+  const token = cookies().get("accessToken")?.value;
 
-  if (user) {
-    redirect("/users")
+  let onboardingStep = 0;
+  let res: VerifyAuthResponse | undefined = undefined;
+
+  if (token) {
+    res = await verifyAuth(token);
+    onboardingStep = res.data?.onboardingStep || 0;
+
+    if (res.error?.statusCode === 403) {
+      onboardingStep = 2;
+    }
   }
 
-  return <div className={style.layout}>{children}</div>;
+  return (
+    <GuestLayoutClient auth={res?.data} onboardingStep={onboardingStep}>
+      {children}
+    </GuestLayoutClient>
+  );
 };
 
 export default GuestLayout;

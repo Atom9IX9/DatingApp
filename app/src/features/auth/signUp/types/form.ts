@@ -1,3 +1,4 @@
+import { Sex } from "@/entities/user";
 import { Dayjs } from "dayjs";
 
 export type CredentialsData = {
@@ -12,10 +13,4 @@ export type UserPersonalInfoFormData = {
   dateOfBD: Dayjs | null;
   sex: Sex;
   genderInfo?: string;
-}
-
-export enum Sex {
-  Male = "Male",
-  Female = "Female",
-  Custom = "Custom"
 }

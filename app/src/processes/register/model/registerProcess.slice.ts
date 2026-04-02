@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: TInitialState = {
-  currentStep: 2,
+  currentStep: 1,
   stepsCount: 4,
 };
 

@@ -7,11 +7,12 @@ import { TChildren, TTheme } from "@/shared/types";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { CheckAuthResponseData, VerifyAuthResponse } from "@/features/auth/verifyAuth/api/verifyAuthAPI";
 
-export const Providers: React.FC<Props> = ({ children, cookies }) => {
+export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   return (
     <StoreProvider>
-      <AuthProvider cookiesUser={cookies.user}>
+      <AuthProvider auth={auth}>
         <AppRouterCacheProvider>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ThemeProvider cookiesTheme={cookies.theme}>
@@ -28,6 +29,6 @@ export type Props = {
   children: TChildren;
   cookies: {
     theme: TTheme | undefined;
-    user: User | undefined;
   };
+  auth: CheckAuthResponseData | undefined;
 };

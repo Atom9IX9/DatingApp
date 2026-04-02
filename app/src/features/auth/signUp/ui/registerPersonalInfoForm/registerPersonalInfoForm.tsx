@@ -4,10 +4,11 @@ import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { UIInputField, BackdropLoader, RadioBtnGroup } from "@/shared/ui";
 import { Colors, RtkQueryResultError } from "@/shared/types";
-import { Sex, UserPersonalInfoFormData } from "../../types/form";
+import { UserPersonalInfoFormData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
 import { validateAdult } from "../../../lib/validation/validateAdult";
+import { Sex } from "@/entities/user";
 
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
@@ -105,7 +106,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             {result.rootError || "Failed to send data"}
           </Box>
         )}
-        <Box sx={{ gridArea: "sb", margin: "auto", marginTop: "42px" }}>
+        <Box sx={{ gridArea: "sb", margin: "auto", marginTop: "42px", width: 383 }}>
           <SubmitBtn />
         </Box>
       </Box>

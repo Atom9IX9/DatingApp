@@ -1,4 +1,4 @@
-import { UserGender } from "@/entities/user";
+import { Sex } from "@/entities/user";
 import { UserMatchCard } from "@/widgets/userMatchCard";
 import { Box } from "@mui/material";
 
@@ -11,7 +11,7 @@ const UsersPage = () => {
           firstName: "Yaroslav",
           lastName: "Vorobyov",
           age: 15,
-          gender: UserGender.Male,
+          gender: Sex.Male,
           isOnline: true,
           description:
             "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
@@ -25,7 +25,7 @@ const UsersPage = () => {
           firstName: "Polina",
           lastName: "Shapranova",
           age: 45,
-          gender: UserGender.Female,
+          gender: Sex.Female,
           isOnline: true,
           description: undefined,
           location: {

@@ -37,26 +37,16 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
       return;
     }
 
-    registerCredentials({ email, password });
-  };
-
-  useEffect(() => {
-    if (registerCredentialsResult.error) {
+    try {
+      const data = await registerCredentials({ email, password });
+      if (onSuccess) onSuccess(data);
+    } catch (err) {
       setError("root", {
         message:
-          (registerCredentialsResult.error as RtkQueryResultError).data
-            ?.message || "Failed to send data",
+          (err as RtkQueryResultError).data?.message || "Failed to send data",
       });
     }
-  }, [registerCredentialsResult.error, setError]);
-
-  useEffect(() => {
-    if (registerCredentialsResult.data) {
-      if (onSuccess) {
-        onSuccess(registerCredentialsResult.data);
-      }
-    }
-  }, [registerCredentialsResult.data, onSuccess]);
+  };
 
   return (
     <Box component="section" className={style.signUpSection}>

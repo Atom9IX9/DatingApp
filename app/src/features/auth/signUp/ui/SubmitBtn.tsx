@@ -7,7 +7,7 @@ const SubmitBtn: React.FC<SubmitBtnProps> = () => {
       variant="contained"
       fullWidth
       sx={{
-        width: 383,
+        width: "100%",
         height: 62,
         borderRadius: "9px",
         fontSize: 20,

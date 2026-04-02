@@ -11,8 +11,6 @@ import {
   useTheme,
 } from "@mui/material";
 import style from "./radioGroup.module.scss";
-import { useState } from "react";
-import { Sex } from "../../../features/auth/signUp/types/form";
 import {
   ControllerFieldState,
   ControllerRenderProps,

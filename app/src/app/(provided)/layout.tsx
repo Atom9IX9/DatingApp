@@ -1,15 +1,22 @@
 import { verifyAuth } from "@/features/auth";
+import { VerifyAuthResponse } from "@/features/auth/verifyAuth/api/verifyAuthAPI";
 import { Providers } from "@/root";
 import { TChildren, TTheme } from "@/shared/types";
 import { cookies } from "next/headers";
 
 const ProvidedLayout = async ({ children }: Props) => {
-  const token = cookies().get("token")?.value;
+  const token = cookies().get("accessToken")?.value;
   const theme = cookies().get("theme")?.value as TTheme | undefined;
-  const response = await verifyAuth(token);
+  let authResponse: VerifyAuthResponse | undefined;
+
+  if (token) {
+    authResponse = await verifyAuth(token);
+  }
 
   return (
-    <Providers cookies={{ user: response.user, theme }}>{children}</Providers>
+    <Providers auth={authResponse?.data} cookies={{ theme }}>
+      {children}
+    </Providers>
   );
 };
 

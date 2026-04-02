@@ -5,12 +5,20 @@ import {
   FetchArgs,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 
 export const rtkAuthAPI = createApi({
   reducerPath: "authAPI",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth`,
-    credentials: "include"
+    credentials: "include",
+    prepareHeaders: (headers) => {
+      const token = Cookies.get("accessToken");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }) as BaseQueryFn<string | FetchArgs, unknown, AuthApiError>,
   endpoints: () => ({}),
 });

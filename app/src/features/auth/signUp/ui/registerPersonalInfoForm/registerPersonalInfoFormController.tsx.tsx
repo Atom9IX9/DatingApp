@@ -10,6 +10,10 @@ import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { BackdropLoader } from "@/shared/ui";
 import TransitionAlerts from "@/shared/ui/TransitionAlert";
+import {
+  RegisterUserPersonalInfoResponse,
+  useRegisterUserPersonalInfoMutation,
+} from "../../api/signUpAPI";
 
 const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   const [alert, setAlert] = useState<null | string>(null);
@@ -25,50 +29,52 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
       },
     });
 
-  //todo: reusable hook/hoc after backend; backend
-  // const { registerCredentials, ...registerCredentialsResult } =
-  //   useRegisterCredentials();
+  const [registerPersonalInfo, result] = useRegisterUserPersonalInfoMutation();
 
   const onSubmit: SubmitHandler<UserPersonalInfoFormData> = async (data) => {
     if (!data.sex) {
       setError("sex", { message: "null_sex" });
       setAlert("Please select your sex");
     } else {
-      console.log(data); // do next
+      if (data.dateOfBD) {
+        try {
+          const response = await registerPersonalInfo({
+            dateOfBD: data.dateOfBD.toISOString(),
+            firstName: data.firstName,
+            gender: data.sex,
+            lastName: data.lastName,
+            genderInfo: data.genderInfo,
+          }).unwrap();
+
+          if (onSuccess) onSuccess(response);
+        } catch (err) {
+          setError("root", {
+            message:
+              (err as RtkQueryResultError).data?.message ||
+              "Failed to send data",
+          });
+        }
+      }
     }
   };
 
-  // useEffect(() => {
-  //   if (registerCredentialsResult.error) {
-  //     setError("root", {
-  //       message:
-  //         (registerCredentialsResult.error as RtkQueryResultError).data
-  //           ?.message || "Failed to send data",
-  //     });
-  //   }
-  // }, [registerCredentialsResult.error, setError]);
-
-  // useEffect(() => {
-  //   if (registerCredentialsResult.data) {
-  //     if (onSuccess) {
-  //       onSuccess(registerCredentialsResult.data);
-  //     }
-  //   }
-  // }, [registerCredentialsResult.data, onSuccess]);
-
   return (
     <Box component="section" className={style.signUpSection}>
-      {/* <BackdropLoader
-        isOpen={registerCredentialsResult.status === QueryStatus.pending}
-      /> */}
-      <Box sx={{ position: "absolute", bottom: 0, left: 20, right: 20 }}>{alert && <TransitionAlerts alert={alert} severity="warning" isOpen={!!alert} />}</Box>
-      
+      <BackdropLoader
+        isOpen={result.status === QueryStatus.pending}
+      />
+      <Box sx={{ position: "absolute", bottom: 0, left: 20, right: 20 }}>
+        {alert && (
+          <TransitionAlerts alert={alert} severity="warning" isOpen={!!alert} />
+        )}
+      </Box>
+
       <PersonalInfoForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
-          error: undefined, //registerCredentialsResult.error as RtkQueryResultError,
-          status: QueryStatus.uninitialized, //registerCredentialsResult.status,
+          error: result.error as RtkQueryResultError,
+          status: result.status,
           rootError: formState.errors.root?.message,
         }}
       />
@@ -78,5 +84,5 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
 
 export default CredentialsFormController;
 type Props = {
-  onSuccess?: (data: any) => void;
+  onSuccess?: (data: RegisterUserPersonalInfoResponse) => void;
 };

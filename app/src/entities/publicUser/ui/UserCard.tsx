@@ -8,7 +8,7 @@ import FemaleIcon from "@mui/icons-material/Female";
 import { getUserStringLocation } from "../helpers/getUserStringLocation";
 import { capitalize, useTheme } from "@/shared/lib";
 import { Colors } from "@/shared/types";
-import { UserGender } from "@/entities/user";
+import { Sex } from "@/entities/user";
 import { PublicUser } from "../types/publicUser";
 
 const UserCard: React.FC<TUserCardProps> = ({
@@ -71,7 +71,7 @@ const UserCard: React.FC<TUserCardProps> = ({
           )}
           <li>
             <div className={style.marker}>
-              {user.gender === UserGender.Male ? (
+              {user.gender === Sex.Male ? (
                 <MaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />
               ) : (
                 <FemaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />
