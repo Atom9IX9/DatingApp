@@ -27,7 +27,10 @@ export const registerEndpoint = rtkAuthAPI.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useRegisterCredentialsMutation, useRegisterUserPersonalInfoMutation } = registerEndpoint;
+export const {
+  useRegisterCredentialsMutation,
+  useRegisterUserPersonalInfoMutation,
+} = registerEndpoint;
 
 export type RegisterCredentialsReqBody = {
   email: string;

@@ -4,7 +4,7 @@ import { User, UserAccountInfo, UserAuth } from "@/entities/user";
 export const verifyAuth: VerifyAuthFn = async (
   token: string,
 ): Promise<VerifyAuthResponse> => {
-  const res = await fetch(`${process.env.API_URL}/auth`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,

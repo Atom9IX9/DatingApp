@@ -1,33 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "./registerPersonalInfoForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { UIInputField, BackdropLoader, RadioBtnGroup } from "@/shared/ui";
+import { UIInputField, RadioBtnGroup } from "@/shared/ui";
 import { Colors, RtkQueryResultError } from "@/shared/types";
 import { UserPersonalInfoFormData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
 import { validateAdult } from "../../../lib/validation/validateAdult";
 import { Sex } from "@/entities/user";
+import HydratedForm from "../HydratedRegisterProcessForm";
 
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
 
   return (
-    <Box
-      component="form"
-      className={style.personalInfoForm}
-      onSubmit={onSubmit}
-    >
-      <BackdropLoader isOpen={!isHydrated} renderBeforeHydration={true} />
+    <HydratedForm className={style.personalInfoForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
         <Box className={style.textField}>
           <Box sx={{ gridArea: "fn", width: 383 }}>
@@ -110,7 +101,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
           <SubmitBtn />
         </Box>
       </Box>
-    </Box>
+    </HydratedForm>
   );
 };
 

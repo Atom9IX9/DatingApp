@@ -9,7 +9,7 @@ import { Alert, Backdrop, Box, CircularProgress } from "@mui/material";
 import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { BackdropLoader } from "@/shared/ui";
-import TransitionAlerts from "@/shared/ui/TransitionAlert";
+import { TransitionAlert } from "@/shared/ui";
 import {
   RegisterUserPersonalInfoResponse,
   useRegisterUserPersonalInfoMutation,
@@ -60,12 +60,10 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
 
   return (
     <Box component="section" className={style.signUpSection}>
-      <BackdropLoader
-        isOpen={result.status === QueryStatus.pending}
-      />
+      <BackdropLoader isOpen={result.status === QueryStatus.pending} />
       <Box sx={{ position: "absolute", bottom: 0, left: 20, right: 20 }}>
         {alert && (
-          <TransitionAlerts alert={alert} severity="warning" isOpen={!!alert} />
+          <TransitionAlert alert={alert} severity="warning" isOpen={!!alert} />
         )}
       </Box>
 

@@ -1,32 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "./credentialsForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { validateEmail } from "../../../../auth";
-import { UIInputField, StyledLink, BackdropLoader } from "@/shared/ui";
+import { UIInputField, StyledLink } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
+import HydratedForm from "../HydratedRegisterProcessForm";
 
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
-
   return (
-    <Box
-      component="form"
-      className={style.credentialsForm}
-      onSubmit={onSubmit}
-    >
-      <BackdropLoader isOpen={!isHydrated} renderBeforeHydration={true} />
+    <HydratedForm className={style.credentialsForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
         <UIInputField
           control={control}
@@ -69,7 +59,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
       <Box className={style.signInLink}>
         Already have an account? <StyledLink href="sign-in">Log in</StyledLink>
       </Box>
-    </Box>
+    </HydratedForm>
   );
 };
 
