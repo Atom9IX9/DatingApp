@@ -1,44 +1,33 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import style from "./credentialsForm.module.scss";
-import CredentialsForm from "./CredentialsForm";
+import style from "./descriptionForm.module.scss";
+import { useEffect } from "react";
+import DescriptionForm from "./DescriptionForm";
 import { RtkQueryResultError } from "@/shared/types";
-import { CredentialsData } from "../../types/form";
-import { Backdrop, Box, CircularProgress } from "@mui/material";
+import { Backdrop, Box, Chip, CircularProgress } from "@mui/material";
 import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
-import { RegisterCredentialsResponse } from "../../api/signUpAPI";
+import { RegisterCredentialsResponse, RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { BackdropLoader } from "@/shared/ui";
 
-const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
+const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
   const { control, handleSubmit, setError, formState } =
-    useForm<CredentialsData>({
+    useForm<RegisterUserDescriptionReqBody>({
       defaultValues: {
-        email: "",
-        password: "",
-        confirmPassword: "",
+        description: "",
+        hobbies: []
       },
     });
 
   const { registerCredentials, ...registerCredentialsResult } =
     useRegisterCredentials();
 
-  const onSubmit: SubmitHandler<CredentialsData> = async ({
-    email,
-    password,
-    confirmPassword,
+  const onSubmit: SubmitHandler<RegisterUserDescriptionReqBody> = async ({
+    description, hobbies
   }) => {
-    if (password !== confirmPassword) {
-      setError("confirmPassword", {
-        message: "Passwords do not match",
-      });
-
-      return;
-    }
-
     try {
-      const data = await registerCredentials({ email, password });
-      if (onSuccess) onSuccess(data);
+      //const data = await ...
+      //if (onSuccess) onSuccess(data);
     } catch (err) {
       setError("root", {
         message:
@@ -52,7 +41,8 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
       <BackdropLoader
         isOpen={registerCredentialsResult.status === QueryStatus.pending}
       />
-      <CredentialsForm
+      <Chip label="Deletable" color="primary" onDelete={() => {}} />
+      <DescriptionForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
@@ -65,7 +55,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   );
 };
 
-export default CredentialsFormController;
+export default DescriptionFormController;
 type Props = {
   onSuccess?: (data: RegisterCredentialsResponse) => void;
 };

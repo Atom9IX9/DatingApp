@@ -15,4 +15,6 @@ export type FieldParams = {
   type?: "text" | "password" | "date" | "multilineText";
   autofocus?: boolean;
   autocomplete?: boolean;
+  rows?: number;
+  maxLength?: number;
 };

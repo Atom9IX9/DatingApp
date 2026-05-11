@@ -7,7 +7,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Box, Button, Checkbox, FormControlLabel } from "@mui/material";
 import { DataForLogin, validateEmail } from "@/features/auth";
-import { UIIconInputField } from "@/shared/ui";
+// import { UIIconInputField } from "@/shared/ui";
 import { Colors, RtkQueryResultError } from "@/shared/types";
 
 const SignInForm: React.FC<SignInFormProps> = ({
@@ -21,7 +21,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
         <PersonOutlineIcon sx={{ width: 50, height: 50, color: "#ffffff" }} />
       </Box>
       <Box className={style.fields}>
-        <UIIconInputField
+        {/* <UIIconInputField
           control={control}
           name="email"
           inputParams={{ isRequired: true, label: "Email" }}
@@ -39,7 +39,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
           }}
           icon={<LockIcon sx={{ width: 30, height: 30 }} />}
           rootError={result.rootError}
-        />
+        /> */}
         <FormControlLabel
           className={style.rememberMeLabel}
           label="Remember me"

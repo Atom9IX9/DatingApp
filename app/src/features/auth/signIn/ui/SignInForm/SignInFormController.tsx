@@ -6,7 +6,7 @@ import SignInForm from "./SignInForm";
 import { useRouter } from "next/navigation";
 import { DataForLogin } from "../../api/signInAPI";
 import { useLogin } from "../../hooks/useLogin";
-import { setUser } from "@/entities/user";
+// import { setUser } from "@/entities/user";
 import { RtkQueryResultError } from "@/shared/types";
 import { useAppDispatch } from "@/shared/lib";
 
@@ -30,13 +30,13 @@ const SignInFormController = () => {
           "Failed to send data",
       });
     } else if (loginResult.data) {
-      dispatch(setUser(loginResult.data.user));
+      // dispatch(setUser(loginResult.data.user));
     }
   }, [loginResult.error, setError, loginResult.data, dispatch]);
 
   useEffect(() => {
     if (loginResult.data) {
-      dispatch(setUser(loginResult.data.user));
+      // dispatch(setUser(loginResult.data.user));
       router.push("users");
     }
   }, [dispatch, loginResult.data, router]);

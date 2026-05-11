@@ -23,6 +23,16 @@ export const registerEndpoint = rtkAuthAPI.injectEndpoints({
         body,
       }),
     }),
+    registerUserDescription: builder.mutation<
+      RegisterUserPersonalInfoResponse,
+      RegisterUserDescriptionReqBody
+    >({
+      query: (body) => ({
+        url: "register/user-personal",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -30,6 +40,7 @@ export const registerEndpoint = rtkAuthAPI.injectEndpoints({
 export const {
   useRegisterCredentialsMutation,
   useRegisterUserPersonalInfoMutation,
+  useRegisterUserDescriptionMutation
 } = registerEndpoint;
 
 export type RegisterCredentialsReqBody = {
@@ -63,3 +74,18 @@ export type RegisterUserPersonalInfoResponse = {
   gender: Sex;
   genderInfo?: string;
 };
+
+export type RegisterUserDescriptionReqBody = {
+  description: string;
+  hobbies: string[];
+};
+
+export type RegisterUserDescriptionResponse = {
+  description: string;
+  hobbies: Hobby[];
+}
+
+export type Hobby = {
+  id: number;
+  name: string;
+}
