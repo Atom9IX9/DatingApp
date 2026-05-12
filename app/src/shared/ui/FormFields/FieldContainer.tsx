@@ -10,7 +10,8 @@ function FieldContainer<FV extends FieldValues, P>({
   error,
   field,
   children,
-}: FieldProps<FV, P> & { children?: React.ReactNode }) {
+  hideErrorIcon,
+}: Props<FV, P>) {
   return (
     <Box
       className={classNames(style.fieldLabel, {
@@ -33,13 +34,8 @@ function FieldContainer<FV extends FieldValues, P>({
         {fieldParams?.label}
       </InputLabel>
       <Box>{children}</Box>
-      {/* {inputParams?.type !== "date" ? (
-        <TextInputField error={error} field={field} inputParams={inputParams} />
-      ) : (
-        <DateField field={field} error={error} inputParams={inputParams} />
-      )}*/}
 
-      {(error.field || error.root) && (
+      {(error.field || error.root) && !hideErrorIcon && (
         <Box className={style.errorIcon}>
           <ErrorIcon />
         </Box>
@@ -50,3 +46,7 @@ function FieldContainer<FV extends FieldValues, P>({
 }
 
 export default FieldContainer;
+type Props<FV extends FieldValues, P> = FieldProps<FV, P> & {
+  children?: React.ReactNode;
+  hideErrorIcon?: boolean;
+};

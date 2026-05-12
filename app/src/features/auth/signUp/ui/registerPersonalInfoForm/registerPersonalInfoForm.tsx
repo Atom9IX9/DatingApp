@@ -82,7 +82,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             name="genderInfo"
             fieldParams={{
               label: "Gender information (optional)",
-              rows: 3.95,
+              rows: 5,
             }}
             rootError={result.rootError}
           />
