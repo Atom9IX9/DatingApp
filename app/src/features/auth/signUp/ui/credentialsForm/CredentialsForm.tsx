@@ -1,9 +1,10 @@
+"use client";
 import React from "react";
 import style from "./credentialsForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { validateEmail } from "../../../../auth";
-import { UIInputField, StyledLink } from "@/shared/ui";
+import { StyledLink, TextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
@@ -18,27 +19,27 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   return (
     <HydratedForm className={style.credentialsForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
-        <UIInputField
+        <TextField
           control={control}
           name="email"
-          inputParams={{ isRequired: true, label: "Email" }}
+          fieldParams={{ isRequired: true, label: "Email" }}
           validate={{ validateEmail }}
           rootError={result.rootError}
         />
-        <UIInputField
+        <TextField
           control={control}
           name="password"
-          inputParams={{
+          fieldParams={{
             isRequired: true,
             label: "Password",
             type: "password",
           }}
           rootError={result.rootError}
         />
-        <UIInputField
+        <TextField
           control={control}
           name="confirmPassword"
-          inputParams={{
+          fieldParams={{
             isRequired: true,
             label: "Confirm password",
             type: "password",

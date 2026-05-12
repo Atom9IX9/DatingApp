@@ -2,7 +2,7 @@ import React from "react";
 import style from "./registerPersonalInfoForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { UIInputField, RadioBtnGroup } from "@/shared/ui";
+import { DateField, MultitextField, RadioBtnGroup, TextField } from "@/shared/ui";
 import { Colors, RtkQueryResultError } from "@/shared/types";
 import { UserPersonalInfoFormData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
@@ -22,20 +22,20 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
       <Box className={style.fields}>
         <Box className={style.textField}>
           <Box sx={{ gridArea: "fn", width: 383 }}>
-            <UIInputField
+            <TextField
               control={control}
               name="firstName"
-              inputParams={{ isRequired: true, label: "First name" }}
+              fieldParams={{ isRequired: true, label: "First name" }}
               rootError={result.rootError}
             />
           </Box>
         </Box>
 
         <Box sx={{ gridArea: "ln" }}>
-          <UIInputField
+          <TextField
             control={control}
             name="lastName"
-            inputParams={{
+            fieldParams={{
               isRequired: true,
               label: "Last name",
             }}
@@ -44,13 +44,13 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         </Box>
 
         <Box sx={{ gridArea: "bd" }}>
-          <UIInputField
+          <DateField
             control={control}
             name="dateOfBD"
-            inputParams={{
+            fieldParams={{
               isRequired: true,
               label: "Date of birth",
-              type: "date",
+              minYearsAgo: 18
             }}
             validate={{ validateAdult }}
             rootError={result.rootError}
@@ -77,12 +77,12 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         </Box>
 
          <Box sx={{ gridArea: "gi", height: "100%", width: "100%", margin: "auto"}}>
-          <UIInputField
+          <MultitextField
             control={control}
             name="genderInfo"
-            inputParams={{
+            fieldParams={{
               label: "Gender information (optional)",
-              type: "multilineText"
+              rows: 3.95,
             }}
             rootError={result.rootError}
           />

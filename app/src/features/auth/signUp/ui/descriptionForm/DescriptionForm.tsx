@@ -3,7 +3,7 @@ import style from "./descriptionForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { validateEmail } from "../../..";
-import { UIInputField, StyledLink } from "@/shared/ui";
+import { TextField, StyledLink, MultitextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
@@ -19,23 +19,31 @@ const DescriptionForm: React.FC<CredentialsFormProps> = ({
   return (
     <HydratedForm className={style.descriptionForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
-        <UIInputField
-          control={control}
-          name="hobbies"
-          inputParams={{
-            label: "Hobbies and interests",
-            type: "text",
-            maxLength: 20,
-            rows: 0.2
-          }}
-          rootError={result.rootError}
+        <TextField
+        control={control}
+        name="hobbies"
+        fieldParams={{
+          label: "Hobbies and interests",
+          maxLength: 20,
+          isRequired: true
+        }}
+        rootError={result.rootError}
+
+          // control={control}
+          // name="hobbies"
+          // inputParams={{
+          //   label: "Hobbies and interests",
+          //   type: "text",
+          //   maxLength: 20,
+          //   rows: 0.2
+          // }}
+          // rootError={result.rootError}
         />
-        <UIInputField
+        <MultitextField
           control={control}
           name="description"
-          inputParams={{
+          fieldParams={{
             label: "Short description",
-            type: "multilineText",
             rows: 7,
             maxLength: 300,
           }}

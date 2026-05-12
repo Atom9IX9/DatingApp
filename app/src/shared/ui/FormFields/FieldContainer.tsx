@@ -3,16 +3,14 @@ import classNames from "classnames";
 import ErrorIcon from "@mui/icons-material/Error";
 import style from "./field.module.scss";
 import { FieldValues } from "react-hook-form";
-import DateField from "./DateField";
 import { FieldProps } from "@/shared/types/fields";
-import TextInputField from "./TextInputField";
 
-
-function Field<FV extends FieldValues>({
-  inputParams,
+function FieldContainer<FV extends FieldValues, P>({
+  fieldParams,
   error,
   field,
-}: FieldProps<FV>) {
+  children,
+}: FieldProps<FV, P> & { children?: React.ReactNode }) {
   return (
     <Box
       className={classNames(style.fieldLabel, {
@@ -32,16 +30,16 @@ function Field<FV extends FieldValues>({
         }}
         htmlFor={field.name}
       >
-        {inputParams?.label}
+        {fieldParams?.label}
       </InputLabel>
-
-      {inputParams?.type !== "date" ? (
+      <Box>{children}</Box>
+      {/* {inputParams?.type !== "date" ? (
         <TextInputField error={error} field={field} inputParams={inputParams} />
       ) : (
         <DateField field={field} error={error} inputParams={inputParams} />
-      )}
+      )}*/}
 
-      {(error.field || error.root) && !(inputParams?.type === "date") && (
+      {(error.field || error.root) && (
         <Box className={style.errorIcon}>
           <ErrorIcon />
         </Box>
@@ -51,5 +49,4 @@ function Field<FV extends FieldValues>({
   );
 }
 
-export default Field;
-
+export default FieldContainer;

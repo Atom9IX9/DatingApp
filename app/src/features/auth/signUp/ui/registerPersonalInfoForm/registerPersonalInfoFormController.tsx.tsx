@@ -16,7 +16,7 @@ import {
 } from "../../api/signUpAPI";
 
 const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
-  const [alert, setAlert] = useState<null | string>(null);//
+  const [alert, setAlert] = useState<null | string>(null);
 
   const { control, handleSubmit, setError, formState } =
     useForm<UserPersonalInfoFormData>({
@@ -27,9 +27,9 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
         genderInfo: undefined,
         sex: undefined,
       },
-    }); //defvalues
+    }); 
 
-  const [registerPersonalInfo, result] = useRegisterUserPersonalInfoMutation();//
+  const [registerPersonalInfo, result] = useRegisterUserPersonalInfoMutation();
 
   const onSubmit: SubmitHandler<UserPersonalInfoFormData> = async (data) => {
     if (!data.sex) {
@@ -46,7 +46,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
             genderInfo: data.genderInfo,
           }).unwrap();
 
-          if (onSuccess) onSuccess(response); //
+          if (onSuccess) onSuccess(response); 
         } catch (err) {
           setError("root", {
             message:
