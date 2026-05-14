@@ -3,13 +3,13 @@ import style from "./descriptionForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { validateEmail } from "../../..";
-import { TextField, StyledLink, MultitextField } from "@/shared/ui";
-import { RtkQueryResultError } from "@/shared/types";
-import { CredentialsData } from "../../types/form";
+import { MultitextField, TagsField } from "@/shared/ui";
+import { RtkQueryResultError, TValidationFunction } from "@/shared/types";
 import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
 import HydratedForm from "../HydratedRegisterProcessForm";
 import { RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
+import { validateEmptyArray } from "../../model/validation/validateEmptyArray";
 
 const DescriptionForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
@@ -19,25 +19,17 @@ const DescriptionForm: React.FC<CredentialsFormProps> = ({
   return (
     <HydratedForm className={style.descriptionForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
-        <TextField
-        control={control}
-        name="hobbies"
-        fieldParams={{
-          label: "Hobbies and interests",
-          maxLength: 20,
-          isRequired: true
-        }}
-        rootError={result.rootError}
-
-          // control={control}
-          // name="hobbies"
-          // inputParams={{
-          //   label: "Hobbies and interests",
-          //   type: "text",
-          //   maxLength: 20,
-          //   rows: 0.2
-          // }}
-          // rootError={result.rootError}
+        <TagsField
+          control={control}
+          name="hobbies"
+          fieldParams={{
+            label: "Hobbies and interests",
+            maxTagLength: 20,
+            maxTagsCount: 7,
+            autocomplete: false,
+          }}
+          rootError={result.rootError}
+          validate={{ validateEmptyArray }}
         />
         <MultitextField
           control={control}
@@ -46,6 +38,7 @@ const DescriptionForm: React.FC<CredentialsFormProps> = ({
             label: "Short description",
             rows: 7,
             maxLength: 300,
+            isRequired: true,
           }}
           rootError={result.rootError}
         />
@@ -58,7 +51,9 @@ const DescriptionForm: React.FC<CredentialsFormProps> = ({
             {result.rootError || "Failed to send data"}
           </Box>
         )}
-        {/* <SubmitBtn /> */}
+        <Box className={style.submitBtn}>
+          <SubmitBtn />
+        </Box>
       </Box>
     </HydratedForm>
   );

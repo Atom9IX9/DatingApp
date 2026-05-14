@@ -6,6 +6,7 @@ import {
 } from "react-hook-form";
 import style from "./field.module.scss";
 import {
+  TArrayValidationFunction,
   TControllerField,
   TDateValidationFunction,
   TValidationFunction,
@@ -50,7 +51,7 @@ export type FieldControllerProps<V extends FieldValues, P> = {
   control: Control<V>;
   name: FieldPath<V>;
   validate?: {
-    [key: string]: TValidationFunction | TDateValidationFunction;
+    [key: string]: TValidationFunction | TDateValidationFunction | TArrayValidationFunction;
   };
   rootError?: string;
   fieldParams?: BasicFieldParams<P>;

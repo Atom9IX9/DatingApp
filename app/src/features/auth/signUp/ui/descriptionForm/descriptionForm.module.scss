@@ -3,14 +3,16 @@
   align-items: center;
   flex-direction: column;
   padding: 0 134px;
+  height: 540px;
 
   .fields {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 42px;
+    gap: 20px;
 
     width: 419px;
+    height: 100%;
     padding: 17px 17px 0 17px;
     margin-bottom: 30px;
   }
@@ -20,9 +22,9 @@
     bottom: 140px;
   }
 
-  .signInLink {
-    font-weight: 300;
-    position: absolute;
-    bottom: 18px;
+  .submitBtn {
+    width: 100%;
+    position: relative;
+    top: 15px;
   }
 }

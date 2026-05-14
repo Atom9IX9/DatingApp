@@ -1,4 +1,4 @@
-import { BasicFieldParams, FieldProps } from "../../../types/fields";
+import { FieldProps } from "../../../types/fields";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import { FieldValues } from "react-hook-form";

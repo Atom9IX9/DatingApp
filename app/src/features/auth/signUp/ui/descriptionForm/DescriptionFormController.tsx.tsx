@@ -1,12 +1,11 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./descriptionForm.module.scss";
-import { useEffect } from "react";
 import DescriptionForm from "./DescriptionForm";
 import { RtkQueryResultError } from "@/shared/types";
-import { Backdrop, Box, Chip, CircularProgress } from "@mui/material";
+import { Box, Chip } from "@mui/material";
 import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
-import { RegisterCredentialsResponse, RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
+import { RegisterUserDescriptionReqBody, RegisterUserDescriptionResponse } from "../../api/signUpAPI";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { BackdropLoader } from "@/shared/ui";
 
@@ -41,7 +40,6 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
       <BackdropLoader
         isOpen={registerCredentialsResult.status === QueryStatus.pending}
       />
-      <Chip label="Deletable" color="primary" onDelete={() => {}} />
       <DescriptionForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
@@ -57,5 +55,5 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
 
 export default DescriptionFormController;
 type Props = {
-  onSuccess?: (data: RegisterCredentialsResponse) => void;
+  onSuccess?: (data: RegisterUserDescriptionResponse) => void;
 };
