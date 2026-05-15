@@ -111,7 +111,7 @@ function TagsField<FV extends FieldValues>({
       <Box
         sx={{
           bgcolor: "#00ffc826",
-          height: 91,
+          height: 120,
           marginTop: "10px",
           marginBottom: "5px",
           border: "1px dashed",

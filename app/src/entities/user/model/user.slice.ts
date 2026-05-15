@@ -1,6 +1,6 @@
 import { Sex, User, UserAuth } from "@/entities/user";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserAccountInfo, UserInfo } from "../types/user";
+import { Hobby, UserAccountInfo, UserInfo } from "../types/user";
 
 const initialState: User = {
   uid: "",
@@ -13,6 +13,8 @@ const initialState: User = {
     authId: 0,
     email: "",
   },
+  description: "",
+  hobbies: [],
 };
 
 const userSlice = createSlice({
@@ -35,8 +37,16 @@ const userSlice = createSlice({
       state.gender = action.payload.gender;
       state.dateOfBD = action.payload.dateOfBD;
     },
+    setUserDescription: (
+      state,
+      action: PayloadAction<{ description: string; hobbies: Hobby[] }>,
+    ) => {
+      state.description = action.payload.description;
+      state.hobbies = action.payload.hobbies;
+    },
   },
 });
 
 export default userSlice.reducer;
-export const { setUserAuth, setUserAccountInfo, registerUserPersonalInfo } = userSlice.actions;
+export const { setUserAuth, setUserAccountInfo, registerUserPersonalInfo, setUserDescription } =
+  userSlice.actions;

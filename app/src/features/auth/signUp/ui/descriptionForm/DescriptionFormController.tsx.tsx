@@ -4,8 +4,7 @@ import style from "./descriptionForm.module.scss";
 import DescriptionForm from "./DescriptionForm";
 import { RtkQueryResultError } from "@/shared/types";
 import { Box, Chip } from "@mui/material";
-import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
-import { RegisterUserDescriptionReqBody, RegisterUserDescriptionResponse } from "../../api/signUpAPI";
+import { RegisterUserDescriptionReqBody, RegisterUserDescriptionResponse, useRegisterUserDescriptionMutation } from "../../api/signUpAPI";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { BackdropLoader } from "@/shared/ui";
 
@@ -18,15 +17,15 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
       },
     });
 
-  const { registerCredentials, ...registerCredentialsResult } =
-    useRegisterCredentials();
+  const [registerDescription, result] =
+    useRegisterUserDescriptionMutation();
 
   const onSubmit: SubmitHandler<RegisterUserDescriptionReqBody> = async ({
     description, hobbies
   }) => {
     try {
-      //const data = await ...
-      //if (onSuccess) onSuccess(data);
+      const data = await registerDescription({ description, hobbies }).unwrap();
+      if (onSuccess) onSuccess(data);
     } catch (err) {
       setError("root", {
         message:
@@ -38,14 +37,14 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
   return (
     <Box component="section" className={style.signUpSection}>
       <BackdropLoader
-        isOpen={registerCredentialsResult.status === QueryStatus.pending}
+        isOpen={result.status === QueryStatus.pending}
       />
       <DescriptionForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
-          error: registerCredentialsResult.error as RtkQueryResultError,
-          status: registerCredentialsResult.status,
+          error: result.error as RtkQueryResultError,
+          status: result.status,
           rootError: formState.errors.root?.message,
         }}
       />

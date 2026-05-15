@@ -1,7 +1,16 @@
-import { CredentialsForm, DescriptionForm, RegisterUserPersonalInfoForm } from "@/features/auth";
+import {
+  CredentialsForm,
+  DescriptionForm,
+  RegisterUserPersonalInfoForm,
+} from "@/features/auth";
 import { useAppDispatch } from "@/shared/lib";
 import { setCurrentStep } from "../model/registerProcess.slice";
-import { registerUserPersonalInfo, setUserAccountInfo, setUserAuth } from "@/entities/user";
+import {
+  registerUserPersonalInfo,
+  setUserAccountInfo,
+  setUserAuth,
+  setUserDescription,
+} from "@/entities/user";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();
@@ -24,15 +33,20 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
       return (
         <RegisterUserPersonalInfoForm
           onSuccess={(data) => {
-            dispatch(
-              registerUserPersonalInfo(data),
-            );
+            dispatch(registerUserPersonalInfo(data));
             nextStep();
           }}
         />
       );
     case 3:
-      return <DescriptionForm />;
+      return (
+        <DescriptionForm
+          onSuccess={(data) => {
+            dispatch(setUserDescription(data));
+            nextStep();
+          }}
+        />
+      );
     case 4:
       return <div>Form for Step 4</div>;
   }

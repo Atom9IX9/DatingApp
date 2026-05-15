@@ -5,8 +5,14 @@ export type UserInfo = {
   dateOfBD: string;
   gender: Sex;
   // location?: UserLocation;
-  //description?: string;
+  description?: string;
+  hobbies?: Hobby[];
 } & UserAccountInfo;
+
+export type Hobby = {
+  id: number;
+  name: string;
+}
 
 export type UserAccountInfo = {
   uid: string;
