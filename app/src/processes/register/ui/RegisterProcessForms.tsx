@@ -11,6 +11,8 @@ import {
   setUserAuth,
   setUserDescription,
 } from "@/entities/user";
+import UploadForm from "@/features/avatarUppload/ui/UploadForm";
+import { Box } from "@mui/material";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();
@@ -48,7 +50,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
         />
       );
     case 4:
-      return <div>Form for Step 4</div>;
+      return <Box sx={{ mt: "31px" }}><UploadForm /></Box>;
   }
 };
 

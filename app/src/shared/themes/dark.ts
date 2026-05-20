@@ -27,9 +27,9 @@ export default createTheme({
       main: "#00FFC8",
     },
     info: {
-      main: "#2A2A37",
-      dark: "#ff0000ff",
-      light: "#3C66FF"
+      main: "#3C66FF",
+      dark: "#2A2A37",
+      light: "#6788ff"
     },
     success: {
       main: "#27CC7F",

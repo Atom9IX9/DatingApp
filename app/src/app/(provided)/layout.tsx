@@ -1,5 +1,5 @@
 import { verifyAuth } from "@/features/auth";
-import { VerifyAuthResponse } from "@/features/auth/verifyAuth/api/verifyAuthAPI";
+import { VerifyAuthResponse } from "@/features/auth";
 import { Providers } from "@/root";
 import { TChildren, TTheme } from "@/shared/types";
 import { cookies } from "next/headers";

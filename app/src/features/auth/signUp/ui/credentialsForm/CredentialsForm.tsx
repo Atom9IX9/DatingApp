@@ -22,7 +22,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         <TextField
           control={control}
           name="email"
-          fieldParams={{ isRequired: true, label: "Email" }}
+          fieldParams={{ isRequired: true, label: "Email", type: "text" }}
           validate={{ validateEmail }}
           rootError={result.rootError}
         />

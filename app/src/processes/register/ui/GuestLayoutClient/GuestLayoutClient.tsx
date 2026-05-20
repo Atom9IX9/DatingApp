@@ -42,7 +42,7 @@ const GuestLayoutClient = ({
     if (pathname !== "/sign-up" && onboardingStep) {
       redirect("/sign-up");
     }
-  }, [pathname, redirect, onboardingStep]);
+  }, [redirect, pathname, redirect, onboardingStep]);
 
   return <>{(!onboardingStep || pathname === "/sign-up") && children}</>;
 };

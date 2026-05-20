@@ -7,7 +7,7 @@ import { TChildren, TTheme } from "@/shared/types";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { CheckAuthResponseData, VerifyAuthResponse } from "@/features/auth/verifyAuth/api/verifyAuthAPI";
+import { CheckAuthResponseData } from "@/features/auth";
 
 export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   return (

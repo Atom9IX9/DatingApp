@@ -2,7 +2,12 @@ import React from "react";
 import style from "./registerPersonalInfoForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { DateField, MultitextField, RadioBtnGroup, TextField } from "@/shared/ui";
+import {
+  DateField,
+  MultitextField,
+  RadioBtnGroup,
+  TextField,
+} from "@/shared/ui";
 import { Colors, RtkQueryResultError } from "@/shared/types";
 import { UserPersonalInfoFormData } from "../../types/form";
 import SubmitBtn from "../SubmitBtn";
@@ -16,7 +21,6 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   control,
   result,
 }) => {
-
   return (
     <HydratedForm className={style.personalInfoForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
@@ -25,7 +29,11 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             <TextField
               control={control}
               name="firstName"
-              fieldParams={{ isRequired: true, label: "First name" }}
+              fieldParams={{
+                isRequired: true,
+                label: "First name",
+                type: "text",
+              }}
               rootError={result.rootError}
             />
           </Box>
@@ -38,6 +46,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             fieldParams={{
               isRequired: true,
               label: "Last name",
+              type: "text",
             }}
             rootError={result.rootError}
           />
@@ -50,14 +59,21 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             fieldParams={{
               isRequired: true,
               label: "Date of birth",
-              minYearsAgo: 18
+              minYearsAgo: 18,
             }}
             validate={{ validateAdult }}
             rootError={result.rootError}
           />
         </Box>
 
-        <Box sx={{ height: 102, gridArea: "sx", position: "relative", top: "10px" }}>
+        <Box
+          sx={{
+            height: 102,
+            gridArea: "sx",
+            position: "relative",
+            top: "10px",
+          }}
+        >
           <RadioBtnGroup
             control={control}
             name="sex"
@@ -76,7 +92,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
           />
         </Box>
 
-         <Box sx={{ gridArea: "gi", height: "100%", width: "100%", margin: "auto"}}>
+        <Box
+          sx={{ gridArea: "gi", height: "100%", width: "100%", margin: "auto" }}
+        >
           <MultitextField
             control={control}
             name="genderInfo"
@@ -97,7 +115,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             {result.rootError || "Failed to send data"}
           </Box>
         )}
-        <Box sx={{ gridArea: "sb", margin: "auto", marginTop: "42px", width: 383 }}>
+        <Box
+          sx={{ gridArea: "sb", margin: "auto", marginTop: "42px", width: 383 }}
+        >
           <SubmitBtn />
         </Box>
       </Box>

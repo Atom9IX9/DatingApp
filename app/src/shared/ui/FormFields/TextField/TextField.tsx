@@ -1,22 +1,33 @@
 import { FieldValues } from "react-hook-form";
 import FieldContainer from "../FieldContainer";
 import { FieldProps } from "@/shared/types/fields";
-import { TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import { TextFieldParams } from "./TextFieldController";
-
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { useState } from "react";
 function Field<FV extends FieldValues>({
   error,
   field,
   fieldParams,
-}: FieldProps<FV, TextFieldParams>) {
+}: Props<FV>) {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <FieldContainer<FV, TextFieldParams>
       error={error}
       field={field}
       fieldParams={fieldParams}
+      hideErrorIcon={fieldParams?.type === "password"}
     >
       <TextField
-        type={fieldParams?.type}
+        type={
+          fieldParams?.type === "password"
+            ? showPassword
+              ? "text"
+              : "password"
+            : "text"
+        }
         id={field.name}
         fullWidth={true}
         helperText={
@@ -47,8 +58,22 @@ function Field<FV extends FieldValues>({
         error={!!(error.field || error.root)}
         inputProps={{ maxLength: fieldParams?.maxLength }}
       />
+
+      {fieldParams?.type === "password" && (
+        <IconButton
+          onClick={() => setShowPassword(!showPassword)}
+          sx={{ position: "absolute", right: 8, top: 32 }}
+        >
+          {showPassword ? (
+            <VisibilityOffOutlinedIcon />
+          ) : (
+            <VisibilityOutlinedIcon />
+          )}
+        </IconButton>
+      )}
     </FieldContainer>
   );
 }
 
 export default Field;
+type Props<FV extends FieldValues> = FieldProps<FV, TextFieldParams>;

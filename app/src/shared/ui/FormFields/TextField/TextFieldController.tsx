@@ -16,7 +16,9 @@ function TextFieldController<FV extends FieldValues>({
       name={name}
       rootError={rootError}
       validate={validate}
-      onRender={(error, field) => <TextField error={error} field={field} fieldParams={fieldParams} />}
+      onRender={(error, field) => (
+        <TextField error={error} field={field} fieldParams={fieldParams} />
+      )}
     />
   );
 }
