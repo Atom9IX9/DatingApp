@@ -78,7 +78,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             control={control}
             name="sex"
             items={[
-              { value: Sex.Male, text: Sex.Male, bgColor: Colors.InfoLight },
+              { value: Sex.Male, text: Sex.Male, bgColor: "info.main" },
               {
                 value: Sex.Female,
                 text: Sex.Female,
