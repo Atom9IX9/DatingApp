@@ -1,6 +1,6 @@
 import { useDragAndDrop } from "@/shared/lib";
-import { Box, Button, Input } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { Box, Button } from "@mui/material";
+import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import UploadIcon from "@mui/icons-material/Upload";
 import { VisuallyHiddenInput } from "@/shared/ui";
 import AvatarEditForm from "./AvatarEditForm";
@@ -18,6 +18,10 @@ const UploadForm = () => {
   const selectFile = (file?: File) => {
     setSelectedFile(file);
     setAvatarUrl(getFileUrl(file) as string);
+  };
+
+  const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    selectFile(e.target.files ? e.target.files[0] : undefined);
   };
 
   useEffect(() => {
@@ -109,9 +113,7 @@ const UploadForm = () => {
             <VisuallyHiddenInput
               type="file"
               accept="image/png, image/jpeg, image/webp"
-              onChange={(e) =>
-                selectFile(e.target.files ? e.target.files[0] : undefined)
-              }
+              onChange={handleFileChange}
             />
           </Button>
         </Box>
