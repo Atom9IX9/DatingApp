@@ -1,11 +1,11 @@
-import { rtkAuthAPI } from "@/shared/api";
+import { baseAPI } from "@/shared/api";
 import { UserAuthResponse } from "../../types";
 
-export const loginEndpoint = rtkAuthAPI.injectEndpoints({
+export const loginEndpoint = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<UserAuthResponse, DataForLogin>({
       query: (body) => ({
-        url: "login",
+        url: "auth/login",
         method: "POST",
         body,
       }),

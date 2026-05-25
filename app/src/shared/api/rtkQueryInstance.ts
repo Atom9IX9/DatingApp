@@ -7,10 +7,10 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 
-export const rtkAuthAPI = createApi({
-  reducerPath: "authAPI",
+export const baseAPI = createApi({
+  reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth`,
+    baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/`,
     credentials: "include",
     prepareHeaders: (headers) => {
       const token = Cookies.get("accessToken");

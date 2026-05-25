@@ -1,15 +1,15 @@
-import { rtkAuthAPI } from "@/shared/api";
+import { baseAPI } from "@/shared/api";
 import { Sex } from "@/entities/user";
 import { Hobby } from "@/entities/user";
 
-export const registerEndpoint = rtkAuthAPI.injectEndpoints({
+export const registerEndpoint = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     registerCredentials: builder.mutation<
       RegisterCredentialsResponse,
       RegisterCredentialsReqBody
     >({
       query: (body) => ({
-        url: "register/credentials",
+        url: "auth/register/credentials",
         method: "POST",
         body,
       }),
@@ -19,7 +19,7 @@ export const registerEndpoint = rtkAuthAPI.injectEndpoints({
       RegisterUserPersonalInfoReqBody
     >({
       query: (body) => ({
-        url: "register/user-personal",
+        url: "auth/register/user-personal",
         method: "POST",
         body,
       }),
@@ -29,7 +29,7 @@ export const registerEndpoint = rtkAuthAPI.injectEndpoints({
       RegisterUserDescriptionReqBody
     >({
       query: (body) => ({
-        url: "register/user-description",
+        url: "auth/register/user-description",
         method: "POST",
         body,
       }),

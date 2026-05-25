@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "./rootReducer";
-import { rtkAuthAPI } from "@/shared/api";
+import { baseAPI } from "@/shared/api";
 
 export const makeStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(rtkAuthAPI.middleware),
+      getDefaultMiddleware().concat(baseAPI.middleware),
   });
 };
 

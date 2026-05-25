@@ -1,11 +1,18 @@
 import { useDragAndDrop } from "@/shared/lib";
 import { Box, Button } from "@mui/material";
-import { ChangeEventHandler, useEffect, useRef, useState } from "react";
+import {
+  ChangeEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import UploadIcon from "@mui/icons-material/Upload";
-import { VisuallyHiddenInput } from "@/shared/ui";
-import AvatarEditForm from "./AvatarEditForm";
+import { BaseBtn, VisuallyHiddenInput } from "@/shared/ui";
+import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
 import { getFileUrl } from "../lib/setFileUrl";
-const UploadForm = () => {
+import { useUploadAvatarMutation } from "../api/avatarApi";
+import { Avatar } from "@/entities/avatar";
+const UploadForm: React.FC<Props> = ({ onSuccess }) => {
   const dropAreaRef = useRef<HTMLDivElement | null>(null);
   const { file, isDragging, resetFile, error } = useDragAndDrop(
     ["image/png", "image/jpeg", "image/webp"],
@@ -14,6 +21,18 @@ const UploadForm = () => {
 
   const [selectedFile, setSelectedFile] = useState<File>();
   const [avatarUrl, setAvatarUrl] = useState<string>();
+  const [uploadAvatar, result] = useUploadAvatarMutation();
+
+  const onSubmit: onUploadSubmit = (data) => {
+    if (selectedFile) {
+      uploadAvatar({
+        avatar: selectedFile,
+        posX: String(data.posX),
+        posY: String(data.posY),
+        scale: String(data.scale),
+      });
+    }
+  };
 
   const selectFile = (file?: File) => {
     setSelectedFile(file);
@@ -29,6 +48,12 @@ const UploadForm = () => {
       selectFile(file);
     }
   }, [file, setSelectedFile]);
+
+  useEffect(() => {
+    if (result.data && onSuccess) {
+      onSuccess(result.data);
+    }
+  }, [result.data]);
 
   return (
     <Box
@@ -118,10 +143,20 @@ const UploadForm = () => {
           </Button>
         </Box>
       ) : (
-        <AvatarEditForm avatarUrl={avatarUrl as string} />
+        <AvatarEditForm avatarUrl={avatarUrl as string} onSubmit={onSubmit} />
+      )}
+      {!selectedFile && (
+        <Box sx={{ width: "100%", mt: "100px" }}>
+          <BaseBtn variant="contained" disabled>
+            SAVE
+          </BaseBtn>
+        </Box>
       )}
     </Box>
   );
 };
 
 export default UploadForm;
+export type Props = {
+  onSuccess?: (data: Avatar) => void;
+};

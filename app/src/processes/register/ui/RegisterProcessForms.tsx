@@ -7,12 +7,12 @@ import { useAppDispatch } from "@/shared/lib";
 import { setCurrentStep } from "../model/registerProcess.slice";
 import {
   registerUserPersonalInfo,
-  setUserAccountInfo,
   setUserAuth,
   setUserDescription,
 } from "@/entities/user";
 import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { Box } from "@mui/material";
+import { setAvatar } from "@/entities/avatar";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();
@@ -52,7 +52,10 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
     case 4:
       return (
         <Box sx={{ mt: "31px" }}>
-          <AvatarUploadForm />
+          <AvatarUploadForm onSuccess={(data) => {
+            console.log(data)
+            dispatch(setAvatar(data))
+          }} />
         </Box>
       );
   }

@@ -4,10 +4,9 @@ import style from "./credentialsForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { validateEmail } from "../../../../auth";
-import { StyledLink, TextField } from "@/shared/ui";
+import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
-import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
 import HydratedForm from "../HydratedRegisterProcessForm";
 
@@ -55,7 +54,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
             {result.rootError || "Failed to send data"}
           </Box>
         )}
-        <SubmitBtn />
+        <BaseBtn type="submit" variant="contained" fullWidth>
+          Continue
+        </BaseBtn>
       </Box>
       <Box className={style.signInLink}>
         Already have an account? <StyledLink href="sign-in">Log in</StyledLink>

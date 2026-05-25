@@ -11,7 +11,7 @@ const RegisterProcess: React.FC = () => {
   const stepsCount = useAppSelector(selectStepsCount);
 
   return (
-    <Box className={style.registerProcessContainer} component="section">
+    <Box className={style.registerProcessContainer} component="section" sx={{ userSelect: "none" }}>
       <Box className={style.registerProcess}>
         <h2>Register</h2>
         <RegisterSteps currentStep={currentStep} stepsCount={stepsCount} />

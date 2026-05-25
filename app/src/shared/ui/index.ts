@@ -14,4 +14,6 @@ export { default as TagsField } from "./FormFields/TagsField/TagsFieldController
 
 export { VisuallyHiddenInput } from "./VisuallyHiddenInput";
 
+export { default as BaseBtn } from "./BaseBtn";
+
 // todo: steiger lib for linting

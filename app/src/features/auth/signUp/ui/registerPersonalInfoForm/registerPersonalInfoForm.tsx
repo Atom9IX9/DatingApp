@@ -3,6 +3,7 @@ import style from "./registerPersonalInfoForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import {
+  BaseBtn,
   DateField,
   MultitextField,
   RadioBtnGroup,
@@ -10,7 +11,6 @@ import {
 } from "@/shared/ui";
 import { Colors, RtkQueryResultError } from "@/shared/types";
 import { UserPersonalInfoFormData } from "../../types/form";
-import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
 import { validateAdult } from "../../../lib/validation/validateAdult";
 import { Sex } from "@/entities/user";
@@ -118,7 +118,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         <Box
           sx={{ gridArea: "sb", margin: "auto", marginTop: "42px", width: 383 }}
         >
-          <SubmitBtn />
+          <BaseBtn type="submit" variant="contained" fullWidth>Continue</BaseBtn>
         </Box>
       </Box>
     </HydratedForm>

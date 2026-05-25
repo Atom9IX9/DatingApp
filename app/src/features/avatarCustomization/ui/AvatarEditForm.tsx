@@ -1,15 +1,33 @@
 "use client";
 
 import { Box, Slider } from "@mui/material";
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
 import { useAvatarEdit } from "../lib/hooks/useAvatarEdit";
+import { BaseBtn } from "@/shared/ui";
 
-const AvatarEditForm: FC<Props> = ({ avatarUrl }) => {
+const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
   const { refs, handlers, state } = useAvatarEdit();
 
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+    if (onSubmit) {
+      onSubmit({
+        posX: state.position.current.x,
+        posY: state.position.current.y,
+        scale: state.scaleValue,
+      });
+    }
+  };
+
   return (
-    <Box>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Box
         ref={refs.containerRef}
         onMouseDown={handlers.handleMouseDown}
@@ -68,6 +86,7 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl }) => {
             left: 68,
             display: "flex",
             alignItems: "center",
+            justifyContent: "center",
             gap: "5px",
           }}
         >
@@ -75,13 +94,15 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl }) => {
           <OpenWithOutlinedIcon fontSize="small" />
         </Box>
       </Box>
-      <Box component={"label"} sx={{ mt: "16px" }}>
+      <Box
+        component={"label"}
+        sx={{ mt: "20px", display: "block", width: 260 }}
+      >
         <Box
           sx={{
             fontSize: 14,
             textAlign: "center",
             fontWeight: 600,
-            mt: "10px",
           }}
         >
           Scale
@@ -109,8 +130,18 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl }) => {
             mt: "2px",
           }}
         >
-          {(state.scaleValue).toFixed(1)}
+          {state.scaleValue.toFixed(1)}
         </Box>
+      </Box>
+      <Box sx={{ width: "100%", mt: "24px" }}>
+        <BaseBtn
+          type="submit"
+          variant="contained"
+          fullWidth
+          onClick={handleSubmit}
+        >
+          SAVE
+        </BaseBtn>
       </Box>
     </Box>
   );
@@ -119,4 +150,11 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl }) => {
 export default AvatarEditForm;
 type Props = {
   avatarUrl: string;
+  onSubmit?: onUploadSubmit;
 };
+
+export type onUploadSubmit = (data: {
+  posX: number;
+  posY: number;
+  scale: number;
+}) => void;

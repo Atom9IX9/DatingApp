@@ -3,9 +3,8 @@ import style from "./descriptionForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { validateEmail } from "../../..";
-import { MultitextField, TagsField } from "@/shared/ui";
+import { BaseBtn, MultitextField, TagsField } from "@/shared/ui";
 import { RtkQueryResultError, TValidationFunction } from "@/shared/types";
-import SubmitBtn from "../SubmitBtn";
 import { Box } from "@mui/material";
 import HydratedForm from "../HydratedRegisterProcessForm";
 import { RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
@@ -52,7 +51,9 @@ const DescriptionForm: React.FC<CredentialsFormProps> = ({
           </Box>
         )}
         <Box className={style.submitBtn}>
-          <SubmitBtn />
+          <BaseBtn type="submit" variant="contained" fullWidth>
+            Continue
+          </BaseBtn>
         </Box>
       </Box>
     </HydratedForm>

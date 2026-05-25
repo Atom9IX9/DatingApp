@@ -1,1 +1,1 @@
-export { rtkAuthAPI } from "./auth/rtkQueryInstance";
+export { baseAPI } from "./rtkQueryInstance";
