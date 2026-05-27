@@ -13,6 +13,7 @@ import {
 import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { Box } from "@mui/material";
 import { setAvatar } from "@/entities/avatar";
+import { redirect } from "next/navigation";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();
@@ -53,8 +54,8 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
       return (
         <Box sx={{ mt: "31px" }}>
           <AvatarUploadForm onSuccess={(data) => {
-            console.log(data)
             dispatch(setAvatar(data))
+            redirect("/home")
           }} />
         </Box>
       );

@@ -4,7 +4,7 @@ import { User, UserAccountInfo, UserAuth } from "@/entities/user";
 export const verifyAuth: VerifyAuthFn = async (
   token: string,
 ): Promise<VerifyAuthResponse> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,
@@ -26,7 +26,18 @@ export type VerifyAuthResponse = {
 };
 export type VerifyAuthFn = (token: string) => Promise<VerifyAuthResponse>;
 export type CheckAuthResponseData = {
-    user: UserAccountInfo;
-    authCredentials: UserAuth;
-    onboardingStep: number;
-  }
+  user: UserAccountInfo;
+  authCredentials: UserAuth;
+  onboardingStep: ResponseOnboardingStep;
+};
+
+export enum ResponseOnboardingStep {
+  REGISTERED = "registered",
+  DESCRIPTION = 3,
+  AVATAR = 4,
+}
+export enum ClientOnboardingStep {
+  CREDENTIALS = 1,
+  INFO = 2,
+}
+export type OnboardingStep = ResponseOnboardingStep | ClientOnboardingStep;

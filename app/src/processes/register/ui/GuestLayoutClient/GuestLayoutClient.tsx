@@ -2,8 +2,12 @@
 import { useAppDispatch } from "@/shared/lib";
 import { ReactNode, useEffect } from "react";
 import { setCurrentStep } from "../../model/registerProcess.slice";
-import { redirect, usePathname } from "next/navigation";
-import { CheckAuthResponseData } from "@/features/auth";
+import { useRouter, usePathname } from "next/navigation";
+import {
+  CheckAuthResponseData,
+  OnboardingStep,
+  ResponseOnboardingStep,
+} from "@/features/auth";
 import { setUserAccountInfo, setUserAuth } from "@/entities/user";
 
 const GuestLayoutClient = ({
@@ -11,12 +15,15 @@ const GuestLayoutClient = ({
   children,
   auth,
 }: {
-  onboardingStep: number;
+  onboardingStep: OnboardingStep;
   children: ReactNode;
   auth: CheckAuthResponseData | undefined;
 }) => {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
+  const { push } = useRouter();
+
+  const isRegistered = onboardingStep === ResponseOnboardingStep.REGISTERED;
 
   useEffect(() => {
     if (auth) {
@@ -32,19 +39,19 @@ const GuestLayoutClient = ({
   }, [dispatch, onboardingStep]);
 
   useEffect(() => {
-    if (onboardingStep > 4) {
-      // todo: isRegisterCompleted;
-      redirect("/users");
-    }
-  }, [redirect]);
+    if (!pathname) return;
 
-  useEffect(() => {
-    if (pathname !== "/sign-up" && onboardingStep) {
-      redirect("/sign-up");
+    if (isRegistered && pathname !== "/home") {
+      push("/home");
+      return;
     }
-  }, [redirect, pathname, redirect, onboardingStep]);
 
-  return <>{(!onboardingStep || pathname === "/sign-up") && children}</>;
+    if (!isRegistered && pathname !== "/sign-up") {
+      push("/sign-up");
+    }
+  }, [push, pathname, isRegistered]);
+
+  return <>{children}</>;
 };
 
 export default GuestLayoutClient;

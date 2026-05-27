@@ -1,3 +1,4 @@
+"use client"
 import { useDragAndDrop } from "@/shared/lib";
 import { Box, Button } from "@mui/material";
 import {

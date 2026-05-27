@@ -9,9 +9,10 @@ const RootLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const token = cookies().get("tokaccessTokenen")?.value as string;
+  const token = cookies().get("accessToken")?.value as string;
 
   const res = await verifyAuth(token);
+  //console.log(token)
   if (!res.data) {
     switch (res.error?.statusCode) {
       case 401: {

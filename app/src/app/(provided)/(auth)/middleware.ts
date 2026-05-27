@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+// import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("accessToken")?.value;
+// export async function middleware(req: NextRequest) {
+//   const token = req.cookies.get("refreshToken")?.value;
 
-  if (!token) {
-    return NextResponse.redirect(new URL("/sign-up", req.url));
-  }
+//   if (!token) {
+//     return NextResponse.redirect(new URL("/sign-up", req.url));
+//   }
 
-  return NextResponse.next();
-}
+//   return NextResponse.next();
+// }

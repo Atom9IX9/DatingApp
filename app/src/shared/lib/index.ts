@@ -7,3 +7,4 @@ export { useDragAndDrop } from "./hooks/useDragAndDrop";
 
 export { stringToColor } from "./helpers/stringToColor";
 export { capitalize } from "./helpers/capitalize";
+export { getStaticByUrl } from "./helpers/getStaticByUrl"

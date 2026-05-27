@@ -8,7 +8,15 @@ export { default as DescriptionForm } from "./signUp/ui/descriptionForm/Descript
 
 export type { DataForLogin } from "./signIn/api/signInAPI";
 export { verifyAuth } from "./verifyAuth/api/verifyAuthAPI";
-export type { VerifyAuthResponse, CheckAuthResponseData } from "./verifyAuth/api/verifyAuthAPI";
+export type {
+  VerifyAuthResponse,
+  CheckAuthResponseData,
+  OnboardingStep,
+} from "./verifyAuth/api/verifyAuthAPI";
+export {
+  ResponseOnboardingStep,
+  ClientOnboardingStep,
+} from "./verifyAuth/api/verifyAuthAPI";
 export { useAuth } from "./hooks/useAuth";
 export { default as AuthProvider } from "./providers/AuthProvider";
 export { validateEmail } from "./lib/validation/validateEmail";
