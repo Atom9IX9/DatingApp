@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-export const useAvatarEdit = () => {
+export const useAvatarEdit = (transforms?: Transform) => {
   const [isLandscape, setIsLandscape] = useState(false);
   const [scaleValue, setScaleValue] = useState(1);
 
@@ -9,7 +9,27 @@ export const useAvatarEdit = () => {
 
   const pos = useRef({ x: 0, y: 0 });
   const start = useRef({ x: 0, y: 0 });
-  const naturalSizes = useRef({ w: 0, h: 0 });
+  const imgSizes = useRef({ w: 0, h: 0 });
+
+  if (transforms && imgRef.current) {
+    // for x*x
+    //todo: global coords system refactor
+    const k = containerRef.current ? containerRef.current.clientWidth / 260 : 1;
+
+    pos.current = { x: transforms.posX, y: transforms.posY };
+    const posX =
+      (transforms.posX / transforms.scale) * k +
+      0.1 * (transforms.posX / transforms.scale) * k;
+    const posY =
+      (transforms.posY / transforms.scale) * k +
+      0.1 * (transforms.posY / transforms.scale) * k;
+    if (containerRef.current) {
+      imgRef.current.style.transform = `
+      scale(${transforms.scale + 0.6})
+      translate(${posX}px, ${posY}px)
+    `;
+    }
+  }
 
   const dragging = useRef(false);
 
@@ -50,7 +70,17 @@ export const useAvatarEdit = () => {
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     setIsLandscape(img.naturalWidth >= img.naturalHeight);
-    naturalSizes.current = { w: img.naturalWidth, h: img.naturalHeight };
+    if (containerRef.current) {
+      imgSizes.current = {
+        w: img.naturalWidth * (containerRef.current?.clientWidth / 260),
+        h: img.naturalHeight * (containerRef.current?.clientHeight / 260),
+      };
+    } else {
+      imgSizes.current = {
+        w: img.naturalWidth,
+        h: img.naturalHeight,
+      };
+    }
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -67,7 +97,7 @@ export const useAvatarEdit = () => {
 
     const container = containerRef.current.getBoundingClientRect();
 
-    const { w: naturalWidth, h: naturalHeight } = naturalSizes.current;
+    const { w: naturalWidth, h: naturalHeight } = imgSizes.current;
 
     let renderedWidth = 0;
     let renderedHeight = 0;
@@ -138,4 +168,10 @@ export const useAvatarEdit = () => {
       position: pos,
     },
   };
+};
+
+type Transform = {
+  posX: number;
+  posY: number;
+  scale: number;
 };

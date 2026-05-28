@@ -1,7 +1,9 @@
 import { verifyAuth } from "@/features/auth";
 import { VerifyAuthResponse } from "@/features/auth";
 import { Providers } from "@/root";
+import { APP_ROUTES } from "@/shared/config";
 import { TChildren, TTheme } from "@/shared/types";
+import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 const ProvidedLayout = async ({ children }: Props) => {
@@ -10,7 +12,11 @@ const ProvidedLayout = async ({ children }: Props) => {
   let authResponse: VerifyAuthResponse | undefined;
 
   if (token) {
-    authResponse = await verifyAuth(token);
+    try {
+      authResponse = await verifyAuth(token);
+    } catch (e) {
+      authResponse = undefined;
+    }
   }
 
   return (

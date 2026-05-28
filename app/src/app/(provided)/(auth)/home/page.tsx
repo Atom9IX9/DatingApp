@@ -1,11 +1,13 @@
-"use client"
-import { PositionedAvatar, selectAvatar } from "@/entities/avatar";
-import { useAppSelector } from "@/shared/lib";
+import { PositionedAvatar } from "@/entities/avatar";
+import { AuthPreview } from "@/widgets/authPreview";
+import { Box } from "@mui/material";
 
-const Home = () => {
-  const avatar = useAppSelector(selectAvatar)
-
-  return <div> <PositionedAvatar avatar={avatar} size={30} /> </div>;
-}
+const Home = async () => {
+  return (
+    <Box>
+      <AuthPreview />
+    </Box>
+  );
+};
 
 export default Home;

@@ -5,7 +5,7 @@ const initialState: Avatar = {
   posX: 0,
   posY: 0,
   scale: 1,
-  url: "",
+  url: "images/avatars/42e95141-c92d-4f69-ab73-c8b9ce7a37b6.png",
 };
 
 const avatarSlice = createSlice({

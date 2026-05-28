@@ -9,6 +9,7 @@ import {
   ResponseOnboardingStep,
 } from "@/features/auth";
 import { setUserAccountInfo, setUserAuth } from "@/entities/user";
+import { AUTH_ROUTES, GUEST_ROUTES } from "@/shared/config";
 
 const GuestLayoutClient = ({
   onboardingStep,
@@ -41,12 +42,12 @@ const GuestLayoutClient = ({
   useEffect(() => {
     if (!pathname) return;
 
-    if (isRegistered && pathname !== "/home") {
+    if (isRegistered && !AUTH_ROUTES.includes(pathname as any)) {
       push("/home");
       return;
     }
 
-    if (!isRegistered && pathname !== "/sign-up") {
+    if (!isRegistered && !GUEST_ROUTES.includes(pathname as any)) {
       push("/sign-up");
     }
   }, [push, pathname, isRegistered]);

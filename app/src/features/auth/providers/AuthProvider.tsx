@@ -9,7 +9,11 @@ import { useEffect } from "react";
 import { createContext } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
-import { CheckAuthResponseData, VerifyAuthResponse } from "../verifyAuth/api/verifyAuthAPI";
+import {
+  CheckAuthResponseData,
+  VerifyAuthResponse,
+} from "../verifyAuth/api/verifyAuthAPI";
+import { setAvatar } from "@/entities/avatar";
 
 export const AuthContext = createContext<User | undefined>(undefined);
 
@@ -20,9 +24,10 @@ const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
   useEffect(() => {
     if (auth) {
       dispatch(setUserAuth(auth.authCredentials));
-      dispatch(
-        setUserAccountInfo(auth.user),
-      );
+      dispatch(setUserAccountInfo(auth.user));
+      if (auth.user.avatar) {
+        dispatch(setAvatar(auth.user.avatar));
+      }
     }
   }, [dispatch, auth]);
 
