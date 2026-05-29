@@ -10,10 +10,11 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
   const { refs, handlers, state } = useAvatarEdit();
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+    console.log(state)
     if (onSubmit) {
       onSubmit({
-        posX: state.position.current.x,
-        posY: state.position.current.y,
+        posX: state.position.x,
+        posY: state.position.y,
         scale: state.scaleValue,
       });
     }
@@ -60,7 +61,6 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
             transformOrigin: "top left",
             userSelect: "none",
             pointerEvents: "none",
-            transition: "transform 100ms ease",
           }}
         />
 

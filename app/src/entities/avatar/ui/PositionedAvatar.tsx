@@ -1,6 +1,5 @@
 "use client";
 import { Box } from "@mui/material";
-import { transformAvatarStyle } from "../lib/transfromAvatarStyle";
 import { Avatar as TAvatar } from "../types";
 import { getStaticByUrl } from "@/shared/lib";
 import Image from "next/image";
@@ -11,11 +10,9 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
     refs,
     state,
     handlers: { handleImageLoad },
-  } = useAvatarEdit({
-    posX: avatar.posX,
-    posY: avatar.posY,
-    scale: avatar.scale,
-  });
+  } = useAvatarEdit();
+
+  const k = size / 260;
 
   return (
     <Box
@@ -33,11 +30,16 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
         onLoad={handleImageLoad}
         src={getStaticByUrl(avatar.url)}
         alt="avatar"
-        fill
         blurDataURL={getStaticByUrl(avatar.url)}
         placeholder="blur"
-        quality={100}
-        style={{ transformOrigin: "left top", objectFit: "cover" }} 
+        width={size * 10}
+        height={size * 10}
+        style={{
+          width: state.isLandscape ? "auto" : "100%",
+          height: state.isLandscape ? "100%" : "auto",
+          transformOrigin: "left top",
+          transform: `translate(${avatar.posX * k}px, ${avatar.posY * k}px) scale(${avatar.scale})`,
+        }}
       />
     </Box>
   );
