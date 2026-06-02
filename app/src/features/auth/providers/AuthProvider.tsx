@@ -1,18 +1,15 @@
 "use client";
 import {
-  selectUser,
-  User,
   setUserAuth,
   setUserAccountInfo,
   UserAccountInfo,
 } from "@/entities/user";
 import { useEffect } from "react";
 import { createContext } from "react";
-import { useAppDispatch, useAppSelector } from "@/shared/lib";
+import { useAppDispatch } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
 import {
   CheckAuthResponseData,
-  VerifyAuthResponse,
 } from "../verifyAuth/api/verifyAuthAPI";
 import { setAvatar } from "@/entities/avatar";
 
@@ -20,7 +17,6 @@ export const AuthContext = createContext<UserAccountInfo | null>(null);
 
 const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
   const dispatch = useAppDispatch();
-  const storeUser = useAppSelector(selectUser);
 
   useEffect(() => {
     if (auth) {
@@ -33,7 +29,7 @@ const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
   }, [dispatch, auth]);
 
   return (
-    <AuthContext.Provider value={auth ? auth.user : storeUser}>
+    <AuthContext.Provider value={auth ? auth.user : null}>
       {children}
     </AuthContext.Provider>
   );

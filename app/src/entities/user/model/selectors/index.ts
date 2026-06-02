@@ -1,7 +1,7 @@
-import { TInitialState } from "../user.slice";
+import { User } from "../../types/user";
 
-export const selectUser = (state: UserState) => state.user.user;
+export const selectUser = (state: UserState) => state.user;
 
 export type UserState = {
-  user: TInitialState;
+  user: User;
 };
