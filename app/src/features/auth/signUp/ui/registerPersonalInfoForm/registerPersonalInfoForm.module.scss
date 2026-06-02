@@ -1,0 +1,32 @@
+.personalInfoForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 912px;
+  height: 570px;
+
+  .fields {
+    display: grid;
+    align-items: last baseline;
+    gap: 19px;
+    column-gap: 32px;
+
+    grid-template-areas:
+      "fn sx"
+      "ln gi"
+      "bd gi"
+      "sb sb";
+
+    width: 827px;
+    padding-top: 38px;
+    margin-top: 16px;
+  }
+
+  .rootError {
+    position: absolute;
+    bottom: 180px;
+    right: 0;
+    left: 0;
+    text-align: center;
+  }
+}

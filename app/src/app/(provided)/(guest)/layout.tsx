@@ -1,6 +1,12 @@
-import { verifyAuth } from "@/features/auth";
-import style from "./guestPages.module.scss";
+import {
+  ClientOnboardingStep,
+  OnboardingStep,
+  ResponseOnboardingStep,
+  verifyAuth,
+} from "@/features/auth";
 import { cookies } from "next/headers";
+import { GuestLayoutClient } from "@/processes/register";
+import { VerifyAuthResponse } from "@/features/auth";
 import { redirect } from "next/navigation";
 
 const GuestLayout = async ({
@@ -8,14 +14,30 @@ const GuestLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const token = cookies().get("token")?.value
-  const { user } = await verifyAuth(token) 
+  const token = cookies().get("accessToken")?.value;
 
-  if (user) {
-    redirect("/users")
+  let onboardingStep: OnboardingStep = ClientOnboardingStep.CREDENTIALS;
+  let res: VerifyAuthResponse | undefined = undefined;
+
+  if (token) {
+    res = await verifyAuth(token);
+    onboardingStep =
+      res.data?.onboardingStep || ClientOnboardingStep.CREDENTIALS;
+
+    if (res.error?.statusCode === 403) {
+      onboardingStep = ClientOnboardingStep.INFO;
+    }
+
+    if (res.data?.onboardingStep === ResponseOnboardingStep.REGISTERED) {
+      redirect("/home")
+    }
   }
 
-  return <div className={style.layout}>{children}</div>;
+  return (
+    <GuestLayoutClient auth={res?.data} onboardingStep={onboardingStep}>
+      {children}
+    </GuestLayoutClient>
+  );
 };
 
 export default GuestLayout;

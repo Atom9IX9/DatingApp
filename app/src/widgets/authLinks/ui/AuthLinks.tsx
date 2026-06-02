@@ -1,3 +1,4 @@
+"use client"
 import { Box } from "@mui/material";
 import { GradientButton } from "@/shared/ui";
 import Link from "next/link";

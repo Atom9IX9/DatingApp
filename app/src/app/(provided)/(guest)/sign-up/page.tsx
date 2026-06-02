@@ -1,11 +1,15 @@
-import { SignUpForm } from "@/features/auth";
+import { Box } from "@mui/material";
+import style from "../guestPages.module.scss";
+import HeroBlock from "../HeroBlock";
+import { RegisterProcess } from "@/processes/register";
 
-const SignUp = () => {
+const Startpage: React.FC = async () => {
   return (
-    <div>
-      <SignUpForm />
-    </div>
+    <Box className={`${style.mainBlock} ${style.signUpPage}`}>
+      <HeroBlock forPage="signUpPage" />
+      <RegisterProcess />
+    </Box>
   );
 };
 
-export default SignUp;
+export default Startpage;

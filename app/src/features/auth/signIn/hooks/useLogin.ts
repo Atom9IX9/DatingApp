@@ -8,7 +8,7 @@ export const useLogin = () => {
     const response = await login(credentials).unwrap();
 
     if (response.token) {
-      Cookies.set("token", response.token, {
+      Cookies.set("accessToken", response.token, {
         secure: true,
         sameSite: "strict",
       });

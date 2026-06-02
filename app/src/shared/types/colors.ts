@@ -1,10 +1,14 @@
+import { Theme } from "@mui/material";
+
 export enum Colors {
   Primary = "primary",
+  PrimaryMain = "primary.main", // todo: del
   Secondary = "secondary",
   PrimaryDark = "primary.dark",
   PrimaryContrastText = "primary.contrastText",
   Info = "info",
   InfoDark = "info.dark",
+  InfoLight = "info.light",
   InfoContrastText = "info.contrastText",
   Active = "active",
   Danger = "#ff474c",
@@ -16,4 +20,16 @@ export enum Colors {
   TriadicLight = "#e3b750",
   TriadicLight900 = "#dd7400",
   White = "#ffffff",
+  Success = "success.main"
 }
+
+export enum PaletteColors {
+  Primary = "primary",
+  Secondary = "secondary",
+  Info = "info",
+  Success = "success"
+}
+
+export type PaletteShade = "main" | "light" | "dark"
+
+export type ThemeColor = `${PaletteColors}.${PaletteShade}`;

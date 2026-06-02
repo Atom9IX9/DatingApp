@@ -1,10 +1,8 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
-import "@/shared/styles/globals.scss";
+import "../styles/globals.scss";
 import classNames from "classnames";
-import {
-  ThemeProvider as Provider,
-} from "@mui/material";
+import { ThemeProvider as Provider } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { selectTheme } from "../model/selectors/appSelectors";
 import dark from "../themes/dark";
@@ -19,7 +17,7 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
   const dispatch = useAppDispatch();
 
   const [currentTheme, setCurrentTheme] = useState<TTheme>(
-    cookiesTheme || storeTheme
+    cookiesTheme || storeTheme,
   );
 
   useEffect(() => {

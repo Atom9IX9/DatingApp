@@ -21,6 +21,9 @@ export default createTheme({
     info: {
       main: "#C0F5FA",
       dark: "#74B3BA"
+    },
+    success: {
+      main: "#27CC7F",
     }
   },
 } as ThemeOptions);

@@ -1,6 +1,18 @@
-import type { UserIdentifiers, UserInfo, UserMatchStatus } from "@x-entities/user/types/user";
+import { Avatar } from "@/entities/avatar";
+import { Sex } from "@/entities/user";
 
 export type PublicUser = {
+  uid: string;
+  firstName: string;
+  lastName: string;
+  age: number;
+  gender: Sex;
   isOnline: boolean;
-  matchStatus?: UserMatchStatus;
-} & UserInfo & UserIdentifiers;
+  description?: string;
+  location?: {
+    country: string;
+    region: string;
+    city?: string;
+  };
+  avatar: Avatar;
+};

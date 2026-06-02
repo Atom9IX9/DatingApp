@@ -1,6 +1,18 @@
-export type { User, UserAuth, UserLocation } from "./types/user";
-export { UserGender } from "./types/user";
+export type {
+  User,
+  UserLocation,
+  UserAccountInfo,
+  UserAuth,
+  Hobby
+} from "./types/user";
+export { Sex } from "./types/user";
 
-export { default as userReducer, setUser } from "./model/user.slice";
+export {
+  default as userReducer,
+  setUserAuth,
+  setUserAccountInfo,
+  registerUserPersonalInfo,
+  setUserDescription
+} from "./model/user.slice";
 
 export { selectUser } from "./model/selectors";

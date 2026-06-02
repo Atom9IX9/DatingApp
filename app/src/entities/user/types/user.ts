@@ -1,16 +1,37 @@
-export type User = UserInfo & UserAuth;
+export type User = UserInfo & { auth: UserAuth };
 
 export type UserInfo = {
   age: number;
-  gender: UserGender;
-  location?: UserLocation;
-  description?: string; // hobbies
+  dateOfBD: string;
+  gender: Sex;
+  // location?: UserLocation;
+  description?: string;
+  hobbies?: Hobby[];
+} & UserAccountInfo;
+
+export type Hobby = {
+  id: number;
+  name: string;
 };
 
-export enum UserGender {
-  Male = "male",
-  Female = "female",
+export type UserAccountInfo = {
+  uid: string;
+  firstName: string;
+  lastName: string;
+  avatar?: {
+    posX: number;
+    posY: number;
+    scale: number;
+    url: string;
+  };
+};
+
+export enum Sex {
+  Male = "Male",
+  Female = "Female",
+  Custom = "Custom",
 }
+
 export type UserLocation = {
   country: string;
   region: string;
@@ -19,13 +40,7 @@ export type UserLocation = {
 
 export type UserAuth = {
   email: string;
-  dateOfBD: string;
-} & UserIdentifiers;
-
-export type UserIdentifiers = {
-  uid: string;
-  firstName: string;
-  lastName: string;
+  authId: number;
 };
 
 export enum UserMatchStatus {

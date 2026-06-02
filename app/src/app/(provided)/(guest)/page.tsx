@@ -5,8 +5,8 @@ import HeroBlock from "./HeroBlock";
 
 const Startpage: React.FC = async () => {
   return (
-    <Box className={style.startpage}>
-      <HeroBlock />
+    <Box className={style.mainBlock}>
+      <HeroBlock forPage="startpage" />
       <Box className={style.textSectionContainer}>
         <Box component="section" className={style.textSection}>
           <Box

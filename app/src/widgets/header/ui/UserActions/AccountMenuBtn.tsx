@@ -1,7 +1,7 @@
+import { Avatar, PositionedAvatar } from "@/entities/avatar";
 import { stringToColor, useTheme } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { UIIconMenuButton } from "@/shared/ui";
-import { Avatar } from "@mui/material";
 import { MouseEventHandler } from "react";
 
 const AccountMenuBtn: React.FC<TProps> = ({
@@ -20,8 +20,8 @@ const AccountMenuBtn: React.FC<TProps> = ({
           theme === "light"
             ? Colors.PrimaryLight
             : name
-            ? stringToColor(name)
-            : Colors.Secondary,
+              ? stringToColor(name)
+              : Colors.Secondary,
         border: avatar ? "2px solid #00000050" : "none",
       },
       children: name ? `${name.split(" ")[0][0]}${name.split(" ")[1][0]}` : "",
@@ -34,12 +34,7 @@ const AccountMenuBtn: React.FC<TProps> = ({
       handleClick={handleClick}
       isOpen={isOpen}
     >
-      <Avatar
-        {...stringAvatar(
-          firstName && lastName ? `${firstName} ${lastName}` : ""
-        )}
-        src={avatar || undefined}
-      />
+      {avatar?.url && <PositionedAvatar avatar={avatar} size={40} />}
     </UIIconMenuButton>
   );
 };
@@ -50,5 +45,5 @@ type TProps = {
   isOpen: boolean;
   firstName?: string;
   lastName?: string;
-  avatar: string | null;
+  avatar: Avatar | null;
 };

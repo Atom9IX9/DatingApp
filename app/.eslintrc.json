@@ -55,7 +55,7 @@
               "@/shared/**/**",
               "@/widgets/**/**",
               "@/processes/**/**",
-              "!@/shared/*",
+              "!@/shared/**",
               "!@/shared/styles/*",
               "!@/entities/*",
               "!@/features/*",

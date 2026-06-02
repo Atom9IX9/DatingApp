@@ -1,26 +1,43 @@
-import { User } from "@/entities/user";
+import { User, UserAccountInfo, UserAuth } from "@/entities/user";
 
 //todo: axios refactor
-export const verifyAuth: VerifyAuthFn = async (token?: string) => {
-  if (!token) {
-    return { statusCode: 401 };
+export const verifyAuth: VerifyAuthFn = async (
+  token: string,
+): Promise<VerifyAuthResponse> => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  if (!res.ok) {
+    return { data: undefined, error: await res.json() };
   }
-  try {
-    const res = await fetch(`${process.env.API_URL}/auth`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
-    if (res.ok) {
-      return { user: await res.json() };
-    } else {
-      return { statusCode: res.status };
-    }
-  } catch (e: any) {
-    return { statusCode: e.code };
-  }
+  return { data: await res.json(), error: undefined };
 };
 
-export type VerifyAuthResponse = { user?: User; statusCode?: number };
-export type VerifyAuthFn = (token?: string) => Promise<VerifyAuthResponse>;
+export type VerifyAuthResponse = {
+  data?: CheckAuthResponseData;
+  error?: {
+    message: string;
+    statusCode: number;
+  };
+};
+export type VerifyAuthFn = (token: string) => Promise<VerifyAuthResponse>;
+export type CheckAuthResponseData = {
+  user: UserAccountInfo;
+  authCredentials: UserAuth;
+  onboardingStep: ResponseOnboardingStep;
+};
+
+export enum ResponseOnboardingStep {
+  REGISTERED = "registered",
+  DESCRIPTION = 3,
+  AVATAR = 4,
+}
+export enum ClientOnboardingStep {
+  CREDENTIALS = 1,
+  INFO = 2,
+}
+export type OnboardingStep = ResponseOnboardingStep | ClientOnboardingStep;
