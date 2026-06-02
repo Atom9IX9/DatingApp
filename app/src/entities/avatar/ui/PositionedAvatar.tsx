@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { Avatar as TAvatar } from "../types";
 import { getStaticByUrl } from "@/shared/lib";
 import Image from "next/image";
-import { useAvatarEdit } from "@/features/avatarCustomization/lib/hooks/useAvatarEdit";
+import { useAvatarEdit } from "../lib/hooks/useAvatarEdit";
 
 const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
   const {
@@ -33,8 +33,8 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
           alt="avatar"
           blurDataURL={getStaticByUrl(avatar.url)}
           placeholder="blur"
-          width={size*5}
-          height={size*5}
+          width={size * 5}
+          height={size * 5}
           draggable={false}
           style={{
             width: state.isLandscape ? "auto" : "100%",

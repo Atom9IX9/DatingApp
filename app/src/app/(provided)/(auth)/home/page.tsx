@@ -1,4 +1,3 @@
-import { PositionedAvatar } from "@/entities/avatar";
 import { AuthPreview } from "@/widgets/authPreview";
 import { Box } from "@mui/material";
 
