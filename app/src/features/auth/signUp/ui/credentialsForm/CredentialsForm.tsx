@@ -8,7 +8,7 @@ import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
 import { Box } from "@mui/material";
-import HydratedForm from "../HydratedRegisterProcessForm";
+import HydratedForm from "../../../ui/HydratedForm";
 
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
@@ -59,7 +59,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         </BaseBtn>
       </Box>
       <Box className={style.signInLink}>
-        Already have an account? <StyledLink href="sign-in">Log in</StyledLink>
+        Already have an account?{" "}<StyledLink href="sign-in">Log in</StyledLink>
       </Box>
     </HydratedForm>
   );

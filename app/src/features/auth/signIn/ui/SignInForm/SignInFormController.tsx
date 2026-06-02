@@ -1,63 +1,57 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./signInForm.module.scss";
-import { useEffect } from "react";
-import SignInForm from "./SignInForm";
-import { useRouter } from "next/navigation";
-import { DataForLogin } from "../../api/signInAPI";
-import { useLogin } from "../../hooks/useLogin";
-// import { setUser } from "@/entities/user";
 import { RtkQueryResultError } from "@/shared/types";
-import { useAppDispatch } from "@/shared/lib";
+import { Box } from "@mui/material";
+import { QueryStatus } from "@reduxjs/toolkit/query";
+import { BackdropLoader } from "@/shared/ui";
+import { SignInData } from "../../types/form";
+import SignInForm from "./SignInForm";
 
-const SignInFormController = () => {
-  const { control, handleSubmit, setError, formState } = useForm<DataForLogin>({
-    defaultValues: { email: "", password: "", rememberMe: false },
+const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
+  const { control, handleSubmit, setError, formState } = useForm<SignInData>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
-  const {login, ...loginResult} = useLogin();
-  const dispatch = useAppDispatch();
-  const router = useRouter();
 
-  const onSubmit: SubmitHandler<DataForLogin> = (data) => {
-    login(data);
+  // const { registerCredentials, ...registerCredentialsResult } =
+  //   useRegisterCredentials();
+
+  const onSubmit: SubmitHandler<SignInData> = async ({ email, password }) => {
+    // try {
+    //   const data = await registerCredentials({ email, password });
+    //   if (onSuccess) onSuccess(data);
+    // } catch (err) {
+    //   setError("root", {
+    //     message:
+    //       (err as RtkQueryResultError).data?.message || "Failed to send data",
+    //   });
+    // }
   };
 
-  useEffect(() => {
-    if (loginResult.error) {
-      setError("root", {
-        message:
-          (loginResult.error as RtkQueryResultError).data?.message ||
-          "Failed to send data",
-      });
-    } else if (loginResult.data) {
-      // dispatch(setUser(loginResult.data.user));
-    }
-  }, [loginResult.error, setError, loginResult.data, dispatch]);
-
-  useEffect(() => {
-    if (loginResult.data) {
-      // dispatch(setUser(loginResult.data.user));
-      router.push("users");
-    }
-  }, [dispatch, loginResult.data, router]);
-
   return (
-    <section className={style.signInSection}>
-      <h3 className={style.signInPageTitle}>Sign In</h3>
-      <p className={style.signInPageText}>
-        Enter your details to sign in your account
-      </p>
-      <SignInForm
-        onSubmit={handleSubmit(onSubmit)}
-        control={control}
-        result={{
-          error: loginResult.error as RtkQueryResultError,
-          status: loginResult.status,
-          rootError: formState.errors.root?.message,
-        }}
-      />
-    </section>
+    <Box className={style.signInSectionContainer}>
+      <Box component="section" className={style.signInSection}>
+        <BackdropLoader
+          isOpen={false} //registerCredentialsResult.status === QueryStatus.pending}
+        />
+        <SignInForm
+          onSubmit={handleSubmit(onSubmit)}
+          control={control}
+          result={{
+            error: undefined, //registerCredentialsResult.error as RtkQueryResultError,
+            status: QueryStatus.fulfilled, //registerCredentialsResult.status,
+            rootError: formState.errors.root?.message,
+          }}
+        />
+      </Box>
+    </Box>
   );
 };
 
-export default SignInFormController;
+export default CredentialsFormController;
+type Props = {
+  onSuccess?: (data: any) => void; // todo
+};

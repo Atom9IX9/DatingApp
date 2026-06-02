@@ -14,7 +14,7 @@ import { UserPersonalInfoFormData } from "../../types/form";
 import { Box } from "@mui/material";
 import { validateAdult } from "../../../lib/validation/validateAdult";
 import { Sex } from "@/entities/user";
-import HydratedForm from "../HydratedRegisterProcessForm";
+import HydratedForm from "../../../ui/HydratedForm";
 
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
@@ -118,7 +118,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         <Box
           sx={{ gridArea: "sb", margin: "auto", marginTop: "42px", width: 383 }}
         >
-          <BaseBtn type="submit" variant="contained" fullWidth>Continue</BaseBtn>
+          <BaseBtn type="submit" variant="contained" fullWidth>
+            Continue
+          </BaseBtn>
         </Box>
       </Box>
     </HydratedForm>

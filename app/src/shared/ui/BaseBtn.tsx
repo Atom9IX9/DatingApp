@@ -6,7 +6,7 @@ const BaseBtn: React.FC<ButtonProps> = (props) => {
       {...props}
       sx={{
         width: "100%",
-        height: 62,
+        height: "62px",
         borderRadius: "9px",
         fontSize: 20,
         fontWeight: 600,

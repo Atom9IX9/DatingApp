@@ -21,6 +21,7 @@ function Field<FV extends FieldValues>({
       hideErrorIcon={fieldParams?.type === "password"}
     >
       <TextField
+        color={fieldParams?.color || "primary"}
         type={
           fieldParams?.type === "password"
             ? showPassword

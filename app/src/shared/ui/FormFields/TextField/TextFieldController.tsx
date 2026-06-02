@@ -27,4 +27,5 @@ export default TextFieldController;
 export type TextFieldParams = BasicFieldParams<{
   maxLength?: number;
   type?: "text" | "password"; 
+  color?: "primary" | "secondary";
 }>;

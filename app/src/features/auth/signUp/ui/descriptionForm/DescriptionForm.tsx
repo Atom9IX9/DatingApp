@@ -6,7 +6,7 @@ import { validateEmail } from "../../..";
 import { BaseBtn, MultitextField, TagsField } from "@/shared/ui";
 import { RtkQueryResultError, TValidationFunction } from "@/shared/types";
 import { Box } from "@mui/material";
-import HydratedForm from "../HydratedRegisterProcessForm";
+import HydratedForm from "../../../ui/HydratedForm";
 import { RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
 import { validateEmptyArray } from "../../model/validation/validateEmptyArray";
 

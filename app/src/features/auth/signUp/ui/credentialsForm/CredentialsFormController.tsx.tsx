@@ -4,7 +4,7 @@ import style from "./credentialsForm.module.scss";
 import CredentialsForm from "./CredentialsForm";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
-import { Backdrop, Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
 import { RegisterCredentialsResponse } from "../../api/signUpAPI";
 import { QueryStatus } from "@reduxjs/toolkit/query";
