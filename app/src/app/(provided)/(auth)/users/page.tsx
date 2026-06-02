@@ -1,40 +1,33 @@
+"use client";
+import { selectAvatar } from "@/entities/avatar";
 import { Sex } from "@/entities/user";
+import { useAuth } from "@/features/auth";
 import { UserMatchCard } from "@/widgets/userMatchCard";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const UsersPage = () => {
+  const auth = useAuth();
+  const avatar = useSelector(selectAvatar);
+
   return (
     <Box style={{ display: "flex", gap: 30 }}>
-      <UserMatchCard
-        user={{
-          uid: "dfnjndfsaaad",
-          firstName: "Yaroslav",
-          lastName: "Vorobyov",
-          age: 15,
-          gender: Sex.Male,
-          isOnline: true,
-          description:
-            "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
-          location: { region: "Poltavska oblast", country: "Ukraine" },
-        }}
-      />
-      <UserMatchCard
-        isEven
-        user={{
-          uid: "dfnddsfjndfsaaad",
-          firstName: "Polina",
-          lastName: "Shapranova",
-          age: 45,
-          gender: Sex.Female,
-          isOnline: true,
-          description: undefined,
-          location: {
-            region: "Poltavska oblast",
-            country: "Ukraine",
-            city: "v. Anyone",
-          },
-        }}
-      />
+      {auth && (
+        <UserMatchCard
+          user={{
+            uid: auth.uid || "1",
+            firstName: auth.firstName,
+            lastName: auth.lastName,
+            age: 15,
+            gender: Sex.Male,
+            isOnline: true,
+            description:
+              "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
+            location: { region: "[obl]", country: "[country]" },
+            avatar,
+          }}
+        />
+      )}
     </Box>
   );
 };

@@ -25,22 +25,25 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
         borderRadius: "50%",
       }}
     >
-      <Image
-        ref={refs.imgRef}
-        onLoad={handleImageLoad}
-        src={getStaticByUrl(avatar.url)}
-        alt="avatar"
-        blurDataURL={getStaticByUrl(avatar.url)}
-        placeholder="blur"
-        width={size * 10}
-        height={size * 10}
-        style={{
-          width: state.isLandscape ? "auto" : "100%",
-          height: state.isLandscape ? "100%" : "auto",
-          transformOrigin: "left top",
-          transform: `translate(${avatar.posX * k}px, ${avatar.posY * k}px) scale(${avatar.scale})`,
-        }}
-      />
+      {avatar.url && (
+        <Image
+          ref={refs.imgRef}
+          onLoad={handleImageLoad}
+          src={getStaticByUrl(avatar.url)}
+          alt="avatar"
+          blurDataURL={getStaticByUrl(avatar.url)}
+          placeholder="blur"
+          width={size*5}
+          height={size*5}
+          draggable={false}
+          style={{
+            width: state.isLandscape ? "auto" : "100%",
+            height: state.isLandscape ? "100%" : "auto",
+            transformOrigin: "left top",
+            transform: `translate(${avatar.posX * k}px, ${avatar.posY * k}px) scale(${avatar.scale})`,
+          }}
+        />
+      )}
     </Box>
   );
 };

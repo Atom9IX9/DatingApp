@@ -10,7 +10,6 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
   const { refs, handlers, state } = useAvatarEdit();
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
-    console.log(state)
     if (onSubmit) {
       onSubmit({
         posX: state.position.x,

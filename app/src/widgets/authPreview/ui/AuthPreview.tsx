@@ -8,7 +8,7 @@ const AuthPreview = () => {
   const avatar = useAppSelector(selectAvatar);
   return (
     <Box>
-      <PositionedAvatar avatar={avatar} size={100} />
+      <PositionedAvatar avatar={avatar} size={260} />
     </Box>
   );
 };

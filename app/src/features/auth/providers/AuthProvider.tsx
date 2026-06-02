@@ -4,6 +4,7 @@ import {
   User,
   setUserAuth,
   setUserAccountInfo,
+  UserAccountInfo,
 } from "@/entities/user";
 import { useEffect } from "react";
 import { createContext } from "react";
@@ -15,7 +16,7 @@ import {
 } from "../verifyAuth/api/verifyAuthAPI";
 import { setAvatar } from "@/entities/avatar";
 
-export const AuthContext = createContext<User | undefined>(undefined);
+export const AuthContext = createContext<UserAccountInfo | null>(null);
 
 const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
   const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
   }, [dispatch, auth]);
 
   return (
-    <AuthContext.Provider value={auth ? auth : storeUser}>
+    <AuthContext.Provider value={auth ? auth.user : storeUser}>
       {children}
     </AuthContext.Provider>
   );

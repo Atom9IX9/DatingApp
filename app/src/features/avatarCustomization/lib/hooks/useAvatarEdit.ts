@@ -22,9 +22,6 @@ export const useAvatarEdit = (transforms?: Transform) => {
   const setImgPosition = (x: number, y: number) => {
     positionRef.current = { x, y };
     setPosition({ x, y });
-
-    console.log(positionRef.current.x);
-    //console.log("set", positionRef.current)
   };
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -66,8 +63,6 @@ export const useAvatarEdit = (transforms?: Transform) => {
 
     setImgPosition(x, y);
     applyTransform(x, y, scale);
-
-    console.log(positionRef.current.x);
   };
 
   const handleMouseUp = () => {
@@ -85,8 +80,6 @@ export const useAvatarEdit = (transforms?: Transform) => {
 
     applyTransform(0, 0, scale);
     setImgPosition(0, 0);
-
-    console.log(positionRef.current.x);
   };
 
   return {

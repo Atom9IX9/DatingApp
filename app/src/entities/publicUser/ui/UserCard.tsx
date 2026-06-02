@@ -1,5 +1,5 @@
 "use client";
-import { Avatar, Box, Card, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
 import classNames from "classnames";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -10,6 +10,7 @@ import { capitalize, useTheme } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { Sex } from "@/entities/user";
 import { PublicUser } from "../types/publicUser";
+import { PositionedAvatar } from "@/entities/avatar";
 
 const UserCard: React.FC<TUserCardProps> = ({
   user,
@@ -29,17 +30,12 @@ const UserCard: React.FC<TUserCardProps> = ({
       })}
     >
       <Box className={style.avatarBlock}>
-        <Avatar
-          sx={{
-            bgcolor: Colors.Info,
-          }}
-          className={style.userAvatar}
-        />
+        <PositionedAvatar avatar={user.avatar} size={120} />
         <Box
           className={classNames(
             style.onlineStatus,
             user.isOnline ? style.online : style.offline,
-            style[theme]
+            style[theme],
           )}
           sx={{ border: 5, borderColor: Colors.InfoDark }}
         ></Box>
@@ -75,7 +71,7 @@ const UserCard: React.FC<TUserCardProps> = ({
                 <MaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />
               ) : (
                 <FemaleIcon color={Colors.Primary} sx={{ fontSize: 24 }} />
-              )}{" "}
+              )}
             </div>
             <div>{capitalize(user.gender)}</div>
           </li>
@@ -87,9 +83,7 @@ const UserCard: React.FC<TUserCardProps> = ({
           {user.description}
         </Box>
       </Box>
-      <Box className={style.bottomSection}>
-        {bottomSection}
-      </Box>
+      <Box className={style.bottomSection}>{bottomSection}</Box>
     </Card>
   );
 };

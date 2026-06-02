@@ -8,22 +8,24 @@ import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
 import AccountMenuBtn from "./AccountMenuBtn";
 import { useAuth } from "@/features/auth";
-import { useMenu, useTheme } from "@/shared/lib";
+import { useAppSelector, useMenu, useTheme } from "@/shared/lib";
 import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";
+import { selectAvatar } from "@/entities/avatar";
 
 const AccountMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();
 
   const theme = useTheme();
   const auth = useAuth();
+  const avatar = useAppSelector(selectAvatar);
 
   return (
     <>
       <AccountMenuBtn
         firstName={auth?.firstName}
         lastName={auth?.lastName}
-        avatar={/*auth?.photos.avatar ||*/ null}
+        avatar={avatar}
         handleClick={handleClick}
         isOpen={isOpen}
       />

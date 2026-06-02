@@ -12,7 +12,6 @@ const RootLayout = async ({
   const token = cookies().get("accessToken")?.value as string;
 
   const res = await verifyAuth(token);
-  //console.log(token)
   if (!res.data) {
     switch (res.error?.statusCode) {
       case 401: {
