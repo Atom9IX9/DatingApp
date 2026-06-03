@@ -1,4 +1,5 @@
 import { User, UserAccountInfo, UserAuth } from "@/entities/user";
+import { CheckAuthResponseData } from "../../types";
 
 //todo: axios refactor
 export const verifyAuth: VerifyAuthFn = async (
@@ -25,19 +26,3 @@ export type VerifyAuthResponse = {
   };
 };
 export type VerifyAuthFn = (token: string) => Promise<VerifyAuthResponse>;
-export type CheckAuthResponseData = {
-  user: UserAccountInfo;
-  authCredentials: UserAuth;
-  onboardingStep: ResponseOnboardingStep;
-};
-
-export enum ResponseOnboardingStep {
-  REGISTERED = "registered",
-  DESCRIPTION = 3,
-  AVATAR = 4,
-}
-export enum ClientOnboardingStep {
-  CREDENTIALS = 1,
-  INFO = 2,
-}
-export type OnboardingStep = ResponseOnboardingStep | ClientOnboardingStep;

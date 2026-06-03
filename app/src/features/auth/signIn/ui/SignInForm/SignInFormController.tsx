@@ -7,6 +7,8 @@ import { QueryStatus } from "@reduxjs/toolkit/query";
 import { BackdropLoader } from "@/shared/ui";
 import { SignInData } from "../../types/form";
 import SignInForm from "./SignInForm";
+import { LoginResponse } from "../../api/signInAPI";
+import { useLogin } from "../../hooks/useLogin";
 
 const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   const { control, handleSubmit, setError, formState } = useForm<SignInData>({
@@ -16,33 +18,30 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
     },
   });
 
-  // const { registerCredentials, ...registerCredentialsResult } =
-  //   useRegisterCredentials();
+  const { login, result } = useLogin();
 
   const onSubmit: SubmitHandler<SignInData> = async ({ email, password }) => {
-    // try {
-    //   const data = await registerCredentials({ email, password });
-    //   if (onSuccess) onSuccess(data);
-    // } catch (err) {
-    //   setError("root", {
-    //     message:
-    //       (err as RtkQueryResultError).data?.message || "Failed to send data",
-    //   });
-    // }
+    try {
+      const data = await login({ email, password });
+      if (onSuccess) onSuccess(data);
+    } catch (err) {
+      setError("root", {
+        message:
+          (err as RtkQueryResultError).data?.message || "Failed to send data",
+      });
+    }
   };
 
   return (
     <Box className={style.signInSectionContainer}>
       <Box component="section" className={style.signInSection}>
-        <BackdropLoader
-          isOpen={false} //registerCredentialsResult.status === QueryStatus.pending}
-        />
+        <BackdropLoader isOpen={result.status === QueryStatus.pending} />
         <SignInForm
           onSubmit={handleSubmit(onSubmit)}
           control={control}
           result={{
-            error: undefined, //registerCredentialsResult.error as RtkQueryResultError,
-            status: QueryStatus.fulfilled, //registerCredentialsResult.status,
+            error: result.error as RtkQueryResultError,
+            status: result.status,
             rootError: formState.errors.root?.message,
           }}
         />
@@ -53,5 +52,5 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
 
 export default CredentialsFormController;
 type Props = {
-  onSuccess?: (data: any) => void; // todo
+  onSuccess?: (data: LoginResponse) => void;
 };

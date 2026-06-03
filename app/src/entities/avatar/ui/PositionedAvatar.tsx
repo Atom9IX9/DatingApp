@@ -31,8 +31,6 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
           onLoad={handleImageLoad}
           src={getStaticByUrl(avatar.url)}
           alt="avatar"
-          blurDataURL={getStaticByUrl(avatar.url)}
-          placeholder="blur"
           width={size * 5}
           height={size * 5}
           draggable={false}

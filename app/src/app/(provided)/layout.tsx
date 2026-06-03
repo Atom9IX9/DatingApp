@@ -1,9 +1,7 @@
 import { verifyAuth } from "@/features/auth";
 import { VerifyAuthResponse } from "@/features/auth";
 import { Providers } from "@/root";
-import { APP_ROUTES } from "@/shared/config";
 import { TChildren, TTheme } from "@/shared/types";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 const ProvidedLayout = async ({ children }: Props) => {

@@ -28,7 +28,9 @@ const GuestLayoutClient = ({
 
   useEffect(() => {
     if (auth) {
-      dispatch(setUserAccountInfo(auth.user));
+      if (auth.user) {
+        dispatch(setUserAccountInfo(auth.user));
+      }
       dispatch(setUserAuth(auth.authCredentials));
     }
   }, [dispatch, auth]);
@@ -48,7 +50,7 @@ const GuestLayoutClient = ({
     }
 
     if (!isRegistered && !GUEST_ROUTES.includes(pathname as any)) {
-      push("/sign-up");
+      push("/sign-in");
     }
   }, [push, pathname, isRegistered]);
 

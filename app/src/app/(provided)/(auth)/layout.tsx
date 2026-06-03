@@ -15,7 +15,7 @@ const RootLayout = async ({
   if (!res.data) {
     switch (res.error?.statusCode) {
       case 401: {
-        redirect("/sign-up");
+        redirect("/sign-in");
       }
       case 403: {
         redirect("/sign-up");
