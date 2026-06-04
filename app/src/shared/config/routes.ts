@@ -7,6 +7,7 @@ export const APP_ROUTES = {
 
   AUTH: {
     HOME: "/home",
+    USERS: "/users"
   },
 } as const;
 

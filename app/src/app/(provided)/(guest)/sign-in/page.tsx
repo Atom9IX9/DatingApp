@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/shared/lib";
 import { setUserAccountInfo, setUserAuth } from "@/entities/user";
 import { setCurrentStep } from "@/processes/register/model/registerProcess.slice";
 import { useRouter } from "next/navigation";
+import { setAvatar } from "@/entities/avatar";
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const SignIn = () => {
             dispatch(setUserAccountInfo(user));
           }
           dispatch(setUserAuth(authCredentials));
+          if (user?.avatar) dispatch(setAvatar(user?.avatar));
           dispatch(setCurrentStep(onboardingStep));
           push("/home");
         }}

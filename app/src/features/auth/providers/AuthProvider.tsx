@@ -3,12 +3,13 @@ import {
   setUserAuth,
   setUserAccountInfo,
   UserAccountInfo,
+  selectUser,
 } from "@/entities/user";
 import { useEffect } from "react";
 import { createContext } from "react";
-import { useAppDispatch } from "@/shared/lib";
+import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
-import { setAvatar } from "@/entities/avatar";
+import { selectAvatar, setAvatar } from "@/entities/avatar";
 import { CheckAuthResponseData, OnboardingStep } from "../types";
 import { setCurrentStep } from "@/processes/register/model/registerProcess.slice";
 
@@ -20,8 +21,12 @@ const AuthProvider: React.FC<ProviderProps> = ({
   onboardingStep,
 }) => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+  const storeAvatar = useAppSelector(selectAvatar);
 
   useEffect(() => {
+    console.log("auth ", auth?.user?.avatar)
+    console.log("store ", storeAvatar)
     if (onboardingStep) {
       dispatch(setCurrentStep(onboardingStep));
     }
@@ -37,7 +42,20 @@ const AuthProvider: React.FC<ProviderProps> = ({
   }, [dispatch, auth, onboardingStep]);
 
   return (
-    <AuthContext.Provider value={auth ? auth.user : null}>
+    <AuthContext.Provider
+      value={
+        !user.uid
+          ? auth
+            ? auth.user
+            : null
+          : {
+              firstName: user.firstName,
+              lastName: user.lastName,
+              uid: user.uid,
+              avatar: storeAvatar.url ? storeAvatar : auth?.user?.avatar,
+            }
+      }
+    >
       {children}
     </AuthContext.Provider>
   );

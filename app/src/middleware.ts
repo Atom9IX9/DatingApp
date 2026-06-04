@@ -16,8 +16,6 @@ export async function middleware(req: NextRequest) {
   try {
     const authResponse = await verifyAuth(token);
 
-    console.log(authResponse);
-
     if (authResponse) {
       const isRegistered =
         authResponse.data?.onboardingStep === ResponseOnboardingStep.REGISTERED;
@@ -56,6 +54,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"
   ],
 };
