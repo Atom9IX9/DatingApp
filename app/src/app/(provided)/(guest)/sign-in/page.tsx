@@ -1,8 +1,8 @@
 "use client";
-import style from "../guestPages.module.scss";
+import style from "../../../guestPages.module.scss";
 import { SignInForm } from "@/features/auth";
 import { Box } from "@mui/material";
-import HeroBlock from "../HeroBlock";
+import HeroBlock from "../../../HeroBlock";
 import { useAppDispatch } from "@/shared/lib";
 import { setUserAccountInfo, setUserAuth } from "@/entities/user";
 import { setCurrentStep } from "@/processes/register/model/registerProcess.slice";

@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import style from "../guestPages.module.scss";
-import HeroBlock from "../HeroBlock";
+import style from "../../../guestPages.module.scss";
+import HeroBlock from "../../../HeroBlock";
 import { RegisterProcess } from "@/processes/register";
 
 const Startpage: React.FC = async () => {

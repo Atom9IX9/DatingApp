@@ -25,7 +25,7 @@ export default registerProcessSlice.reducer;
 export const { setCurrentStep } = registerProcessSlice.actions;
 
 export type TInitialState = {
-  currentStep: number;
+  currentStep: OnboardingStep;
   stepsCount: number;
   isRegistred: boolean;
 };

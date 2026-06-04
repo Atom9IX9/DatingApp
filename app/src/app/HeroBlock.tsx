@@ -2,10 +2,7 @@
 
 import { Box } from "@mui/material";
 import Image from "next/image";
-import heroImg from "../../../../public/assets/imgs/hero.png";
-import heroDecoration from "../../../../public/assets/imgs/hero-decoration.png";
-import signInHeroDecoration from "../../../../public/assets/imgs/hero-decoration.png";
-import signUpHeroDecoration from "../../../../public/assets/imgs/hero-decoration-sign-up.png";
+import heroImg from "../../public/assets/imgs/hero.png";
 import style from "./guestPages.module.scss";
 
 const HeroBlock: React.FC<Props> = ({ forPage }) => {

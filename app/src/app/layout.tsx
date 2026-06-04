@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "@/shared/styles/globals.scss";
 import { nunito, quicksend } from "@/shared/fonts";
+import { Providers } from "@/root";
+import { cookies, headers } from "next/headers"; // Імпортуємо headers
+import { TTheme } from "@/shared/types";
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -12,9 +15,29 @@ const RootLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const theme = cookies().get("theme")?.value as TTheme | undefined;
+  
+  // Читаємо заголовок, який мідлвейр зашив у запит
+  const headersList = headers();
+  const userDataHeader = headersList.get("x-response-data");
+
+  let authData = null;
+
+  if (userDataHeader) {
+    try {
+      authData = JSON.parse(userDataHeader);
+    } catch (e) {
+      authData = null;
+    }
+  }
+
   return (
     <html lang="en">
-      <body className={`${nunito.variable} ${quicksend.variable}`}>{children}</body>
+      <body className={`${nunito.variable} ${quicksend.variable}`}>
+        <Providers auth={authData} cookies={{ theme }}>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 };
