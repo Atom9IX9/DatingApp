@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import HeroBlock from "../../../HeroBlock";
 import { useAppDispatch } from "@/shared/lib";
 import { setUserAccountInfo, setUserAuth } from "@/entities/user";
-import { setCurrentStep } from "@/processes/register/model/registerProcess.slice";
+import { setCurrentStep } from "@/processes/register";
 import { useRouter } from "next/navigation";
 import { setAvatar } from "@/entities/avatar";
 

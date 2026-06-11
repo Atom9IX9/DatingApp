@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
 import { selectAvatar, setAvatar } from "@/entities/avatar";
 import { CheckAuthResponseData, OnboardingStep } from "../types";
-import { setCurrentStep } from "@/processes/register/model/registerProcess.slice";
+import { setCurrentStep } from "@/processes/register";
 
 export const AuthContext = createContext<UserAccountInfo | null>(null);
 

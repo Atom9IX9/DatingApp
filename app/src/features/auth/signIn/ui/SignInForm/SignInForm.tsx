@@ -55,7 +55,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         )}
       </Box>
       <Box className={style.signUpLink}>
-        Haven't created an account before?{" "}
+        Haven&apos;t created an account before?{" "}
         <StyledLink href="sign-up">Register</StyledLink>
       </Box>
       <Box sx={{ width: "100%", mt: "20px" }}>
