@@ -12,4 +12,4 @@ export type { OnboardingStep, CheckAuthResponseData } from "./types";
 export { ResponseOnboardingStep, ClientOnboardingStep } from "./types";
 export { useAuth } from "./hooks/useAuth";
 export { default as AuthProvider } from "./providers/AuthProvider";
-export { validateEmail } from "./lib/validation/validateEmail";
+export { validateEmail } from "./model/validation/validateEmail";

@@ -1,4 +1,3 @@
-import { User, UserAccountInfo, UserAuth } from "@/entities/user";
 import { CheckAuthResponseData } from "../../types";
 
 export const verifyAuth: VerifyAuthFn = async (

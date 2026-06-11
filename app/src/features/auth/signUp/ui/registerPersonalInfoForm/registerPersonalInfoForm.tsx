@@ -12,7 +12,7 @@ import {
 import { Colors, RtkQueryResultError } from "@/shared/types";
 import { UserPersonalInfoFormData } from "../../types/form";
 import { Box } from "@mui/material";
-import { validateAdult } from "../../../lib/validation/validateAdult";
+import { validateAdult } from "../../../model/validation/validateAdult";
 import { Sex } from "@/entities/user";
 import HydratedForm from "../../../ui/HydratedForm";
 

@@ -1,17 +1,10 @@
 import { ResponseOnboardingStep, verifyAuth } from "@/features/auth";
-import { isAuthRoute } from "@/shared/config";
+import { isAuthRoute, isGuestRoute } from "@/shared/config";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("accessToken")?.value;
   const { pathname } = req.nextUrl;
-
-  if (!token) {
-    if (isAuthRoute(pathname)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
-    return NextResponse.next();
-  }
 
   try {
     const authResponse = await verifyAuth(token);
@@ -20,7 +13,7 @@ export async function middleware(req: NextRequest) {
       const isRegistered =
         authResponse.data?.onboardingStep === ResponseOnboardingStep.REGISTERED;
 
-      if (!isAuthRoute(pathname) && isRegistered) {
+      if (isGuestRoute(pathname) && isRegistered) {
         return NextResponse.redirect(new URL("/home", req.url));
       }
 
@@ -54,6 +47,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

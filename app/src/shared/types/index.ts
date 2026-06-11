@@ -7,7 +7,7 @@ export type TValidationFunction = (
   value: string
 ) => boolean | string | Promise<boolean | string>;
 export type TArrayValidationFunction = (
-  value: string
+  value: any[]
 ) => boolean | string | Promise<boolean | string>;
 export type TDateValidationFunction = (
   value: Dayjs
