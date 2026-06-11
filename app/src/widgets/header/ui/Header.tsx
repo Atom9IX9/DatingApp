@@ -1,3 +1,4 @@
+
 "use client";
 
 import style from "./header.module.scss";
@@ -10,6 +11,7 @@ import { useTheme } from "@/shared/lib";
 const Header = () => {
   const theme = useTheme();
 
+// Render the component's JSX structure.
   return (
     <AppBar
       position="static"

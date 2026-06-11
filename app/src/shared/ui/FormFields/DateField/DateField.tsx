@@ -1,3 +1,4 @@
+
 import { FieldProps } from "../../../types/fields";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
@@ -11,6 +12,7 @@ function DateField<FV extends FieldValues>({
   fieldParams,
 }: FieldProps<FV, DateFieldParams>) {
   {
+// Render the component's JSX structure.
     return (
       <FieldContainer<FV, DateFieldParams>
         error={error}

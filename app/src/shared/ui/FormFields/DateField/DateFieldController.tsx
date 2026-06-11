@@ -1,3 +1,4 @@
+
 import { FieldValues } from "react-hook-form";
 import FieldController, { FieldControllerProps } from "../FieldController";
 import { default as DateField } from "./DateField";
@@ -10,6 +11,7 @@ function DateFieldController<FV extends FieldValues>({
   validate,
   fieldParams,
 }: FieldControllerProps<FV, DateFieldParams>) {
+// Render the component's JSX structure.
   return (
     <FieldController<FV, DateFieldParams>
       control={control}
@@ -22,6 +24,7 @@ function DateFieldController<FV extends FieldValues>({
 }
 
 export default DateFieldController;
+// Exported type alias used for typing shared data shapes.
 export type DateFieldParams = BasicFieldParams<{
   minYearsAgo?: number;
 }>;

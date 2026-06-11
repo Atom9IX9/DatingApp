@@ -1,3 +1,4 @@
+
 "use client";
 import { User } from "@/entities/user";
 import StoreProvider from "./StoreProvider";
@@ -23,6 +24,7 @@ export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
     onboardingStep = ClientOnboardingStep.INFO;
   }
 
+// Render the component's JSX structure.
   return (
     <StoreProvider>
       <AuthProvider auth={auth?.data} onboardingStep={onboardingStep}>
@@ -38,6 +40,7 @@ export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   );
 };
 
+// Exported type alias used for typing shared data shapes.
 export type Props = {
   children: TChildren;
   cookies: {

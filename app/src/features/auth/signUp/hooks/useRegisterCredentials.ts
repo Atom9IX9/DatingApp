@@ -1,6 +1,8 @@
+
 import { RegisterCredentialsReqBody, useRegisterCredentialsMutation } from "../api/signUpAPI";
 import Cookies from "js-cookie";
 
+// Custom hook that handles RegisterCredentials logic.
 export const useRegisterCredentials = () => {
   const [registerCredentials, result] = useRegisterCredentialsMutation();
 

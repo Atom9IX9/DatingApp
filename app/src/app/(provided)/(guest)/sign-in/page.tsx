@@ -1,3 +1,4 @@
+
 "use client";
 import style from "../../../guestPages.module.scss";
 import { SignInForm } from "@/features/auth";
@@ -13,6 +14,7 @@ const SignIn = () => {
   const dispatch = useAppDispatch();
   const { push } = useRouter();
 
+// Render the component's JSX structure.
   return (
     <Box className={`${style.mainBlock} ${style.signInPage}`}>
       <HeroBlock forPage="signInPage" />

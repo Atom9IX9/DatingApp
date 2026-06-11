@@ -1,3 +1,4 @@
+
 import { AuthApiError } from "@/shared/types";
 import {
   BaseQueryFn,
@@ -7,6 +8,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 
+// API definitions for base.
 export const baseAPI = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({

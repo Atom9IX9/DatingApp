@@ -1,5 +1,8 @@
+
+// Exported type alias used for typing shared data shapes.
 export type User = UserInfo & { auth: UserAuth };
 
+// Exported type alias used for typing shared data shapes.
 export type UserInfo = {
   age: number;
   dateOfBD: string;
@@ -9,11 +12,13 @@ export type UserInfo = {
   hobbies?: Hobby[];
 } & UserAccountInfo;
 
+// Exported type alias used for typing shared data shapes.
 export type Hobby = {
   id: number;
   name: string;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type UserAccountInfo = {
   uid: string;
   firstName: string;
@@ -32,12 +37,14 @@ export enum Sex {
   Custom = "Custom",
 }
 
+// Exported type alias used for typing shared data shapes.
 export type UserLocation = {
   country: string;
   region: string;
   city?: string;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type UserAuth = {
   email: string;
   authId: number;

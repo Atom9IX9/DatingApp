@@ -1,3 +1,4 @@
+
 import {
   CredentialsForm,
   DescriptionForm,
@@ -24,6 +25,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
 
   switch (currentStep) {
     case 1:
+// Render the component's JSX structure.
       return (
         <CredentialsForm
           onSuccess={({ auth: { authId, email } }) => {
@@ -33,6 +35,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
         />
       );
     case 2:
+// Render the component's JSX structure.
       return (
         <RegisterUserPersonalInfoForm
           onSuccess={(data) => {
@@ -42,6 +45,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
         />
       );
     case 3:
+// Render the component's JSX structure.
       return (
         <DescriptionForm
           onSuccess={(data) => {
@@ -51,6 +55,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
         />
       );
     case 4:
+// Render the component's JSX structure.
       return (
         <Box sx={{ mt: "31px" }}>
           <AvatarUploadForm onSuccess={(data) => {
@@ -63,6 +68,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
 };
 
 export default RegisterProcessForms;
+// Type describing component props.
 type Props = {
   currentStep: number;
 };

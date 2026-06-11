@@ -1,3 +1,4 @@
+
 import React from "react";
 import style from "./descriptionForm.module.scss";
 import { Control } from "react-hook-form";
@@ -10,11 +11,13 @@ import HydratedForm from "../../../ui/HydratedForm";
 import { RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
 import { validateEmptyArray } from "../../model/validation/validateEmptyArray";
 
+// Form component that captures description input.
 const DescriptionForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
+// Render the component's JSX structure.
   return (
     <HydratedForm className={style.descriptionForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
@@ -60,7 +63,9 @@ const DescriptionForm: React.FC<CredentialsFormProps> = ({
   );
 };
 
+// Form component that captures description input.
 export default DescriptionForm;
+// Props type for the CredentialsForm component.
 type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<RegisterUserDescriptionReqBody>;

@@ -1,7 +1,9 @@
+
 import { useLoginMutation } from "../api/signInAPI";
 import Cookies from "js-cookie";
 import { SignInData } from "../types/form";
 
+// Custom hook that handles Login logic.
 export const useLogin = () => {
   const [login, result] = useLoginMutation();
 

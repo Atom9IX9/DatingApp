@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Alert, { AlertColor } from "@mui/material/Alert";
@@ -21,6 +22,7 @@ const appearAnimation = keyframes`
 export default function TransitionAlerts({ alert, severity, isOpen }: Props) {
   const [open, setOpen] = React.useState(isOpen);
 
+// Render the component's JSX structure.
   return (
     <Box
       sx={{
@@ -53,6 +55,7 @@ export default function TransitionAlerts({ alert, severity, isOpen }: Props) {
   );
 }
 
+// Type describing component props.
 type Props = {
   alert: string | null;
   severity: AlertColor;

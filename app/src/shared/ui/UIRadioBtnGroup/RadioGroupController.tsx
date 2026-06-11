@@ -1,3 +1,4 @@
+
 "use client"
 
 import {
@@ -16,6 +17,7 @@ function RadioGroupController<FV extends FieldValues>({
   items, 
   required
 }: Props<FV>) {
+// Render the component's JSX structure.
   return (
     <Box className={style.radioGroupContainer}>
       <Controller
@@ -35,6 +37,7 @@ function RadioGroupController<FV extends FieldValues>({
 }
 
 export default RadioGroupController;
+// Type describing component props.
 type Props<V extends FieldValues> = {
   control: Control<V>;
   name: FieldPath<V>;

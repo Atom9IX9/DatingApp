@@ -1,3 +1,4 @@
+
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import CredentialsFormController from "../ui/credentialsForm/CredentialsFormController.tsx";
@@ -30,6 +31,7 @@ describe("Components: CredentialsFormController", () => {
     const emailInput = container.querySelector('input[name="email"]');
     const passwordInput = container.querySelector('input[name="password"]');
     const confirmPasswordInput = container.querySelector('input[name="confirmPassword"]');
+// Button component used for an action in src\features\auth\signUp\tests\descriptionController.test.tsx.
     const submitButton = screen.getByRole("button", { name: /Continue/i });
 
     if (!emailInput || !passwordInput || !confirmPasswordInput) {

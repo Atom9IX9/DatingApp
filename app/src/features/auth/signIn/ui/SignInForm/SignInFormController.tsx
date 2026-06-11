@@ -1,3 +1,4 @@
+
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./signInForm.module.scss";
@@ -32,6 +33,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
+// Render the component's JSX structure.
   return (
     <Box className={style.signInSectionContainer}>
       <Box component="section" className={style.signInSection}>
@@ -51,6 +53,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
 };
 
 export default CredentialsFormController;
+// Type describing component props.
 type Props = {
   onSuccess?: (data: LoginResponse) => void;
 };

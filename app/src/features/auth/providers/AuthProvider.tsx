@@ -1,3 +1,4 @@
+
 "use client";
 import {
   setUserAuth,
@@ -15,12 +16,14 @@ import { setCurrentStep } from "@/processes/register/model/registerProcess.slice
 
 export const AuthContext = createContext<UserAccountInfo | null>(null);
 
+// Provider component that supplies context or store values for Auth.
 const AuthProvider: React.FC<ProviderProps> = ({
   children,
   auth,
   onboardingStep,
 }) => {
   const dispatch = useAppDispatch();
+// Custom hook that handles r logic.
   const user = useAppSelector(selectUser);
   const storeAvatar = useAppSelector(selectAvatar);
 
@@ -41,6 +44,7 @@ const AuthProvider: React.FC<ProviderProps> = ({
     }
   }, [dispatch, auth, onboardingStep]);
 
+// Render the component's JSX structure.
   return (
     <AuthContext.Provider
       value={
@@ -61,7 +65,9 @@ const AuthProvider: React.FC<ProviderProps> = ({
   );
 };
 
+// Provider that supplies Auth context or state.
 export default AuthProvider;
+// Props type for the Provider component.
 type ProviderProps = {
   children: TChildren;
   auth: CheckAuthResponseData | undefined;

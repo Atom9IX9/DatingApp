@@ -1,3 +1,4 @@
+
 import { Box, InputLabel } from "@mui/material";
 import classNames from "classnames";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -12,6 +13,7 @@ function FieldContainer<FV extends FieldValues, P>({
   children,
   hideErrorIcon,
 }: Props<FV, P>) {
+// Render the component's JSX structure.
   return (
     <Box
       className={classNames(style.fieldLabel, {
@@ -46,6 +48,7 @@ function FieldContainer<FV extends FieldValues, P>({
 }
 
 export default FieldContainer;
+// Type describing component props.
 type Props<FV extends FieldValues, P> = FieldProps<FV, P> & {
   children?: React.ReactNode;
   hideErrorIcon?: boolean;

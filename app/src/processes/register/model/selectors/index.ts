@@ -1,3 +1,4 @@
+
 import { RootState } from "@/root";
 
 export const selectCurrentStep = (state: RootState) => state.registerProcess.currentStep;

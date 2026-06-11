@@ -1,3 +1,5 @@
+
+// Exported type alias used for typing shared data shapes.
 export type {
   User,
   UserLocation,

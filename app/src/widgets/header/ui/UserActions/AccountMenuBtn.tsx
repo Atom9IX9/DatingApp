@@ -1,9 +1,11 @@
+
 import { Avatar, PositionedAvatar } from "@/entities/avatar";
 import { stringToColor, useTheme } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { UIIconMenuButton } from "@/shared/ui";
 import { MouseEventHandler } from "react";
 
+// Button component used for an action in src\widgets\header\ui\UserActions\AccountMenuBtn.tsx.
 const AccountMenuBtn: React.FC<TProps> = ({
   handleClick,
   isOpen,
@@ -28,6 +30,7 @@ const AccountMenuBtn: React.FC<TProps> = ({
     };
   }
 
+// Render the component's JSX structure.
   return (
     <UIIconMenuButton
       title="Account menu"
@@ -39,7 +42,9 @@ const AccountMenuBtn: React.FC<TProps> = ({
   );
 };
 
+// Button component for a user action in src\widgets\header\ui\UserActions\AccountMenuBtn.tsx.
 export default AccountMenuBtn;
+// Props type for the T component.
 type TProps = {
   handleClick: MouseEventHandler;
   isOpen: boolean;

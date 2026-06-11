@@ -1,3 +1,4 @@
+
 import { Avatar } from "@/entities/avatar";
 import { baseAPI } from "@/shared/api";
 
@@ -22,6 +23,7 @@ export const loginEndpoint = baseAPI.injectEndpoints({
 });
 
 export const { useUploadAvatarMutation } = loginEndpoint;
+// Exported type alias used for typing shared data shapes.
 export type AvatarUploadBody = {
   posX: string;
   posY: string;

@@ -1,3 +1,4 @@
+
 import { baseAPI } from "@/shared/api";
 import { Sex } from "@/entities/user";
 import { Hobby } from "@/entities/user";
@@ -44,11 +45,13 @@ export const {
   useRegisterUserDescriptionMutation,
 } = registerEndpoint;
 
+// Exported type alias used for typing shared data shapes.
 export type RegisterCredentialsReqBody = {
   email: string;
   password: string;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type RegisterCredentialsResponse = {
   accessToken: string;
   auth: {
@@ -57,6 +60,7 @@ export type RegisterCredentialsResponse = {
   };
 };
 
+// Exported type alias used for typing shared data shapes.
 export type RegisterUserPersonalInfoReqBody = {
   firstName: string;
   lastName: string;
@@ -65,6 +69,7 @@ export type RegisterUserPersonalInfoReqBody = {
   genderInfo?: string;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type RegisterUserPersonalInfoResponse = {
   uid: string;
   authId: number;
@@ -76,11 +81,13 @@ export type RegisterUserPersonalInfoResponse = {
   genderInfo?: string;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type RegisterUserDescriptionReqBody = {
   description: string;
   hobbies: string[];
 };
 
+// Exported type alias used for typing shared data shapes.
 export type RegisterUserDescriptionResponse = {
   description: string;
   hobbies: Hobby[];

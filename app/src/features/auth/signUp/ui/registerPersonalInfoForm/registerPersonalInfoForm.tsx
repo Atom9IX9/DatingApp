@@ -1,3 +1,4 @@
+
 import React from "react";
 import style from "./registerPersonalInfoForm.module.scss";
 import { Control } from "react-hook-form";
@@ -16,11 +17,13 @@ import { validateAdult } from "../../../model/validation/validateAdult";
 import { Sex } from "@/entities/user";
 import HydratedForm from "../../../ui/HydratedForm";
 
+// Form component that captures credentials input.
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
+// Render the component's JSX structure.
   return (
     <HydratedForm className={style.personalInfoForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
@@ -127,7 +130,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   );
 };
 
+// Form component that captures credentials input.
 export default CredentialsForm;
+// Props type for the CredentialsForm component.
 type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<UserPersonalInfoFormData>;

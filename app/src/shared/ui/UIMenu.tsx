@@ -1,7 +1,9 @@
+
 import { Menu, PopoverVirtualElement } from "@mui/material";
 import React, { MouseEventHandler } from "react";
 import { TChildren } from "../types";
 
+// Menu component or interaction handler for UI.
 const UIMenu: React.FC<TProps> = ({
   children,
   anchorEl,
@@ -9,6 +11,7 @@ const UIMenu: React.FC<TProps> = ({
   handleClose,
   theme,
 }) => {
+// Render the component's JSX structure.
   return (
     <Menu
       anchorEl={anchorEl}
@@ -52,7 +55,9 @@ const UIMenu: React.FC<TProps> = ({
   );
 };
 
+// Menu component or interaction handler.
 export default UIMenu;
+// Props type for the T component.
 type TProps = {
   children: TChildren;
   anchorEl:

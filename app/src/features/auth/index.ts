@@ -1,3 +1,4 @@
+
 export { useLogin } from "./signIn/hooks/useLogin";
 
 // ui forms
@@ -7,7 +8,9 @@ export { default as RegisterUserPersonalInfoForm } from "./signUp/ui/registerPer
 export { default as DescriptionForm } from "./signUp/ui/descriptionForm/DescriptionFormController.tsx";
 
 export { verifyAuth } from "./verifyAuth/api/verifyAuthAPI";
+// Exported type alias used for typing shared data shapes.
 export type { VerifyAuthResponse } from "./verifyAuth/api/verifyAuthAPI";
+// Exported type alias used for typing shared data shapes.
 export type { OnboardingStep, CheckAuthResponseData } from "./types";
 export { ResponseOnboardingStep, ClientOnboardingStep } from "./types";
 export { useAuth } from "./hooks/useAuth";

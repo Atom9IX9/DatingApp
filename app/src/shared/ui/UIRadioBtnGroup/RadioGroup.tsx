@@ -1,3 +1,4 @@
+
 "use client";
 import {
   Box,
@@ -59,6 +60,7 @@ const BpCheckedIcon = styled(BpIcon, {
 const RadioItem: React.FC<RadioItemProps> = ({
   item: { bgColor, text, value },
 }) => {
+// Render the component's JSX structure.
   return (
     <FormControlLabel
       control={
@@ -92,6 +94,7 @@ function RadioGroupUI<FV extends FieldValues>({
     <RadioItem item={item} key={index} />
   ));
 
+// Render the component's JSX structure.
   return (
     <FormControl required={required}>
       <FormLabel
@@ -124,6 +127,7 @@ function RadioGroupUI<FV extends FieldValues>({
 }
 
 export default RadioGroupUI;
+// Type describing component props.
 type Props<FV extends FieldValues> = {
   field: ControllerRenderProps<FV, Path<FV>>;
   fieldState: ControllerFieldState;
@@ -131,16 +135,19 @@ type Props<FV extends FieldValues> = {
   required?: boolean;
 };
 
+// Props type for the RadioItem component.
 type RadioItemProps = {
   item: RadioItem;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type RadioItem = {
   text: string;
   bgColor?: ThemeColor;
   value: string;
 };
 
+// Props type for the BpCheckedIcon component.
 type BpCheckedIconProps = {
   markerBgColor?: ThemeColor;
 };

@@ -1,3 +1,4 @@
+
 export function stringToColor(string: string) {
   let hash = 0;
 

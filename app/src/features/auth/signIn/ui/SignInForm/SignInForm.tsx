@@ -10,11 +10,13 @@ import { Box } from "@mui/material";
 import HydratedForm from "../../../ui/HydratedForm";
 import { SignInData } from "../../types/form";
 
+// Form component that captures credentials input.
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
+  // Render the component's JSX structure.
   return (
     <HydratedForm className={style.signInForm} onSubmit={onSubmit}>
       <Box component={"h2"}>Login</Box>
@@ -70,7 +72,9 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   );
 };
 
+// Form component that captures credentials input.
 export default CredentialsForm;
+// Props type for the CredentialsForm component.
 type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<SignInData>;

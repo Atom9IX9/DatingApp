@@ -1,3 +1,4 @@
+
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./registerPersonalInfoForm.module.scss";
@@ -58,6 +59,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
+// Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
       <BackdropLoader isOpen={result.status === QueryStatus.pending} />
@@ -81,6 +83,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
 };
 
 export default CredentialsFormController;
+// Type describing component props.
 type Props = {
   onSuccess?: (data: RegisterUserPersonalInfoResponse) => void;
 };

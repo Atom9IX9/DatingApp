@@ -1,7 +1,9 @@
+
 import avatarReducer, { setAvatar } from "../model/avatar.slice"; // змініть шлях за потреби
 import { Avatar } from "../types";
 
 describe("Avatar Entity: Redux Reducer Tests", () => {
+// State shape for initial.
   const initialState: Avatar = {
     posX: 0,
     posY: 0,
@@ -21,6 +23,7 @@ describe("Avatar Entity: Redux Reducer Tests", () => {
       url: "https://storage.cdn.com/uploads/avatar_123.png",
     };
 
+// State shape for next.
     const nextState = avatarReducer(initialState, setAvatar(newAvatarData));
 
     expect(nextState.posX).toBe(12);

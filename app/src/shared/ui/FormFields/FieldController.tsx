@@ -1,3 +1,4 @@
+
 import {
   Control,
   Controller,
@@ -21,6 +22,7 @@ function FieldController<FV extends FieldValues, P>({
   rootError,
   onRender,
 }: Props<FV, P>) {
+// Render the component's JSX structure.
   return (
     <Box className={style.fieldContainer}>
       <Controller
@@ -37,6 +39,7 @@ function FieldController<FV extends FieldValues, P>({
 
 export default FieldController;
 
+// Type describing component props.
 type Props<FV extends FieldValues, P> = FieldControllerProps<FV, P> & {
   onRender: (
     error: {
@@ -47,6 +50,7 @@ type Props<FV extends FieldValues, P> = FieldControllerProps<FV, P> & {
   ) => React.ReactElement;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type FieldControllerProps<V extends FieldValues, P> = {
   control: Control<V>;
   name: FieldPath<V>;

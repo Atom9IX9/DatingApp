@@ -1,3 +1,4 @@
+
 import { validateEmail } from "../model/validation/validateEmail";
 import { validateAdult } from "../model/validation/validateAdult";
 import { validateEmptyArray } from "../signUp/model/validation/validateEmptyArray";

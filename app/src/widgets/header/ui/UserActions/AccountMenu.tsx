@@ -1,3 +1,4 @@
+
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -13,6 +14,7 @@ import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";
 import { selectAvatar } from "@/entities/avatar";
 
+// Menu component or interaction handler for Account.
 const AccountMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();
 
@@ -20,6 +22,7 @@ const AccountMenu = () => {
   const auth = useAuth();
   const avatar = useAppSelector(selectAvatar);
 
+// Render the component's JSX structure.
   return (
     <>
       <AccountMenuBtn
@@ -78,4 +81,5 @@ const AccountMenu = () => {
   );
 };
 
+// Menu component or interaction handler.
 export default AccountMenu;

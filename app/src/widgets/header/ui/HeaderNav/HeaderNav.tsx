@@ -1,3 +1,4 @@
+
 import NavElement from "./HeaderNavElement";
 import { Colors } from "@/shared/types";
 import style from "../header.module.scss";
@@ -7,6 +8,7 @@ import Diversity1Icon from "@mui/icons-material/Diversity1";
 import ChatIcon from "@mui/icons-material/Chat";
 
 const HeaderNav = () => {
+// Render the component's JSX structure.
   return (
     <Box className={style.links}>
       <nav className={style.headerNav}>
