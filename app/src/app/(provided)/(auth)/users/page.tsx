@@ -1,3 +1,4 @@
+
 "use client";
 import { selectAvatar } from "@/entities/avatar";
 import { Sex } from "@/entities/user";
@@ -6,10 +7,12 @@ import { UserMatchCard } from "@/widgets/userMatchCard";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 
+// Page-level component representing the Users view.
 const UsersPage = () => {
   const auth = useAuth();
   const avatar = useSelector(selectAvatar);
 
+// Render the component's JSX structure.
   return (
     <Box style={{ display: "flex", gap: 30 }}>
       {auth && (
@@ -32,4 +35,5 @@ const UsersPage = () => {
   );
 };
 
+// Page component for the Users view.
 export default UsersPage;

@@ -1,9 +1,17 @@
-import { User, UserAccountInfo, UserAuth } from "@/entities/user";
 
-//todo: axios refactor
+import { CheckAuthResponseData } from "../../types";
+
+// Async function that validates the auth token by calling the backend.
 export const verifyAuth: VerifyAuthFn = async (
-  token: string,
-): Promise<VerifyAuthResponse> => {
+  token?: string,
+) => {
+// Do not call the backend when the auth token is missing.
+  if (!token) {
+// Return undefined for invalid or missing input.
+    return undefined;
+  }
+
+// Perform an HTTP request to the backend API and wait for the response.
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth`, {
     method: "GET",
     headers: {
@@ -12,11 +20,14 @@ export const verifyAuth: VerifyAuthFn = async (
   });
 
   if (!res.ok) {
+// Return a typed response payload with either data or error.
     return { data: undefined, error: await res.json() };
   }
+// Return a typed response payload with either data or error.
   return { data: await res.json(), error: undefined };
 };
 
+// Exported type alias used for typing shared data shapes.
 export type VerifyAuthResponse = {
   data?: CheckAuthResponseData;
   error?: {
@@ -24,20 +35,5 @@ export type VerifyAuthResponse = {
     statusCode: number;
   };
 };
-export type VerifyAuthFn = (token: string) => Promise<VerifyAuthResponse>;
-export type CheckAuthResponseData = {
-  user: UserAccountInfo;
-  authCredentials: UserAuth;
-  onboardingStep: ResponseOnboardingStep;
-};
-
-export enum ResponseOnboardingStep {
-  REGISTERED = "registered",
-  DESCRIPTION = 3,
-  AVATAR = 4,
-}
-export enum ClientOnboardingStep {
-  CREDENTIALS = 1,
-  INFO = 2,
-}
-export type OnboardingStep = ResponseOnboardingStep | ClientOnboardingStep;
+// Exported type alias used for typing shared data shapes.
+export type VerifyAuthFn = (token?: string) => Promise<VerifyAuthResponse | undefined>;

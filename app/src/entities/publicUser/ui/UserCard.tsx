@@ -1,3 +1,4 @@
+
 "use client";
 import { Box, Card, Typography } from "@mui/material";
 import style from "./userCard.module.scss";
@@ -19,6 +20,7 @@ const UserCard: React.FC<TUserCardProps> = ({
 }) => {
   const theme = useTheme();
 
+// Render the component's JSX structure.
   return (
     <Card
       sx={{
@@ -89,6 +91,7 @@ const UserCard: React.FC<TUserCardProps> = ({
 };
 
 export default UserCard;
+// Props type for the TUserCard component.
 type TUserCardProps = {
   user: PublicUser;
   isEven?: boolean;

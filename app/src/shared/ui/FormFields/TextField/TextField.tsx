@@ -1,3 +1,4 @@
+
 import { FieldValues } from "react-hook-form";
 import FieldContainer from "../FieldContainer";
 import { FieldProps } from "@/shared/types/fields";
@@ -11,8 +12,10 @@ function Field<FV extends FieldValues>({
   field,
   fieldParams,
 }: Props<FV>) {
+// React state storing showPassword values and updating them with ShowPassword.
   const [showPassword, setShowPassword] = useState(false);
 
+// Render the component's JSX structure.
   return (
     <FieldContainer<FV, TextFieldParams>
       error={error}
@@ -21,6 +24,7 @@ function Field<FV extends FieldValues>({
       hideErrorIcon={fieldParams?.type === "password"}
     >
       <TextField
+        color={fieldParams?.color || "primary"}
         type={
           fieldParams?.type === "password"
             ? showPassword
@@ -76,4 +80,5 @@ function Field<FV extends FieldValues>({
 }
 
 export default Field;
+// Type describing component props.
 type Props<FV extends FieldValues> = FieldProps<FV, TextFieldParams>;

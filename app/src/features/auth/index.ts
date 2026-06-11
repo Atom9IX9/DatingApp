@@ -1,3 +1,4 @@
+
 export { useLogin } from "./signIn/hooks/useLogin";
 
 // ui forms
@@ -6,17 +7,12 @@ export { default as CredentialsForm } from "./signUp/ui/credentialsForm/Credenti
 export { default as RegisterUserPersonalInfoForm } from "./signUp/ui/registerPersonalInfoForm/registerPersonalInfoFormController.tsx";
 export { default as DescriptionForm } from "./signUp/ui/descriptionForm/DescriptionFormController.tsx";
 
-export type { DataForLogin } from "./signIn/api/signInAPI";
 export { verifyAuth } from "./verifyAuth/api/verifyAuthAPI";
-export type {
-  VerifyAuthResponse,
-  CheckAuthResponseData,
-  OnboardingStep,
-} from "./verifyAuth/api/verifyAuthAPI";
-export {
-  ResponseOnboardingStep,
-  ClientOnboardingStep,
-} from "./verifyAuth/api/verifyAuthAPI";
+// Exported type alias used for typing shared data shapes.
+export type { VerifyAuthResponse } from "./verifyAuth/api/verifyAuthAPI";
+// Exported type alias used for typing shared data shapes.
+export type { OnboardingStep, CheckAuthResponseData } from "./types";
+export { ResponseOnboardingStep, ClientOnboardingStep } from "./types";
 export { useAuth } from "./hooks/useAuth";
 export { default as AuthProvider } from "./providers/AuthProvider";
-export { validateEmail } from "./lib/validation/validateEmail";
+export { validateEmail } from "./model/validation/validateEmail";

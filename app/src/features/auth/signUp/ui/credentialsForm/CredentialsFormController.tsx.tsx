@@ -1,10 +1,11 @@
+
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./credentialsForm.module.scss";
 import CredentialsForm from "./CredentialsForm";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
-import { Backdrop, Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
 import { RegisterCredentialsResponse } from "../../api/signUpAPI";
 import { QueryStatus } from "@reduxjs/toolkit/query";
@@ -47,6 +48,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
+// Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
       <BackdropLoader
@@ -66,6 +68,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
 };
 
 export default CredentialsFormController;
+// Type describing component props.
 type Props = {
   onSuccess?: (data: RegisterCredentialsResponse) => void;
 };

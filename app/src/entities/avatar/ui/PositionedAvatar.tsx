@@ -1,3 +1,4 @@
+
 "use client";
 import { Box } from "@mui/material";
 import { Avatar as TAvatar } from "../types";
@@ -5,6 +6,7 @@ import { getStaticByUrl } from "@/shared/lib";
 import Image from "next/image";
 import { useAvatarEdit } from "../lib/hooks/useAvatarEdit";
 
+// Component that renders a positioned avatar image with transform and clipping behavior.
 const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
   const {
     refs,
@@ -12,8 +14,10 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
     handlers: { handleImageLoad },
   } = useAvatarEdit();
 
+// Scale factor used to adjust avatar image position and size based on the rendered component dimensions.
   const k = size / 260;
 
+// Render the component's JSX structure.
   return (
     <Box
       ref={refs.containerRef}
@@ -31,8 +35,6 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
           onLoad={handleImageLoad}
           src={getStaticByUrl(avatar.url)}
           alt="avatar"
-          blurDataURL={getStaticByUrl(avatar.url)}
-          placeholder="blur"
           width={size * 5}
           height={size * 5}
           draggable={false}
@@ -48,5 +50,7 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
   );
 };
 
+// React component that renders an avatar crop area using transform and clipping.
 export default PosAvatar;
+// Type describing component props.
 type Props = { avatar: TAvatar } & { size: number };

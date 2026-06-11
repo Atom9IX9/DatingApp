@@ -1,28 +1,14 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { verifyAuth } from "@/features/auth";
+
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
 
+// Root layout component that wraps every page and reads server cookies/headers.
 const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const token = cookies().get("accessToken")?.value as string;
-
-  const res = await verifyAuth(token);
-  if (!res.data) {
-    switch (res.error?.statusCode) {
-      case 401: {
-        redirect("/sign-up");
-      }
-      case 403: {
-        redirect("/sign-up");
-      }
-    }
-  }
-
+// Render the component's JSX structure.
   return (
     <>
       <Header />
@@ -32,4 +18,5 @@ const RootLayout = async ({
   );
 };
 
+// Root layout component that wraps every page and reads server cookies/headers.
 export default RootLayout;

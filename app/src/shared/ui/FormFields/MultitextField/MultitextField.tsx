@@ -1,3 +1,4 @@
+
 import { FieldValues } from "react-hook-form";
 import FieldContainer from "../FieldContainer";
 import { FieldProps } from "@/shared/types/fields";
@@ -9,6 +10,7 @@ function MultitextField<FV extends FieldValues>({
   field,
   fieldParams,
 }: FieldProps<FV, MultitextFieldParams>) {
+// Render the component's JSX structure.
   return (
     <FieldContainer<FV, MultitextFieldParams>
       error={error}

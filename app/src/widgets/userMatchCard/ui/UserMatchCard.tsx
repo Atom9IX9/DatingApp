@@ -1,3 +1,4 @@
+
 import { PublicUser, UserCard } from "@/entities/publicUser";
 import { MatchBtn } from "@/features/matchmaking";
 
@@ -6,6 +7,7 @@ const UserMatchCard: React.FC<Props> = ({ user, isEven }) => {
 };
 
 export default UserMatchCard;
+// Type describing component props.
 type Props = {
   user: PublicUser;
   isEven?: boolean;

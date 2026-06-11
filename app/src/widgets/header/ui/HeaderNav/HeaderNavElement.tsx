@@ -1,3 +1,4 @@
+
 "use client";
 
 import style from "../header.module.scss";
@@ -15,6 +16,7 @@ const NavElement: React.FC<TProps> = ({
   const pathname = usePathname();
   const router = useRouter();
 
+// Render the component's JSX structure.
   return (
     <Tooltip title={title}>
       <IconButton
@@ -33,6 +35,7 @@ const NavElement: React.FC<TProps> = ({
 };
 
 export default NavElement;
+// Props type for the T component.
 type TProps = {
   title: string;
   to: string;

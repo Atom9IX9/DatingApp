@@ -1,3 +1,4 @@
+
 "use client"
 import { useDragAndDrop } from "@/shared/lib";
 import { Box, Button } from "@mui/material";
@@ -13,6 +14,7 @@ import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
 import { getFileUrl } from "../lib/setFileUrl";
 import { useUploadAvatarMutation } from "../api/avatarApi";
 import { Avatar } from "@/entities/avatar";
+// Form component that captures upload input.
 const UploadForm: React.FC<Props> = ({ onSuccess }) => {
   const dropAreaRef = useRef<HTMLDivElement | null>(null);
   const { file, isDragging, resetFile, error } = useDragAndDrop(
@@ -56,6 +58,7 @@ const UploadForm: React.FC<Props> = ({ onSuccess }) => {
     }
   }, [result.data]);
 
+// Render the component's JSX structure.
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
@@ -157,7 +160,9 @@ const UploadForm: React.FC<Props> = ({ onSuccess }) => {
   );
 };
 
+// Form component that captures upload input.
 export default UploadForm;
+// Exported type alias used for typing shared data shapes.
 export type Props = {
   onSuccess?: (data: Avatar) => void;
 };

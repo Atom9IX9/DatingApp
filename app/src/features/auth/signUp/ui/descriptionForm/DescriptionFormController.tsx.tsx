@@ -1,3 +1,4 @@
+
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./descriptionForm.module.scss";
@@ -34,6 +35,7 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
+// Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
       <BackdropLoader
@@ -53,6 +55,7 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
 };
 
 export default DescriptionFormController;
+// Type describing component props.
 type Props = {
   onSuccess?: (data: RegisterUserDescriptionResponse) => void;
 };

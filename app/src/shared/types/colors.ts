@@ -1,3 +1,4 @@
+
 import { Theme } from "@mui/material";
 
 export enum Colors {
@@ -30,6 +31,8 @@ export enum PaletteColors {
   Success = "success"
 }
 
+// Exported type alias used for typing shared data shapes.
 export type PaletteShade = "main" | "light" | "dark"
 
+// Exported type alias used for typing shared data shapes.
 export type ThemeColor = `${PaletteColors}.${PaletteShade}`;

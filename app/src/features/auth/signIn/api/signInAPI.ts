@@ -1,9 +1,11 @@
+
 import { baseAPI } from "@/shared/api";
-import { UserAuthResponse } from "../../types";
+import { CheckAuthResponseData } from "../../types";
+import { SignInData } from "../types/form";
 
 export const loginEndpoint = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<UserAuthResponse, DataForLogin>({
+    login: builder.mutation<LoginResponse, SignInData>({
       query: (body) => ({
         url: "auth/login",
         method: "POST",
@@ -15,8 +17,5 @@ export const loginEndpoint = baseAPI.injectEndpoints({
 });
 
 export const { useLoginMutation } = loginEndpoint;
-export type DataForLogin = {
-  email: string;
-  password: string;
-  rememberMe?: boolean;
-};
+// Exported type alias used for typing shared data shapes.
+export type LoginResponse = CheckAuthResponseData & { accessToken: string };

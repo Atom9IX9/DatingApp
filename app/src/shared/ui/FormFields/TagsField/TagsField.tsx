@@ -1,3 +1,4 @@
+
 "use client";
 import { FieldValues } from "react-hook-form";
 import FieldContainer from "../FieldContainer";
@@ -12,7 +13,9 @@ function TagsField<FV extends FieldValues>({
   field,
   fieldParams,
 }: FieldProps<FV, TagsFieldParams>) {
+// React state storing inputValue values and updating them with InputValue.
   const [inputValue, setInputValue] = useState("");
+// Boolean helper that checks whether maxtagscountreached is true.
   const isMaxTagsCountReached = !!(
     fieldParams?.maxTagsCount && field.value.length >= fieldParams.maxTagsCount
   );
@@ -37,6 +40,7 @@ function TagsField<FV extends FieldValues>({
     <Chip sx={{ height: 25, marginRight: "5px", marginBottom: "5px" }} label={tag} color="primary" onDelete={onDeleteTag(tag)} key={tag} />
   ));
 
+// Render the component's JSX structure.
   return (
     <FieldContainer<FV, TagsFieldParams>
       error={error}

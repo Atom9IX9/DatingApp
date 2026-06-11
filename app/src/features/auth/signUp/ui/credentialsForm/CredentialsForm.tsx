@@ -1,3 +1,4 @@
+
 "use client";
 import React from "react";
 import style from "./credentialsForm.module.scss";
@@ -8,13 +9,15 @@ import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 import { CredentialsData } from "../../types/form";
 import { Box } from "@mui/material";
-import HydratedForm from "../HydratedRegisterProcessForm";
+import HydratedForm from "../../../ui/HydratedForm";
 
+// Form component that captures credentials input.
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
+// Render the component's JSX structure.
   return (
     <HydratedForm className={style.credentialsForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
@@ -59,13 +62,15 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         </BaseBtn>
       </Box>
       <Box className={style.signInLink}>
-        Already have an account? <StyledLink href="sign-in">Log in</StyledLink>
+        Already have an account?{" "}<StyledLink href="sign-in">Log in</StyledLink>
       </Box>
     </HydratedForm>
   );
 };
 
+// Form component that captures credentials input.
 export default CredentialsForm;
+// Props type for the CredentialsForm component.
 type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<CredentialsData>;

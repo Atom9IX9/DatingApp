@@ -1,14 +1,17 @@
+
 import { Box, IconButton, Tooltip } from "@mui/material";
 import { MouseEventHandler } from "react";
 import React from "react";
 import { TChildren } from "../types";
 
+// Button component used for an action in src\shared\ui\UIIconMenuButton.tsx.
 const UIIconMenuButton: React.FC<TProps> = ({
   handleClick,
   isOpen,
   children,
   title,
 }) => {
+// Render the component's JSX structure.
   return (
     <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
       <Tooltip title={title}>
@@ -27,7 +30,9 @@ const UIIconMenuButton: React.FC<TProps> = ({
   );
 };
 
+// Button component for a user action in src\shared\ui\UIIconMenuButton.tsx.
 export default UIIconMenuButton;
+// Props type for the T component.
 type TProps = {
   children: TChildren;
   handleClick: MouseEventHandler;

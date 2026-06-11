@@ -1,3 +1,4 @@
+
 import style from "../header.module.scss";
 import Link from "next/link";
 import AccountMenu from "./AccountMenu";
@@ -8,6 +9,7 @@ import { useAuth } from "@/features/auth";
 const UserActions = () => {
   const auth = useAuth();
 
+// Render the component's JSX structure.
   return (
     <Box display="flex" className={style.userActions}>
       <div className={style.loginBlock}>

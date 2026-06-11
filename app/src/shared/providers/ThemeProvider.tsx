@@ -1,3 +1,4 @@
+
 "use client";
 import { createContext, useEffect, useState } from "react";
 import "../styles/globals.scss";
@@ -12,6 +13,7 @@ import { setTheme } from "../model";
 
 export const ThemeContext = createContext<"light" | "dark">("dark");
 
+// Provider component that supplies context or store values for Theme.
 const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
   const storeTheme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
@@ -32,6 +34,7 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
     }
   }, [storeTheme, currentTheme]);
 
+// Render the component's JSX structure.
   return (
     <ThemeContext.Provider value={currentTheme}>
       <Provider theme={currentTheme === "dark" ? dark : light}>
@@ -41,5 +44,7 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
   );
 };
 
+// Provider that supplies Theme context or state.
 export default ThemeProvider;
+// Exported type alias used for typing shared data shapes.
 export type Props = { children: TChildren; cookiesTheme?: TTheme };

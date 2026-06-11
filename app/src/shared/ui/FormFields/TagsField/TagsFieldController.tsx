@@ -1,3 +1,4 @@
+
 import { FieldValues } from "react-hook-form";
 import FieldController, { FieldControllerProps } from "../FieldController";
 import TagsField, { default as TextField } from "./TagsField";
@@ -10,6 +11,7 @@ function TagsFieldController<FV extends FieldValues>({
   validate,
   fieldParams,
 }: FieldControllerProps<FV, TagsFieldParams>) {
+// Render the component's JSX structure.
   return (
     <FieldController<FV, TagsFieldParams>
       control={control}
@@ -22,6 +24,7 @@ function TagsFieldController<FV extends FieldValues>({
 }
 
 export default TagsFieldController;
+// Exported type alias used for typing shared data shapes.
 export type TagsFieldParams = BasicFieldParams<{
   maxTagLength?: number;
   maxTagsCount?: number;

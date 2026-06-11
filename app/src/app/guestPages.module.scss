@@ -76,6 +76,25 @@
       }
     }
   }
+  &.signInPage {
+    background: linear-gradient(
+      -55deg,
+      #CC00FF 6%,
+      #00FFC8 71%
+    );
+    background-size: 100%;
+    background-position: center center;
+
+    .heroBlock {
+      &::after {
+        background: linear-gradient(
+          -74deg,
+          #CC00FF 0%,
+          #00FFC8 100%
+        );
+      }
+    }
+  }
 }
 
 @keyframes appear {

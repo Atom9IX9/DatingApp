@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Box, Slider } from "@mui/material";
@@ -6,6 +7,7 @@ import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
 import { useAvatarEdit } from "@/entities/avatar";
 import { BaseBtn } from "@/shared/ui";
 
+// Form component that captures avatar edit input.
 const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
   const { refs, handlers, state } = useAvatarEdit();
 
@@ -19,6 +21,7 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
     }
   };
 
+// Render the component's JSX structure.
   return (
     <Box
       sx={{
@@ -146,12 +149,15 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
   );
 };
 
+// Form component that captures avatar edit input.
 export default AvatarEditForm;
+// Type describing component props.
 type Props = {
   avatarUrl: string;
   onSubmit?: onUploadSubmit;
 };
 
+// Exported type alias used for typing shared data shapes.
 export type onUploadSubmit = (data: {
   posX: number;
   posY: number;

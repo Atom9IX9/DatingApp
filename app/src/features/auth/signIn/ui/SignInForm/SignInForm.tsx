@@ -1,81 +1,83 @@
+"use client";
 import React from "react";
 import style from "./signInForm.module.scss";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import PersonIcon from "@mui/icons-material/Person";
 import { Control } from "react-hook-form";
-import LockIcon from "@mui/icons-material/Lock";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { Box, Button, Checkbox, FormControlLabel } from "@mui/material";
-import { DataForLogin, validateEmail } from "@/features/auth";
-// import { UIIconInputField } from "@/shared/ui";
-import { Colors, RtkQueryResultError } from "@/shared/types";
+import { validateEmail } from "../../../../auth";
+import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
+import { RtkQueryResultError } from "@/shared/types";
+import { Box } from "@mui/material";
+import HydratedForm from "../../../ui/HydratedForm";
+import { SignInData } from "../../types/form";
 
-const SignInForm: React.FC<SignInFormProps> = ({
+// Form component that captures credentials input.
+const CredentialsForm: React.FC<CredentialsFormProps> = ({
   onSubmit,
   control,
   result,
 }) => {
+  // Render the component's JSX structure.
   return (
-    <form className={style.signInForm} onSubmit={onSubmit}>
-      <Box className={style.formIcon}>
-        <PersonOutlineIcon sx={{ width: 50, height: 50, color: "#ffffff" }} />
-      </Box>
+    <HydratedForm className={style.signInForm} onSubmit={onSubmit}>
+      <Box component={"h2"}>Login</Box>
       <Box className={style.fields}>
-        {/* <UIIconInputField
+        <TextField
           control={control}
           name="email"
-          inputParams={{ isRequired: true, label: "Email" }}
-          icon={<PersonIcon sx={{ width: 30, height: 30 }} />}
+          fieldParams={{
+            isRequired: true,
+            label: "Email",
+            type: "text",
+            color: "secondary",
+          }}
           validate={{ validateEmail }}
           rootError={result.rootError}
         />
-        <UIIconInputField
+        <TextField
           control={control}
           name="password"
-          inputParams={{
+          fieldParams={{
             isRequired: true,
             label: "Password",
             type: "password",
+            color: "secondary",
           }}
-          icon={<LockIcon sx={{ width: 30, height: 30 }} />}
           rootError={result.rootError}
-        /> */}
-        <FormControlLabel
-          className={style.rememberMeLabel}
-          label="Remember me"
-          control={
-            <Checkbox
-              color="secondary"
-              sx={{ color: Colors.SecondaryLight }}
-              {...control.register("rememberMe")}
-            />
-          }
         />
-        {!!result.error && (
-          <div className={style.rootError}>
-            {(result.error as RtkQueryResultError).data?.message ||
-              "Failed to send data"}
-          </div>
+        {result.rootError && (
+          <Box
+            color="error"
+            className={style.rootError}
+            sx={{ color: "error.main" }}
+          >
+            {result.rootError || "Failed to send data"}
+          </Box>
         )}
       </Box>
-
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        className={style.submitBtn}
-        disabled={result.status === QueryStatus.pending}
-      >
-        submit
-      </Button>
-    </form>
+      <Box className={style.signUpLink}>
+        Haven&apos;t created an account before?{" "}
+        <StyledLink href="sign-up">Register</StyledLink>
+      </Box>
+      <Box sx={{ width: "100%", mt: "20px" }}>
+        <BaseBtn
+          sx={{ height: "62px" }}
+          type="submit"
+          variant="contained"
+          fullWidth
+        >
+          Continue
+        </BaseBtn>
+      </Box>
+    </HydratedForm>
   );
 };
 
-export default SignInForm;
-type SignInFormProps = {
-  onSubmit: () => void;
-  control: Control<DataForLogin>;
+// Form component that captures credentials input.
+export default CredentialsForm;
+// Props type for the CredentialsForm component.
+type CredentialsFormProps = {
+  onSubmit: (e?: React.BaseSyntheticEvent) => void;
+  control: Control<SignInData>;
   result: {
     error?: RtkQueryResultError;
     status: QueryStatus;

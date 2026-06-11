@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -29,8 +31,13 @@
     "sass": "^1.77.8"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/isomorphic-fetch": "^0.0.39",
+    "@types/jest": "^30.0.0",
     "@types/js-cookie": "^3.0.6",
-    "@types/node": "^20",
+    "@types/node": "^20.19.41",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.57.1",
@@ -38,7 +45,11 @@
     "eslint-plugin-boundaries": "^5.3.1",
     "eslint-plugin-feature-sliced": "^0.0.2",
     "eslint-plugin-import": "^2.32.0",
+    "isomorphic-fetch": "^3.0.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "scss": "^0.2.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

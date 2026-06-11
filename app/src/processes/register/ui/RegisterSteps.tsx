@@ -1,9 +1,11 @@
+
 import { Box } from "@mui/material";
 import React from "react";
 import style from "./registerStepsStyle.module.scss";
 
 const Step: React.FC<StepProps> = React.memo(
   ({ isCurrent, isPassed, number, stepsCount }) => {
+// Render the component's JSX structure.
     return (
       <>
         <Box
@@ -71,10 +73,12 @@ const RegisterSteps: React.FC<Props> = ({ currentStep, stepsCount }) => {
 Step.displayName = "Step";
 
 export default React.memo(RegisterSteps);
+// Type describing component props.
 type Props = {
   currentStep: number;
   stepsCount: number;
 };
+// Props type for the Step component.
 type StepProps = {
   isPassed?: boolean;
   isCurrent?: boolean;

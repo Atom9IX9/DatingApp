@@ -1,3 +1,4 @@
+
 "use client";
 
 import { PositionedAvatar, selectAvatar } from "@/entities/avatar";
@@ -6,6 +7,7 @@ import { Box } from "@mui/material";
 
 const AuthPreview = () => {
   const avatar = useAppSelector(selectAvatar);
+// Render the component's JSX structure.
   return (
     <Box>
       <PositionedAvatar avatar={avatar} size={260} />
