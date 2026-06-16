@@ -1,58 +1,73 @@
-
-import { ResponseOnboardingStep, verifyAuth } from "@/features/auth";
 import { isAuthRoute, isGuestRoute } from "@/shared/config";
 import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
+import { refreshTokens } from "./features/auth";
+
+const JWT_ACCESS_SECRET = new TextEncoder().encode(
+  process.env.JWT_ACCESS_SECRET,
+);
+
+async function tryToRefreshTokens(
+  refreshToken: string,
+  res: NextResponse,
+): Promise<boolean> {
+  try {
+    const tokenData = await refreshTokens(refreshToken);
+
+    res.cookies.set("accessToken", tokenData.accessToken);
+
+    // Throw settin-header to browser
+    if (tokenData.setCookieHeader) {
+      res.headers.append("set-cookie", tokenData.setCookieHeader);
+    }
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("accessToken")?.value;
+  let accesToken = req.cookies.get("accessToken")?.value;
+  const refreshToken = req.cookies.get("refreshToken")?.value;
   const { pathname } = req.nextUrl;
+  let isValidToken = false;
+  let res = NextResponse.next();
 
-// Do not call the backend when the auth token is missing.
-  if (!token) {
-    if (isAuthRoute(pathname)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
-    return NextResponse.next();
+  if (!accesToken && !refreshToken && isAuthRoute(pathname)) {
+    return NextResponse.redirect(new URL("/sign-in", req.url));
   }
 
+  // Middleware-side token validation
   try {
-    const authResponse = await verifyAuth(token);
+    await jwtVerify(accesToken || "", JWT_ACCESS_SECRET, {
+      algorithms: ["HS256"],
+    });
 
-    if (authResponse) {
-// Boolean helper that checks whether registered is true.
-      const isRegistered =
-        authResponse.data?.onboardingStep === ResponseOnboardingStep.REGISTERED;
-
-      if (isGuestRoute(pathname) && isRegistered) {
-        return NextResponse.redirect(new URL("/home", req.url));
-      }
-
-      if (isAuthRoute(pathname) && !isRegistered) {
-        if (pathname !== "/sign-up") {
-          return NextResponse.redirect(new URL("/sign-up", req.url));
-        }
-      }
-
-      if (authResponse?.error?.statusCode === 403 && pathname !== "/sign-up") {
-        return NextResponse.redirect(new URL("/sign-up", req.url));
-      }
-
-      const requestHeaders = new Headers(req.headers);
-      requestHeaders.set("x-response-data", JSON.stringify(authResponse));
-
-      return NextResponse.next({
-        request: {
-          headers: requestHeaders,
-        },
-      });
-    }
-  } catch (error) {
-    if (isAuthRoute(pathname)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
+    isValidToken = true;
+  } catch (e) {
+    // Token verification failed
+    if (refreshToken) {
+      const isRefreshed = await tryToRefreshTokens(refreshToken, res);
+      isValidToken = isRefreshed;
     }
   }
 
-  return NextResponse.next();
+  // Checking routes after token validation
+  if (isGuestRoute(pathname) && isValidToken) {
+    const redirectRes = NextResponse.redirect(new URL("/home", req.url));
+    redirectRes.headers.set("set-cookie", res.headers.get("set-cookie") || "");
+    return redirectRes;
+  }
+
+  if (isAuthRoute(pathname) && !isValidToken) {
+    const redirectRes = NextResponse.redirect(new URL("/sign-in", req.url));
+    redirectRes.cookies.delete("accessToken");
+    redirectRes.cookies.delete("refreshToken");
+    return redirectRes;
+  }
+
+  return res;
 }
 
 // Route matching configuration for the middleware.

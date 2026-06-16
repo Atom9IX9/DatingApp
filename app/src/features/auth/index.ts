@@ -8,6 +8,7 @@ export { default as RegisterUserPersonalInfoForm } from "./signUp/ui/registerPer
 export { default as DescriptionForm } from "./signUp/ui/descriptionForm/DescriptionFormController.tsx";
 
 export { verifyAuth } from "./verifyAuth/api/verifyAuthAPI";
+export { refreshTokens } from "./refresh/api/refreshTokens";
 // Exported type alias used for typing shared data shapes.
 export type { VerifyAuthResponse } from "./verifyAuth/api/verifyAuthAPI";
 // Exported type alias used for typing shared data shapes.

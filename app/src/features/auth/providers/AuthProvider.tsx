@@ -28,8 +28,6 @@ const AuthProvider: React.FC<ProviderProps> = ({
   const storeAvatar = useAppSelector(selectAvatar);
 
   useEffect(() => {
-    console.log("auth ", auth?.user?.avatar)
-    console.log("store ", storeAvatar)
     if (onboardingStep) {
       dispatch(setCurrentStep(onboardingStep));
     }
