@@ -17,3 +17,5 @@ export { ResponseOnboardingStep, ClientOnboardingStep } from "./types";
 export { useAuth } from "./hooks/useAuth";
 export { default as AuthProvider } from "./providers/AuthProvider";
 export { validateEmail } from "./model/validation/validateEmail";
+
+export { fetchOnboardingStep } from "./api/fetchOnboardingStep"

@@ -6,8 +6,7 @@ import {
   UserAccountInfo,
   selectUser,
 } from "@/entities/user";
-import { useEffect } from "react";
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
 import { selectAvatar, setAvatar } from "@/entities/avatar";
@@ -29,6 +28,7 @@ const AuthProvider: React.FC<ProviderProps> = ({
 
   useEffect(() => {
     if (onboardingStep) {
+      console.log(onboardingStep)
       dispatch(setCurrentStep(onboardingStep));
     }
     if (auth) {

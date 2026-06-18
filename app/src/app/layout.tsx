@@ -1,10 +1,17 @@
-
 import type { Metadata } from "next";
 import "@/shared/styles/globals.scss";
 import { nunito, quicksend } from "@/shared/fonts";
 import { Providers } from "@/root";
-import { cookies, headers } from "next/headers"; // Імпортуємо headers
+import { cookies } from "next/headers"; // Імпортуємо headers
 import { TTheme } from "@/shared/types";
+import {
+  ClientOnboardingStep,
+  OnboardingStep,
+  ResponseOnboardingStep,
+  verifyAuth,
+  VerifyAuthResponse,
+} from "@/features/auth";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -17,25 +24,19 @@ const RootLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-// Read a cookie from the incoming request in server-side rendering.
+  // Read a cookie from the incoming request in server-side rendering.
   const theme = cookies().get("theme")?.value as TTheme | undefined;
-  
-  // Читаємо заголовок, який мідлвейр зашив у запит
-  const headersList = headers();
-// Custom hook that handles rDataHeader logic.
-  const userDataHeader = headersList.get("x-response-data");
+  const accessToken = cookies().get("accessToken")?.value;
 
-  let authData = null;
+  console.log(accessToken)
 
-  if (userDataHeader) {
-    try {
-      authData = JSON.parse(userDataHeader);
-    } catch (e) {
-      authData = null;
-    }
-  }
+  let authData: VerifyAuthResponse | null = null;
 
-// Render the component's JSX structure.
+  try {
+    authData = await verifyAuth(accessToken);
+  } catch (e) {}
+
+  // Render the component's JSX structure.
   return (
     <html lang="en">
       <body className={`${nunito.variable} ${quicksend.variable}`}>

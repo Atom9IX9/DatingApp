@@ -1,7 +1,11 @@
 import { isAuthRoute, isGuestRoute } from "@/shared/config";
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
-import { refreshTokens } from "./features/auth";
+import {
+  fetchOnboardingStep,
+  refreshTokens,
+  ResponseOnboardingStep,
+} from "./features/auth";
 
 const JWT_ACCESS_SECRET = new TextEncoder().encode(
   process.env.JWT_ACCESS_SECRET,
@@ -10,20 +14,15 @@ const JWT_ACCESS_SECRET = new TextEncoder().encode(
 async function tryToRefreshTokens(
   refreshToken: string,
   res: NextResponse,
-): Promise<boolean> {
+): Promise<any> {
   try {
     const tokenData = await refreshTokens(refreshToken);
 
     res.cookies.set("accessToken", tokenData.accessToken);
 
-    // Throw settin-header to browser
-    if (tokenData.setCookieHeader) {
-      res.headers.append("set-cookie", tokenData.setCookieHeader);
-    }
-
-    return true;
-  } catch (error) {
-    return false;
+    return tokenData;
+  } catch {
+    return null;
   }
 }
 
@@ -33,6 +32,8 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   let isValidToken = false;
   let res = NextResponse.next();
+  let onboardingStep = req.cookies.get("onboardingStep")?.value;
+  let isRegistered = onboardingStep === ResponseOnboardingStep.REGISTERED;
 
   if (!accesToken && !refreshToken && isAuthRoute(pathname)) {
     return NextResponse.redirect(new URL("/sign-in", req.url));
@@ -45,16 +46,44 @@ export async function middleware(req: NextRequest) {
     });
 
     isValidToken = true;
+
+    if (!onboardingStep) {
+      const currentStep = await fetchOnboardingStep(accesToken || "");
+      onboardingStep = String(currentStep);
+      if (onboardingStep === ResponseOnboardingStep.REGISTERED) {
+        isRegistered = true;
+      }
+      res.cookies.set("onboardingStep", currentStep as string);
+    }
   } catch (e) {
     // Token verification failed
     if (refreshToken) {
-      const isRefreshed = await tryToRefreshTokens(refreshToken, res);
-      isValidToken = isRefreshed;
+      const tokenData = await tryToRefreshTokens(refreshToken, res);
+
+      if (tokenData) {
+        accesToken = tokenData.accessToken;
+        isValidToken = true;
+
+        const redirectRes = NextResponse.redirect(req.nextUrl);
+
+        redirectRes.cookies.set("accessToken", tokenData.accessToken);
+
+        for (const c of res.cookies.getAll()) {
+          redirectRes.cookies.set(c);
+        }
+
+        for (const cookie of tokenData.setCookies) {
+          redirectRes.headers.append("set-cookie", cookie);
+        }
+
+        return redirectRes;
+      }
     }
   }
 
   // Checking routes after token validation
-  if (isGuestRoute(pathname) && isValidToken) {
+  if (isGuestRoute(pathname) && isValidToken && isRegistered) {
+    console.log("true");
     const redirectRes = NextResponse.redirect(new URL("/home", req.url));
     redirectRes.headers.set("set-cookie", res.headers.get("set-cookie") || "");
     return redirectRes;
@@ -64,7 +93,17 @@ export async function middleware(req: NextRequest) {
     const redirectRes = NextResponse.redirect(new URL("/sign-in", req.url));
     redirectRes.cookies.delete("accessToken");
     redirectRes.cookies.delete("refreshToken");
+    redirectRes.cookies.delete("onboardingStep");
     return redirectRes;
+  }
+
+  if (
+    pathname !== "/sign-up" &&
+    onboardingStep &&
+    Number(onboardingStep) !== 1 &&
+    !isRegistered
+  ) {
+    return NextResponse.redirect(new URL("/sign-up", req.url));
   }
 
   return res;

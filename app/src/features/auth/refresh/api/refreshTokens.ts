@@ -10,13 +10,13 @@ export const refreshTokens = async (refreshToken: string) => {
   );
 
   if (!refresh.ok) {
-    console.log(refresh.status);
     throw new Error("Failed to refresh token");
   }
 
   const data = await refresh.json();
 
-  const setCookieHeader = refresh.headers.get("set-cookie");
-
-  return { accessToken: data.accessToken, setCookieHeader };
+  return {
+    accessToken: data.accessToken,
+    setCookies: refresh.headers.getSetCookie?.() ?? [],
+  };
 };

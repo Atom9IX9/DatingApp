@@ -1,11 +1,10 @@
-
 "use client";
-import { User } from "@/entities/user";
 import StoreProvider from "./StoreProvider";
 import {
   AuthProvider,
   ClientOnboardingStep,
   OnboardingStep,
+  ResponseOnboardingStep,
   VerifyAuthResponse,
 } from "@/features/auth";
 import { ThemeProvider } from "@/shared/providers";
@@ -13,27 +12,30 @@ import { TChildren, TTheme } from "@/shared/types";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { CheckAuthResponseData } from "@/features/auth";
+import Cookies from "js-cookie";
 
 export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
-  let onboardingStep: OnboardingStep | undefined = auth?.data?.onboardingStep;
+  const onboardingStep =
+    Cookies.get("onboardingStep") || ClientOnboardingStep.CREDENTIALS;
 
-  if (auth?.error?.statusCode === 401) {
-    onboardingStep = ClientOnboardingStep.CREDENTIALS;
-  } else if (auth?.error?.statusCode === 403) {
-    onboardingStep = ClientOnboardingStep.INFO;
-  }
-
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <StoreProvider>
-      <AuthProvider auth={auth?.data} onboardingStep={onboardingStep}>
+      <AuthProvider
+        auth={auth?.data}
+        onboardingStep={
+          auth?.data?.onboardingStep ||
+          (onboardingStep !== ResponseOnboardingStep.REGISTERED
+            ? Number(onboardingStep)
+            : (onboardingStep as OnboardingStep))
+        }
+      >
         <AppRouterCacheProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <ThemeProvider cookiesTheme={cookies.theme}>
-                {children}
-              </ThemeProvider>
-            </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <ThemeProvider cookiesTheme={cookies.theme}>
+              {children}
+            </ThemeProvider>
+          </LocalizationProvider>
         </AppRouterCacheProvider>
       </AuthProvider>
     </StoreProvider>
@@ -46,5 +48,5 @@ export type Props = {
   cookies: {
     theme: TTheme | undefined;
   };
-  auth: VerifyAuthResponse | undefined;
+  auth: VerifyAuthResponse | null;
 };

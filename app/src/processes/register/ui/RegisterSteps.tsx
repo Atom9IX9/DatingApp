@@ -1,11 +1,11 @@
-
 import { Box } from "@mui/material";
 import React from "react";
 import style from "./registerStepsStyle.module.scss";
+import { OnboardingStep, ResponseOnboardingStep } from "@/features/auth";
 
 const Step: React.FC<StepProps> = React.memo(
   ({ isCurrent, isPassed, number, stepsCount }) => {
-// Render the component's JSX structure.
+    // Render the component's JSX structure.
     return (
       <>
         <Box
@@ -39,7 +39,10 @@ const RegisterSteps: React.FC<Props> = ({ currentStep, stepsCount }) => {
     const steps = [];
 
     for (let i = 1; i <= stepsCount; i++) {
-      if (i < currentStep) {
+      if (
+        currentStep !== ResponseOnboardingStep.REGISTERED &&
+        i < currentStep
+      ) {
         steps.push(
           <Step
             stepsCount={stepsCount}
@@ -75,7 +78,7 @@ Step.displayName = "Step";
 export default React.memo(RegisterSteps);
 // Type describing component props.
 type Props = {
-  currentStep: number;
+  currentStep: OnboardingStep;
   stepsCount: number;
 };
 // Props type for the Step component.

@@ -6,7 +6,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: TInitialState = {
   currentStep: 1,
   stepsCount: 4,
-  isRegistred: false,
+  isRegistered: false,
 };
 
 // Redux slice that manages the registerProcess state.
@@ -18,7 +18,7 @@ const registerProcessSlice = createSlice({
       if (action.payload !== ResponseOnboardingStep.REGISTERED) {
         state.currentStep = action.payload;
       } else {
-        state.isRegistred = true;
+        state.isRegistered = true;
       }
     },
   },
@@ -32,5 +32,5 @@ export const { setCurrentStep } = registerProcessSlice.actions;
 export type TInitialState = {
   currentStep: OnboardingStep;
   stepsCount: number;
-  isRegistred: boolean;
+  isRegistered: boolean;
 };
