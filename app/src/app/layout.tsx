@@ -28,8 +28,6 @@ const RootLayout = async ({
   const theme = cookies().get("theme")?.value as TTheme | undefined;
   const accessToken = cookies().get("accessToken")?.value;
 
-  console.log(accessToken)
-
   let authData: VerifyAuthResponse | null = null;
 
   try {

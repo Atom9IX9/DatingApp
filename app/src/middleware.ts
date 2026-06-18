@@ -83,7 +83,6 @@ export async function middleware(req: NextRequest) {
 
   // Checking routes after token validation
   if (isGuestRoute(pathname) && isValidToken && isRegistered) {
-    console.log("true");
     const redirectRes = NextResponse.redirect(new URL("/home", req.url));
     redirectRes.headers.set("set-cookie", res.headers.get("set-cookie") || "");
     return redirectRes;

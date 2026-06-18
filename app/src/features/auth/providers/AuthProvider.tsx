@@ -28,7 +28,6 @@ const AuthProvider: React.FC<ProviderProps> = ({
 
   useEffect(() => {
     if (onboardingStep) {
-      console.log(onboardingStep)
       dispatch(setCurrentStep(onboardingStep));
     }
     if (auth) {
