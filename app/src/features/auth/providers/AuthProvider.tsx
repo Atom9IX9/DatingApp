@@ -19,7 +19,6 @@ export const AuthContext = createContext<UserAccountInfo | null>(null);
 const AuthProvider: React.FC<ProviderProps> = ({
   children,
   auth,
-  onboardingStep,
 }) => {
   const dispatch = useAppDispatch();
 // Custom hook that handles r logic.
@@ -27,9 +26,6 @@ const AuthProvider: React.FC<ProviderProps> = ({
   const storeAvatar = useAppSelector(selectAvatar);
 
   useEffect(() => {
-    if (onboardingStep) {
-      dispatch(setCurrentStep(onboardingStep));
-    }
     if (auth) {
       dispatch(setUserAuth(auth.authCredentials));
       if (auth.user) {
@@ -39,7 +35,7 @@ const AuthProvider: React.FC<ProviderProps> = ({
         }
       }
     }
-  }, [dispatch, auth, onboardingStep]);
+  }, [dispatch, auth]);
 
 // Render the component's JSX structure.
   return (
@@ -68,5 +64,4 @@ export default AuthProvider;
 type ProviderProps = {
   children: TChildren;
   auth: CheckAuthResponseData | undefined;
-  onboardingStep?: OnboardingStep;
 };
