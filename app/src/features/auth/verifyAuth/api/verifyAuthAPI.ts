@@ -7,8 +7,8 @@ export const verifyAuth: VerifyAuthFn = async (
 ) => {
 // Do not call the backend when the auth token is missing.
   if (!token) {
-// Return undefined for invalid or missing input.
-    return undefined;
+// Return null for invalid or missing input.
+    return null;
   }
 
 // Perform an HTTP request to the backend API and wait for the response.
@@ -36,4 +36,4 @@ export type VerifyAuthResponse = {
   };
 };
 // Exported type alias used for typing shared data shapes.
-export type VerifyAuthFn = (token?: string) => Promise<VerifyAuthResponse | undefined>;
+export type VerifyAuthFn = (token?: string) => Promise<VerifyAuthResponse | null>;

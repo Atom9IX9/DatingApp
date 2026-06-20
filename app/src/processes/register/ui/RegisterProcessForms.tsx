@@ -1,8 +1,10 @@
-
+"use client";
 import {
   CredentialsForm,
   DescriptionForm,
+  OnboardingStep,
   RegisterUserPersonalInfoForm,
+  ResponseOnboardingStep,
 } from "@/features/auth";
 import { useAppDispatch } from "@/shared/lib";
 import { setCurrentStep } from "../model/registerProcess.slice";
@@ -14,18 +16,24 @@ import {
 import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { Box } from "@mui/material";
 import { setAvatar } from "@/entities/avatar";
-import { redirect } from "next/navigation";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();
+  const { push } = useRouter()
 
   const nextStep = () => {
-    dispatch(setCurrentStep(currentStep + 1));
+    if (currentStep !== ResponseOnboardingStep.REGISTERED) {
+      const newStep = currentStep + 1;
+      dispatch(setCurrentStep(newStep));
+      Cookies.set("onboardingStep", String(newStep));
+    }
   };
 
   switch (currentStep) {
     case 1:
-// Render the component's JSX structure.
+      // Render the component's JSX structure.
       return (
         <CredentialsForm
           onSuccess={({ auth: { authId, email } }) => {
@@ -35,7 +43,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
         />
       );
     case 2:
-// Render the component's JSX structure.
+      // Render the component's JSX structure.
       return (
         <RegisterUserPersonalInfoForm
           onSuccess={(data) => {
@@ -45,7 +53,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
         />
       );
     case 3:
-// Render the component's JSX structure.
+      // Render the component's JSX structure.
       return (
         <DescriptionForm
           onSuccess={(data) => {
@@ -55,13 +63,17 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
         />
       );
     case 4:
-// Render the component's JSX structure.
+      // Render the component's JSX structure.
       return (
         <Box sx={{ mt: "31px" }}>
-          <AvatarUploadForm onSuccess={(data) => {
-            dispatch(setAvatar(data))
-            redirect("/home")
-          }} />
+          <AvatarUploadForm
+            onSuccess={(data) => {
+              dispatch(setAvatar(data));
+              dispatch(setCurrentStep(ResponseOnboardingStep.REGISTERED));
+              Cookies.set("onboardingStep", "registered");
+              push("/home");
+            }}
+          />
         </Box>
       );
   }
@@ -70,5 +82,5 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
 export default RegisterProcessForms;
 // Type describing component props.
 type Props = {
-  currentStep: number;
+  currentStep: OnboardingStep;
 };

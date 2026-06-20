@@ -1,58 +1,111 @@
-
-import { ResponseOnboardingStep, verifyAuth } from "@/features/auth";
 import { isAuthRoute, isGuestRoute } from "@/shared/config";
 import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
+import {
+  fetchOnboardingStep,
+  refreshTokens,
+  ResponseOnboardingStep,
+} from "./features/auth";
+
+const JWT_ACCESS_SECRET = new TextEncoder().encode(
+  process.env.JWT_ACCESS_SECRET,
+);
+
+async function tryToRefreshTokens(
+  refreshToken: string,
+  res: NextResponse,
+): Promise<any> {
+  try {
+    const tokenData = await refreshTokens(refreshToken);
+
+    res.cookies.set("accessToken", tokenData.accessToken);
+
+    return tokenData;
+  } catch {
+    return null;
+  }
+}
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("accessToken")?.value;
+  let accesToken = req.cookies.get("accessToken")?.value;
+  const refreshToken = req.cookies.get("refreshToken")?.value;
   const { pathname } = req.nextUrl;
+  let isValidToken = false;
+  let res = NextResponse.next();
+  let onboardingStep = req.cookies.get("onboardingStep")?.value;
+  let isRegistered = onboardingStep === ResponseOnboardingStep.REGISTERED;
 
-// Do not call the backend when the auth token is missing.
-  if (!token) {
-    if (isAuthRoute(pathname)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
-    return NextResponse.next();
+  if (!accesToken && !refreshToken && isAuthRoute(pathname)) {
+    return NextResponse.redirect(new URL("/sign-in", req.url));
   }
 
+  // Middleware-side token validation
   try {
-    const authResponse = await verifyAuth(token);
+    await jwtVerify(accesToken || "", JWT_ACCESS_SECRET, {
+      algorithms: ["HS256"],
+    });
 
-    if (authResponse) {
-// Boolean helper that checks whether registered is true.
-      const isRegistered =
-        authResponse.data?.onboardingStep === ResponseOnboardingStep.REGISTERED;
+    isValidToken = true;
 
-      if (isGuestRoute(pathname) && isRegistered) {
-        return NextResponse.redirect(new URL("/home", req.url));
+    if (!onboardingStep) {
+      const currentStep = await fetchOnboardingStep(accesToken || "");
+      onboardingStep = String(currentStep);
+      if (onboardingStep === ResponseOnboardingStep.REGISTERED) {
+        isRegistered = true;
       }
-
-      if (isAuthRoute(pathname) && !isRegistered) {
-        if (pathname !== "/sign-up") {
-          return NextResponse.redirect(new URL("/sign-up", req.url));
-        }
-      }
-
-      if (authResponse?.error?.statusCode === 403 && pathname !== "/sign-up") {
-        return NextResponse.redirect(new URL("/sign-up", req.url));
-      }
-
-      const requestHeaders = new Headers(req.headers);
-      requestHeaders.set("x-response-data", JSON.stringify(authResponse));
-
-      return NextResponse.next({
-        request: {
-          headers: requestHeaders,
-        },
-      });
+      res.cookies.set("onboardingStep", currentStep as string);
     }
-  } catch (error) {
-    if (isAuthRoute(pathname)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
+  } catch (e) {
+    // Token verification failed
+    if (refreshToken) {
+      const tokenData = await tryToRefreshTokens(refreshToken, res);
+
+      if (tokenData) {
+        accesToken = tokenData.accessToken;
+        isValidToken = true;
+
+        const redirectRes = NextResponse.redirect(req.nextUrl);
+
+        redirectRes.cookies.set("accessToken", tokenData.accessToken);
+
+        for (const c of res.cookies.getAll()) {
+          redirectRes.cookies.set(c);
+        }
+
+        for (const cookie of tokenData.setCookies) {
+          redirectRes.headers.append("set-cookie", cookie);
+        }
+
+        return redirectRes;
+      }
     }
   }
 
-  return NextResponse.next();
+  // Checking routes after token validation
+  if (isGuestRoute(pathname) && isValidToken && isRegistered) {
+    const redirectRes = NextResponse.redirect(new URL("/home", req.url));
+    redirectRes.headers.set("set-cookie", res.headers.get("set-cookie") || "");
+    return redirectRes;
+  }
+
+  if (isAuthRoute(pathname) && !isValidToken) {
+    const redirectRes = NextResponse.redirect(new URL("/sign-in", req.url));
+    redirectRes.cookies.delete("accessToken");
+    redirectRes.cookies.delete("refreshToken");
+    redirectRes.cookies.delete("onboardingStep");
+    return redirectRes;
+  }
+
+  if (
+    pathname !== "/sign-up" &&
+    onboardingStep &&
+    Number(onboardingStep) !== 1 &&
+    !isRegistered
+  ) {
+    return NextResponse.redirect(new URL("/sign-up", req.url));
+  }
+
+  return res;
 }
 
 // Route matching configuration for the middleware.
