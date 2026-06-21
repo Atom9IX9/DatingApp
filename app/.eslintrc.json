@@ -3,16 +3,82 @@
   "plugins": ["boundaries", "import"],
   "settings": {
     "boundaries/elements": [
-      "shared",
-      "entities",
-      "features",
-      "widgets",
-      "pages",
-      "root"
+      {
+        "type": "shared",
+        "pattern": "src/shared/*"
+      },
+      {
+        "type": "entities",
+        "pattern": "src/entities/*"
+      },
+      {
+        "type": "features",
+        "pattern": "src/features/*"
+      },
+      {
+        "type": "widgets",
+        "pattern": "src/widgets/*"
+      },
+      {
+        "type": "processes",
+        "pattern": "src/processes/*"
+      },
+      {
+        "type": "app",
+        "pattern": "src/app/*"
+      },
+      {
+        "type": "root",
+        "pattern": "src/root/*"
+      }
     ],
     "import/resolver": {
       "typescript": {}
     }
   },
-  "rules": {}
+  "rules": {
+    "boundaries/element-types": [
+      "error",
+      {
+        "default": "disallow",
+        "rules": [
+          {
+            "from": "shared",
+            "allow": ["shared"]
+          },
+          {
+            "from": "entities",
+            "allow": ["shared", "entities"]
+          },
+          {
+            "from": "features",
+            "allow": ["shared", "entities", "features"]
+          },
+          {
+            "from": "widgets",
+            "allow": ["shared", "entities", "features", "widgets"]
+          },
+          {
+            "from": "processes",
+            "allow": ["shared", "entities", "features", "widgets", "processes"]
+          },
+          {
+            "from": "app",
+            "allow": [
+              "shared",
+              "entities",
+              "features",
+              "widgets",
+              "processes",
+              "app"
+            ]
+          },
+          {
+            "from": "root",
+            "allow": ["*"]
+          }
+        ]
+      }
+    ]
+  }
 }

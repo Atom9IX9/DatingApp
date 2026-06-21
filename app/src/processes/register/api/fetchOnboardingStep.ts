@@ -1,4 +1,5 @@
-import { ClientOnboardingStep, OnboardingStep, ResponseOnboardingStep } from "@/processes/register/types";
+import { ResponseOnboardingStep } from "@/features/auth/types";
+import { ClientOnboardingStep, OnboardingStep } from "@/processes/register/types";
 
 export const fetchOnboardingStep: FetchOnboardingStep = async (accessToken) => {
   const res = await fetch(

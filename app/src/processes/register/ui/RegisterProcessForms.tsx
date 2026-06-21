@@ -16,7 +16,8 @@ import { Box } from "@mui/material";
 import { setAvatar } from "@/entities/avatar";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { OnboardingStep, ResponseOnboardingStep } from "../types";
+import { OnboardingStep } from "../types";
+import { ResponseOnboardingStep } from "@/features/auth/types";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();

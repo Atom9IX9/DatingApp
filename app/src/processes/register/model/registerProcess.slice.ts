@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { OnboardingStep, ResponseOnboardingStep } from "../types";
+import { OnboardingStep } from "../types";
+import { ResponseOnboardingStep } from "@/features/auth/types";
 
 // State shape for initial.
 const initialState: TInitialState = {
