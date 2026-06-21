@@ -56,7 +56,7 @@ const UploadForm: React.FC<Props> = ({ onSuccess }) => {
     if (result.data && onSuccess) {
       onSuccess(result.data);
     }
-  }, [result.data]);
+  }, [result.data, onSuccess]);
 
 // Render the component's JSX structure.
   return (

@@ -1,7 +1,6 @@
-
 "use client";
 import style from "../../../guestPages.module.scss";
-import { SignInForm } from "@/features/auth";
+import { SignInForm } from "@/features/auth/ui";
 import { Box } from "@mui/material";
 import HeroBlock from "../../../HeroBlock";
 import { useAppDispatch } from "@/shared/lib";

@@ -10,8 +10,7 @@ import { createContext, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
 import { selectAvatar, setAvatar } from "@/entities/avatar";
-import { CheckAuthResponseData, OnboardingStep } from "../types";
-import { setCurrentStep } from "@/processes/register";
+import { CheckAuthResponseData } from "../types";
 
 export const AuthContext = createContext<UserAccountInfo | null>(null);
 

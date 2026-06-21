@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import style from "./registerStepsStyle.module.scss";
-import { OnboardingStep, ResponseOnboardingStep } from "@/features/auth";
+import { OnboardingStep, ResponseOnboardingStep } from "../types";
 
 const Step: React.FC<StepProps> = React.memo(
   ({ isCurrent, isPassed, number, stepsCount }) => {

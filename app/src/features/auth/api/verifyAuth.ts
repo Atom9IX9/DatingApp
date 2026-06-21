@@ -1,17 +1,14 @@
-
-import { CheckAuthResponseData } from "../../types";
+import { CheckAuthResponseData } from "../types";
 
 // Async function that validates the auth token by calling the backend.
-export const verifyAuth: VerifyAuthFn = async (
-  token?: string,
-) => {
-// Do not call the backend when the auth token is missing.
+export const verifyAuth: VerifyAuthFn = async (token?: string) => {
+  // Do not call the backend when the auth token is missing.
   if (!token) {
-// Return null for invalid or missing input.
+    // Return null for invalid or missing input.
     return null;
   }
 
-// Perform an HTTP request to the backend API and wait for the response.
+  // Perform an HTTP request to the backend API and wait for the response.
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth`, {
     method: "GET",
     headers: {
@@ -20,10 +17,10 @@ export const verifyAuth: VerifyAuthFn = async (
   });
 
   if (!res.ok) {
-// Return a typed response payload with either data or error.
+    // Return a typed response payload with either data or error.
     return { data: undefined, error: await res.json() };
   }
-// Return a typed response payload with either data or error.
+  // Return a typed response payload with either data or error.
   return { data: await res.json(), error: undefined };
 };
 
@@ -36,4 +33,6 @@ export type VerifyAuthResponse = {
   };
 };
 // Exported type alias used for typing shared data shapes.
-export type VerifyAuthFn = (token?: string) => Promise<VerifyAuthResponse | null>;
+export type VerifyAuthFn = (
+  token?: string,
+) => Promise<VerifyAuthResponse | null>;

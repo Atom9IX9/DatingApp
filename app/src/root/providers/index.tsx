@@ -1,16 +1,12 @@
 "use client";
 import StoreProvider from "./StoreProvider";
-import {
-  AuthProvider,
-  ClientOnboardingStep,
-  OnboardingStep,
-  ResponseOnboardingStep,
-  VerifyAuthResponse,
-} from "@/features/auth";
+import { AuthProvider } from "@/features/auth";
+import { VerifyAuthResponse } from "@/features/auth/api";
 import {
   onboardingStepFromCookies,
   OnboardingStepProvider,
 } from "@/processes/register";
+import { ClientOnboardingStep } from "@/processes/register/types";
 import { ThemeProvider } from "@/shared/providers";
 import { TChildren, TTheme } from "@/shared/types";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";

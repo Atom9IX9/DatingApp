@@ -4,14 +4,7 @@ import { nunito, quicksend } from "@/shared/fonts";
 import { Providers } from "@/root";
 import { cookies } from "next/headers"; // Імпортуємо headers
 import { TTheme } from "@/shared/types";
-import {
-  ClientOnboardingStep,
-  OnboardingStep,
-  ResponseOnboardingStep,
-  verifyAuth,
-  VerifyAuthResponse,
-} from "@/features/auth";
-import { redirect } from "next/navigation";
+import { verifyAuth, VerifyAuthResponse } from "@/features/auth/api";
 
 export const metadata: Metadata = {
   title: "Dating App",

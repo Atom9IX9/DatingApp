@@ -1,8 +1,4 @@
-import {
-  ClientOnboardingStep,
-  OnboardingStep,
-  ResponseOnboardingStep,
-} from "@/features/auth";
+import { ClientOnboardingStep, OnboardingStep, ResponseOnboardingStep } from "../types";
 
 export const onboardingStepFromCookies = (step?: string) => {
   if (!step) {

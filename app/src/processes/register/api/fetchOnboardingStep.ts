@@ -1,4 +1,4 @@
-import { ClientOnboardingStep, OnboardingStep, ResponseOnboardingStep } from "../types";
+import { ClientOnboardingStep, OnboardingStep, ResponseOnboardingStep } from "@/processes/register/types";
 
 export const fetchOnboardingStep: FetchOnboardingStep = async (accessToken) => {
   const res = await fetch(

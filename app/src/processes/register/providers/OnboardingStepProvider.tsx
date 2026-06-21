@@ -1,10 +1,10 @@
 "use client"
 
-import { OnboardingStep } from "@/features/auth";
 import { useAppDispatch } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
 import { useEffect } from "react";
 import { setCurrentStep } from "../model/registerProcess.slice";
+import { OnboardingStep } from "../types";
 
 const OnboardingStepProvider: React.FC<Props> = ({ children, onboardingStep }) => {
   const dispatch = useAppDispatch()

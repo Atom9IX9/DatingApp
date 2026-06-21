@@ -19,7 +19,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@x-entities/*": ["./src/entities/*"] // todo: remove this alias later
     },
     "types": ["jest", "node"]
   },

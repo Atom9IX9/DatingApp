@@ -1,4 +1,3 @@
-
 "use client"
 import { MutableRefObject, useEffect, useState } from "react";
 
@@ -59,7 +58,7 @@ export const useDragAndDrop = (
       node.removeEventListener("dragleave", handleDragLeave);
       node.removeEventListener("drop", handleDrop);
     };
-  }, [dropAreaRef]);
+  }, [dropAreaRef, allowedTypes]);
 
   const resetFile = () => setFile(undefined);
 

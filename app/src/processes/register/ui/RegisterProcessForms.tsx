@@ -2,10 +2,8 @@
 import {
   CredentialsForm,
   DescriptionForm,
-  OnboardingStep,
   RegisterUserPersonalInfoForm,
-  ResponseOnboardingStep,
-} from "@/features/auth";
+} from "@/features/auth/ui";
 import { useAppDispatch } from "@/shared/lib";
 import { setCurrentStep } from "../model/registerProcess.slice";
 import {
@@ -18,6 +16,7 @@ import { Box } from "@mui/material";
 import { setAvatar } from "@/entities/avatar";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { OnboardingStep, ResponseOnboardingStep } from "../types";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();
