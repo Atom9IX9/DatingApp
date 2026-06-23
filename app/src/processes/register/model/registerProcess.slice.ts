@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { OnboardingStep } from "../types";
+
 import { ResponseOnboardingStep } from "@/features/auth/types";
+
+import { OnboardingStep } from "../types";
 
 // State shape for initial.
 const initialState: TInitialState = {
@@ -34,3 +36,6 @@ export type TInitialState = {
   stepsCount: number;
   isRegistered: boolean;
 };
+export type RegisterProcessStateSchema = {
+  registerProcess: TInitialState
+}

@@ -1,14 +1,17 @@
 
 import React from "react";
-import style from "./descriptionForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
+import { Box } from "@mui/material";
+
 import { BaseBtn, MultitextField, TagsField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
-import { Box } from "@mui/material";
+
 import HydratedForm from "../../../ui/HydratedForm";
 import { RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
 import { validateEmptyArray } from "../../model/validation/validateEmptyArray";
+
+import style from "./descriptionForm.module.scss";
 
 // Form component that captures description input.
 const DescriptionForm: React.FC<CredentialsFormProps> = ({

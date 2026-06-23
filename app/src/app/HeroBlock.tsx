@@ -3,7 +3,9 @@
 
 import { Box } from "@mui/material";
 import Image from "next/image";
+
 import heroImg from "../../public/assets/imgs/hero.png";
+
 import style from "./guestPages.module.scss";
 
 const HeroBlock: React.FC<Props> = ({ forPage }) => {

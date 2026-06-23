@@ -1,6 +1,8 @@
-import { isAuthRoute, isGuestRoute } from "@/shared/config";
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
+
+import { isAuthRoute, isGuestRoute } from "@/shared/config";
+
 import { refreshTokens } from "./features/auth/api";
 import { fetchOnboardingStep } from "./processes/register/api";
 import { ResponseOnboardingStep } from "./features/auth/types";

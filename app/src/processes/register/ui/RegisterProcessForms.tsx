@@ -1,27 +1,30 @@
 "use client";
+
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { Box } from "@mui/material";
+
 import {
   CredentialsForm,
   DescriptionForm,
   RegisterUserPersonalInfoForm,
 } from "@/features/auth/ui";
-import { useAppDispatch } from "@/shared/lib";
-import { setCurrentStep } from "../model/registerProcess.slice";
 import {
   registerUserPersonalInfo,
   setUserAuth,
   setUserDescription,
 } from "@/entities/user";
 import { AvatarUploadForm } from "@/features/avatarCustomization";
-import { Box } from "@mui/material";
+import { useAppDispatch } from "@/root/model";
 import { setAvatar } from "@/entities/avatar";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
-import { OnboardingStep } from "../types";
 import { ResponseOnboardingStep } from "@/features/auth/types";
+
+import { OnboardingStep } from "../types";
+import { setCurrentStep } from "../model/registerProcess.slice";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
   const dispatch = useAppDispatch();
-  const { push } = useRouter()
+  const { push } = useRouter();
 
   const nextStep = () => {
     if (currentStep !== ResponseOnboardingStep.REGISTERED) {

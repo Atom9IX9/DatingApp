@@ -1,17 +1,18 @@
-
 "use client";
-import { createContext, useEffect, useState } from "react";
-import "../styles/globals.scss";
+
+import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { ThemeProvider as Provider } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@/shared/lib";
-import { selectTheme } from "../model/selectors/appSelectors";
-import dark from "../themes/dark";
-import light from "../themes/light";
-import { TChildren, TTheme } from "../types";
-import { setTheme } from "../model";
 
-export const ThemeContext = createContext<"light" | "dark">("dark");
+import { useAppDispatch, useAppSelector } from "@/root/model";
+import { selectTheme } from "@/shared/model/selectors/appSelectors";
+import dark from "@/shared/themes/dark";
+import light from "@/shared/themes/light";
+import { TChildren, TTheme } from "@/shared/types";
+import { setTheme } from "@/shared/model";
+import { ThemeContext } from "@/shared/contexts";
+
+import "../styles/globals.scss";
 
 // Provider component that supplies context or store values for Theme.
 const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
@@ -34,7 +35,7 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
     }
   }, [storeTheme, currentTheme]);
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <ThemeContext.Provider value={currentTheme}>
       <Provider theme={currentTheme === "dark" ? dark : light}>

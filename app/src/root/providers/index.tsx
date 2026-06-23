@@ -1,18 +1,21 @@
 "use client";
-import StoreProvider from "./StoreProvider";
-import { AuthProvider } from "@/features/auth";
-import { VerifyAuthResponse } from "@/features/auth/api";
-import {
-  onboardingStepFromCookies,
-  OnboardingStepProvider,
-} from "@/processes/register";
-import { ClientOnboardingStep } from "@/processes/register/types";
-import { ThemeProvider } from "@/shared/providers";
-import { TChildren, TTheme } from "@/shared/types";
+
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Cookies from "js-cookie";
+
+import { AuthProvider } from "@/features/auth";
+import { VerifyAuthResponse } from "@/features/auth/api";
+import {
+  onboardingStepFromCookies,
+} from "@/processes/register";
+import { ClientOnboardingStep } from "@/processes/register/types";
+import { TChildren, TTheme } from "@/shared/types";
+
+import StoreProvider from "./StoreProvider";
+import OnboardingStepProvider from "./OnboardingStepProvider";
+import ThemeProvider from "./ThemeProvider";
 
 export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   const onboardingStep = Cookies.get("onboardingStep");

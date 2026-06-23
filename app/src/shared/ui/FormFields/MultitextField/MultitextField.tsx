@@ -1,9 +1,9 @@
-
-import { FieldValues } from "react-hook-form";
-import FieldContainer from "../FieldContainer";
-import { FieldProps } from "@/shared/types/fields";
 import { TextField } from "@mui/material";
-import { MultitextFieldParams } from "./MultitextFieldController";
+import { FieldValues } from "react-hook-form";
+
+import { BasicFieldParams, FieldProps } from "@/shared/types/fields";
+
+import FieldContainer from "../FieldContainer";
 
 function MultitextField<FV extends FieldValues>({
   error,
@@ -55,3 +55,8 @@ function MultitextField<FV extends FieldValues>({
 }
 
 export default MultitextField;
+// Exported type alias used for typing shared data shapes.
+export type MultitextFieldParams = BasicFieldParams<{
+  maxLength?: number;
+  rows?: number;
+}>;

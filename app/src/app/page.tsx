@@ -1,7 +1,9 @@
 
 import { Box } from "@mui/material";
-import style from "./guestPages.module.scss";
+
 import { AuthLinks } from "@/widgets/authLinks";
+
+import style from "./guestPages.module.scss";
 import HeroBlock from "./HeroBlock";
 
 // Server-rendered page component for the start page.

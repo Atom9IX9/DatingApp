@@ -1,6 +1,7 @@
 
-import { TDateValidationFunction } from "@/shared/types";
 import dayjs from "dayjs";
+
+import { TDateValidationFunction } from "@/shared/types";
 
 // Validation helper that checks whether adult input is valid.
 export const validateAdult: TDateValidationFunction = (value) => {

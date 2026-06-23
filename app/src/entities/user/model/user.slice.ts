@@ -1,6 +1,8 @@
 
-import { Sex, User, UserAuth } from "@/entities/user";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { Sex, User, UserAuth } from "@/entities/user";
+
 import { Hobby, UserAccountInfo, UserInfo } from "../types/user";
 
 // State shape for initial.

@@ -1,11 +1,13 @@
-
-import NavElement from "./HeaderNavElement";
-import { Colors } from "@/shared/types";
-import style from "../header.module.scss";
 import { Box } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import ChatIcon from "@mui/icons-material/Chat";
+
+import { Colors } from "@/shared/types";
+
+import style from "../header.module.scss";
+
+import NavElement from "./HeaderNavElement";
 
 const HeaderNav = () => {
 // Render the component's JSX structure.

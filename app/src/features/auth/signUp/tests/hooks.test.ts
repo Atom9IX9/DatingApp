@@ -1,7 +1,8 @@
 
 import { renderHook, act } from "@testing-library/react";
-import { useRegisterCredentials } from "../hooks/useRegisterCredentials";
 import Cookies from "js-cookie";
+
+import { useRegisterCredentials } from "../hooks/useRegisterCredentials";
 
 const mockUnwrap = jest.fn();
 const mockRegisterCredentialsMutation = jest.fn(() => [

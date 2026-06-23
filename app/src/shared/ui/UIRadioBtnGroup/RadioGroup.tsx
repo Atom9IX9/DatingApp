@@ -1,24 +1,23 @@
-
 "use client";
 import {
   Box,
   FormControl,
   FormControlLabel,
   FormLabel,
-  Palette,
   Radio,
   RadioGroup,
   styled,
-  useTheme,
 } from "@mui/material";
-import style from "./radioGroup.module.scss";
 import {
   ControllerFieldState,
   ControllerRenderProps,
   FieldValues,
   Path,
 } from "react-hook-form";
+
 import { PaletteColors, PaletteShade, ThemeColor } from "@/shared/types";
+
+import style from "./radioGroup.module.scss";
 
 const BpIcon = styled("span")(() => ({
   borderRadius: "50%",
@@ -60,7 +59,7 @@ const BpCheckedIcon = styled(BpIcon, {
 const RadioItem: React.FC<RadioItemProps> = ({
   item: { bgColor, text, value },
 }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FormControlLabel
       control={
@@ -69,7 +68,11 @@ const RadioItem: React.FC<RadioItemProps> = ({
           checkedIcon={<BpCheckedIcon markerBgColor={bgColor} />}
         />
       }
-      label={<Box sx={{ fontFamily: "var(--font-primary)", marginLeft: "-3px" }}>{text}</Box>}
+      label={
+        <Box sx={{ fontFamily: "var(--font-primary)", marginLeft: "-3px" }}>
+          {text}
+        </Box>
+      }
       value={value}
       className={style.radioItem}
       sx={(theme) => ({
@@ -88,13 +91,13 @@ function RadioGroupUI<FV extends FieldValues>({
   field,
   fieldState,
   items,
-  required
+  required,
 }: Props<FV>) {
   const mappedItems = items.map((item, index) => (
     <RadioItem item={item} key={index} />
   ));
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FormControl required={required}>
       <FormLabel
@@ -108,7 +111,6 @@ function RadioGroupUI<FV extends FieldValues>({
             color: "#ffffff",
           },
         }}
-        
         htmlFor={field.name}
       >
         Sex

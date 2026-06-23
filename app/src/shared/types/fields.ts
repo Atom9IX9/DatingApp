@@ -1,5 +1,5 @@
-
 import { FieldValues } from "react-hook-form";
+
 import { TControllerField } from ".";
 
 // Exported type alias used for typing shared data shapes.
@@ -20,12 +20,3 @@ export type BasicFieldParams<P> = {
   autocomplete?: boolean;
 } & P;
 
-// export type FieldParams = {
-//   label?: string;
-//   isRequired?: boolean;
-//   type?: "text" | "password" | "date" | "multilineText";
-//   autofocus?: boolean;
-//   autocomplete?: boolean;
-//   rows?: number;
-//   maxLength?: number;
-// };

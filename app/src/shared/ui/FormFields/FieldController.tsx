@@ -1,19 +1,21 @@
-
 import {
   Control,
   Controller,
   FieldPath,
   FieldValues,
 } from "react-hook-form";
-import style from "./field.module.scss";
+import { Box } from "@mui/material";
+
 import {
   TArrayValidationFunction,
   TControllerField,
   TDateValidationFunction,
   TValidationFunction,
 } from "@/shared/types";
-import { Box } from "@mui/material";
+
 import { BasicFieldParams } from "../../types/fields";
+
+import style from "./field.module.scss";
 
 function FieldController<FV extends FieldValues, P>({
   control,

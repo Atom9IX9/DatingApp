@@ -1,6 +1,5 @@
 
 "use client"
-import { useDragAndDrop } from "@/shared/lib";
 import { Box, Button } from "@mui/material";
 import {
   ChangeEventHandler,
@@ -9,11 +8,15 @@ import {
   useState,
 } from "react";
 import UploadIcon from "@mui/icons-material/Upload";
+
+import { useDragAndDrop } from "@/shared/lib";
 import { BaseBtn, VisuallyHiddenInput } from "@/shared/ui";
-import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
+import { Avatar } from "@/entities/avatar";
+
 import { getFileUrl } from "../lib/setFileUrl";
 import { useUploadAvatarMutation } from "../api/avatarApi";
-import { Avatar } from "@/entities/avatar";
+
+import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
 // Form component that captures upload input.
 const UploadForm: React.FC<Props> = ({ onSuccess }) => {
   const dropAreaRef = useRef<HTMLDivElement | null>(null);

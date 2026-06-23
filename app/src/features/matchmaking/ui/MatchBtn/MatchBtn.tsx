@@ -1,5 +1,6 @@
 
 import { Button } from "@mui/material";
+
 import style from "../matchmakingStyle.module.scss";
 
 // Button component used for an action in src\features\matchmaking\ui\MatchBtn\MatchBtn.tsx.

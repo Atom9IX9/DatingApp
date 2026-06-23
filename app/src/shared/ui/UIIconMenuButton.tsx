@@ -1,7 +1,6 @@
-
 import { Box, IconButton, Tooltip } from "@mui/material";
-import { MouseEventHandler } from "react";
-import React from "react";
+import React, { MouseEventHandler } from "react";
+
 import { TChildren } from "../types";
 
 // Button component used for an action in src\shared\ui\UIIconMenuButton.tsx.

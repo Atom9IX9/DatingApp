@@ -1,9 +1,9 @@
+import { MouseEventHandler } from "react";
 
 import { Avatar, PositionedAvatar } from "@/entities/avatar";
 import { stringToColor, useTheme } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { UIIconMenuButton } from "@/shared/ui";
-import { MouseEventHandler } from "react";
 
 // Button component used for an action in src\widgets\header\ui\UserActions\AccountMenuBtn.tsx.
 const AccountMenuBtn: React.FC<TProps> = ({

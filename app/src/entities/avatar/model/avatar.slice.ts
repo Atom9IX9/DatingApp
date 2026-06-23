@@ -1,5 +1,5 @@
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { Avatar } from "../types";
 
 // State shape for initial.
@@ -27,3 +27,6 @@ const avatarSlice = createSlice({
 // Redux slice that manages avatar state.
 export default avatarSlice.reducer;
 export const { setAvatar } = avatarSlice.actions;
+export type AvatarStateSchema = {
+  avatar: Avatar;
+}

@@ -1,11 +1,12 @@
 
+import { Sex, User } from "@/entities/user";
+
 import userReducer, {
   setUserAuth,
   setUserAccountInfo,
   registerUserPersonalInfo,
   setUserDescription,
 } from "../model/user.slice";
-import { Sex, User } from "@/entities/user";
 import { Hobby } from "../types/user";
 
 describe("User Entity: Redux Reducer Tests", () => {

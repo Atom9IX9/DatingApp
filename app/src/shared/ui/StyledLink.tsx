@@ -1,7 +1,7 @@
-
 import Link from "next/link";
-import { Colors, TChildren } from "../types";
 import { Box } from "@mui/material";
+
+import { Colors, TChildren } from "../types";
 
 const StyledLink: React.FC<Props> = ({ children, href }) => {
 // Render the component's JSX structure.

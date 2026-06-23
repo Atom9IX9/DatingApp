@@ -1,5 +1,3 @@
-
-import { AuthApiError } from "@/shared/types";
 import {
   BaseQueryFn,
   createApi,
@@ -7,6 +5,8 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
+
+import { AuthApiError } from "../types";
 
 // API definitions for base.
 export const baseAPI = createApi({

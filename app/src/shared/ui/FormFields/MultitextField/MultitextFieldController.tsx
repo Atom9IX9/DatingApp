@@ -1,8 +1,8 @@
-
 import { FieldValues } from "react-hook-form";
+
 import FieldController, { FieldControllerProps } from "../FieldController";
-import { default as MultitextField } from "./MultitextField";
-import { BasicFieldParams } from "../../../types/fields";
+
+import { default as MultitextField, MultitextFieldParams } from "./MultitextField";
 
 function MultitextFieldController<FV extends FieldValues>({
   control,
@@ -24,8 +24,4 @@ function MultitextFieldController<FV extends FieldValues>({
 }
 
 export default MultitextFieldController;
-// Exported type alias used for typing shared data shapes.
-export type MultitextFieldParams = BasicFieldParams<{
-  maxLength?: number;
-  rows?: number;
-}>;
+

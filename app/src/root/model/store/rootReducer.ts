@@ -1,5 +1,5 @@
-
 import { combineReducers } from "@reduxjs/toolkit";
+
 import { appReducer } from "@/shared/model";
 import { baseAPI } from "@/shared/api";
 import { userReducer } from "@/entities/user";

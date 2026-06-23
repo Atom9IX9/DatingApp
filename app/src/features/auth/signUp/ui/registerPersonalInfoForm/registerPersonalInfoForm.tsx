@@ -1,8 +1,9 @@
 
 import React from "react";
-import style from "./registerPersonalInfoForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
+import { Box } from "@mui/material";
+
 import {
   BaseBtn,
   DateField,
@@ -11,11 +12,13 @@ import {
   TextField,
 } from "@/shared/ui";
 import { Colors, RtkQueryResultError } from "@/shared/types";
-import { UserPersonalInfoFormData } from "../../types/form";
-import { Box } from "@mui/material";
-import { validateAdult } from "../../../model/validation/validateAdult";
 import { Sex } from "@/entities/user";
+
+import { UserPersonalInfoFormData } from "../../types/form";
+import { validateAdult } from "../../../model/validation/validateAdult";
 import HydratedForm from "../../../ui/HydratedForm";
+
+import style from "./registerPersonalInfoForm.module.scss";
 
 // Form component that captures credentials input.
 const CredentialsForm: React.FC<CredentialsFormProps> = ({

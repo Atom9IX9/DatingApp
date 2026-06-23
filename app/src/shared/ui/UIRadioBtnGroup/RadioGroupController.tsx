@@ -1,4 +1,3 @@
-
 "use client"
 
 import {
@@ -7,8 +6,9 @@ import {
   FieldPath,
   FieldValues,
 } from "react-hook-form";
-import style from "./radioGroup.module.scss";
 import { Box } from "@mui/material";
+
+import style from "./radioGroup.module.scss";
 import RadioGroupUI, { RadioItem } from "./RadioGroup";
 
 function RadioGroupController<FV extends FieldValues>({

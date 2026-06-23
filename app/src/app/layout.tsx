@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+
 import "@/shared/styles/globals.scss";
+import { cookies } from "next/headers"; // Імпортуємо headers
+
 import { nunito, quicksend } from "@/shared/fonts";
 import { Providers } from "@/root";
-import { cookies } from "next/headers"; // Імпортуємо headers
 import { TTheme } from "@/shared/types";
 import { verifyAuth, VerifyAuthResponse } from "@/features/auth/api";
 

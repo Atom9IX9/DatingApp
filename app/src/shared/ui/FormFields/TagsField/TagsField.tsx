@@ -1,12 +1,13 @@
-
 "use client";
+
 import { FieldValues } from "react-hook-form";
-import FieldContainer from "../FieldContainer";
-import { FieldProps } from "@/shared/types/fields";
-import { Box, Button, Chip, TextField } from "@mui/material";
-import { TagsFieldParams } from "./TagsFieldController";
 import AddIcon from "@mui/icons-material/Add";
-import { KeyboardEvent, useState } from "react";
+import { useState } from "react";
+import { Box, Button, Chip, TextField } from "@mui/material";
+
+import { BasicFieldParams, FieldProps } from "@/shared/types/fields";
+
+import FieldContainer from "../FieldContainer";
 
 function TagsField<FV extends FieldValues>({
   error,
@@ -130,3 +131,8 @@ function TagsField<FV extends FieldValues>({
 }
 
 export default TagsField;
+// Exported type alias used for typing shared data shapes.
+export type TagsFieldParams = BasicFieldParams<{
+  maxTagLength?: number;
+  maxTagsCount?: number;
+}>;

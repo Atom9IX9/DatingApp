@@ -1,10 +1,11 @@
 
 "use client";
 
-import { TChildren } from "@/shared/types";
-import { BackdropLoader } from "@/shared/ui";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
+
+import { TChildren } from "@/shared/types";
+import { BackdropLoader } from "@/shared/ui";
 
 // Form component that captures hydrated input.
 const HydratedForm: React.FC<Props> = ({ children, className, onSubmit }) => {

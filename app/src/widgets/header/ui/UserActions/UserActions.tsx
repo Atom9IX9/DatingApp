@@ -1,15 +1,17 @@
+import Link from "next/link";
+import { Box } from "@mui/material";
+
+import { useAuth } from "@/features/auth";
 
 import style from "../header.module.scss";
-import Link from "next/link";
-import AccountMenu from "./AccountMenu";
+
 import AppSettingsMenu from "./AppSettingsMenu";
-import { Box } from "@mui/material";
-import { useAuth } from "@/features/auth";
+import AccountMenu from "./AccountMenu";
 
 const UserActions = () => {
   const auth = useAuth();
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box display="flex" className={style.userActions}>
       <div className={style.loginBlock}>

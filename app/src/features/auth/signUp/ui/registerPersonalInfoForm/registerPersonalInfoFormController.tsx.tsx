@@ -1,20 +1,23 @@
 
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import style from "./registerPersonalInfoForm.module.scss";
 import { useEffect, useState } from "react";
-import PersonalInfoForm from "./registerPersonalInfoForm";
-import { RtkQueryResultError } from "@/shared/types";
-import { UserPersonalInfoFormData } from "../../types/form";
 import { Alert, Backdrop, Box, CircularProgress } from "@mui/material";
-import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
 import { QueryStatus } from "@reduxjs/toolkit/query";
+
+import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
 import { TransitionAlert } from "@/shared/ui";
+
+import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
+import { UserPersonalInfoFormData } from "../../types/form";
 import {
   RegisterUserPersonalInfoResponse,
   useRegisterUserPersonalInfoMutation,
 } from "../../api/signUpAPI";
+
+import PersonalInfoForm from "./registerPersonalInfoForm";
+import style from "./registerPersonalInfoForm.module.scss";
 
 const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   const [alert, setAlert] = useState<null | string>(null);

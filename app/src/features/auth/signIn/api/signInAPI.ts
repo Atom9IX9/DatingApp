@@ -1,5 +1,6 @@
 
 import { baseAPI } from "@/shared/api";
+
 import { CheckAuthResponseData } from "../../types";
 import { SignInData } from "../types/form";
 

@@ -1,13 +1,16 @@
 
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import style from "./descriptionForm.module.scss";
-import DescriptionForm from "./DescriptionForm";
-import { RtkQueryResultError } from "@/shared/types";
 import { Box } from "@mui/material";
-import { RegisterUserDescriptionReqBody, RegisterUserDescriptionResponse, useRegisterUserDescriptionMutation } from "../../api/signUpAPI";
 import { QueryStatus } from "@reduxjs/toolkit/query";
+
+import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
+
+import { RegisterUserDescriptionReqBody, RegisterUserDescriptionResponse, useRegisterUserDescriptionMutation } from "../../api/signUpAPI";
+
+import DescriptionForm from "./DescriptionForm";
+import style from "./descriptionForm.module.scss";
 
 const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
   const { control, handleSubmit, setError, formState } =

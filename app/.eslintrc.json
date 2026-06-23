@@ -1,67 +1,72 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals"],
   "plugins": ["boundaries", "import"],
+
   "settings": {
+    "import/resolver": {
+      "typescript": {}
+    },
+
     "boundaries/elements": [
+      { "type": "shared", "pattern": "src/shared/**/*" },
+      { "type": "entities", "pattern": "src/entities/**/*" },
+      { "type": "features", "pattern": "src/features/**/*" },
+      { "type": "widgets", "pattern": "src/widgets/**/*" },
+      { "type": "processes", "pattern": "src/processes/**/*" },
+      { "type": "app", "pattern": "src/app/**/*" },
       {
-        "type": "shared",
-        "pattern": "src/shared/*"
-      },
-      {
-        "type": "entities",
-        "pattern": "src/entities/*"
-      },
-      {
-        "type": "features",
-        "pattern": "src/features/*"
-      },
-      {
-        "type": "widgets",
-        "pattern": "src/widgets/*"
-      },
-      {
-        "type": "processes",
-        "pattern": "src/processes/*"
-      },
-      {
-        "type": "app",
-        "pattern": "src/app/*"
+        "type": "global-store",
+        "pattern": ["src/root/model", "src/root/model/**/*"] 
       },
       {
         "type": "root",
-        "pattern": "src/root/*"
+        "pattern": "src/root/**/*",
+        "ignore": ["src/root/model", "src/root/model/**/*"]
       }
-    ],
-    "import/resolver": {
-      "typescript": {}
-    }
+    ]
   },
+
   "rules": {
     "boundaries/element-types": [
       "error",
       {
         "default": "disallow",
         "rules": [
-          {
-            "from": "shared",
-            "allow": ["shared"]
-          },
+          { "from": "shared", "allow": ["shared", "global-store"] },
+
           {
             "from": "entities",
-            "allow": ["shared", "entities"]
+            "allow": ["shared", "entities", "global-store"]
           },
+
           {
             "from": "features",
-            "allow": ["shared", "entities", "features"]
+            "allow": ["shared", "entities", "features", "global-store"]
           },
+
           {
             "from": "widgets",
-            "allow": ["shared", "entities", "features", "widgets"]
+            "allow": [
+              "shared",
+              "entities",
+              "features",
+              "widgets",
+              "global-store"
+            ]
           },
+
           {
             "from": "processes",
-            "allow": ["shared", "entities", "features", "widgets", "processes"]
+            "allow": [
+              "shared",
+              "entities",
+              "features",
+              "widgets",
+              "processes",
+              "global-store"
+            ]
           },
+
           {
             "from": "app",
             "allow": [
@@ -70,14 +75,53 @@
               "features",
               "widgets",
               "processes",
-              "app"
+              "app",
+              "global-store"
             ]
           },
+
+          { "from": "root", "allow": ["*", "global-store"] }
+        ]
+      }
+    ],
+
+    "import/no-restricted-paths": [
+      "warn",
+      {
+        "zones": [
           {
-            "from": "root",
-            "allow": ["*"]
+            "target": "./src/features/*",
+            "from": "./src/features/*/*",
+            "except": ["./src/features/*/index.*"]
+          },
+          {
+            "target": "./src/entities/*",
+            "from": "./src/entities/*/*",
+            "except": ["./src/entities/*/index.*"]
+          },
+          {
+            "target": "./src/widgets/*",
+            "from": "./src/widgets/*/*",
+            "except": ["./src/widgets/*/index.*"]
           }
         ]
+      }
+    ],
+
+    "import/no-cycle": "error",
+    "import/no-internal-modules": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
       }
     ]
   }

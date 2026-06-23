@@ -1,9 +1,11 @@
 
 "use client";
 import { Box } from "@mui/material";
-import { Avatar as TAvatar } from "../types";
-import { getStaticByUrl } from "@/shared/lib";
 import Image from "next/image";
+
+import { getStaticByUrl } from "@/shared/lib";
+
+import { Avatar as TAvatar } from "../types";
 import { useAvatarEdit } from "../lib/hooks/useAvatarEdit";
 
 // Component that renders a positioned avatar image with transform and clipping behavior.

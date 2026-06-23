@@ -1,15 +1,18 @@
 
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import style from "./signInForm.module.scss";
-import { RtkQueryResultError } from "@/shared/types";
 import { Box } from "@mui/material";
 import { QueryStatus } from "@reduxjs/toolkit/query";
+
+import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
+
 import { SignInData } from "../../types/form";
-import SignInForm from "./SignInForm";
 import { LoginResponse } from "../../api/signInAPI";
 import { useLogin } from "../../hooks/useLogin";
+
+import SignInForm from "./SignInForm";
+import style from "./signInForm.module.scss";
 
 const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   const { control, handleSubmit, setError, formState } = useForm<SignInData>({

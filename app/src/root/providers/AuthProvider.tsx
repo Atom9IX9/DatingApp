@@ -1,26 +1,23 @@
-
 "use client";
+
+import { createContext, useEffect } from "react";
+
 import {
   setUserAuth,
   setUserAccountInfo,
   UserAccountInfo,
   selectUser,
 } from "@/entities/user";
-import { createContext, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { TChildren } from "@/shared/types";
 import { selectAvatar, setAvatar } from "@/entities/avatar";
-import { CheckAuthResponseData } from "../types";
-
-export const AuthContext = createContext<UserAccountInfo | null>(null);
+import { useAppDispatch, useAppSelector } from "@/root/model";
+import { CheckAuthResponseData } from "@/features/auth";
+import { AuthContext } from "@/features/auth/contexts";
 
 // Provider component that supplies context or store values for Auth.
-const AuthProvider: React.FC<ProviderProps> = ({
-  children,
-  auth,
-}) => {
+const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
   const dispatch = useAppDispatch();
-// Custom hook that handles r logic.
+  // Custom hook that handles r logic.
   const user = useAppSelector(selectUser);
   const storeAvatar = useAppSelector(selectAvatar);
 
@@ -36,7 +33,7 @@ const AuthProvider: React.FC<ProviderProps> = ({
     }
   }, [dispatch, auth]);
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <AuthContext.Provider
       value={

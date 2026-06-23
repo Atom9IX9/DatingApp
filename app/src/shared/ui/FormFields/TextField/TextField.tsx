@@ -1,21 +1,24 @@
+"use client";
 
 import { FieldValues } from "react-hook-form";
-import FieldContainer from "../FieldContainer";
-import { FieldProps } from "@/shared/types/fields";
 import { IconButton, TextField } from "@mui/material";
-import { TextFieldParams } from "./TextFieldController";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { useState } from "react";
+
+import { BasicFieldParams, FieldProps } from "@/shared/types/fields";
+
+import FieldContainer from "../FieldContainer";
+
 function Field<FV extends FieldValues>({
   error,
   field,
   fieldParams,
 }: Props<FV>) {
-// React state storing showPassword values and updating them with ShowPassword.
+  // React state storing showPassword values and updating them with ShowPassword.
   const [showPassword, setShowPassword] = useState(false);
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FieldContainer<FV, TextFieldParams>
       error={error}
@@ -82,3 +85,9 @@ function Field<FV extends FieldValues>({
 export default Field;
 // Type describing component props.
 type Props<FV extends FieldValues> = FieldProps<FV, TextFieldParams>;
+// Exported type alias used for typing shared data shapes.
+export type TextFieldParams = BasicFieldParams<{
+  maxLength?: number;
+  type?: "text" | "password"; 
+  color?: "primary" | "secondary";
+}>;

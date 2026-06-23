@@ -1,15 +1,18 @@
 
 "use client";
 import React from "react";
-import style from "./credentialsForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { validateEmail } from "../../../../auth";
+import { Box } from "@mui/material";
+
 import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
+
+import { validateEmail } from "../../../../auth";
 import { CredentialsData } from "../../types/form";
-import { Box } from "@mui/material";
 import HydratedForm from "../../../ui/HydratedForm";
+
+import style from "./credentialsForm.module.scss";
 
 // Form component that captures credentials input.
 const CredentialsForm: React.FC<CredentialsFormProps> = ({

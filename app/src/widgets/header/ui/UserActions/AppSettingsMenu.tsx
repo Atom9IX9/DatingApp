@@ -1,4 +1,3 @@
-
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
@@ -7,10 +6,12 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { IconButton } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+
 import { UIIconMenuButton, UIMenu } from "@/shared/ui";
-import { useAppDispatch, useMenu, useTheme } from "@/shared/lib";
+import { useMenu, useTheme } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { setTheme } from "@/shared/model";
+import { useAppDispatch } from "@/root/model";
 
 // Menu component or interaction handler for AppSettings.
 const AppSettingsMenu = () => {
@@ -18,7 +19,7 @@ const AppSettingsMenu = () => {
 
   const theme = useTheme();
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <>
       <UIIconMenuButton
@@ -68,7 +69,7 @@ const SwitchColorTheme = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <>
       <ListItemIcon>

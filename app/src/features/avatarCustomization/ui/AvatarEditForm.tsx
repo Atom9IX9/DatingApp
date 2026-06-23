@@ -4,6 +4,7 @@
 import { Box, Slider } from "@mui/material";
 import { FC, MouseEventHandler } from "react";
 import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
+
 import { useAvatarEdit } from "@/entities/avatar";
 import { BaseBtn } from "@/shared/ui";
 
