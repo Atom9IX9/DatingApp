@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 import { setUserAccountInfo, setUserAuth } from "@/entities/user";
-import { setCurrentStep } from "@/processes/register";
-import { SignInForm } from "@/features/auth/ui";
+import { setCurrentStep } from "@/processes/register/model/registerProcess.slice";
+import { SignInForm } from "@/features/auth";
 import { setAvatar } from "@/entities/avatar";
 import { useAppDispatch } from "@/shared/lib";
 

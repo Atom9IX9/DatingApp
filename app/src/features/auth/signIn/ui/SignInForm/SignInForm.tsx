@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
 
-import { validateEmail } from "../../../../auth";
+import { validateEmail } from "../../../model/validation/validateEmail";
 import HydratedForm from "../../../ui/HydratedForm";
 import { SignInData } from "../../types/form";
 

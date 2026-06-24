@@ -5,8 +5,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Cookies from "js-cookie";
 
-import { VerifyAuthResponse } from "@/features/auth/api";
-import { onboardingStepFromCookies } from "@/processes/register";
+import { VerifyAuthResponse } from "@/features/auth";
+import { onboardingStepFromCookies } from "@/processes/register/lib/onboardingStepFromCookies";
 import { ClientOnboardingStep } from "@/processes/register/types";
 import { TChildren, TTheme } from "@/shared/types";
 

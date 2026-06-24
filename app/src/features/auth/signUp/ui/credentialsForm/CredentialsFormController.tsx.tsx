@@ -11,8 +11,6 @@ import { CredentialsData } from "../../types/form";
 import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
 import { RegisterCredentialsResponse } from "../../api/signUpAPI";
 
-
-
 import CredentialsForm from "./CredentialsForm";
 import style from "./credentialsForm.module.scss";
 

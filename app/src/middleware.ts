@@ -3,9 +3,9 @@ import { jwtVerify } from "jose";
 
 import { isAuthRoute, isGuestRoute } from "@/shared/config";
 
-import { refreshTokens } from "./features/auth/api";
+import { refreshTokens } from "./features/auth/api/refreshTokens";
 import { fetchOnboardingStep } from "./processes/register/api/fetchOnboardingStep";
-import { ResponseOnboardingStep } from "./features/auth/types";
+import { ResponseOnboardingStep } from "./features/auth/types/types";
 
 const JWT_ACCESS_SECRET = new TextEncoder().encode(
   process.env.JWT_ACCESS_SECRET,

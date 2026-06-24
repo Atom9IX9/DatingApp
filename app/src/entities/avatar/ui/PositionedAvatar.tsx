@@ -1,4 +1,3 @@
-
 "use client";
 import { Box } from "@mui/material";
 import Image from "next/image";
@@ -16,10 +15,10 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
     handlers: { handleImageLoad },
   } = useAvatarEdit();
 
-// Scale factor used to adjust avatar image position and size based on the rendered component dimensions.
+  // Scale factor used to adjust avatar image position and size based on the rendered component dimensions.
   const k = size / 260;
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box
       ref={refs.containerRef}
@@ -33,8 +32,12 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
     >
       {avatar.url && (
         <Image
+          priority
           ref={refs.imgRef}
-          onLoad={handleImageLoad}
+          onLoad={(e) => {
+            // todo: Skeleton
+            handleImageLoad(e);
+          }}
           src={getStaticByUrl(avatar.url)}
           alt="avatar"
           width={size * 5}

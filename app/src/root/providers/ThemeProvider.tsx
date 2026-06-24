@@ -26,6 +26,7 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
     if (cookiesTheme && cookiesTheme !== storeTheme) {
       dispatch(setTheme(cookiesTheme));
     }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   useEffect(() => {

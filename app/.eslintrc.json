@@ -27,6 +27,7 @@
   },
 
   "rules": {
+    "no-console": "warn",
     "boundaries/element-types": [
       "error",
       {

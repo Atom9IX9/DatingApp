@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { baseAPI } from "@/shared/api";
+import { baseAPI } from "@/shared/api/rtkQueryInstance";
 
 import { rootReducer } from "./rootReducer";
 

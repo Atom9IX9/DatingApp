@@ -8,7 +8,7 @@ import {
   CredentialsForm,
   DescriptionForm,
   RegisterUserPersonalInfoForm,
-} from "@/features/auth/ui";
+} from "@/features/auth";
 import {
   registerUserPersonalInfo,
   setUserAuth,
@@ -17,7 +17,7 @@ import {
 import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { useAppDispatch } from "@/shared/lib";
 import { setAvatar } from "@/entities/avatar";
-import { ResponseOnboardingStep } from "@/features/auth/types";
+import { ResponseOnboardingStep } from "@/features/auth/types/types";
 
 import { OnboardingStep } from "../types";
 import { setCurrentStep } from "../model/registerProcess.slice";

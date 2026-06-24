@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { ResponseOnboardingStep } from "@/features/auth/types";
+import { ResponseOnboardingStep } from "@/features/auth/types/types";
 
 import { OnboardingStep } from "../types";
 

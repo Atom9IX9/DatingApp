@@ -1,4 +1,4 @@
-import { ResponseOnboardingStep } from "@/features/auth/types";
+import { ResponseOnboardingStep } from "@/features/auth/types/types";
 
 import { ClientOnboardingStep, OnboardingStep } from "../types";
 

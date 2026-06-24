@@ -1,5 +1,4 @@
 export { onboardingStepFromCookies } from "./lib/onboardingStepFromCookies";
-export { default as RegisterProcess } from "./ui/RegisterProcess";
 export {
   default as registerProcessReducer,
   setCurrentStep,

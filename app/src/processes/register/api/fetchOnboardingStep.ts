@@ -1,5 +1,8 @@
-import { ResponseOnboardingStep } from "@/features/auth/types";
-import { ClientOnboardingStep, OnboardingStep } from "@/processes/register/types";
+import { ResponseOnboardingStep } from "@/features/auth/types/types";
+import {
+  ClientOnboardingStep,
+  OnboardingStep,
+} from "@/processes/register/types";
 
 export const fetchOnboardingStep: FetchOnboardingStep = async (accessToken) => {
   const res = await fetch(
@@ -14,9 +17,9 @@ export const fetchOnboardingStep: FetchOnboardingStep = async (accessToken) => {
 
   if (!res.ok) {
     if (res.status === 401) {
-      return ClientOnboardingStep.CREDENTIALS
+      return ClientOnboardingStep.CREDENTIALS;
     } else if (res.status === 403) {
-      return ClientOnboardingStep.INFO
+      return ClientOnboardingStep.INFO;
     }
   }
 
@@ -25,7 +28,7 @@ export const fetchOnboardingStep: FetchOnboardingStep = async (accessToken) => {
   return data.onboardingStep;
 };
 
-type FetchOnboardingStep = (accessToken: string) => Promise<OnboardingStep>
+type FetchOnboardingStep = (accessToken: string) => Promise<OnboardingStep>;
 type FetchOnboardingResponse = {
   onboardingStep: ResponseOnboardingStep;
-}
+};
