@@ -4,7 +4,7 @@ import { Control, Controller, FieldPath, FieldValues } from "react-hook-form";
 import { Box } from "@mui/material";
 
 import style from "./radioGroup.module.scss";
-import RadioGroupUI, { RadioItem } from "./RadioGroup";
+import RadioGroupUI, { TRadioItem } from "./RadioGroup";
 
 function RadioGroupController<FV extends FieldValues>({
   control,
@@ -36,6 +36,6 @@ export default RadioGroupController;
 type Props<V extends FieldValues> = {
   control: Control<V>;
   name: FieldPath<V>;
-  items: RadioItem[];
+  items: TRadioItem[];
   required?: boolean;
 };
