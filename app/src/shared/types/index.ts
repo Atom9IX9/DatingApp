@@ -1,4 +1,3 @@
-
 import { Dayjs } from "dayjs";
 import { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 
@@ -8,15 +7,15 @@ export type TChildren = Readonly<React.ReactNode>;
 export type TTheme = "dark" | "light";
 // Exported type alias used for typing shared data shapes.
 export type TValidationFunction = (
-  value: string
+  value: string,
 ) => boolean | string | Promise<boolean | string>;
 // Exported type alias used for typing shared data shapes.
 export type TArrayValidationFunction = (
-  value: any[]
+  value: any[],
 ) => boolean | string | Promise<boolean | string>;
 // Exported type alias used for typing shared data shapes.
 export type TDateValidationFunction = (
-  value: Dayjs
+  value: Dayjs,
 ) => boolean | string | Promise<boolean | string>;
 // Exported type alias used for typing shared data shapes.
 export type AuthApiError = {
@@ -34,11 +33,14 @@ export type RtkQueryResultError = {
   };
 };
 // Exported type alias used for typing shared data shapes.
-export type TControllerField<FV extends FieldValues> = ControllerRenderProps<FV, Path<FV>>
+export type TControllerField<FV extends FieldValues> = ControllerRenderProps<
+  FV,
+  Path<FV>
+>;
 
 export { Colors } from "./colors";
-export { PaletteColors } from "./colors"
-export { type PaletteShade } from "./colors"
-export { type ThemeColor } from "./colors"
+export { PaletteColors } from "./colors";
+export { type PaletteShade } from "./colors";
+export { type ThemeColor } from "./colors";
 
 export * from "./statusCodes";

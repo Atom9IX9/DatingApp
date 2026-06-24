@@ -27,7 +27,9 @@ const RootLayout = async ({
 
   try {
     authData = await verifyAuth(accessToken);
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 
   // Render the component's JSX structure.
   return (

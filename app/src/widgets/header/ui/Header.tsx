@@ -12,13 +12,13 @@ import UserActions from "./UserActions/UserActions";
 const Header = () => {
   const theme = useTheme();
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <AppBar
       position="static"
       variant="outlined"
       className={cn(style.header, style[theme])}
-      sx={{bgcolor: "info.dark"}}
+      sx={{ bgcolor: "info.dark" }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <HeaderNav />

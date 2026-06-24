@@ -1,4 +1,3 @@
-
 import { Box } from "@mui/material";
 
 import { AuthLinks } from "@/widgets/authLinks";
@@ -8,7 +7,7 @@ import HeroBlock from "./HeroBlock";
 
 // Server-rendered page component for the start page.
 const Startpage: React.FC = async () => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box className={style.mainBlock}>
       <HeroBlock forPage="startpage" />

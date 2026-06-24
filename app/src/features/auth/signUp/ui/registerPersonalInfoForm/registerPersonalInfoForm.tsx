@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
@@ -26,7 +25,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   control,
   result,
 }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <HydratedForm className={style.personalInfoForm} onSubmit={onSubmit}>
       <Box className={style.fields}>

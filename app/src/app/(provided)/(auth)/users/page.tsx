@@ -1,4 +1,3 @@
-
 "use client";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -13,7 +12,7 @@ const UsersPage = () => {
   const auth = useAuth();
   const avatar = useSelector(selectAvatar);
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box style={{ display: "flex", gap: 30 }}>
       {auth && (

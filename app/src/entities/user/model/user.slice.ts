@@ -52,5 +52,9 @@ const userSlice = createSlice({
 
 // Custom hook that manages rSlice logic.
 export default userSlice.reducer;
-export const { setUserAuth, setUserAccountInfo, registerUserPersonalInfo, setUserDescription } =
-  userSlice.actions;
+export const {
+  setUserAuth,
+  setUserAccountInfo,
+  registerUserPersonalInfo,
+  setUserDescription,
+} = userSlice.actions;

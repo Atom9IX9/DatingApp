@@ -14,9 +14,9 @@ function TagsField<FV extends FieldValues>({
   field,
   fieldParams,
 }: FieldProps<FV, TagsFieldParams>) {
-// React state storing inputValue values and updating them with InputValue.
+  // React state storing inputValue values and updating them with InputValue.
   const [inputValue, setInputValue] = useState("");
-// Boolean helper that checks whether maxtagscountreached is true.
+  // Boolean helper that checks whether maxtagscountreached is true.
   const isMaxTagsCountReached = !!(
     fieldParams?.maxTagsCount && field.value.length >= fieldParams.maxTagsCount
   );
@@ -35,13 +35,19 @@ function TagsField<FV extends FieldValues>({
   const onDeleteTag = (tag: string) => () => {
     const newTags = field.value.filter((t: string) => t !== tag);
     field.onChange(newTags);
-  }
+  };
 
-  const tags = field.value.map((tag: string, index: number) => (
-    <Chip sx={{ height: 25, marginRight: "5px", marginBottom: "5px" }} label={tag} color="primary" onDelete={onDeleteTag(tag)} key={tag} />
+  const tags = field.value.map((tag: string) => (
+    <Chip
+      sx={{ height: 25, marginRight: "5px", marginBottom: "5px" }}
+      label={tag}
+      color="primary"
+      onDelete={onDeleteTag(tag)}
+      key={tag}
+    />
   ));
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FieldContainer<FV, TagsFieldParams>
       error={error}

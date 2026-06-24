@@ -88,6 +88,6 @@ type Props<FV extends FieldValues> = FieldProps<FV, TextFieldParams>;
 // Exported type alias used for typing shared data shapes.
 export type TextFieldParams = BasicFieldParams<{
   maxLength?: number;
-  type?: "text" | "password"; 
+  type?: "text" | "password";
   color?: "primary" | "secondary";
 }>;

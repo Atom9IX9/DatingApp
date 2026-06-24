@@ -19,4 +19,3 @@ export type BasicFieldParams<P> = {
   autofocus?: boolean;
   autocomplete?: boolean;
 } & P;
-

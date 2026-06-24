@@ -1,9 +1,8 @@
-
 import { Backdrop, Box, CircularProgress } from "@mui/material";
 
 const BackdropLoader: React.FC<Props> = ({ isOpen, renderBeforeHydration }) => {
   if (renderBeforeHydration && isOpen)
-// Render the component's JSX structure.
+    // Render the component's JSX structure.
     return (
       <Box
         component="div"
@@ -25,7 +24,7 @@ const BackdropLoader: React.FC<Props> = ({ isOpen, renderBeforeHydration }) => {
       </Box>
     );
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Backdrop
       sx={(theme) => ({

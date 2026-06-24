@@ -1,4 +1,3 @@
-
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
@@ -36,7 +35,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box className={style.signInSectionContainer}>
       <Box component="section" className={style.signInSection}>

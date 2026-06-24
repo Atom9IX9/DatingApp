@@ -13,4 +13,3 @@ export const rootReducer = combineReducers({
   avatar: avatarReducer,
   [baseAPI.reducerPath]: baseAPI.reducer,
 });
-

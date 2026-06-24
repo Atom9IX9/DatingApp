@@ -1,4 +1,3 @@
-
 "use client";
 import { Box, Card, Typography } from "@mui/material";
 import classNames from "classnames";
@@ -23,7 +22,7 @@ const UserCard: React.FC<TUserCardProps> = ({
 }) => {
   const theme = useTheme();
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Card
       sx={{

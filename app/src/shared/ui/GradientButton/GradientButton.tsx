@@ -59,7 +59,7 @@ const GradientButton: React.FC<Props> = ({
     },
   };
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Button
       variant="contained"

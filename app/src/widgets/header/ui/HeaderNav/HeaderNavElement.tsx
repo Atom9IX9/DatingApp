@@ -3,6 +3,7 @@
 import cn from "classnames";
 import { usePathname, useRouter } from "next/navigation";
 import { IconButton, Tooltip } from "@mui/material";
+import React from "react";
 
 import { Colors, TChildren } from "@/shared/types";
 
@@ -17,7 +18,7 @@ const NavElement: React.FC<TProps> = ({
   const pathname = usePathname();
   const router = useRouter();
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Tooltip title={title}>
       <IconButton

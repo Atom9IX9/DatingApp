@@ -1,4 +1,3 @@
-
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
 
@@ -8,7 +7,7 @@ const RootLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <>
       <Header />

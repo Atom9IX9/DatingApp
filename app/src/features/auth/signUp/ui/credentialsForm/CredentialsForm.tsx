@@ -19,7 +19,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   control,
   result,
 }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <HydratedForm className={style.credentialsForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
@@ -64,7 +64,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         </BaseBtn>
       </Box>
       <Box className={style.signInLink}>
-        Already have an account?{" "}<StyledLink href="sign-in">Log in</StyledLink>
+        Already have an account? <StyledLink href="sign-in">Log in</StyledLink>
       </Box>
     </HydratedForm>
   );

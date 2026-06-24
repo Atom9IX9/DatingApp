@@ -1,3 +1,4 @@
+import React from "react";
 
 import { PublicUser, UserCard } from "@/entities/publicUser";
 import { MatchBtn } from "@/features/matchmaking";

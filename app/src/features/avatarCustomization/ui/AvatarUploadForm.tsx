@@ -1,12 +1,6 @@
-
-"use client"
+"use client";
 import { Box, Button } from "@mui/material";
-import {
-  ChangeEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import UploadIcon from "@mui/icons-material/Upload";
 
 import { useDragAndDrop } from "@/shared/lib";
@@ -17,10 +11,11 @@ import { getFileUrl } from "../lib/setFileUrl";
 import { useUploadAvatarMutation } from "../api/avatarApi";
 
 import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
+
 // Form component that captures upload input.
 const UploadForm: React.FC<Props> = ({ onSuccess }) => {
   const dropAreaRef = useRef<HTMLDivElement | null>(null);
-  const { file, isDragging, resetFile, error } = useDragAndDrop(
+  const { file, isDragging, error } = useDragAndDrop(
     ["image/png", "image/jpeg", "image/webp"],
     dropAreaRef,
   );
@@ -61,7 +56,7 @@ const UploadForm: React.FC<Props> = ({ onSuccess }) => {
     }
   }, [result.data, onSuccess]);
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Box, Slider } from "@mui/material";
@@ -12,7 +11,7 @@ import { BaseBtn } from "@/shared/ui";
 const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
   const { refs, handlers, state } = useAvatarEdit();
 
-  const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     if (onSubmit) {
       onSubmit({
         posX: state.position.x,
@@ -22,7 +21,7 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
     }
   };
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box
       sx={{

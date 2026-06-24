@@ -1,6 +1,3 @@
-
-import { Theme } from "@mui/material";
-
 export enum Colors {
   Primary = "primary",
   PrimaryMain = "primary.main", // todo: del
@@ -21,18 +18,18 @@ export enum Colors {
   TriadicLight = "#e3b750",
   TriadicLight900 = "#dd7400",
   White = "#ffffff",
-  Success = "success.main"
+  Success = "success.main",
 }
 
 export enum PaletteColors {
   Primary = "primary",
   Secondary = "secondary",
   Info = "info",
-  Success = "success"
+  Success = "success",
 }
 
 // Exported type alias used for typing shared data shapes.
-export type PaletteShade = "main" | "light" | "dark"
+export type PaletteShade = "main" | "light" | "dark";
 
 // Exported type alias used for typing shared data shapes.
 export type ThemeColor = `${PaletteColors}.${PaletteShade}`;

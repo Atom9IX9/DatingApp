@@ -10,7 +10,7 @@ function MultitextField<FV extends FieldValues>({
   field,
   fieldParams,
 }: FieldProps<FV, MultitextFieldParams>) {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FieldContainer<FV, MultitextFieldParams>
       error={error}

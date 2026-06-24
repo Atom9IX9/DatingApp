@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { Colors, TChildren } from "../types";
 
 const StyledLink: React.FC<Props> = ({ children, href }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Link href={href}>
       <Box

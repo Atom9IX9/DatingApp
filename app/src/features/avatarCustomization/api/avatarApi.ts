@@ -1,4 +1,3 @@
-
 import { Avatar } from "@/entities/avatar";
 import { baseAPI } from "@/shared/api";
 

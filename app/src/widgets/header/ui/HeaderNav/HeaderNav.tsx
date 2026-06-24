@@ -10,7 +10,7 @@ import style from "../header.module.scss";
 import NavElement from "./HeaderNavElement";
 
 const HeaderNav = () => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box className={style.links}>
       <nav className={style.headerNav}>

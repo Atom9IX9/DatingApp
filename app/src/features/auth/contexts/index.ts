@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { createContext } from "react";
 
 import { UserAccountInfo } from "@/entities/user";

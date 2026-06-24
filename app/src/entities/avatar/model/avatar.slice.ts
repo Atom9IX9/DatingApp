@@ -27,4 +27,3 @@ const avatarSlice = createSlice({
 // Redux slice that manages avatar state.
 export default avatarSlice.reducer;
 export const { setAvatar } = avatarSlice.actions;
-

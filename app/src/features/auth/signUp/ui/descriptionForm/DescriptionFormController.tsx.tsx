@@ -1,4 +1,3 @@
-
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
@@ -7,7 +6,11 @@ import { QueryStatus } from "@reduxjs/toolkit/query";
 import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
 
-import { RegisterUserDescriptionReqBody, RegisterUserDescriptionResponse, useRegisterUserDescriptionMutation } from "../../api/signUpAPI";
+import {
+  RegisterUserDescriptionReqBody,
+  RegisterUserDescriptionResponse,
+  useRegisterUserDescriptionMutation,
+} from "../../api/signUpAPI";
 
 import DescriptionForm from "./DescriptionForm";
 import style from "./descriptionForm.module.scss";
@@ -17,15 +20,15 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
     useForm<RegisterUserDescriptionReqBody>({
       defaultValues: {
         description: "",
-        hobbies: []
+        hobbies: [],
       },
     });
 
-  const [registerDescription, result] =
-    useRegisterUserDescriptionMutation();
+  const [registerDescription, result] = useRegisterUserDescriptionMutation();
 
   const onSubmit: SubmitHandler<RegisterUserDescriptionReqBody> = async ({
-    description, hobbies
+    description,
+    hobbies,
   }) => {
     try {
       const data = await registerDescription({ description, hobbies }).unwrap();
@@ -38,12 +41,10 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
-      <BackdropLoader
-        isOpen={result.status === QueryStatus.pending}
-      />
+      <BackdropLoader isOpen={result.status === QueryStatus.pending} />
       <DescriptionForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}

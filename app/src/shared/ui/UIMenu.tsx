@@ -11,7 +11,7 @@ const UIMenu: React.FC<TProps> = ({
   handleClose,
   theme,
 }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Menu
       anchorEl={anchorEl}

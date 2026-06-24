@@ -24,4 +24,3 @@ export const baseAPI = createApi({
   }) as BaseQueryFn<string | FetchArgs, unknown, AuthApiError>,
   endpoints: () => ({}),
 });
-

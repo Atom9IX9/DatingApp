@@ -14,7 +14,7 @@ function FieldContainer<FV extends FieldValues, P>({
   children,
   hideErrorIcon,
 }: Props<FV, P>) {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box
       className={classNames(style.fieldLabel, {

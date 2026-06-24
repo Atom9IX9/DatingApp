@@ -9,4 +9,4 @@ declare global {
   type AppDispatch = AppStore["dispatch"];
 }
 
-export {}
+export {};

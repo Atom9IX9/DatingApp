@@ -11,7 +11,7 @@ function DateField<FV extends FieldValues>({
   fieldParams,
 }: FieldProps<FV, DateFieldParams>) {
   {
-// Render the component's JSX structure.
+    // Render the component's JSX structure.
     return (
       <FieldContainer<FV, DateFieldParams>
         error={error}

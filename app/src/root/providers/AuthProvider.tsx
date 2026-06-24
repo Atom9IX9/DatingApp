@@ -2,11 +2,7 @@
 
 import { useEffect } from "react";
 
-import {
-  setUserAuth,
-  setUserAccountInfo,
-  selectUser,
-} from "@/entities/user";
+import { setUserAuth, setUserAccountInfo, selectUser } from "@/entities/user";
 import { TChildren } from "@/shared/types";
 import { selectAvatar, setAvatar } from "@/entities/avatar";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";

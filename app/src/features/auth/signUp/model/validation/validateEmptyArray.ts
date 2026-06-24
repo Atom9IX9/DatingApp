@@ -1,4 +1,4 @@
-import { TArrayValidationFunction, TValidationFunction } from "@/shared/types";
+import { TArrayValidationFunction } from "@/shared/types";
 
 // Validation helper that checks whether emptyarray input is valid.
 export const validateEmptyArray: TArrayValidationFunction = (val) => {

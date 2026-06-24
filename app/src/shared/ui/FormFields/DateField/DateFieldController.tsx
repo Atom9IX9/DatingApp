@@ -11,17 +11,18 @@ function DateFieldController<FV extends FieldValues>({
   validate,
   fieldParams,
 }: FieldControllerProps<FV, DateFieldParams>) {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FieldController<FV, DateFieldParams>
       control={control}
       name={name}
       rootError={rootError}
       validate={validate}
-      onRender={(error, field) => <DateField error={error} field={field} fieldParams={fieldParams} />}
+      onRender={(error, field) => (
+        <DateField error={error} field={field} fieldParams={fieldParams} />
+      )}
     />
   );
 }
 
 export default DateFieldController;
-

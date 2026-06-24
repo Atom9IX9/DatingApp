@@ -14,6 +14,7 @@ import {
   FieldValues,
   Path,
 } from "react-hook-form";
+import React from "react";
 
 import { PaletteColors, PaletteShade, ThemeColor } from "@/shared/types";
 
@@ -75,7 +76,7 @@ const RadioItem: React.FC<RadioItemProps> = ({
       }
       value={value}
       className={style.radioItem}
-      sx={(theme) => ({
+      sx={() => ({
         bgcolor: bgColor || "#B650F1",
         borderRadius: "10px",
         width: 105,
@@ -89,7 +90,6 @@ const RadioItem: React.FC<RadioItemProps> = ({
 
 function RadioGroupUI<FV extends FieldValues>({
   field,
-  fieldState,
   items,
   required,
 }: Props<FV>) {
@@ -133,17 +133,17 @@ export default RadioGroupUI;
 type Props<FV extends FieldValues> = {
   field: ControllerRenderProps<FV, Path<FV>>;
   fieldState: ControllerFieldState;
-  items: RadioItem[];
+  items: TRadioItem[];
   required?: boolean;
 };
 
 // Props type for the RadioItem component.
 type RadioItemProps = {
-  item: RadioItem;
+  item: TRadioItem;
 };
 
 // Exported type alias used for typing shared data shapes.
-export type RadioItem = {
+export type TRadioItem = {
   text: string;
   bgColor?: ThemeColor;
   value: string;

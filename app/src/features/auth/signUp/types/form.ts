@@ -1,4 +1,3 @@
-
 import { Dayjs } from "dayjs";
 
 import { Sex } from "@/entities/user";
@@ -17,4 +16,4 @@ export type UserPersonalInfoFormData = {
   dateOfBD: Dayjs | null;
   sex: Sex;
   genderInfo?: string;
-}
+};

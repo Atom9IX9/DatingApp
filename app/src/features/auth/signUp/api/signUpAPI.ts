@@ -1,4 +1,3 @@
-
 import { baseAPI } from "@/shared/api";
 import { Sex } from "@/entities/user";
 import { Hobby } from "@/entities/user";

@@ -10,7 +10,7 @@ const UIIconMenuButton: React.FC<TProps> = ({
   children,
   title,
 }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
       <Tooltip title={title}>

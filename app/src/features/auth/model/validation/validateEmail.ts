@@ -1,4 +1,3 @@
-
 import { TValidationFunction } from "@/shared/types";
 
 // Validation helper that checks whether email input is valid.

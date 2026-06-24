@@ -1,4 +1,3 @@
-
 import { UserLocation } from "@/entities/user";
 
 // Getter helper that returns computed data for userstringlocation.
