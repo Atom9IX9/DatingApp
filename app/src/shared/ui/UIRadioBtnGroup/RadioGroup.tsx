@@ -1,24 +1,24 @@
-
 "use client";
 import {
   Box,
   FormControl,
   FormControlLabel,
   FormLabel,
-  Palette,
   Radio,
   RadioGroup,
   styled,
-  useTheme,
 } from "@mui/material";
-import style from "./radioGroup.module.scss";
 import {
   ControllerFieldState,
   ControllerRenderProps,
   FieldValues,
   Path,
 } from "react-hook-form";
+import React from "react";
+
 import { PaletteColors, PaletteShade, ThemeColor } from "@/shared/types";
+
+import style from "./radioGroup.module.scss";
 
 const BpIcon = styled("span")(() => ({
   borderRadius: "50%",
@@ -60,7 +60,7 @@ const BpCheckedIcon = styled(BpIcon, {
 const RadioItem: React.FC<RadioItemProps> = ({
   item: { bgColor, text, value },
 }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FormControlLabel
       control={
@@ -69,10 +69,14 @@ const RadioItem: React.FC<RadioItemProps> = ({
           checkedIcon={<BpCheckedIcon markerBgColor={bgColor} />}
         />
       }
-      label={<Box sx={{ fontFamily: "var(--font-primary)", marginLeft: "-3px" }}>{text}</Box>}
+      label={
+        <Box sx={{ fontFamily: "var(--font-primary)", marginLeft: "-3px" }}>
+          {text}
+        </Box>
+      }
       value={value}
       className={style.radioItem}
-      sx={(theme) => ({
+      sx={() => ({
         bgcolor: bgColor || "#B650F1",
         borderRadius: "10px",
         width: 105,
@@ -86,15 +90,14 @@ const RadioItem: React.FC<RadioItemProps> = ({
 
 function RadioGroupUI<FV extends FieldValues>({
   field,
-  fieldState,
   items,
-  required
+  required,
 }: Props<FV>) {
   const mappedItems = items.map((item, index) => (
     <RadioItem item={item} key={index} />
   ));
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FormControl required={required}>
       <FormLabel
@@ -108,7 +111,6 @@ function RadioGroupUI<FV extends FieldValues>({
             color: "#ffffff",
           },
         }}
-        
         htmlFor={field.name}
       >
         Sex
@@ -131,17 +133,17 @@ export default RadioGroupUI;
 type Props<FV extends FieldValues> = {
   field: ControllerRenderProps<FV, Path<FV>>;
   fieldState: ControllerFieldState;
-  items: RadioItem[];
+  items: TRadioItem[];
   required?: boolean;
 };
 
 // Props type for the RadioItem component.
 type RadioItemProps = {
-  item: RadioItem;
+  item: TRadioItem;
 };
 
 // Exported type alias used for typing shared data shapes.
-export type RadioItem = {
+export type TRadioItem = {
   text: string;
   bgColor?: ThemeColor;
   value: string;

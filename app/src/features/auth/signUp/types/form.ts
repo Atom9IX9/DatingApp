@@ -1,6 +1,6 @@
+import { Dayjs } from "dayjs";
 
 import { Sex } from "@/entities/user";
-import { Dayjs } from "dayjs";
 
 // Exported type alias used for typing shared data shapes.
 export type CredentialsData = {
@@ -16,4 +16,4 @@ export type UserPersonalInfoFormData = {
   dateOfBD: Dayjs | null;
   sex: Sex;
   genderInfo?: string;
-}
+};

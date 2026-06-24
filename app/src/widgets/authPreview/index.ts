@@ -1,2 +1,1 @@
-
-export { default as AuthPreview } from "./ui/AuthPreview"
+export { default as AuthPreview } from "./ui/AuthPreview";

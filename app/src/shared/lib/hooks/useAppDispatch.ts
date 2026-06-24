@@ -1,5 +1,3 @@
-
-import type { AppDispatch } from "@/root";
 import { useDispatch } from "react-redux";
 
 // Custom hook that handles AppDispatch logic.

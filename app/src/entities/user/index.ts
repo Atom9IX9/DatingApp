@@ -1,11 +1,10 @@
-
 // Exported type alias used for typing shared data shapes.
 export type {
   User,
   UserLocation,
   UserAccountInfo,
   UserAuth,
-  Hobby
+  Hobby,
 } from "./types/user";
 export { Sex } from "./types/user";
 
@@ -14,7 +13,7 @@ export {
   setUserAuth,
   setUserAccountInfo,
   registerUserPersonalInfo,
-  setUserDescription
+  setUserDescription,
 } from "./model/user.slice";
 
 export { selectUser } from "./model/selectors";

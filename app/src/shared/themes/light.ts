@@ -1,4 +1,3 @@
-
 import { createTheme, ThemeOptions } from "@mui/material";
 
 // Factory helper that creates theme objects or state.
@@ -22,10 +21,10 @@ export default createTheme({
     },
     info: {
       main: "#C0F5FA",
-      dark: "#74B3BA"
+      dark: "#74B3BA",
     },
     success: {
       main: "#27CC7F",
-    }
+    },
   },
 } as ThemeOptions);

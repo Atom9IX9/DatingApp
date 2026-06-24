@@ -1,10 +1,8 @@
-
-import * as React from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Alert, { AlertColor } from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
-import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import { keyframes } from "@emotion/react";
 
@@ -22,7 +20,7 @@ const appearAnimation = keyframes`
 export default function TransitionAlerts({ alert, severity, isOpen }: Props) {
   const [open, setOpen] = React.useState(isOpen);
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box
       sx={{

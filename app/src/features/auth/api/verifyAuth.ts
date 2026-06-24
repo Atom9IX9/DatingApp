@@ -1,4 +1,4 @@
-import { CheckAuthResponseData } from "../types";
+import { CheckAuthResponseData } from "../types/types";
 
 // Async function that validates the auth token by calling the backend.
 export const verifyAuth: VerifyAuthFn = async (token?: string) => {

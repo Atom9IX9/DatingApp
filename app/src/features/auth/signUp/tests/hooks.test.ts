@@ -1,7 +1,7 @@
-
 import { renderHook, act } from "@testing-library/react";
-import { useRegisterCredentials } from "../hooks/useRegisterCredentials";
 import Cookies from "js-cookie";
+
+import { useRegisterCredentials } from "../hooks/useRegisterCredentials";
 
 const mockUnwrap = jest.fn();
 const mockRegisterCredentialsMutation = jest.fn(() => [
@@ -19,7 +19,10 @@ jest.mock("js-cookie", () => ({
 
 describe("Hooks: useRegisterCredentials", () => {
   it("should call Cookies.set with accessToken upon successful registration", async () => {
-    const fakeResponse = { accessToken: "fake_jwt_token", auth: { authId: 1, email: "t@t.com" } };
+    const fakeResponse = {
+      accessToken: "fake_jwt_token",
+      auth: { authId: 1, email: "t@t.com" },
+    };
     mockUnwrap.mockResolvedValueOnce(fakeResponse);
 
     const { result } = renderHook(() => useRegisterCredentials());

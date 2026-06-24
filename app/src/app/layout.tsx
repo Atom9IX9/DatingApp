@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
+
 import "@/shared/styles/globals.scss";
+
 import { nunito, quicksend } from "@/shared/fonts";
 import { Providers } from "@/root";
-import { cookies } from "next/headers"; // Імпортуємо headers
 import { TTheme } from "@/shared/types";
-import { verifyAuth, VerifyAuthResponse } from "@/features/auth/api";
+import { verifyAuth, VerifyAuthResponse } from "@/features/auth";
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -25,7 +27,9 @@ const RootLayout = async ({
 
   try {
     authData = await verifyAuth(accessToken);
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 
   // Render the component's JSX structure.
   return (

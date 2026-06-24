@@ -1,11 +1,10 @@
+"use client";
 
-"use client"
-
-import { useParams } from 'next/navigation'
+import { useParams } from "next/navigation";
 
 const Profile = () => {
-  const { id } = useParams()
-  return <div>profile: {id}</div>
-}
+  const { id } = useParams();
+  return <div>profile: {id}</div>;
+};
 
-export default Profile
+export default Profile;

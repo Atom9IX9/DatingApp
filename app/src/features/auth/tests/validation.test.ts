@@ -1,8 +1,8 @@
+import dayjs from "dayjs";
 
 import { validateEmail } from "../model/validation/validateEmail";
 import { validateAdult } from "../model/validation/validateAdult";
 import { validateEmptyArray } from "../signUp/model/validation/validateEmptyArray";
-import dayjs from "dayjs";
 
 describe("Shared/Features: Validation Helpers", () => {
   describe("validateEmail", () => {

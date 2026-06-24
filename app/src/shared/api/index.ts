@@ -1,2 +1,1 @@
-
 export { baseAPI } from "./rtkQueryInstance";

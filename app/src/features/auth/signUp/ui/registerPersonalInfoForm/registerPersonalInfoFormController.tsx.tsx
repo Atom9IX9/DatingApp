@@ -1,20 +1,21 @@
-
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import style from "./registerPersonalInfoForm.module.scss";
-import { useEffect, useState } from "react";
-import PersonalInfoForm from "./registerPersonalInfoForm";
-import { RtkQueryResultError } from "@/shared/types";
-import { UserPersonalInfoFormData } from "../../types/form";
-import { Alert, Backdrop, Box, CircularProgress } from "@mui/material";
-import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
+import { useState } from "react";
+import { Box } from "@mui/material";
 import { QueryStatus } from "@reduxjs/toolkit/query";
+
+import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
 import { TransitionAlert } from "@/shared/ui";
+
+import { UserPersonalInfoFormData } from "../../types/form";
 import {
   RegisterUserPersonalInfoResponse,
   useRegisterUserPersonalInfoMutation,
 } from "../../api/signUpAPI";
+
+import PersonalInfoForm from "./registerPersonalInfoForm";
+import style from "./registerPersonalInfoForm.module.scss";
 
 const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   const [alert, setAlert] = useState<null | string>(null);
@@ -28,7 +29,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
         genderInfo: undefined,
         sex: undefined,
       },
-    }); 
+    });
 
   const [registerPersonalInfo, result] = useRegisterUserPersonalInfoMutation();
 
@@ -47,7 +48,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
             genderInfo: data.genderInfo,
           }).unwrap();
 
-          if (onSuccess) onSuccess(response); 
+          if (onSuccess) onSuccess(response);
         } catch (err) {
           setError("root", {
             message:
@@ -59,7 +60,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
       <BackdropLoader isOpen={result.status === QueryStatus.pending} />

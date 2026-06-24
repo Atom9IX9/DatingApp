@@ -1,12 +1,13 @@
+"use client";
 
-"use client"
 import { Box } from "@mui/material";
-import { GradientButton } from "@/shared/ui";
 import Link from "next/link";
 import React from "react";
 
+import { GradientButton } from "@/shared/ui";
+
 const AuthLinks: React.FC<Props> = ({ spaceBetween }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box
       sx={{

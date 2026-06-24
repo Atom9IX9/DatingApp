@@ -1,21 +1,22 @@
-
 "use client";
+
 import { FieldValues } from "react-hook-form";
-import FieldContainer from "../FieldContainer";
-import { FieldProps } from "@/shared/types/fields";
-import { Box, Button, Chip, TextField } from "@mui/material";
-import { TagsFieldParams } from "./TagsFieldController";
 import AddIcon from "@mui/icons-material/Add";
-import { KeyboardEvent, useState } from "react";
+import { useState } from "react";
+import { Box, Button, Chip, TextField } from "@mui/material";
+
+import { BasicFieldParams, FieldProps } from "@/shared/types/fields";
+
+import FieldContainer from "../FieldContainer";
 
 function TagsField<FV extends FieldValues>({
   error,
   field,
   fieldParams,
 }: FieldProps<FV, TagsFieldParams>) {
-// React state storing inputValue values and updating them with InputValue.
+  // React state storing inputValue values and updating them with InputValue.
   const [inputValue, setInputValue] = useState("");
-// Boolean helper that checks whether maxtagscountreached is true.
+  // Boolean helper that checks whether maxtagscountreached is true.
   const isMaxTagsCountReached = !!(
     fieldParams?.maxTagsCount && field.value.length >= fieldParams.maxTagsCount
   );
@@ -34,13 +35,19 @@ function TagsField<FV extends FieldValues>({
   const onDeleteTag = (tag: string) => () => {
     const newTags = field.value.filter((t: string) => t !== tag);
     field.onChange(newTags);
-  }
+  };
 
-  const tags = field.value.map((tag: string, index: number) => (
-    <Chip sx={{ height: 25, marginRight: "5px", marginBottom: "5px" }} label={tag} color="primary" onDelete={onDeleteTag(tag)} key={tag} />
+  const tags = field.value.map((tag: string) => (
+    <Chip
+      sx={{ height: 25, marginRight: "5px", marginBottom: "5px" }}
+      label={tag}
+      color="primary"
+      onDelete={onDeleteTag(tag)}
+      key={tag}
+    />
   ));
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FieldContainer<FV, TagsFieldParams>
       error={error}
@@ -130,3 +137,8 @@ function TagsField<FV extends FieldValues>({
 }
 
 export default TagsField;
+// Exported type alias used for typing shared data shapes.
+export type TagsFieldParams = BasicFieldParams<{
+  maxTagLength?: number;
+  maxTagsCount?: number;
+}>;

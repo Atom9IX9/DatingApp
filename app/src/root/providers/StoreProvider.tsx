@@ -1,9 +1,9 @@
-
 "use client";
 
 import { useRef } from "react";
 import { Provider } from "react-redux";
-import { makeStore, AppStore } from "../model"
+
+import { makeStore } from "../model/store/store";
 
 // Provider component that supplies context or store values for Store.
 const StoreProvider = ({ children }: { children: React.ReactNode }) => {

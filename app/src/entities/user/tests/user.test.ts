@@ -1,3 +1,4 @@
+import { Sex, User } from "@/entities/user";
 
 import userReducer, {
   setUserAuth,
@@ -5,11 +6,10 @@ import userReducer, {
   registerUserPersonalInfo,
   setUserDescription,
 } from "../model/user.slice";
-import { Sex, User } from "@/entities/user";
 import { Hobby } from "../types/user";
 
 describe("User Entity: Redux Reducer Tests", () => {
-// State shape for initial.
+  // State shape for initial.
   const initialState: User = {
     uid: "",
     firstName: "",
@@ -31,7 +31,7 @@ describe("User Entity: Redux Reducer Tests", () => {
 
   it("should correctly handle setUserAuth action (setting auth data)", () => {
     const authData = { authId: 81, email: "test@gmail.com" };
-// State shape for next.
+    // State shape for next.
     const nextState = userReducer(initialState, setUserAuth(authData));
 
     expect(nextState.auth).toEqual(authData);
@@ -44,7 +44,7 @@ describe("User Entity: Redux Reducer Tests", () => {
       lastName: "Lastname",
       uid: "ff-0kqPS6VVaAPc2drQlJ",
     };
-// State shape for next.
+    // State shape for next.
     const nextState = userReducer(
       initialState,
       setUserAccountInfo(accountInfo),
@@ -65,7 +65,7 @@ describe("User Entity: Redux Reducer Tests", () => {
       dateOfBD: "2006-05-04",
     };
 
-// State shape for next.
+    // State shape for next.
     const nextState = userReducer(
       initialState,
       registerUserPersonalInfo(personalInfo),
@@ -87,7 +87,7 @@ describe("User Entity: Redux Reducer Tests", () => {
       ] as Hobby[],
     };
 
-// State shape for next.
+    // State shape for next.
     const nextState = userReducer(
       initialState,
       setUserDescription(descriptionData),

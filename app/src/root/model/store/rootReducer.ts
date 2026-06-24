@@ -1,10 +1,10 @@
-
 import { combineReducers } from "@reduxjs/toolkit";
-import { appReducer } from "@/shared/model";
+
 import { baseAPI } from "@/shared/api";
-import { userReducer } from "@/entities/user";
-import { registerProcessReducer } from "@/processes/register";
-import { avatarReducer } from "@/entities/avatar";
+import appReducer from "@/shared/model/app.slice";
+import userReducer from "@/entities/user/model/user.slice";
+import registerProcessReducer from "@/processes/register/model/registerProcess.slice";
+import avatarReducer from "@/entities/avatar/model/avatar.slice";
 
 export const rootReducer = combineReducers({
   app: appReducer,
@@ -13,4 +13,3 @@ export const rootReducer = combineReducers({
   avatar: avatarReducer,
   [baseAPI.reducerPath]: baseAPI.reducer,
 });
-

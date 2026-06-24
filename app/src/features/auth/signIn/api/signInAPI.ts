@@ -1,6 +1,6 @@
-
 import { baseAPI } from "@/shared/api";
-import { CheckAuthResponseData } from "../../types";
+
+import { CheckAuthResponseData } from "../../types/types";
 import { SignInData } from "../types/form";
 
 export const loginEndpoint = baseAPI.injectEndpoints({

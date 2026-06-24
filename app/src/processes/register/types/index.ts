@@ -1,8 +1,5 @@
-export enum ResponseOnboardingStep {
-  REGISTERED = "registered",
-  DESCRIPTION = 3,
-  AVATAR = 4,
-}
+import { ResponseOnboardingStep } from "@/features/auth/types/types";
+
 export enum ClientOnboardingStep {
   CREDENTIALS = 1,
   INFO = 2,

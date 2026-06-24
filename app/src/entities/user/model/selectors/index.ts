@@ -1,4 +1,3 @@
-
 import { User } from "../../types/user";
 
 export const selectUser = (state: UserState) => state.user;

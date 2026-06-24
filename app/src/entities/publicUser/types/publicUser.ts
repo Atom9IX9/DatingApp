@@ -1,4 +1,3 @@
-
 import { Avatar } from "@/entities/avatar";
 import { Sex } from "@/entities/user";
 

@@ -1,19 +1,16 @@
+import { Control, Controller, FieldPath, FieldValues } from "react-hook-form";
+import { Box } from "@mui/material";
 
-import {
-  Control,
-  Controller,
-  FieldPath,
-  FieldValues,
-} from "react-hook-form";
-import style from "./field.module.scss";
 import {
   TArrayValidationFunction,
   TControllerField,
   TDateValidationFunction,
   TValidationFunction,
 } from "@/shared/types";
-import { Box } from "@mui/material";
+
 import { BasicFieldParams } from "../../types/fields";
+
+import style from "./field.module.scss";
 
 function FieldController<FV extends FieldValues, P>({
   control,
@@ -22,7 +19,7 @@ function FieldController<FV extends FieldValues, P>({
   rootError,
   onRender,
 }: Props<FV, P>) {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box className={style.fieldContainer}>
       <Controller
@@ -55,7 +52,10 @@ export type FieldControllerProps<V extends FieldValues, P> = {
   control: Control<V>;
   name: FieldPath<V>;
   validate?: {
-    [key: string]: TValidationFunction | TDateValidationFunction | TArrayValidationFunction;
+    [key: string]:
+      | TValidationFunction
+      | TDateValidationFunction
+      | TArrayValidationFunction;
   };
   rootError?: string;
   fieldParams?: BasicFieldParams<P>;

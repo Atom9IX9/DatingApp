@@ -1,10 +1,9 @@
-
-import { FieldProps } from "../../../types/fields";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import { FieldValues } from "react-hook-form";
-import { DateFieldParams } from "./DateFieldController";
+
 import FieldContainer from "../FieldContainer";
+import { BasicFieldParams, FieldProps } from "../../../types/fields";
 
 function DateField<FV extends FieldValues>({
   field,
@@ -12,7 +11,7 @@ function DateField<FV extends FieldValues>({
   fieldParams,
 }: FieldProps<FV, DateFieldParams>) {
   {
-// Render the component's JSX structure.
+    // Render the component's JSX structure.
     return (
       <FieldContainer<FV, DateFieldParams>
         error={error}
@@ -63,3 +62,7 @@ function DateField<FV extends FieldValues>({
 }
 
 export default DateField;
+// Exported type alias used for typing shared data shapes.
+export type DateFieldParams = BasicFieldParams<{
+  minYearsAgo?: number;
+}>;

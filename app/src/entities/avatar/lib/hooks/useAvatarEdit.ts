@@ -1,24 +1,23 @@
-
 import { useRef, useState } from "react";
 
 // Custom hook that handles AvatarEdit logic.
 export const useAvatarEdit = (transforms?: Transform) => {
-// React state storing isLandscape values and updating them with IsLandscape.
+  // React state storing isLandscape values and updating them with IsLandscape.
   const [isLandscape, setIsLandscape] = useState(false);
-// React state storing scaleValue values and updating them with ScaleValue.
+  // React state storing scaleValue values and updating them with ScaleValue.
   const [scaleValue, setScaleValue] = useState(1);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
-// React ref storing a DOM element reference between renders.
+  // React ref storing a DOM element reference between renders.
   const positionRef = useRef({ x: 0, y: 0 });
-// React state storing position values and updating them with Position.
+  // React state storing position values and updating them with Position.
   const [position, setPosition] = useState({ x: 0, y: 0 });
-// React ref storing a DOM element reference between renders.
+  // React ref storing a DOM element reference between renders.
   const start = useRef({ x: 0, y: 0 });
 
-// React ref storing a DOM element reference between renders.
+  // React ref storing a DOM element reference between renders.
   const dragging = useRef(false);
 
   const applyTransform = (x: number, y: number, scale: number) => {
@@ -27,7 +26,7 @@ export const useAvatarEdit = (transforms?: Transform) => {
     imgRef.current.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
   };
 
-// Setter helper that updates values or state for imgposition.
+  // Setter helper that updates values or state for imgposition.
   const setImgPosition = (x: number, y: number) => {
     positionRef.current = { x, y };
     setPosition({ x, y });
@@ -61,19 +60,19 @@ export const useAvatarEdit = (transforms?: Transform) => {
     const newX = e.clientX - start.current.x;
     const newY = e.clientY - start.current.y;
 
-// Compute the current image width after scaling.
+    // Compute the current image width after scaling.
     const imgWidth = imgRef.current.offsetWidth * scale;
-// Compute the current image height after scaling.
+    // Compute the current image height after scaling.
     const imgHeight = imgRef.current.offsetHeight * scale;
 
-// Compute the minimum translation bound so the image stays inside the frame.
+    // Compute the minimum translation bound so the image stays inside the frame.
     const minX = containerRect.width - imgWidth;
-// Compute the minimum translation bound so the image stays inside the frame.
+    // Compute the minimum translation bound so the image stays inside the frame.
     const minY = containerRect.height - imgHeight;
 
-// Clamp dragged coordinates so the image cannot move outside the container.
+    // Clamp dragged coordinates so the image cannot move outside the container.
     const x = Math.min(0, Math.max(minX, newX));
-// Clamp dragged coordinates so the image cannot move outside the container.
+    // Clamp dragged coordinates so the image cannot move outside the container.
     const y = Math.min(0, Math.max(minY, newY));
 
     setImgPosition(x, y);

@@ -1,9 +1,9 @@
-
-import { AuthPreview } from "@/widgets/authPreview";
 import { Box } from "@mui/material";
 
+import { AuthPreview } from "@/widgets/authPreview";
+
 const Home = async () => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box>
       <AuthPreview />

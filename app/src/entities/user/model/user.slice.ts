@@ -1,6 +1,6 @@
-
-import { Sex, User, UserAuth } from "@/entities/user";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { Sex, User, UserAuth } from "../types/user";
 import { Hobby, UserAccountInfo, UserInfo } from "../types/user";
 
 // State shape for initial.
@@ -52,5 +52,9 @@ const userSlice = createSlice({
 
 // Custom hook that manages rSlice logic.
 export default userSlice.reducer;
-export const { setUserAuth, setUserAccountInfo, registerUserPersonalInfo, setUserDescription } =
-  userSlice.actions;
+export const {
+  setUserAuth,
+  setUserAccountInfo,
+  registerUserPersonalInfo,
+  setUserDescription,
+} = userSlice.actions;

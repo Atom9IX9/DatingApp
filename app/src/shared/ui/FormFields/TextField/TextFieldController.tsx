@@ -1,8 +1,10 @@
+"use client";
 
 import { FieldValues } from "react-hook-form";
+
 import FieldController, { FieldControllerProps } from "../FieldController";
-import { default as TextField } from "./TextField";
-import { BasicFieldParams } from "../../../types/fields";
+
+import { default as TextField, TextFieldParams } from "./TextField";
 
 function TextFieldController<FV extends FieldValues>({
   control,
@@ -11,7 +13,7 @@ function TextFieldController<FV extends FieldValues>({
   validate,
   fieldParams,
 }: FieldControllerProps<FV, TextFieldParams>) {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <FieldController<FV, TextFieldParams>
       control={control}
@@ -26,9 +28,3 @@ function TextFieldController<FV extends FieldValues>({
 }
 
 export default TextFieldController;
-// Exported type alias used for typing shared data shapes.
-export type TextFieldParams = BasicFieldParams<{
-  maxLength?: number;
-  type?: "text" | "password"; 
-  color?: "primary" | "secondary";
-}>;

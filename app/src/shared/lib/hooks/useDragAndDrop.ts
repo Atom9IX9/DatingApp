@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { MutableRefObject, useEffect, useState } from "react";
 
 // Custom hook that handles DragAndDrop logic.
@@ -6,7 +6,7 @@ export const useDragAndDrop = (
   allowedTypes: string[],
   dropAreaRef?: MutableRefObject<HTMLDivElement | null>,
 ) => {
-// React state storing isDragging values and updating them with IsDragging.
+  // React state storing isDragging values and updating them with IsDragging.
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File>();
   const [error, setError] = useState<string>();
@@ -51,7 +51,7 @@ export const useDragAndDrop = (
     node.addEventListener("dragleave", handleDragLeave);
     node.addEventListener("drop", handleDrop);
 
-// Render the component's JSX structure.
+    // Render the component's JSX structure.
     return () => {
       node.removeEventListener("dragenter", handleDragEnter);
       node.removeEventListener("dragover", handleDragOver);

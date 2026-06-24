@@ -1,7 +1,7 @@
-
-import { TChildren } from "@/shared/types";
 import { Button, SxProps } from "@mui/material";
 import React from "react";
+
+import { TChildren } from "@/shared/types";
 
 // Button component used for an action in src\shared\ui\GradientButton\GradientButton.tsx.
 const GradientButton: React.FC<Props> = ({
@@ -59,7 +59,7 @@ const GradientButton: React.FC<Props> = ({
     },
   };
 
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Button
       variant="contained"

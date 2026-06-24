@@ -1,15 +1,17 @@
-
 "use client";
 import React from "react";
-import style from "./credentialsForm.module.scss";
 import { Control } from "react-hook-form";
 import { QueryStatus } from "@reduxjs/toolkit/query";
-import { validateEmail } from "../../../../auth";
+import { Box } from "@mui/material";
+
 import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
 import { RtkQueryResultError } from "@/shared/types";
+
+import { validateEmail } from "../../../model/validation/validateEmail";
 import { CredentialsData } from "../../types/form";
-import { Box } from "@mui/material";
 import HydratedForm from "../../../ui/HydratedForm";
+
+import style from "./credentialsForm.module.scss";
 
 // Form component that captures credentials input.
 const CredentialsForm: React.FC<CredentialsFormProps> = ({
@@ -17,7 +19,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
   control,
   result,
 }) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <HydratedForm className={style.credentialsForm} onSubmit={onSubmit}>
       <Box className={style.fields}>
@@ -62,7 +64,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
         </BaseBtn>
       </Box>
       <Box className={style.signInLink}>
-        Already have an account?{" "}<StyledLink href="sign-in">Log in</StyledLink>
+        Already have an account? <StyledLink href="sign-in">Log in</StyledLink>
       </Box>
     </HydratedForm>
   );

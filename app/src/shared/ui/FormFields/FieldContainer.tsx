@@ -1,10 +1,11 @@
-
 import { Box, InputLabel } from "@mui/material";
 import classNames from "classnames";
 import ErrorIcon from "@mui/icons-material/Error";
-import style from "./field.module.scss";
 import { FieldValues } from "react-hook-form";
+
 import { FieldProps } from "@/shared/types/fields";
+
+import style from "./field.module.scss";
 
 function FieldContainer<FV extends FieldValues, P>({
   fieldParams,
@@ -13,7 +14,7 @@ function FieldContainer<FV extends FieldValues, P>({
   children,
   hideErrorIcon,
 }: Props<FV, P>) {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Box
       className={classNames(style.fieldLabel, {

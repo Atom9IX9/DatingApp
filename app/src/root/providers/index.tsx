@@ -1,18 +1,20 @@
 "use client";
-import StoreProvider from "./StoreProvider";
-import { AuthProvider } from "@/features/auth";
-import { VerifyAuthResponse } from "@/features/auth/api";
-import {
-  onboardingStepFromCookies,
-  OnboardingStepProvider,
-} from "@/processes/register";
-import { ClientOnboardingStep } from "@/processes/register/types";
-import { ThemeProvider } from "@/shared/providers";
-import { TChildren, TTheme } from "@/shared/types";
+
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Cookies from "js-cookie";
+
+import { VerifyAuthResponse } from "@/features/auth";
+import { onboardingStepFromCookies } from "@/processes/register/lib/onboardingStepFromCookies";
+import { ClientOnboardingStep } from "@/processes/register/types";
+import { TChildren, TTheme } from "@/shared/types";
+
+import OnboardingProxy from "../proxy/OnboardingProxy";
+
+import StoreProvider from "./StoreProvider";
+import ThemeProvider from "./ThemeProvider";
+import AuthProvider from "./AuthProvider";
 
 export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   const onboardingStep = Cookies.get("onboardingStep");
@@ -21,7 +23,7 @@ export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   return (
     <StoreProvider>
       <AuthProvider auth={auth?.data}>
-        <OnboardingStepProvider
+        <OnboardingProxy
           onboardingStep={
             auth?.data?.onboardingStep ||
             onboardingStepFromCookies(onboardingStep) ||
@@ -35,7 +37,7 @@ export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
               </ThemeProvider>
             </LocalizationProvider>
           </AppRouterCacheProvider>
-        </OnboardingStepProvider>
+        </OnboardingProxy>
       </AuthProvider>
     </StoreProvider>
   );

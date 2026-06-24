@@ -1,16 +1,15 @@
-
 import { createTheme, ThemeOptions } from "@mui/material";
 
 // Factory helper that creates theme objects or state.
 export default createTheme({
   components: {
     typography: {
-    fontFamily: [
-      'var(--font-primary)', // Primary font
-      'Arial',         // Fallback fonts
-      'sans-serif',
-    ].join(','),
-  },
+      fontFamily: [
+        "var(--font-primary)", // Primary font
+        "Arial", // Fallback fonts
+        "sans-serif",
+      ].join(","),
+    },
     MuiTypography: {
       defaultProps: {
         variantMapping: {
@@ -31,13 +30,13 @@ export default createTheme({
     info: {
       main: "#3C66FF",
       dark: "#2A2A37",
-      light: "#6788ff"
+      light: "#6788ff",
     },
     success: {
       main: "#27CC7F",
     },
     error: {
-      main: "#ff454f"
+      main: "#ff454f",
     },
   },
 } as ThemeOptions);

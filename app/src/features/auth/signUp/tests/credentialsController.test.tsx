@@ -1,6 +1,6 @@
-
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+
 import CredentialsFormController from "../ui/credentialsForm/CredentialsFormController.tsx";
 
 const mockRegisterCredentials = jest.fn();

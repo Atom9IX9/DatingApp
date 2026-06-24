@@ -1,9 +1,8 @@
-
 import { Button, ButtonProps } from "@mui/material";
 
 // Button component used for an action in src\shared\ui\BaseBtn.tsx.
 const BaseBtn: React.FC<ButtonProps> = (props) => {
-// Render the component's JSX structure.
+  // Render the component's JSX structure.
   return (
     <Button
       {...props}
