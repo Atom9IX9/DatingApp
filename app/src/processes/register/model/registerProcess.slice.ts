@@ -36,6 +36,3 @@ export type TInitialState = {
   stepsCount: number;
   isRegistered: boolean;
 };
-export type RegisterProcessStateSchema = {
-  registerProcess: TInitialState
-}

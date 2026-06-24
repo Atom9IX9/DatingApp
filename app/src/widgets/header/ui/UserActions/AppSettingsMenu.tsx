@@ -11,7 +11,7 @@ import { UIIconMenuButton, UIMenu } from "@/shared/ui";
 import { useMenu, useTheme } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { setTheme } from "@/shared/model";
-import { useAppDispatch } from "@/root/model";
+import { useAppDispatch } from "@/shared/lib";
 
 // Menu component or interaction handler for AppSettings.
 const AppSettingsMenu = () => {

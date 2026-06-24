@@ -1,16 +1,15 @@
 "use client";
 
-import { createContext, useEffect } from "react";
+import { useEffect } from "react";
 
 import {
   setUserAuth,
   setUserAccountInfo,
-  UserAccountInfo,
   selectUser,
 } from "@/entities/user";
 import { TChildren } from "@/shared/types";
 import { selectAvatar, setAvatar } from "@/entities/avatar";
-import { useAppDispatch, useAppSelector } from "@/root/model";
+import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { CheckAuthResponseData } from "@/features/auth";
 import { AuthContext } from "@/features/auth/contexts";
 

@@ -15,7 +15,7 @@ import {
   setUserDescription,
 } from "@/entities/user";
 import { AvatarUploadForm } from "@/features/avatarCustomization";
-import { useAppDispatch } from "@/root/model";
+import { useAppDispatch } from "@/shared/lib";
 import { setAvatar } from "@/entities/avatar";
 import { ResponseOnboardingStep } from "@/features/auth/types";
 

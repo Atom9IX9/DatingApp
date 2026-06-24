@@ -6,7 +6,7 @@ import { setUserAccountInfo, setUserAuth } from "@/entities/user";
 import { setCurrentStep } from "@/processes/register";
 import { SignInForm } from "@/features/auth/ui";
 import { setAvatar } from "@/entities/avatar";
-import { useAppDispatch } from "@/root/model";
+import { useAppDispatch } from "@/shared/lib";
 
 import HeroBlock from "../../../HeroBlock";
 import style from "../../../guestPages.module.scss";

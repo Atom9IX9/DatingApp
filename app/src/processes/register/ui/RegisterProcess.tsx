@@ -2,7 +2,7 @@
 
 import { Box } from "@mui/material";
 
-import { useAppSelector } from "@/root/model";
+import { useAppSelector } from "@/shared/lib";
 
 import { selectCurrentStep, selectStepsCount } from "../model/selectors";
 

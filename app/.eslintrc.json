@@ -16,7 +16,7 @@
       { "type": "app", "pattern": "src/app/**/*" },
       {
         "type": "global-store",
-        "pattern": ["src/root/model", "src/root/model/**/*"] 
+        "pattern": ["src/root/model", "src/root/model/**/*"]
       },
       {
         "type": "root",
@@ -80,7 +80,8 @@
             ]
           },
 
-          { "from": "root", "allow": ["*", "global-store"] }
+          { "from": "root", "allow": ["*", "global-store"] },
+          { "from": "global-store", "allow": ["*"] }
         ]
       }
     ],

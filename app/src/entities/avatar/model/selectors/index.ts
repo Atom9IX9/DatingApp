@@ -1,3 +1,1 @@
-import { AvatarStateSchema } from "../avatar.slice"
-
-export const selectAvatar = (state: AvatarStateSchema) => state.avatar
+export const selectAvatar = (state: RootState) => state.avatar

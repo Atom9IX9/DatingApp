@@ -28,6 +28,3 @@ export const { setTheme } = appSlice.actions;
 export type AppInitialState = {
   currentTheme: TTheme;
 };
-export type AppStateSchema = {
-  app: AppInitialState;
-};

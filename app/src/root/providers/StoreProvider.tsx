@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { Provider } from "react-redux";
 
-import { AppStore } from "../model/types";
 import { makeStore } from "../model/store/store";
 
 // Provider component that supplies context or store values for Store.

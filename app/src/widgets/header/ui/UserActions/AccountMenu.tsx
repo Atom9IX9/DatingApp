@@ -12,7 +12,7 @@ import { useMenu, useTheme } from "@/shared/lib";
 import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";
 import { selectAvatar } from "@/entities/avatar";
-import { useAppSelector } from "@/root/model";
+import { useAppSelector } from "@/shared/lib";
 
 import AccountMenuBtn from "./AccountMenuBtn";
 

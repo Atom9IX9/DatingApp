@@ -1,3 +1,1 @@
-import { AppStateSchema } from "../app.slice";
-
-export const selectTheme = (state: AppStateSchema) => state.app.currentTheme 
+export const selectTheme = (state: RootState) => state.app.currentTheme 

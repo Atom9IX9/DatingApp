@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 
 import "@/shared/styles/globals.scss";
-import { cookies } from "next/headers"; // Імпортуємо headers
 
 import { nunito, quicksend } from "@/shared/fonts";
 import { Providers } from "@/root";

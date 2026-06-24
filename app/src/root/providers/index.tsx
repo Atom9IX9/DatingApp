@@ -5,17 +5,15 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Cookies from "js-cookie";
 
-import { AuthProvider } from "@/features/auth";
 import { VerifyAuthResponse } from "@/features/auth/api";
-import {
-  onboardingStepFromCookies,
-} from "@/processes/register";
+import { onboardingStepFromCookies } from "@/processes/register";
 import { ClientOnboardingStep } from "@/processes/register/types";
 import { TChildren, TTheme } from "@/shared/types";
 
 import StoreProvider from "./StoreProvider";
 import OnboardingStepProvider from "./OnboardingStepProvider";
 import ThemeProvider from "./ThemeProvider";
+import AuthProvider from "./AuthProvider";
 
 export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   const onboardingStep = Cookies.get("onboardingStep");

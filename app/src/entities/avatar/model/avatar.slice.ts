@@ -27,6 +27,4 @@ const avatarSlice = createSlice({
 // Redux slice that manages avatar state.
 export default avatarSlice.reducer;
 export const { setAvatar } = avatarSlice.actions;
-export type AvatarStateSchema = {
-  avatar: Avatar;
-}
+
