@@ -10,8 +10,9 @@ import { onboardingStepFromCookies } from "@/processes/register/lib/onboardingSt
 import { ClientOnboardingStep } from "@/processes/register/types";
 import { TChildren, TTheme } from "@/shared/types";
 
+import OnboardingProxy from "../proxy/OnboardingProxy";
+
 import StoreProvider from "./StoreProvider";
-import OnboardingStepProvider from "./OnboardingStepProvider";
 import ThemeProvider from "./ThemeProvider";
 import AuthProvider from "./AuthProvider";
 
@@ -22,7 +23,7 @@ export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   return (
     <StoreProvider>
       <AuthProvider auth={auth?.data}>
-        <OnboardingStepProvider
+        <OnboardingProxy
           onboardingStep={
             auth?.data?.onboardingStep ||
             onboardingStepFromCookies(onboardingStep) ||
@@ -36,7 +37,7 @@ export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
               </ThemeProvider>
             </LocalizationProvider>
           </AppRouterCacheProvider>
-        </OnboardingStepProvider>
+        </OnboardingProxy>
       </AuthProvider>
     </StoreProvider>
   );
