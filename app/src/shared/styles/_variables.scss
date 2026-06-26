@@ -6,17 +6,14 @@ $light: #ffffff;
 $green-dark: #697565;
 $gray: #8b8b8b;
 
-
-
 // All theme colors
 $primary: #e3507c;
 $secondary: #00ffc8;
-$light-scheme: $primary, $secondary, $info-dark--dark, $triadic-light,
-  $secondary;
+$light-scheme:
+  $primary, $secondary, $info-dark--dark, $triadic-light, $secondary;
 
 // Dark theme colors
 $info--dark: #2a2a37;
 
-$dark-scheme: $info-dark--dark, $info--dark, $light, $triadic-light, $info--dark;
-
-
+$dark-scheme:
+  $info-dark--dark, $info--dark, $light, $triadic-light, $info--dark;
