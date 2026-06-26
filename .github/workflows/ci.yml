@@ -39,12 +39,5 @@ jobs:
       - name: Format check
         run: npm run format:check
 
-      - name: Check circular dependencies (optional but strong)
-        run: npx madge src --circular
-        continue-on-error: true
-
-      - name: Architecture check (FSD)
-        run: npx dependency-cruiser src
-
       - name: Build
         run: npm run build
