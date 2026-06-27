@@ -19,16 +19,11 @@
       { "type": "features", "pattern": "src/features/**/*" },
       { "type": "widgets", "pattern": "src/widgets/**/*" },
       { "type": "processes", "pattern": "src/processes/**/*" },
-      { "type": "app", "pattern": "src/app/**/*" },
-      {
-        "type": "global-store",
-        "pattern": ["src/root/model", "src/root/model/**/*"]
-      },
       {
         "type": "root",
-        "pattern": "src/root/**/*",
-        "ignore": ["src/root/model", "src/root/model/**/*"]
-      }
+        "pattern": "src/root/**/*"
+      },
+      { "type": "app", "pattern": "src/app/**/*" }
     ]
   },
 
@@ -40,41 +35,38 @@
       {
         "default": "disallow",
         "rules": [
-          { "from": "shared", "allow": ["shared", "global-store"] },
+          { "from": "shared", "allow": ["shared"] },
 
           {
             "from": "entities",
-            "allow": ["shared", "entities", "global-store"]
+            "allow": ["shared", "entities"]
           },
 
           {
             "from": "features",
-            "allow": ["shared", "entities", "features", "global-store"]
+            "allow": ["shared", "entities", "features"]
           },
 
           {
             "from": "widgets",
-            "allow": [
-              "shared",
-              "entities",
-              "features",
-              "widgets",
-              "global-store"
-            ]
+            "allow": ["shared", "entities", "features", "widgets"]
           },
 
           {
             "from": "processes",
+            "allow": ["shared", "entities", "features", "widgets", "processes"]
+          },
+          {
+            "from": "root",
             "allow": [
               "shared",
               "entities",
               "features",
               "widgets",
               "processes",
-              "global-store"
+              "root"
             ]
           },
-
           {
             "from": "app",
             "allow": [
@@ -83,42 +75,34 @@
               "features",
               "widgets",
               "processes",
-              "app",
-              "global-store"
+              "root",
+              "app"
             ]
-          },
-
-          { "from": "root", "allow": ["*", "global-store"] },
-          { "from": "global-store", "allow": ["*"] }
+          }
         ]
       }
     ],
 
-    "import/no-restricted-paths": [
-      "warn",
+    "no-restricted-imports": [
+      "error",
       {
-        "zones": [
+        "patterns": [
           {
-            "target": "./src/features/*",
-            "from": "./src/features/*/*",
-            "except": ["./src/features/*/index.*"]
-          },
-          {
-            "target": "./src/entities/*",
-            "from": "./src/entities/*/*",
-            "except": ["./src/entities/*/index.*"]
-          },
-          {
-            "target": "./src/widgets/*",
-            "from": "./src/widgets/*/*",
-            "except": ["./src/widgets/*/index.*"]
+            "group": [
+              "@/shared/*/*",
+              "@/entities/*/*",
+              "@/features/*/*",
+              "@/widgets/*/*",
+              "@/processes/*/*",
+              "@/root/*/*"
+            ],
+            "message": "Use Public API only (index.ts / client.ts / server.ts)"
           }
         ]
       }
     ],
 
     "import/no-cycle": "error",
-    "import/no-internal-modules": "off",
     "no-undef": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
