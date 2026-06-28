@@ -12,7 +12,10 @@
     "test:watch": "jest --watch",
     "type-check": "tsc --noEmit",
     "format:check": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "cycle:madge": "madge src --extensions ts,tsx --circular",
+    "arch:fsd": "depcruise src --config dependency-cruiser.config.cjs",
+    "arch:check": "npm run cycle:madge && npm run arch:fsd"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

@@ -4,8 +4,15 @@
     "eslint:recommended",
     "plugin:prettier/recommended"
   ],
+
   "plugins": ["boundaries", "import", "prettier", "@typescript-eslint"],
-  "env": { "browser": true, "node": true, "jest": true },
+
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+
   "parser": "@typescript-eslint/parser",
 
   "settings": {
@@ -19,122 +26,143 @@
       { "type": "features", "pattern": "src/features/**/*" },
       { "type": "widgets", "pattern": "src/widgets/**/*" },
       { "type": "processes", "pattern": "src/processes/**/*" },
-      { "type": "app", "pattern": "src/app/**/*" },
-      {
-        "type": "global-store",
-        "pattern": ["src/root/model", "src/root/model/**/*"]
-      },
-      {
-        "type": "root",
-        "pattern": "src/root/**/*",
-        "ignore": ["src/root/model", "src/root/model/**/*"]
-      }
+      { "type": "root", "pattern": "src/root/**/*" },
+      { "type": "app", "pattern": "src/app/**/*" }
     ]
   },
 
-  "rules": {
-    "no-console": "warn",
-    "prettier/prettier": "error",
-    "boundaries/element-types": [
-      "error",
-      {
-        "default": "disallow",
-        "rules": [
-          { "from": "shared", "allow": ["shared", "global-store"] },
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx,js,jsx}"],
+      "rules": {
+        "no-console": "warn",
+        "prettier/prettier": "error",
 
+        "boundaries/element-types": [
+          "error",
           {
-            "from": "entities",
-            "allow": ["shared", "entities", "global-store"]
-          },
+            "default": "disallow",
+            "rules": [
+              { "from": "shared", "allow": ["shared"] },
 
-          {
-            "from": "features",
-            "allow": ["shared", "entities", "features", "global-store"]
-          },
+              {
+                "from": "entities",
+                "allow": ["shared", "entities"]
+              },
 
-          {
-            "from": "widgets",
-            "allow": [
-              "shared",
-              "entities",
-              "features",
-              "widgets",
-              "global-store"
+              {
+                "from": "features",
+                "allow": ["shared", "entities", "features"]
+              },
+
+              {
+                "from": "widgets",
+                "allow": ["shared", "entities", "features", "widgets"]
+              },
+
+              {
+                "from": "processes",
+                "allow": [
+                  "shared",
+                  "entities",
+                  "features",
+                  "widgets",
+                  "processes"
+                ]
+              },
+
+              {
+                "from": "root",
+                "allow": [
+                  "shared",
+                  "entities",
+                  "features",
+                  "widgets",
+                  "processes",
+                  "root"
+                ]
+              },
+
+              {
+                "from": "app",
+                "allow": [
+                  "shared",
+                  "entities",
+                  "features",
+                  "widgets",
+                  "processes",
+                  "root",
+                  "app"
+                ]
+              }
             ]
-          },
-
-          {
-            "from": "processes",
-            "allow": [
-              "shared",
-              "entities",
-              "features",
-              "widgets",
-              "processes",
-              "global-store"
-            ]
-          },
-
-          {
-            "from": "app",
-            "allow": [
-              "shared",
-              "entities",
-              "features",
-              "widgets",
-              "processes",
-              "app",
-              "global-store"
-            ]
-          },
-
-          { "from": "root", "allow": ["*", "global-store"] },
-          { "from": "global-store", "allow": ["*"] }
-        ]
-      }
-    ],
-
-    "import/no-restricted-paths": [
-      "warn",
-      {
-        "zones": [
-          {
-            "target": "./src/features/*",
-            "from": "./src/features/*/*",
-            "except": ["./src/features/*/index.*"]
-          },
-          {
-            "target": "./src/entities/*",
-            "from": "./src/entities/*/*",
-            "except": ["./src/entities/*/index.*"]
-          },
-          {
-            "target": "./src/widgets/*",
-            "from": "./src/widgets/*/*",
-            "except": ["./src/widgets/*/index.*"]
           }
-        ]
-      }
-    ],
-
-    "import/no-cycle": "error",
-    "import/no-internal-modules": "off",
-    "no-undef": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index"
         ],
-        "newlines-between": "always"
+
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "@/entities/*/*",
+                  "@/features/*/*",
+                  "@/widgets/*/*",
+                  "@/processes/*/*",
+                  "@/root/*/*",
+
+                  "!@/entities/*/index",
+                  "!@/entities/*/client",
+                  "!@/entities/*/server",
+
+                  "!@/features/*/index",
+                  "!@/features/*/client",
+                  "!@/features/*/server",
+
+                  "!@/widgets/*/index",
+                  "!@/widgets/*/client",
+                  "!@/widgets/*/server",
+
+                  "!@/processes/*/index",
+                  "!@/processes/*/client",
+                  "!@/processes/*/server",
+
+                  "!@/root/*/index",
+                  "!@/root/*/client",
+                  "!@/root/*/server"
+                ],
+                "message": "Use Public API only (index/client/server)"
+              }
+            ]
+          }
+        ],
+
+        "import/no-cycle": "error",
+
+        "import/order": [
+          "error",
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "internal",
+              "parent",
+              "sibling",
+              "index"
+            ],
+            "newlines-between": "always"
+          }
+        ],
+
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error"
       }
-    ]
-  }
+    },
+
+    {
+      "files": ["**/*.{scss,css,module.scss,module.css}"],
+      "rules": {}
+    }
+  ]
 }

@@ -5,12 +5,11 @@ import classNames from "classnames";
 import { ThemeProvider as Provider } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
-import { selectTheme } from "@/shared/model/selectors/appSelectors";
-import dark from "@/shared/themes/dark";
-import light from "@/shared/themes/light";
+import { selectTheme } from "@/shared/model";
 import { TChildren, TTheme } from "@/shared/types";
 import { setTheme } from "@/shared/model";
 import { ThemeContext } from "@/shared/contexts";
+import { darkTheme, lightTheme } from "@/shared/themes";
 import "@/shared/styles/globals.scss";
 
 // Provider component that supplies context or store values for Theme.
@@ -38,7 +37,7 @@ const ThemeProvider: React.FC<Props> = ({ children, cookiesTheme }) => {
   // Render the component's JSX structure.
   return (
     <ThemeContext.Provider value={currentTheme}>
-      <Provider theme={currentTheme === "dark" ? dark : light}>
+      <Provider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
         <div className={classNames(currentTheme, "theme-wrap")}>{children}</div>
       </Provider>
     </ThemeContext.Provider>

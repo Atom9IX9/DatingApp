@@ -2,10 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
 import { isAuthRoute, isGuestRoute } from "@/shared/config";
-
-import { refreshTokens } from "./features/auth/api/refreshTokens";
-import { fetchOnboardingStep } from "./processes/register/api/fetchOnboardingStep";
-import { ResponseOnboardingStep } from "./features/auth/types/types";
+import { refreshTokens, ResponseOnboardingStep } from "@/features/auth/server";
+import { fetchOnboardingStep } from "@/processes/register/server";
 
 const JWT_ACCESS_SECRET = new TextEncoder().encode(
   process.env.JWT_ACCESS_SECRET,

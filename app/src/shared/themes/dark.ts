@@ -1,7 +1,7 @@
 import { createTheme, ThemeOptions } from "@mui/material";
 
 // Factory helper that creates theme objects or state.
-export default createTheme({
+export const darkTheme = createTheme({
   components: {
     typography: {
       fontFamily: [

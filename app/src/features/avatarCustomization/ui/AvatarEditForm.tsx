@@ -4,7 +4,7 @@ import { Box, Slider } from "@mui/material";
 import { FC, MouseEventHandler } from "react";
 import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
 
-import { useAvatarEdit } from "@/entities/avatar";
+import { useAvatarEdit } from "@/entities/avatar/client";
 import { BaseBtn } from "@/shared/ui";
 
 // Form component that captures avatar edit input.

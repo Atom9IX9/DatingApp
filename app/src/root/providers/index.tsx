@@ -6,8 +6,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Cookies from "js-cookie";
 
 import { VerifyAuthResponse } from "@/features/auth";
-import { onboardingStepFromCookies } from "@/processes/register/lib/onboardingStepFromCookies";
-import { ClientOnboardingStep } from "@/processes/register/types";
+import {
+  onboardingStepFromCookies,
+  ClientOnboardingStep,
+} from "@/processes/register";
 import { TChildren, TTheme } from "@/shared/types";
 
 import OnboardingProxy from "../proxy/OnboardingProxy";

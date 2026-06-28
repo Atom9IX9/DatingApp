@@ -6,7 +6,8 @@ import "@/shared/styles/globals.scss";
 import { nunito, quicksend } from "@/shared/fonts";
 import { Providers } from "@/root";
 import { TTheme } from "@/shared/types";
-import { verifyAuth, VerifyAuthResponse } from "@/features/auth";
+import { VerifyAuthResponse } from "@/features/auth";
+import { verifyAuth } from "@/features/auth/server";
 
 export const metadata: Metadata = {
   title: "Dating App",

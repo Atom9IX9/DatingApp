@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import RegisterProcess from "@/processes/register/ui/RegisterProcess";
+import { RegisterProcess } from "@/processes/register";
 
 import style from "../../../guestPages.module.scss";
 import HeroBlock from "../../../HeroBlock";

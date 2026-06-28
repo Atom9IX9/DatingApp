@@ -7,11 +7,11 @@ import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
 
-import { useAuth } from "@/features/auth";
+import { useAuth } from "@/features/auth/client";
 import { useMenu, useTheme } from "@/shared/lib";
 import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";
-import { selectAvatar } from "@/entities/avatar";
+import { selectAvatar } from "@/entities/avatar/client";
 import { useAppSelector } from "@/shared/lib";
 
 import AccountMenuBtn from "./AccountMenuBtn";

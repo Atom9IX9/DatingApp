@@ -4,10 +4,10 @@ import { useEffect } from "react";
 
 import { setUserAuth, setUserAccountInfo, selectUser } from "@/entities/user";
 import { TChildren } from "@/shared/types";
-import { selectAvatar, setAvatar } from "@/entities/avatar";
+import { selectAvatar, setAvatar } from "@/entities/avatar/client";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { CheckAuthResponseData } from "@/features/auth";
-import { AuthContext } from "@/features/auth/contexts";
+import { AuthContext } from "@/features/auth/client";
 
 // Provider component that supplies context or store values for Auth.
 const AuthProvider: React.FC<ProviderProps> = ({ children, auth }) => {
