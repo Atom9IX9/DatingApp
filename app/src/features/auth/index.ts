@@ -1,11 +1,7 @@
-//helpers
-export { useAuth } from "./hooks/useAuth";
-//api
-export { verifyAuth } from "./api/verifyAuth";
-export { refreshTokens } from "./api/refreshTokens";
-export type { VerifyAuthResponse } from "./api/verifyAuth";
 //types
 export type { CheckAuthResponseData, UserAuthResponse } from "./types/types";
+export type { VerifyAuthResponse } from "./api/verifyAuth";
+export { ResponseOnboardingStep } from "./types/types";
 //ui
 export { default as SignInForm } from "./signIn/ui/SignInForm/SignInFormController";
 export { default as CredentialsForm } from "./signUp/ui/credentialsForm/CredentialsFormController.tsx";

@@ -1,4 +1,4 @@
-import { ResponseOnboardingStep } from "@/features/auth/types/types";
+import { ResponseOnboardingStep } from "@/features/auth";
 
 export enum ClientOnboardingStep {
   CREDENTIALS = 1,

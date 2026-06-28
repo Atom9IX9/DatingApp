@@ -3,7 +3,7 @@ import classNames from "classnames";
 import ErrorIcon from "@mui/icons-material/Error";
 import { FieldValues } from "react-hook-form";
 
-import { FieldProps } from "@/shared/types/fields";
+import { FieldProps } from "../../types/fields";
 
 import style from "./field.module.scss";
 

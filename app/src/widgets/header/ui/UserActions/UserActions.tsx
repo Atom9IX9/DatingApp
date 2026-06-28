@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Box } from "@mui/material";
 
-import { useAuth } from "@/features/auth";
+import { useAuth } from "@/features/auth/client";
 
 import style from "../header.module.scss";
 

@@ -1,8 +1,7 @@
 import { TextField } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 
-import { BasicFieldParams, FieldProps } from "@/shared/types/fields";
-
+import { BasicFieldParams, FieldProps } from "../../../types/fields";
 import FieldContainer from "../FieldContainer";
 
 function MultitextField<FV extends FieldValues>({

@@ -16,8 +16,8 @@ import {
 } from "@/entities/user";
 import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { useAppDispatch } from "@/shared/lib";
-import { setAvatar } from "@/entities/avatar";
-import { ResponseOnboardingStep } from "@/features/auth/types/types";
+import { setAvatar } from "@/entities/avatar/client";
+import { ResponseOnboardingStep } from "@/features/auth";
 
 import { OnboardingStep } from "../types";
 import { setCurrentStep } from "../model/registerProcess.slice";

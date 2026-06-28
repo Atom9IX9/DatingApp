@@ -1,11 +1,12 @@
 "use client";
+
 import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 import { setUserAccountInfo, setUserAuth } from "@/entities/user";
-import { setCurrentStep } from "@/processes/register/model/registerProcess.slice";
+import { setCurrentStep } from "@/processes/register/client";
 import { SignInForm } from "@/features/auth";
-import { setAvatar } from "@/entities/avatar";
+import { setAvatar } from "@/entities/avatar/client";
 import { useAppDispatch } from "@/shared/lib";
 
 import HeroBlock from "../../../HeroBlock";

@@ -4,9 +4,8 @@ import { useEffect } from "react";
 
 import { TChildren } from "@/shared/types";
 import { useAppDispatch } from "@/shared/lib";
-
-import { setCurrentStep } from "../../processes/register/model/registerProcess.slice";
-import { OnboardingStep } from "../../processes/register/types";
+import { OnboardingStep } from "@/processes/register";
+import { setCurrentStep } from "@/processes/register/client";
 
 const OnboardingStepProvider: React.FC<Props> = ({
   children,

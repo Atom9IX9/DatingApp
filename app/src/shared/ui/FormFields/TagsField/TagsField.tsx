@@ -5,8 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import { Box, Button, Chip, TextField } from "@mui/material";
 
-import { BasicFieldParams, FieldProps } from "@/shared/types/fields";
-
+import { BasicFieldParams, FieldProps } from "../../../types/fields";
 import FieldContainer from "../FieldContainer";
 
 function TagsField<FV extends FieldValues>({

@@ -6,8 +6,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { useState } from "react";
 
-import { BasicFieldParams, FieldProps } from "@/shared/types/fields";
-
+import { BasicFieldParams, FieldProps } from "../../../types/fields";
 import FieldContainer from "../FieldContainer";
 
 function Field<FV extends FieldValues>({
