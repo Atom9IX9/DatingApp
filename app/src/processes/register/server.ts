@@ -1,1 +1,1 @@
-export { fetchOnboardingStep } from "./api/fetchOnboardingStep"
+export { fetchOnboardingStep } from "./api/fetchOnboardingStep";

@@ -3,7 +3,7 @@
 import { Box } from "@mui/material";
 
 import { PositionedAvatar } from "@/entities/avatar";
-import { selectAvatar } from "@/entities/avatar/client"
+import { selectAvatar } from "@/entities/avatar/client";
 import { useAppSelector } from "@/shared/lib";
 
 const AuthPreview = () => {
