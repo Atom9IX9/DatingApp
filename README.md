@@ -12,6 +12,7 @@ Frontend part of a web application for dating and social interaction between use
 * **Next.js** — React framework with SSR/SSG support
 * **Redux Toolkit** — global state management
 * **SCSS** — component styling
+* **Material UI** — UI framework
 
 ## Project Goal
 
@@ -38,8 +39,8 @@ The project follows the **Feature-Sliced Design (FSD)** methodology, which allow
 
 ### Main layers:
 
-* **root/** — application initialization, providers (my variant for NextJS)
 * **app/** — Next.js routing (basic for NextJS)
+* **root/** — application initialization, providers (my variant for NextJS)
 * **processes/** - long-running cross-feature flows that represent business processes
 * **widgets/** — large UI blocks (e.g. profile, chat list)
 * **features/** — user interaction scenarios (login, like, create meeting)
@@ -65,18 +66,12 @@ Global state is handled with **Redux Toolkit**:
 
 ```bash
 cd app
+npm run setup
 npm install
 npm run dev
 ```
 
 The application will be available at: `http://localhost:3000`
-
-## Environment Variables
-
-Create a `.env.local` file in the root and define:
-
-NEXT_PUBLIC_API_URL=http://localhost:5000/api (for client components)
-API_URL=http://localhost:5000/api (for server components)
 
 ## ℹ️ Additional Information — Prerequisites
 
