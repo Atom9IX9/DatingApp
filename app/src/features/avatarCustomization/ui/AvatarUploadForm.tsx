@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button } from "@mui/material";
+import { Box, Button, SxProps } from "@mui/material";
 import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import UploadIcon from "@mui/icons-material/Upload";
 
@@ -13,7 +13,7 @@ import { useUploadAvatarMutation } from "../api/avatarApi";
 import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
 
 // Form component that captures upload input.
-const UploadForm: React.FC<Props> = ({ onSuccess }) => {
+const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
   const dropAreaRef = useRef<HTMLDivElement | null>(null);
   const { file, isDragging, error } = useDragAndDrop(
     ["image/png", "image/jpeg", "image/webp"],
@@ -59,7 +59,12 @@ const UploadForm: React.FC<Props> = ({ onSuccess }) => {
   // Render the component's JSX structure.
   return (
     <Box
-      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        ...sx,
+      }}
     >
       <Box
         component={"h4"}
@@ -163,4 +168,5 @@ export default UploadForm;
 // Exported type alias used for typing shared data shapes.
 export type Props = {
   onSuccess?: (data: Avatar) => void;
+  sx?: SxProps;
 };

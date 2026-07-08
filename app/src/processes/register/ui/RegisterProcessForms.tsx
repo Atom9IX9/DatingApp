@@ -1,84 +1,50 @@
 "use client";
 
 import Cookies from "js-cookie";
+import React from "react";
 import { useRouter } from "next/navigation";
-import { Box } from "@mui/material";
 
-import {
-  CredentialsForm,
-  DescriptionForm,
-  RegisterUserPersonalInfoForm,
-} from "@/features/auth";
-import {
-  registerUserPersonalInfo,
-  setUserAuth,
-  setUserDescription,
-} from "@/entities/user";
-import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { useAppDispatch } from "@/shared/lib";
-import { setAvatar } from "@/entities/avatar/client";
 import { ResponseOnboardingStep } from "@/features/auth";
 
 import { OnboardingStep } from "../types";
 import { setCurrentStep } from "../model/registerProcess.slice";
 
-const RegisterProcessForms: React.FC<Props> = ({ currentStep }) => {
+const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {
   const dispatch = useAppDispatch();
   const { push } = useRouter();
 
-  const nextStep = () => {
-    if (currentStep !== ResponseOnboardingStep.REGISTERED) {
-      const newStep = currentStep + 1;
-      dispatch(setCurrentStep(newStep));
-      Cookies.set("onboardingStep", String(newStep));
-    }
+  const handleStepSuccess = () => {
+    const newStep = Number(currentStep) + 1;
+    dispatch(setCurrentStep(newStep));
+    Cookies.set("onboardingStep", String(newStep), { expires: 1 });
   };
 
-  switch (currentStep) {
-    case 1:
-      // Render the component's JSX structure.
-      return (
-        <CredentialsForm
-          onSuccess={({ auth: { authId, email } }) => {
-            dispatch(setUserAuth({ email, authId }));
-            nextStep();
-          }}
-        />
-      );
-    case 2:
-      // Render the component's JSX structure.
-      return (
-        <RegisterUserPersonalInfoForm
-          onSuccess={(data) => {
-            dispatch(registerUserPersonalInfo(data));
-            nextStep();
-          }}
-        />
-      );
-    case 3:
-      // Render the component's JSX structure.
-      return (
-        <DescriptionForm
-          onSuccess={(data) => {
-            dispatch(setUserDescription(data));
-            nextStep();
-          }}
-        />
-      );
-    case 4:
-      // Render the component's JSX structure.
-      return (
-        <Box sx={{ mt: "31px" }}>
-          <AvatarUploadForm
-            onSuccess={(data) => {
-              dispatch(setAvatar(data));
-              dispatch(setCurrentStep(ResponseOnboardingStep.REGISTERED));
-              Cookies.set("onboardingStep", "registered");
-              push("/home");
-            }}
-          />
-        </Box>
-      );
+  const handleLastStepSuccess = () => {
+    dispatch(setCurrentStep(ResponseOnboardingStep.REGISTERED));
+    Cookies.set("onboardingStep", "registered", { expires: 1 });
+    push("/home");
+  };
+
+  for (let i = 0; i < formOrder.length; i++) {
+    if (Number.isInteger(currentStep) && +currentStep - 1 === i) {
+      const currentForm = formOrder[i];
+
+      return React.cloneElement(currentForm, {
+        onSuccess: (data: any) => {
+          if (currentForm.props.onSuccess) {
+            // actions from children
+            currentForm.props.onSuccess(data);
+          }
+          // base onSoccess behavior
+          if (i === formOrder.length - 1) {
+            handleLastStepSuccess();
+          } else {
+            handleStepSuccess();
+          }
+        },
+      });
+    }
   }
 };
 
@@ -86,4 +52,5 @@ export default RegisterProcessForms;
 // Type describing component props.
 type Props = {
   currentStep: OnboardingStep;
+  formOrder: React.ReactElement<{ onSuccess: (data: any) => void }>[];
 };

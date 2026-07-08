@@ -54,5 +54,5 @@ export default AuthProvider;
 // Props type for the Provider component.
 type ProviderProps = {
   children: TChildren;
-  auth: CheckAuthResponseData | undefined;
+  auth: CheckAuthResponseData | null;
 };

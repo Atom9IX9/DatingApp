@@ -6,7 +6,7 @@ import { OnboardingStep } from "../types";
 
 // State shape for initial.
 const initialState: TInitialState = {
-  currentStep: 1,
+  currentStep: 0,
   stepsCount: 4,
   isRegistered: false,
 };
@@ -32,7 +32,7 @@ export const { setCurrentStep } = registerProcessSlice.actions;
 
 // Exported type alias used for typing shared data shapes.
 export type TInitialState = {
-  currentStep: OnboardingStep;
+  currentStep: OnboardingStep | 0;
   stepsCount: number;
   isRegistered: boolean;
 };

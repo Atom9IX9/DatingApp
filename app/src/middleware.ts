@@ -51,7 +51,9 @@ export async function middleware(req: NextRequest) {
       if (onboardingStep === ResponseOnboardingStep.REGISTERED) {
         isRegistered = true;
       }
-      res.cookies.set("onboardingStep", currentStep as string);
+      res.cookies.set("onboardingStep", currentStep as string, {
+        maxAge: 3600 * 24,
+      });
     }
   } catch (e) {
     // Token verification failed

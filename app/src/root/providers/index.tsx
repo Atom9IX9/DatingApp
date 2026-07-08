@@ -24,7 +24,7 @@ export const Providers: React.FC<Props> = ({ children, cookies, auth }) => {
   // Render the component's JSX structure.
   return (
     <StoreProvider>
-      <AuthProvider auth={auth?.data}>
+      <AuthProvider auth={auth?.data || null}>
         <OnboardingProxy
           onboardingStep={
             auth?.data?.onboardingStep ||
