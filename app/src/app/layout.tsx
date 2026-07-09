@@ -4,10 +4,11 @@ import { cookies } from "next/headers";
 import "@/shared/styles/globals.scss";
 
 import { nunito, quicksend } from "@/shared/fonts";
-import { Providers } from "@/root";
+import { ServerProviders } from "@/root";
 import { TTheme } from "@/shared/types";
 import { VerifyAuthResponse } from "@/features/auth";
 import { verifyAuth } from "@/features/auth/server";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -21,24 +22,14 @@ const RootLayout = async ({
   children: React.ReactNode;
 }>) => {
   // Read a cookie from the incoming request in server-side rendering.
-  const theme = cookies().get("theme")?.value as TTheme | undefined;
-  const accessToken = cookies().get("accessToken")?.value;
-
-  let authData: VerifyAuthResponse | null = null;
-
-  try {
-    authData = await verifyAuth(accessToken);
-  } catch (e) {
-    console.log(e);
-  }
 
   // Render the component's JSX structure.
   return (
     <html lang="en">
       <body className={`${nunito.variable} ${quicksend.variable}`}>
-        <Providers auth={authData} cookies={{ theme }}>
-          {children}
-        </Providers>
+        <Suspense fallback={<>Loading...</>}>
+          <ServerProviders>{children}</ServerProviders>
+        </Suspense>
       </body>
     </html>
   );

@@ -32,7 +32,6 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
     >
       {avatar.url && (
         <Image
-          priority
           ref={refs.imgRef}
           onLoad={(e) => {
             // todo: Skeleton

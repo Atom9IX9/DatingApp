@@ -12,7 +12,8 @@ import HeroBlock from "../../../HeroBlock";
 // Server-rendered page component for the start page.
 const SignUpPage: React.FC = async () => {
   // Render the component's JSX structure.
-  const onboardingStep = cookies().get("onboardingStep")?.value;
+  const cookiesStorage = await cookies();
+  const onboardingStep = cookiesStorage.get("onboardingStep")?.value;
 
   return (
     <Box className={`${style.mainBlock} ${style.signUpPage}`}>

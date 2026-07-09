@@ -7,7 +7,7 @@ import { makeStore } from "../model/store/store";
 
 // Provider component that supplies context or store values for Store.
 const StoreProvider = ({ children }: { children: React.ReactNode }) => {
-  const storeRef = useRef<AppStore>();
+  const storeRef = useRef<AppStore>(undefined);
   if (!storeRef.current) {
     storeRef.current = makeStore();
   }

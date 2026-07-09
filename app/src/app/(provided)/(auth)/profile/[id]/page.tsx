@@ -1,10 +1,12 @@
-"use client";
+const Profile = async ({ params }: PageProps) => {
+  const { id } = await params;
 
-import { useParams } from "next/navigation";
-
-const Profile = () => {
-  const { id } = useParams();
   return <div>profile: {id}</div>;
 };
 
 export default Profile;
+type PageProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
