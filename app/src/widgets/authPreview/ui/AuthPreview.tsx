@@ -3,15 +3,15 @@
 import { Box } from "@mui/material";
 
 import { PositionedAvatar } from "@/entities/avatar";
-import { selectAvatar } from "@/entities/avatar/client";
-import { useAppSelector } from "@/shared/lib";
+import { useAuth } from "@/features/auth/client";
 
 const AuthPreview = () => {
-  const avatar = useAppSelector(selectAvatar);
+  const auth = useAuth();
+
   // Render the component's JSX structure.
   return (
     <Box>
-      <PositionedAvatar avatar={avatar} size={260} />
+      {auth?.avatar && <PositionedAvatar avatar={auth.avatar} size={260} />}
     </Box>
   );
 };

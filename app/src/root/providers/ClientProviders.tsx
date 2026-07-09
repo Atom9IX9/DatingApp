@@ -1,19 +1,23 @@
 "use client";
 
 import { VerifyAuthResponse } from "@/features/auth";
-import { ClientOnboardingStep, OnboardingStep, onboardingStepFromCookies } from "@/processes/register";
+import {
+  ClientOnboardingStep,
+  OnboardingStep,
+  onboardingStepFromCookies,
+} from "@/processes/register";
 import { TChildren, TTheme } from "@/shared/types";
 import StoreProvider from "./StoreProvider";
 import AuthProvider from "./AuthProvider";
-import OnboardingProxy from "../proxy/OnboardingProxy"
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import OnboardingProxy from "../proxy/OnboardingProxy";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import ThemeProvider from "./ThemeProvider";
 
 const ClientProviders: React.FC<Props> = ({ auth, cookies, children }) => {
   return (
-    <div>
+    <AppRouterCacheProvider>
       <StoreProvider>
         <AuthProvider auth={auth?.data || null}>
           <OnboardingProxy
@@ -23,17 +27,15 @@ const ClientProviders: React.FC<Props> = ({ auth, cookies, children }) => {
               ClientOnboardingStep.CREDENTIALS
             }
           >
-            <AppRouterCacheProvider>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <ThemeProvider cookiesTheme={cookies.theme}>
-                  {children}
-                </ThemeProvider>
-              </LocalizationProvider>
-            </AppRouterCacheProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <ThemeProvider cookiesTheme={cookies.theme}>
+                {children}
+              </ThemeProvider>
+            </LocalizationProvider>
           </OnboardingProxy>
         </AuthProvider>
       </StoreProvider>
-    </div>
+    </AppRouterCacheProvider>
   );
 };
 

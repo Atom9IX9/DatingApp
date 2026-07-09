@@ -25,5 +25,5 @@ type TProps = {
   isOpen: boolean;
   firstName?: string;
   lastName?: string;
-  avatar: Avatar | null;
+  avatar?: Avatar | null;
 };

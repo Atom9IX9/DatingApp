@@ -22,7 +22,6 @@ const AccountMenu = () => {
 
   const theme = useTheme();
   const auth = useAuth();
-  const avatar = useAppSelector(selectAvatar);
 
   // Render the component's JSX structure.
   return (
@@ -30,7 +29,7 @@ const AccountMenu = () => {
       <AccountMenuBtn
         firstName={auth?.firstName}
         lastName={auth?.lastName}
-        avatar={avatar}
+        avatar={auth?.avatar}
         handleClick={handleClick}
         isOpen={isOpen}
       />

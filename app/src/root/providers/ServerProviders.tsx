@@ -18,6 +18,7 @@ export default async function ServerProviders({
 
   try {
     auth = await verifyAuth();
+    console.log("SERVER AVATAR", auth?.data?.user?.avatar);
   } catch {}
 
   return (
