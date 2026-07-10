@@ -31,7 +31,7 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {
       const currentForm = formOrder[i];
 
       return React.cloneElement(currentForm, {
-        onSuccess: (data: any) => {
+        onSuccess: (data: unknown) => {
           if (currentForm.props.onSuccess) {
             // actions from children
             currentForm.props.onSuccess(data);
@@ -52,5 +52,5 @@ export default RegisterProcessForms;
 // Type describing component props.
 type Props = {
   currentStep: OnboardingStep;
-  formOrder: React.ReactElement<{ onSuccess: (data: any) => void }>[];
+  formOrder: React.ReactElement<{ onSuccess: (data: unknown) => void }>[];
 };

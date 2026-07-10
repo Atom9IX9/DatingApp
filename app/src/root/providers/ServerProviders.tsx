@@ -1,8 +1,9 @@
 import { cookies } from "next/headers";
+
 import { verifyAuth } from "@/features/auth/server";
+import { TTheme } from "@/shared/types";
 
 import ClientProviders from "./ClientProviders";
-import { TTheme } from "@/shared/types";
 
 export default async function ServerProviders({
   children,
@@ -15,10 +16,12 @@ export default async function ServerProviders({
   const onboardingStep = cookieStore.get("onboardingStep")?.value;
 
   let auth = null;
-  
+
   try {
     auth = await verifyAuth();
-  } catch {}
+  } catch (e) {
+    console.log(e);
+  }
 
   return (
     <ClientProviders

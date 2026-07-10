@@ -4,11 +4,11 @@ import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { IconButton } from "@mui/material";
+import { IconButton, useTheme } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import { UIIconMenuButton, UIMenu } from "@/shared/ui";
-import { useMenu, useTheme } from "@/shared/lib";
+import { useMenu } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { setTheme } from "@/shared/model";
 import { useAppDispatch } from "@/shared/lib";
@@ -17,7 +17,7 @@ import { useAppDispatch } from "@/shared/lib";
 const AppSettingsMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();
 
-  const theme = useTheme();
+  const theme = useTheme().palette.mode;
 
   // Render the component's JSX structure.
   return (

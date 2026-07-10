@@ -1,4 +1,3 @@
-export { useTheme } from "./hooks/useTheme";
 export { useMenu } from "./hooks/useMenu";
 export { useDragAndDrop } from "./hooks/useDragAndDrop";
 export { useAppDispatch } from "./hooks/useAppDispatch";

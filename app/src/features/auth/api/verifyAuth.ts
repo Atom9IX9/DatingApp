@@ -10,7 +10,7 @@ export const verifyAuth = async (): Promise<VerifyAuthResponse> => {
   const res = await api.get<CheckAuthResponseData>("auth");
 
   //todo del or update error on API shared level
-  return { data: res, error: undefined};
+  return { data: res, error: undefined };
 };
 
 // Exported type alias used for typing shared data shapes.

@@ -1,16 +1,14 @@
 "use client";
 
 import cn from "classnames";
-import { AppBar, Toolbar } from "@mui/material";
-
-import { useTheme } from "@/shared/lib";
+import { AppBar, Toolbar, useTheme } from "@mui/material";
 
 import style from "./header.module.scss";
 import HeaderNav from "./HeaderNav/HeaderNav";
 import UserActions from "./UserActions/UserActions";
 
 const Header = () => {
-  const theme = useTheme();
+  const theme = useTheme().palette.mode;
 
   // Render the component's JSX structure.
   return (

@@ -29,7 +29,7 @@ export async function proxy(req: NextRequest) {
   const refreshToken = req.cookies.get("refreshToken")?.value;
   const { pathname } = req.nextUrl;
   let isValidToken = false;
-  let res = NextResponse.next();
+  const res = NextResponse.next();
   let onboardingStep = req.cookies.get("onboardingStep")?.value;
   let isRegistered = onboardingStep === ResponseOnboardingStep.REGISTERED;
 
@@ -56,6 +56,8 @@ export async function proxy(req: NextRequest) {
       });
     }
   } catch (e) {
+    console.log(e);
+    //todo: catch errors
     // Token verification failed
     if (refreshToken) {
       const tokenData = await tryToRefreshTokens(refreshToken, res);

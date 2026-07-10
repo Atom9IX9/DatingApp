@@ -1,28 +1,48 @@
 "use client";
 import { Box, Button, SxProps } from "@mui/material";
-import { ChangeEventHandler, useEffect, useRef, useState } from "react";
+import {
+  ChangeEventHandler,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import UploadIcon from "@mui/icons-material/Upload";
+import { QueryStatus } from "@reduxjs/toolkit/query";
 
 import { useDragAndDrop } from "@/shared/lib";
 import { BackdropLoader, BaseBtn, VisuallyHiddenInput } from "@/shared/ui";
 import { Avatar } from "@/entities/avatar";
 
-import { getFileUrl } from "../lib/setFileUrl";
 import { useUploadAvatarMutation } from "../api/avatarApi";
 
 import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
-import { QueryStatus } from "@reduxjs/toolkit/query";
 
 // Form component that captures upload input.
 const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
   const dropAreaRef = useRef<HTMLDivElement | null>(null);
-  const { file, isDragging, error } = useDragAndDrop(
-    ["image/png", "image/jpeg", "image/webp"],
+  const [selectedFile, setSelectedFile] = useState<File>();
+
+  const { isDragging, error } = useDragAndDrop(
+    (file) => setSelectedFile(file),
     dropAreaRef,
+    ["image/png", "image/jpeg", "image/webp"],
   );
 
-  const [selectedFile, setSelectedFile] = useState<File>();
-  const [avatarUrl, setAvatarUrl] = useState<string>();
+  const avatarUrl = useMemo(() => {
+    if (!selectedFile) return undefined;
+
+    return URL.createObjectURL(selectedFile);
+  }, [selectedFile]);
+
+  useEffect(() => {
+    return () => {
+      if (avatarUrl) {
+        URL.revokeObjectURL(avatarUrl);
+      }
+    };
+  }, [avatarUrl]);
+
   const [uploadAvatar, result] = useUploadAvatarMutation();
 
   const onSubmit: onUploadSubmit = (data) => {
@@ -36,20 +56,9 @@ const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
     }
   };
 
-  const selectFile = (file?: File) => {
-    setSelectedFile(file);
-    setAvatarUrl(getFileUrl(file) as string);
-  };
-
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    selectFile(e.target.files ? e.target.files[0] : undefined);
+    setSelectedFile(e.target.files ? e.target.files[0] : undefined);
   };
-
-  useEffect(() => {
-    if (file) {
-      selectFile(file);
-    }
-  }, [file, setSelectedFile]);
 
   useEffect(() => {
     if (result.data && onSuccess) {
@@ -152,7 +161,9 @@ const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
           </Button>
         </Box>
       ) : (
-        <AvatarEditForm avatarUrl={avatarUrl as string} onSubmit={onSubmit} />
+        avatarUrl && (
+          <AvatarEditForm avatarUrl={avatarUrl} onSubmit={onSubmit} />
+        )
       )}
       {!selectedFile && (
         <Box sx={{ width: "100%", mt: "100px" }}>

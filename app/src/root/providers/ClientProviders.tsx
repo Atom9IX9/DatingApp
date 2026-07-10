@@ -1,18 +1,19 @@
 "use client";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { VerifyAuthResponse } from "@/features/auth";
 import {
   ClientOnboardingStep,
-  OnboardingStep,
   onboardingStepFromCookies,
 } from "@/processes/register";
 import { TChildren, TTheme } from "@/shared/types";
+
+import OnboardingProxy from "../proxy/OnboardingProxy";
+
 import StoreProvider from "./StoreProvider";
 import AuthProvider from "./AuthProvider";
-import OnboardingProxy from "../proxy/OnboardingProxy";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import ThemeProvider from "./ThemeProvider";
 
 const ClientProviders: React.FC<Props> = ({ auth, cookies, children }) => {

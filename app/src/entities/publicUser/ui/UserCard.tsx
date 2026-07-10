@@ -1,11 +1,11 @@
 "use client";
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Typography, useTheme } from "@mui/material";
 import classNames from "classnames";
 import PlaceIcon from "@mui/icons-material/Place";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 
-import { capitalize, useTheme } from "@/shared/lib";
+import { capitalize } from "@/shared/lib";
 import { Colors } from "@/shared/types";
 import { Sex } from "@/entities/user";
 import { PositionedAvatar } from "@/entities/avatar";
@@ -29,7 +29,7 @@ const UserCard: React.FC<TUserCardProps> = ({
         bgcolor: Colors.InfoDark,
         borderRadius: "14px",
       }}
-      className={classNames(style.userCard, style[theme], {
+      className={classNames(style.userCard, style[theme.palette.mode], {
         [style.even]: isEven,
       })}
     >
@@ -39,7 +39,7 @@ const UserCard: React.FC<TUserCardProps> = ({
           className={classNames(
             style.onlineStatus,
             user.isOnline ? style.online : style.offline,
-            style[theme],
+            style[theme.palette.mode],
           )}
           sx={{ border: 5, borderColor: Colors.InfoDark }}
         ></Box>
@@ -52,7 +52,9 @@ const UserCard: React.FC<TUserCardProps> = ({
         <Typography
           variant="h3"
           color={
-            theme === "dark" ? Colors.PrimaryContrastText : Colors.PrimaryDark
+            theme.palette.mode === "dark"
+              ? Colors.PrimaryContrastText
+              : Colors.PrimaryDark
           }
           className={style.userFullName}
         >

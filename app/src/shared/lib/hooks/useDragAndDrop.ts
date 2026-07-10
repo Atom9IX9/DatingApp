@@ -3,12 +3,12 @@ import { MutableRefObject, useEffect, useState } from "react";
 
 // Custom hook that handles DragAndDrop logic.
 export const useDragAndDrop = (
-  allowedTypes: string[],
+  onDrop: (file: File) => void,
   dropAreaRef?: MutableRefObject<HTMLDivElement | null>,
+  allowedTypes?: string[],
 ) => {
   // React state storing isDragging values and updating them with IsDragging.
   const [isDragging, setIsDragging] = useState(false);
-  const [file, setFile] = useState<File>();
   const [error, setError] = useState<string>();
 
   useEffect(() => {
@@ -37,12 +37,15 @@ export const useDragAndDrop = (
       e.stopPropagation();
       setIsDragging(false);
 
-      if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
-        if (!allowedTypes.includes(e.dataTransfer.files[0].type)) {
+      const files = e.dataTransfer?.files;
+
+      if (files && files.length > 0) {
+        const file = files[0];
+        if (allowedTypes && !allowedTypes.includes(file.type)) {
           setError("Unsupported file type");
           return;
         }
-        setFile(e.dataTransfer.files[0]);
+        onDrop(file);
       }
     };
 
@@ -58,9 +61,7 @@ export const useDragAndDrop = (
       node.removeEventListener("dragleave", handleDragLeave);
       node.removeEventListener("drop", handleDrop);
     };
-  }, [dropAreaRef, allowedTypes]);
+  }, [dropAreaRef, allowedTypes, onDrop]);
 
-  const resetFile = () => setFile(undefined);
-
-  return { isDragging, file, resetFile, error };
+  return { isDragging, error };
 };

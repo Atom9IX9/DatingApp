@@ -6,9 +6,10 @@ import PeopleIcon from "@mui/icons-material/People";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
+import { useTheme } from "@mui/material";
 
 import { useAuth } from "@/features/auth/client";
-import { useMenu, useTheme } from "@/shared/lib";
+import { useMenu } from "@/shared/lib";
 import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";
 
@@ -18,7 +19,7 @@ import AccountMenuBtn from "./AccountMenuBtn";
 const AccountMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();
 
-  const theme = useTheme();
+  const theme = useTheme().palette.mode;
   const auth = useAuth();
 
   // Render the component's JSX structure.
