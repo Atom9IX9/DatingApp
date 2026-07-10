@@ -11,8 +11,6 @@ import { useAuth } from "@/features/auth/client";
 import { useMenu, useTheme } from "@/shared/lib";
 import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";
-import { selectAvatar } from "@/entities/avatar/client";
-import { useAppSelector } from "@/shared/lib";
 
 import AccountMenuBtn from "./AccountMenuBtn";
 

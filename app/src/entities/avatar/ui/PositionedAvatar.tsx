@@ -1,4 +1,5 @@
 "use client";
+
 import { Box } from "@mui/material";
 import Image from "next/image";
 
@@ -17,8 +18,6 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
 
   // Scale factor used to adjust avatar image position and size based on the rendered component dimensions.
   const k = size / 260;
-
-  console.log("render", avatar);
 
   // Render the component's JSX structure.
   return (

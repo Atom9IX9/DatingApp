@@ -1,10 +1,8 @@
-"use client";
-
 import { Box } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 
-import { GradientButton } from "@/shared/ui";
+import { GradientButton } from "@/shared/ui/server";
 
 const AuthLinks: React.FC<Props> = ({ spaceBetween }) => {
   // Render the component's JSX structure.

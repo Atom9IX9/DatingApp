@@ -4,13 +4,14 @@ import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import UploadIcon from "@mui/icons-material/Upload";
 
 import { useDragAndDrop } from "@/shared/lib";
-import { BaseBtn, VisuallyHiddenInput } from "@/shared/ui";
+import { BackdropLoader, BaseBtn, VisuallyHiddenInput } from "@/shared/ui";
 import { Avatar } from "@/entities/avatar";
 
 import { getFileUrl } from "../lib/setFileUrl";
 import { useUploadAvatarMutation } from "../api/avatarApi";
 
 import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
+import { QueryStatus } from "@reduxjs/toolkit/query";
 
 // Form component that captures upload input.
 const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
@@ -66,6 +67,7 @@ const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
         ...sx,
       }}
     >
+      <BackdropLoader isOpen={result.status === QueryStatus.pending} />
       <Box
         component={"h4"}
         sx={{

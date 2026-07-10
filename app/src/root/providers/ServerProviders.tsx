@@ -15,10 +15,9 @@ export default async function ServerProviders({
   const onboardingStep = cookieStore.get("onboardingStep")?.value;
 
   let auth = null;
-
+  
   try {
     auth = await verifyAuth();
-    console.log("SERVER AVATAR", auth?.data?.user?.avatar);
   } catch {}
 
   return (

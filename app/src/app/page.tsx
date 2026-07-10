@@ -10,7 +10,7 @@ const Startpage: React.FC = async () => {
   // Render the component's JSX structure.
   return (
     <Box className={style.mainBlock}>
-      <HeroBlock forPage="startpage" />
+      <HeroBlock forPageGroup="startpage" />
       <Box className={style.textSectionContainer}>
         <Box component="section" className={style.textSection}>
           <Box

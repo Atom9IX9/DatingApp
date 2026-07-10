@@ -17,7 +17,7 @@ const SignUpPage: React.FC = async () => {
 
   return (
     <Box className={`${style.mainBlock} ${style.signUpPage}`}>
-      <HeroBlock forPage="signUpPage" />
+      <HeroBlock forPageGroup="auth" />
       <RegisterProcess
         cookiesStep={
           onboardingStep ? onboardingStepFromCookies(onboardingStep) : null

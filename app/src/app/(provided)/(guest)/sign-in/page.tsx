@@ -19,7 +19,7 @@ const SignIn = () => {
   // Render the component's JSX structure.
   return (
     <Box className={`${style.mainBlock} ${style.signInPage}`}>
-      <HeroBlock forPage="signInPage" />
+      <HeroBlock forPageGroup="auth" />
       <SignInForm
         onSuccess={({ authCredentials, onboardingStep, user }) => {
           if (user) {

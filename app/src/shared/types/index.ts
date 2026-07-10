@@ -11,7 +11,7 @@ export type TValidationFunction = (
 ) => boolean | string | Promise<boolean | string>;
 // Exported type alias used for typing shared data shapes.
 export type TArrayValidationFunction = (
-  value: any[],
+  value: unknown[],
 ) => boolean | string | Promise<boolean | string>;
 // Exported type alias used for typing shared data shapes.
 export type TDateValidationFunction = (
