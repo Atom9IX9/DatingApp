@@ -5,3 +5,4 @@ export { useAppSelector } from "./hooks/useAppSelector";
 export { stringToColor } from "./helpers/stringToColor";
 export { capitalize } from "./helpers/capitalize";
 export { getStaticByUrl } from "./helpers/getStaticByUrl";
+export { useHydration } from "./hooks/useHidration";

@@ -1,19 +1,14 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
 
 import { TChildren } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
+import { useHydration } from "@/shared/lib";
 
 // Form component that captures hydrated input.
 const HydratedForm: React.FC<Props> = ({ children, className, onSubmit }) => {
-  // React state storing isHydrated values and updating them with IsHydrated.
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+  const isHydrated = useHydration();
 
   // Render the component's JSX structure.
   return (
