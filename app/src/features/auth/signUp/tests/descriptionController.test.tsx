@@ -12,17 +12,6 @@ jest.mock("@/features/auth/signUp/api/signUpAPI", () => ({
 }));
 
 describe("Components: CredentialsFormController", () => {
-  // Додаємо вбудований у Node.js fetch перед запуском тестів
-  beforeAll(() => {
-    if (!global.fetch) {
-      const { fetch, Headers, Request, Response } = require("node:undici");
-      global.fetch = fetch;
-      global.Headers = Headers;
-      global.Request = Request;
-      global.Response = Response;
-    }
-  });
-
   it("should set an error if password and confirmPassword do not match", async () => {
     const element = React.createElement(CredentialsFormController, {
       onSuccess: jest.fn(),
@@ -35,7 +24,6 @@ describe("Components: CredentialsFormController", () => {
     const confirmPasswordInput = container.querySelector(
       'input[name="confirmPassword"]',
     );
-    // Button component used for an action in src\features\auth\signUp\tests\descriptionController.test.tsx.
     const submitButton = screen.getByRole("button", { name: /Continue/i });
 
     if (!emailInput || !passwordInput || !confirmPasswordInput) {

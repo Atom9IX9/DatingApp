@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
-
-import "@/shared/styles/globals.scss";
+import { Suspense } from "react";
 
 import { nunito, quicksend } from "@/shared/fonts";
 import { ServerProviders } from "@/root";
-import { TTheme } from "@/shared/types";
-import { VerifyAuthResponse } from "@/features/auth";
-import { verifyAuth } from "@/features/auth/server";
-import { Suspense } from "react";
+import "@/shared/styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "Dating App",

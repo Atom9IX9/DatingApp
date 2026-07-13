@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   forbidden: [
     {
       name: "no-circular",
@@ -69,3 +69,5 @@ module.exports = {
     },
   },
 };
+
+export default config;

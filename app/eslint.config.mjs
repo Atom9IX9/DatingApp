@@ -10,7 +10,14 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
-    ignores: [".next/**", "node_modules/**", "**/*.scss", "**/*.css"],
+    ignores: [
+      ".next/**",
+      "node_modules/**",
+      "**/*.scss",
+      "**/*.css",
+      "scripts/**",
+      "coverage/**",
+    ],
   },
   js.configs.recommended,
   ...nextVitals,

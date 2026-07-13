@@ -11,7 +11,8 @@ import { useAvatarEdit } from "../lib/hooks/useAvatarEdit";
 // Component that renders a positioned avatar image with transform and clipping behavior.
 const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
   const {
-    refs,
+    containerRef,
+    imgRef,
     state,
     handlers: { handleImageLoad },
   } = useAvatarEdit();
@@ -22,7 +23,7 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
   // Render the component's JSX structure.
   return (
     <Box
-      ref={refs.containerRef}
+      ref={containerRef}
       sx={{
         width: size,
         height: size,
@@ -33,7 +34,7 @@ const PosAvatar: React.FC<Props> = ({ avatar, size }) => {
     >
       {avatar.url && (
         <Image
-          ref={refs.imgRef}
+          ref={imgRef}
           onLoad={(e) => {
             // todo: Skeleton
             handleImageLoad(e);

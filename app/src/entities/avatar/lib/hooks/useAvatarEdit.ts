@@ -97,7 +97,8 @@ export const useAvatarEdit = (transforms?: Transform) => {
   };
 
   return {
-    refs: { containerRef, imgRef },
+    containerRef,
+    imgRef,
     handlers: {
       handleImageLoad,
       handleMouseDown,

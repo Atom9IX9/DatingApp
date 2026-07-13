@@ -15,7 +15,7 @@ const HeroBlock: React.FC<Props> = ({ forPageGroup }) => {
         sizes="64vw"
         fill
         priority
-        className={`${style.heroImg} ${style.forPageGroup}`}
+        className={`${style.heroImg} ${style[forPageGroup]}`}
         style={{
           objectFit: "cover",
           objectPosition: "right",

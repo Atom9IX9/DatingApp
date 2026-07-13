@@ -9,7 +9,7 @@ import { BaseBtn } from "@/shared/ui";
 
 // Form component that captures avatar edit input.
 const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
-  const { refs, handlers, state } = useAvatarEdit();
+  const { containerRef, imgRef, handlers, state } = useAvatarEdit();
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     if (onSubmit) {
@@ -32,7 +32,7 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
       }}
     >
       <Box
-        ref={refs.containerRef}
+        ref={containerRef}
         onMouseDown={handlers.handleMouseDown}
         onMouseMove={handlers.handleMouseMove}
         onMouseUp={handlers.handleMouseUp}
@@ -49,7 +49,7 @@ const AvatarEditForm: FC<Props> = ({ avatarUrl, onSubmit }) => {
       >
         <Box
           component="img"
-          ref={refs.imgRef}
+          ref={imgRef}
           src={avatarUrl}
           alt="avatar"
           draggable={false}
