@@ -3,6 +3,13 @@ import { createTheme, ThemeOptions } from "@mui/material";
 // Factory helper that creates theme objects or state.
 export const lightTheme = createTheme({
   components: {
+    typography: {
+      fontFamily: [
+        "var(--font-primary)", // Primary font
+        "Arial", // Fallback fonts
+        "sans-serif",
+      ].join(","),
+    },
     MuiTypography: {
       defaultProps: {
         variantMapping: {
@@ -13,19 +20,23 @@ export const lightTheme = createTheme({
     },
   },
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
-      main: "#e3507c",
+      main: "#FF1D4A",
     },
     secondary: {
-      main: "#50e3b7",
+      main: "#00FFC8",
     },
     info: {
-      main: "#C0F5FA",
-      dark: "#74B3BA",
+      main: "#3C66FF",
+      dark: "#2A2A37",
+      light: "#6788ff",
     },
     success: {
       main: "#27CC7F",
+    },
+    error: {
+      main: "#ff454f",
     },
   },
 } as ThemeOptions);

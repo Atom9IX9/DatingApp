@@ -17,13 +17,12 @@ import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { setAvatar } from "@/entities/avatar/client";
 
 import { selectCurrentStep, selectStepsCount } from "../model/selectors";
-import { OnboardingStep } from "../types";
 
 import RegisterSteps from "./RegisterSteps";
 import RegisterProcessForms from "./RegisterProcessForms";
 import style from "./registerProcessStyle.module.scss";
 
-const RegisterProcess: React.FC<Props> = ({ cookiesStep }) => {
+const RegisterProcess: React.FC = () => {
   const currentStep = useAppSelector(selectCurrentStep);
   const stepsCount = useAppSelector(selectStepsCount);
 
@@ -38,12 +37,9 @@ const RegisterProcess: React.FC<Props> = ({ cookiesStep }) => {
     >
       <Box className={style.registerProcess}>
         <h2>Register</h2>
-        <RegisterSteps
-          currentStep={currentStep || cookiesStep || 1}
-          stepsCount={stepsCount}
-        />
+        <RegisterSteps currentStep={currentStep} stepsCount={stepsCount} />
         <RegisterProcessForms
-          currentStep={currentStep || cookiesStep || 1}
+          currentStep={currentStep}
           formOrder={[
             <CredentialsForm
               key={1}
@@ -79,6 +75,3 @@ const RegisterProcess: React.FC<Props> = ({ cookiesStep }) => {
 };
 
 export default RegisterProcess;
-type Props = {
-  cookiesStep: OnboardingStep | null;
-};

@@ -132,16 +132,16 @@ a {
 
 /* ############### */
 
-.theme-wrap {
-  height: 100vh;
+.dark {
+  background: v.$info--dark;
+}
 
-  &.dark {
-    @include mixins.color-scheme(v.$dark-scheme...);
-    background: v.$info--dark;
-  }
-  &.light {
-    background: #e4fdff;
-  }
+.light {
+  background: #e4fdff;
+}
+
+.wrap {
+  height: 100vh;
 }
 
 .main {

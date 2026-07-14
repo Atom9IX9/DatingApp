@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Box } from "@mui/material";
 import { Suspense } from "react";
 
 import { nunito, quicksend } from "@/shared/fonts";
-import { ServerProviders } from "@/root";
+import { RootProviders } from "@/root";
+
 import "@/shared/styles/globals.scss";
 
 export const metadata: Metadata = {
@@ -11,20 +13,20 @@ export const metadata: Metadata = {
 };
 
 // Root layout component that wraps every page and reads server cookies/headers.
-const RootLayout = async ({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  // Read a cookie from the incoming request in server-side rendering.
-
   // Render the component's JSX structure.
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.variable} ${quicksend.variable}`}>
-        <Suspense fallback={<>Loading...</>}>
-          <ServerProviders>{children}</ServerProviders>
-        </Suspense>
+        <RootProviders>
+          <Box className={"wrap"}>
+            <Suspense fallback="...loading">{children}</Suspense>
+          </Box>
+        </RootProviders>
       </body>
     </html>
   );

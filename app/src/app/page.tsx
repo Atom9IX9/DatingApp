@@ -6,7 +6,7 @@ import style from "./guestPages.module.scss";
 import HeroBlock from "./HeroBlock";
 
 // Server-rendered page component for the start page.
-const Startpage: React.FC = async () => {
+const Startpage: React.FC = () => {
   // Render the component's JSX structure.
   return (
     <Box className={style.mainBlock}>

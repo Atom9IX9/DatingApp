@@ -66,7 +66,7 @@ const AppSettingsMenu = () => {
 };
 
 const SwitchColorTheme = () => {
-  const theme = useTheme();
+  const theme = useTheme().palette.mode;
   const dispatch = useAppDispatch();
 
   // Render the component's JSX structure.

@@ -1,6 +1,5 @@
 "use client";
 
-import Cookies from "js-cookie";
 import React from "react";
 import { useRouter } from "next/navigation";
 
@@ -17,12 +16,10 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {
   const handleStepSuccess = () => {
     const newStep = Number(currentStep) + 1;
     dispatch(setCurrentStep(newStep));
-    Cookies.set("onboardingStep", String(newStep), { expires: 1 });
   };
 
   const handleLastStepSuccess = () => {
     dispatch(setCurrentStep(ResponseOnboardingStep.REGISTERED));
-    Cookies.set("onboardingStep", "registered", { expires: 1 });
     push("/home");
   };
 

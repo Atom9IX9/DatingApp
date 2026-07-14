@@ -29,7 +29,7 @@ export default defineConfig([
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: true,
+        project: "./tsconfig.json",
         tsconfigRootDir: import.meta.dirname,
       },
       globals: {

@@ -1,26 +1,16 @@
 import { Box } from "@mui/material";
-import { cookies } from "next/headers";
 
-import {
-  OnboardingBridge,
-  onboardingStepFromCookies,
-  RegisterProcess,
-} from "@/processes/register";
+import { OnboardingBridge, RegisterProcess } from "@/processes/register";
 
 import style from "../../../guestPages.module.scss";
 import HeroBlock from "../../../HeroBlock";
 
 // Server-rendered page component for the start page.
-const SignUpPage: React.FC = async () => {
-  const cookiesStorage = await cookies();
-  const onboardingStep = cookiesStorage.get("onboardingStep")?.value;
-
+const Loading: React.FC = () => {
   return (
     <Box className={`${style.mainBlock} ${style.signUpPage}`}>
       <HeroBlock forPageGroup="auth" />
-      <OnboardingBridge
-        onboardingStep={onboardingStepFromCookies(onboardingStep)}
-      >
+      <OnboardingBridge onboardingStep={1}>
         <RegisterProcess />
       </OnboardingBridge>
     </Box>
@@ -28,4 +18,4 @@ const SignUpPage: React.FC = async () => {
 };
 
 // Server-rendered page component for the start page.
-export default SignUpPage;
+export default Loading;

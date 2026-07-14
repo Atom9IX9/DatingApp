@@ -12,6 +12,8 @@ import { useAppDispatch } from "@/shared/lib";
 import HeroBlock from "../../../HeroBlock";
 import style from "../../../guestPages.module.scss";
 
+//todo: server
+
 const SignIn = () => {
   const dispatch = useAppDispatch();
   const { push } = useRouter();

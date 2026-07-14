@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 import { ResponseOnboardingStep } from "@/features/auth";
 
@@ -6,7 +7,7 @@ import { OnboardingStep } from "../types";
 
 // State shape for initial.
 const initialState: TInitialState = {
-  currentStep: 0,
+  currentStep: 1,
   stepsCount: 4,
   isRegistered: false,
 };
@@ -16,7 +17,7 @@ const registerProcessSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setCurrentStep: (state, action: PayloadAction<OnboardingStep>) => {
+    setStep: (state, action: PayloadAction<OnboardingStep>) => {
       if (action.payload !== ResponseOnboardingStep.REGISTERED) {
         state.currentStep = action.payload;
       } else {
@@ -26,13 +27,23 @@ const registerProcessSlice = createSlice({
   },
 });
 
+const { setStep } = registerProcessSlice.actions;
+
+export const setCurrentStep = createAsyncThunk(
+  "registerProcess/setCurrentStep",
+  async (step: OnboardingStep, { dispatch }) => {
+    dispatch(setStep(step));
+
+    Cookies.set("onboardingStep", step.toString(), { expires: 60 });
+  },
+);
+
 // Redux slice that manages registerProcess state.
 export default registerProcessSlice.reducer;
-export const { setCurrentStep } = registerProcessSlice.actions;
 
 // Exported type alias used for typing shared data shapes.
 export type TInitialState = {
-  currentStep: OnboardingStep | 0;
+  currentStep: OnboardingStep;
   stepsCount: number;
   isRegistered: boolean;
 };

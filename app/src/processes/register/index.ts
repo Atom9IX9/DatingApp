@@ -4,3 +4,4 @@ export { ClientOnboardingStep } from "./types";
 export type { OnboardingStep } from "./types";
 
 export { default as RegisterProcess } from "./ui/RegisterProcess";
+export { default as OnboardingBridge } from "./ui/OnboardingBridge";
