@@ -37,6 +37,13 @@ export type TControllerField<FV extends FieldValues> = ControllerRenderProps<
   FV,
   Path<FV>
 >;
+export type APIResponse<D> = Promise<{
+  data?: D;
+  error?: {
+    message: string;
+    statusCode: number;
+  };
+}>;
 
 export { Colors } from "./colors";
 export { PaletteColors } from "./colors";
