@@ -24,12 +24,11 @@ export default defineConfig([
   ...tseslint.configs.recommended,
   prettierConfig,
   {
-    files: ["**/*.{ts,tsx,js,jsx}"],
-
+    files: ["**/*.{ts,tsx,d.ts,js,jsx}"],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: "./tsconfig.json",
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
       globals: {

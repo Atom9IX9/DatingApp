@@ -1,6 +1,8 @@
 import { Dayjs } from "dayjs";
 import { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 
+import { HttpError } from "../errors";
+
 // Exported type alias used for typing shared data shapes.
 export type TChildren = Readonly<React.ReactNode>;
 // Exported type alias used for typing shared data shapes.
@@ -39,10 +41,7 @@ export type TControllerField<FV extends FieldValues> = ControllerRenderProps<
 >;
 export type APIResponse<D> = Promise<{
   data?: D;
-  error?: {
-    message: string;
-    statusCode: number;
-  };
+  error?: HttpError;
 }>;
 
 export { Colors } from "./colors";
