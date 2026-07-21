@@ -23,13 +23,10 @@ export class AuthAPI {
     });
 
     if (!res.ok) {
-      const errorData = await res.json().catch(() => null);
+      const errorData: HttpError = await res.json().catch(() => null);
 
       return {
-        error: {
-          message: errorData?.message || "Failed to fetch data with auth",
-          statusCode: res.status,
-        },
+        error: new HttpError(errorData.statusCode, errorData.message),
       };
     }
 
@@ -64,13 +61,10 @@ export class API {
     });
 
     if (!res.ok) {
-      const errorData = await res.json().catch(() => null);
+      const errorData: HttpError = await res.json().catch(() => null);
 
       return {
-        error: {
-          message: errorData?.message || "Failed to fetch data",
-          statusCode: res.status,
-        },
+        error: new HttpError(errorData.statusCode, errorData.message),
       };
     }
 

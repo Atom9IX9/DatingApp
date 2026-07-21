@@ -4,10 +4,11 @@ export class HttpError extends Error {
   public readonly type?: string;
 
   constructor(statusCode: number, message: string, type?: string) {
-    super();
+    super(message);
 
     this.message = message;
     this.type = type;
     this.statusCode = statusCode;
+    this.name = "HttpError";
   }
 }
