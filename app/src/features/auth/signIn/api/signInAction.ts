@@ -4,25 +4,41 @@ import { AuthError } from "next-auth";
 
 import { signIn } from "@/auth";
 
-export async function loginAction(email: string, password: string) {
+export async function loginAction(
+  email: string,
+  password: string,
+): LoginActionResponse {
   try {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/home",
+      redirect: false,
     });
 
     return { success: true };
   } catch (error) {
+    let message;
     if (error instanceof AuthError) {
-      if (error.type === "CredentialsSignin") {
-        return {
-          success: false,
-          message: "Invalid email or password",
-        };
+      switch (error.type) {
+        case "CredentialsSignin": {
+          message = "Invalid email or password";
+          break;
+        }
+        case "CallbackRouteError": {
+          message = error.cause?.err?.message;
+          break;
+        }
+        default: {
+          message = "Unexpected error";
+        }
       }
     }
 
-    throw error;
+    return {
+      success: false,
+      message,
+    };
   }
 }
+
+type LoginActionResponse = Promise<{ success: boolean; message?: string }>;

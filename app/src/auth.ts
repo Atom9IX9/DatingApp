@@ -3,8 +3,10 @@ import Credentials from "next-auth/providers/credentials";
 
 import { API } from "./shared/api/authAPIInstance";
 import { LoginResponse } from "./features/auth/signIn/api/signInAPI";
+import { HttpError } from "./shared/errors";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  session: { strategy: "jwt" },
   providers: [
     Credentials({
       credentials: {
@@ -20,16 +22,42 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         );
 
         if (res.error) {
-          return null;
+          // Invalid credentials
+          throw new HttpError(res.error.statusCode, res.error.message);
         }
+
+        const accessToken = res.data?.accessToken;
+        const refreshToken = res.setCookies?.getValues()[0];
 
         return {
           id: res.data?.user?.uid,
-          accessToken: res.data?.accessToken,
           email: res.data?.authCredentials.email,
+          refreshToken,
+          accessToken,
         }; //todo: user
       },
     }),
   ],
-  callbacks: {},
+  callbacks: {
+    jwt: async ({ token, account, user }) => {
+      console.log("token: ========================", JSON.stringify(token));
+      if (account && user) {
+        console.log("user: ========================", JSON.stringify(user));
+
+        console.log(
+          "account: ========================",
+          JSON.stringify(account),
+        );
+
+        return {
+          ...token,
+          accessToken: user.accessToken,
+          refreshToken: user.refreshToken,
+          user,
+        };
+      }
+
+      return token;
+    },
+  },
 });

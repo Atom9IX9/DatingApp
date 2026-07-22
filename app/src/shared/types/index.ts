@@ -42,6 +42,10 @@ export type TControllerField<FV extends FieldValues> = ControllerRenderProps<
 export type APIResponse<D> = Promise<{
   data?: D;
   error?: HttpError;
+  setCookies?: {
+    getValues: () => string[];
+    getFullValues: () => string[];
+  };
 }>;
 
 export { Colors } from "./colors";

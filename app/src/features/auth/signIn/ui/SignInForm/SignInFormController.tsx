@@ -1,6 +1,7 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 import { BackdropLoader } from "@/shared/ui";
 
@@ -12,19 +13,17 @@ import SignInForm from "./SignInForm";
 import style from "./signInForm.module.scss";
 
 const CredentialsFormController: React.FC<Props> = () => {
-  const { control, handleSubmit, setError, formState } = useForm<SignInData>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+  const { control, handleSubmit, setError, formState } = useForm<SignInData>();
+  const { push } = useRouter();
 
   const onSubmit: SubmitHandler<SignInData> = async ({ email, password }) => {
     const res = await loginAction(email, password);
-    if (res.message) {
+    if (!res.success && res.message) {
       setError("root", {
         message: res.message || "Failed to send data",
       });
+    } else {
+      push("/home");
     }
   };
 

@@ -2,6 +2,7 @@ import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adap
 
 import { APIResponse } from "../types";
 import { HttpError } from "../errors";
+import { getShortValuesFromSetCookies } from "../lib/helpers/getShortValuesFromSetCookies";
 
 export class AuthAPI {
   private cookiesStorage: ReadonlyRequestCookies;
@@ -63,13 +64,17 @@ export class API {
     if (!res.ok) {
       const errorData: HttpError = await res.json().catch(() => null);
 
-      return {
-        error: new HttpError(errorData.statusCode, errorData.message),
-      };
+      throw new HttpError(errorData.statusCode, errorData.message);
     }
 
+    const data = (await res.json()) as D;
+
     return {
-      data: (await res.json()) as D,
+      data,
+      setCookies: {
+        getFullValues: () => res.headers.getSetCookie(),
+        getValues: () => getShortValuesFromSetCookies(res.headers),
+      },
     };
   }
 

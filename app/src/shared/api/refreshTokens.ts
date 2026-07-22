@@ -1,3 +1,4 @@
+import { HttpError } from "../errors";
 import { APIResponse } from "../types";
 
 export async function refreshTokens(
@@ -14,17 +15,13 @@ export async function refreshTokens(
   );
 
   if (!refresh.ok) {
-    const errorData = await refresh.json().catch(() => null);
-    console.error(
-      "Failed to refresh token:",
-      errorData?.message || "Unknown error",
-    );
+    const errorData: HttpError = await refresh.json().catch(() => null);
 
     return {
-      error: {
-        message: "Failed to refresh token",
-        statusCode: refresh.status,
-      },
+      error: new HttpError(
+        refresh.status,
+        errorData.message || "Failed to refresh token",
+      ),
     };
   }
 
