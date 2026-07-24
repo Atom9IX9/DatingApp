@@ -7,8 +7,8 @@ import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
 import { useTheme } from "@mui/material";
+import { useSession } from "next-auth/react";
 
-import { useAuth } from "@/features/auth/client";
 import { useMenu } from "@/shared/lib";
 import { UIMenu } from "@/shared/ui";
 import { Colors } from "@/shared/types";
@@ -20,15 +20,15 @@ const AccountMenu = () => {
   const { anchorEl, handleClick, handleClose, isOpen } = useMenu();
 
   const theme = useTheme().palette.mode;
-  const auth = useAuth();
+  const { data } = useSession();
 
   // Render the component's JSX structure.
   return (
     <>
       <AccountMenuBtn
-        firstName={auth?.firstName}
-        lastName={auth?.lastName}
-        avatar={auth?.avatar}
+        firstName={data?.user.firstName}
+        lastName={data?.user.lastName}
+        avatar={data?.user.avatar}
         handleClick={handleClick}
         isOpen={isOpen}
       />

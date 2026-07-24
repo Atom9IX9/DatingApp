@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-import { API } from "./shared/api/authAPIInstance";
+import { baseApiClient } from "@/shared/api";
+
 import { LoginResponse } from "./features/auth/signIn/api/signInAPI";
 import { HttpError } from "./shared/errors";
 
@@ -14,9 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        const api = new API();
-
-        const res = await api.post<LoginResponse, typeof credentials>(
+        const res = await baseApiClient.post<LoginResponse, typeof credentials>(
           "auth/login",
           credentials,
         );
@@ -34,21 +33,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: res.data?.authCredentials.email,
           refreshToken,
           accessToken,
-        }; //todo: user
+          onboardingStep: res.data?.onboardingStep,
+          firstName: res.data?.user?.firstName,
+          lastName: res.data?.user?.lastName,
+          avatar: res.data?.user?.avatar,
+        };
       },
     }),
   ],
   callbacks: {
     jwt: async ({ token, account, user }) => {
-      console.log("token: ========================", JSON.stringify(token));
       if (account && user) {
-        console.log("user: ========================", JSON.stringify(user));
-
-        console.log(
-          "account: ========================",
-          JSON.stringify(account),
-        );
-
         return {
           ...token,
           accessToken: user.accessToken,
@@ -58,6 +53,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       return token;
+    },
+    session: async ({ session, token }) => {
+      session.user = token.user;
+      session.accessToken = token.accessToken;
+
+      return session;
     },
   },
 });

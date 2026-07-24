@@ -1,17 +1,19 @@
 "use client";
 
 import { Box } from "@mui/material";
+import { useSession } from "next-auth/react";
 
 import { PositionedAvatar } from "@/entities/avatar";
-import { useAuth } from "@/features/auth/client";
 
 const AuthPreview = () => {
-  const auth = useAuth();
+  const { data } = useSession();
 
   // Render the component's JSX structure.
   return (
     <Box>
-      {auth?.avatar && <PositionedAvatar avatar={auth.avatar} size={260} />}
+      {data?.user.avatar && (
+        <PositionedAvatar avatar={data?.user.avatar} size={260} />
+      )}
     </Box>
   );
 };

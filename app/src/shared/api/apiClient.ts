@@ -1,47 +1,8 @@
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
-
 import { APIResponse } from "../types";
 import { HttpError } from "../errors";
 import { getShortValuesFromSetCookies } from "../lib/helpers/getShortValuesFromSetCookies";
 
-export class AuthAPI {
-  private cookiesStorage: ReadonlyRequestCookies;
-  private baseUrl: string;
-
-  constructor(cookiesStorage: ReadonlyRequestCookies) {
-    this.cookiesStorage = cookiesStorage;
-    this.baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL + "/api" || "";
-  }
-
-  private async fetchData<D>(endpoint: string, method: Method): APIResponse<D> {
-    const accessToken = this.cookiesStorage.get("accessToken")?.value;
-
-    const res = await fetch(`${this.baseUrl}/${endpoint}`, {
-      method,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    if (!res.ok) {
-      const errorData: HttpError = await res.json().catch(() => null);
-
-      return {
-        error: new HttpError(errorData.statusCode, errorData.message),
-      };
-    }
-
-    return {
-      data: (await res.json()) as D,
-    };
-  }
-
-  async get<D>(endpoint: string) {
-    return await this.fetchData<D>(endpoint, "GET");
-  }
-}
-
-export class API {
+export class ApiClient {
   private baseUrl: string;
 
   constructor() {
@@ -86,5 +47,7 @@ export class API {
     return await this.fetchData<D>(endpoint, "POST", { body });
   }
 }
+
+export const baseApiClient = new ApiClient();
 
 type Method = "POST" | "GET" | "DELETE" | "PUT" | "PATCH";

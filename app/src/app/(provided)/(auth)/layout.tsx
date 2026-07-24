@@ -1,10 +1,9 @@
 import { Suspense } from "react";
+import { SessionProvider } from "next-auth/react";
 
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
-import { AuthProviders } from "@/root";
-import { verifyAuth } from "@/features/auth/server";
-import { VerifyAuthResponse } from "@/features/auth";
+import { auth } from "@/auth";
 
 // Root layout component that wraps every page and reads server cookies/headers.
 const AuthLayout = async ({
@@ -12,25 +11,17 @@ const AuthLayout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  let auth: null | VerifyAuthResponse = null;
-
-  try {
-    auth = await verifyAuth();
-  } catch (error) {
-    console.log("Error verifying auth:", error);
-  }
+  const session = await auth();
 
   // Render the component's JSX structure.
   return (
-    <>
+    <SessionProvider session={session}>
       <Header />
       <main className="main">
-        <AuthProviders auth={auth}>
-          <Suspense fallback="...loading">{children}</Suspense>
-        </AuthProviders>
+        <Suspense fallback="...loading">{children}</Suspense>
       </main>
       <Footer />
-    </>
+    </SessionProvider>
   );
 };
 

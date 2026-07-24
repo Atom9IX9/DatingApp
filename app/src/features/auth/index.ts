@@ -1,6 +1,5 @@
 //types
 export type { CheckAuthResponseData, UserAuthResponse } from "./types/types";
-export type { VerifyAuthResponse } from "./api/verifyAuth";
 export { ResponseOnboardingStep } from "./types/types";
 //ui
 export { default as SignInForm } from "./signIn/ui/SignInForm/SignInFormController";

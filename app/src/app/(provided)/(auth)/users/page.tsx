@@ -1,33 +1,35 @@
 "use client";
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
 
-import { selectAvatar } from "@/entities/avatar/client";
 import { Sex } from "@/entities/user";
-import { useAuth } from "@/features/auth/client";
 import { UserMatchCard } from "@/widgets/userMatchCard";
 
 // Page-level component representing the Users view.
 const UsersPage = () => {
-  const auth = useAuth();
-  const avatar = useSelector(selectAvatar);
+  const { data } = useSession();
 
   // Render the component's JSX structure.
   return (
     <Box style={{ display: "flex", gap: 30 }}>
-      {auth && (
+      {data?.user && (
         <UserMatchCard
           user={{
-            uid: auth.uid || "1",
-            firstName: auth.firstName,
-            lastName: auth.lastName,
+            uid: data?.user.id || "1",
+            firstName: data?.user.firstName || "default fn",
+            lastName: data?.user.lastName || "default ln",
             age: 15,
             gender: Sex.Male,
             isOnline: true,
             description:
               "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
             location: { region: "[obl]", country: "[country]" },
-            avatar,
+            avatar: data?.user.avatar || {
+              posX: 0,
+              posY: 0,
+              scale: 1,
+              url: "",
+            },
           }}
         />
       )}
