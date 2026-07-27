@@ -12,14 +12,17 @@ export class ApiClient {
   private async fetchData<D>(
     endpoint: string,
     method: Method,
-    options?: { body?: unknown },
+    options?: FetchOptions,
   ): APIResponse<D> {
     const res = await fetch(`${this.baseUrl}/${endpoint}`, {
+      ...options,
       method,
       headers: {
         "Content-Type": "application/json",
+        ...(options?.headers ?? {}),
       },
-      body: options?.body ? JSON.stringify(options.body) : undefined,
+      body:
+        options?.body !== undefined ? JSON.stringify(options.body) : undefined,
     });
 
     if (!res.ok) {
@@ -43,11 +46,18 @@ export class ApiClient {
     return await this.fetchData<D>(endpoint, "GET");
   }
 
-  async post<D, B>(endpoint: string, body: B) {
-    return await this.fetchData<D>(endpoint, "POST", { body });
+  async post<D, B>(endpoint: string, body: B, options?: PublicOptions) {
+    return await this.fetchData<D>(endpoint, "POST", {
+      ...options,
+      body,
+    });
   }
 }
 
 export const baseApiClient = new ApiClient();
 
 type Method = "POST" | "GET" | "DELETE" | "PUT" | "PATCH";
+type PublicOptions = Omit<RequestInit, "body">;
+type FetchOptions = PublicOptions & {
+  body?: unknown;
+};

@@ -1,2 +1,2 @@
-export { refreshTokens } from "../../shared/api/refreshTokens";
+export { refreshTokens } from "./api/refreshTokens";
 export { ResponseOnboardingStep } from "./types/types";

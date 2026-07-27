@@ -5,6 +5,7 @@ export type CheckAuthResponseData = {
   user: UserAccountInfo | null;
   authCredentials: UserAuth;
   onboardingStep: ResponseOnboardingStep;
+  sessionExpire: number;
 };
 
 export enum ResponseOnboardingStep {

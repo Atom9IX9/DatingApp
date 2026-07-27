@@ -13,11 +13,13 @@ declare module "next-auth" {
     firstName?: string;
     lastName?: string;
     avatar?: Avatar;
+    sessionExpire?: number;
   }
 
   interface Session {
     accessToken?: string;
-    user: User;
+    user?: User;
+    error?: string;
   }
 }
 
@@ -26,6 +28,8 @@ declare module "next-auth/jwt" {
     accessToken?: string;
     refreshToken?: string;
     user?: User;
+    error?: string;
+    sessionExpire?: number;
   }
 }
 

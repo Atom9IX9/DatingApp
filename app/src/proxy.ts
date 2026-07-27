@@ -9,6 +9,8 @@ export const proxy = auth((req) => {
   const loginUrl = new URL("/sign-in", req.nextUrl.origin);
   const homeUrl = new URL("/home", req.nextUrl.origin);
 
+  console.log("rpoxy::::", req.auth?.user?.refreshToken);
+
   const isRegistred =
     req.auth?.user?.onboardingStep === ResponseOnboardingStep.REGISTERED;
   const { pathname } = req.nextUrl;

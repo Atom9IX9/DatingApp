@@ -4,7 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { baseApiClient } from "@/shared/api";
 
 import { LoginResponse } from "./features/auth/signIn/api/signInAPI";
-import { HttpError } from "./shared/errors";
+import { refreshTokens } from "./features/auth/server";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: "jwt" },
@@ -20,13 +20,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           credentials,
         );
 
-        if (res.error) {
-          // Invalid credentials
-          throw new HttpError(res.error.statusCode, res.error.message);
-        }
-
         const accessToken = res.data?.accessToken;
         const refreshToken = res.setCookies?.getValues()[0];
+        console.log("Start refresh:::", refreshToken);
 
         return {
           id: res.data?.user?.uid,
@@ -37,6 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           firstName: res.data?.user?.firstName,
           lastName: res.data?.user?.lastName,
           avatar: res.data?.user?.avatar,
+          sessionExpire: Date.now() + (res.data?.sessionExpire || 0) * 1000,
         };
       },
     }),
@@ -49,14 +46,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           accessToken: user.accessToken,
           refreshToken: user.refreshToken,
           user,
+          sessionExpire: user.sessionExpire,
         };
       }
 
-      return token;
+      if (Date.now() < (token.sessionExpire || 0)) {
+        console.log(true);
+        console.log(token.refreshToken);
+        return token;
+      } else {
+        console.log(false);
+        console.log(token.refreshToken);
+      }
+
+      return refreshTokens(token);
     },
     session: async ({ session, token }) => {
-      session.user = token.user;
-      session.accessToken = token.accessToken;
+      if (token) {
+        session.user = token.user;
+        session.accessToken = token.accessToken;
+        session.error = token.error;
+      }
 
       return session;
     },
