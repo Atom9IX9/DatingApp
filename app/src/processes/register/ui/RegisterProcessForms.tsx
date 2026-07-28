@@ -4,9 +4,8 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 import { useAppDispatch } from "@/shared/lib";
-import { ResponseOnboardingStep } from "@/features/auth";
+import { OnboardingStep, ResponseOnboardingStep } from "@/shared/types";
 
-import { OnboardingStep } from "../types";
 import { setCurrentStep } from "../model/registerProcess.slice";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {

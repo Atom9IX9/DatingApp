@@ -21,7 +21,8 @@ const UserActions = () => {
           </>
         ) : (
           <Link className={style.userNameLink} href="/profile">
-            {data?.user.firstName} {data?.user.lastName}
+            {data?.user.accountInfo?.firstName}{" "}
+            {data?.user.accountInfo?.lastName}
           </Link>
         )}
       </div>

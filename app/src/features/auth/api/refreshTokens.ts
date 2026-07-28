@@ -14,13 +14,6 @@ export async function refreshTokens(token: JWT): Promise<JWT> {
       },
     });
 
-    console.log(
-      "refreshed::::",
-      refreshed.setCookies?.getValues(),
-      "\nbefore::::",
-      token.refreshToken,
-    );
-
     return {
       ...token,
       accessToken: refreshed.data?.accessToken,
@@ -28,7 +21,6 @@ export async function refreshTokens(token: JWT): Promise<JWT> {
       sessionExpire: Date.now() + (refreshed.data?.sessionExpire || 0) * 1000,
     };
   } catch (e) {
-    console.log(e);
     return {
       ...token,
       error: e instanceof HttpError ? e.message : "RefreshAccessTokenError",

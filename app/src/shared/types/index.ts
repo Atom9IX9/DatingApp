@@ -51,3 +51,5 @@ export { type PaletteShade } from "./colors";
 export { type ThemeColor } from "./colors";
 
 export * from "./statusCodes";
+export type { OnboardingStep } from "./onboarding";
+export { ResponseOnboardingStep, ClientOnboardingStep } from "./onboarding";

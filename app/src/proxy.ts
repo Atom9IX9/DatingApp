@@ -1,15 +1,13 @@
 import { NextResponse } from "next/server";
 
 import { auth } from "@/auth";
-
-import { isAuthRoute, isGuestRoute } from "./shared/config";
-import { ResponseOnboardingStep } from "./features/auth";
+import { isAuthRoute, isGuestRoute } from "@/shared/config";
+import { ResponseOnboardingStep } from "@/shared/types";
 
 export const proxy = auth((req) => {
   const loginUrl = new URL("/sign-in", req.nextUrl.origin);
   const homeUrl = new URL("/home", req.nextUrl.origin);
 
-  console.log("rpoxy::::", req.auth?.user?.refreshToken);
 
   const isRegistred =
     req.auth?.user?.onboardingStep === ResponseOnboardingStep.REGISTERED;

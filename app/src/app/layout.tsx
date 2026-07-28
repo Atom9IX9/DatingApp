@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 import { Suspense } from "react";
 
 import { nunito, quicksend } from "@/shared/fonts";
-import { RootProviders } from "@/root";
 
 import "@/shared/styles/globals.scss";
 
@@ -22,11 +21,9 @@ const RootLayout = ({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.variable} ${quicksend.variable}`}>
-        <RootProviders>
-          <Box className={"wrap"}>
-            <Suspense fallback="...loading">{children}</Suspense>
-          </Box>
-        </RootProviders>
+        <Box className={"wrap"}>
+          <Suspense fallback="...loadinsdfgg">{children}</Suspense>
+        </Box>
       </body>
     </html>
   );

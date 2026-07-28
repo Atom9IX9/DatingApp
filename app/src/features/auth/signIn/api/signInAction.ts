@@ -1,37 +1,53 @@
 "use server";
 
-import { AuthError } from "next-auth";
+import { cookies } from "next/headers";
 
-import { signIn } from "@/auth";
+import { baseApiClient } from "@/shared/api";
+import { HttpError } from "@/shared/errors";
+import { signIn, SignInResponse } from "@/auth";
 
 export async function loginAction(
-  email: string,
-  password: string,
+  credentials: Credentials,
 ): LoginActionResponse {
   try {
-    await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
+    const cookiesStorage = await cookies();
+    const res = await baseApiClient.post<SignInResponse, Credentials>(
+      "auth/login",
+      credentials,
+    );
 
-    return { success: true };
+    const accessToken = res.data?.accessToken;
+    const refreshToken = res.setCookies?.getValues()[0];
+
+    if (refreshToken && accessToken) {
+      cookiesStorage.set("refreshToken", refreshToken, {
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 30, //30 d
+      });
+      cookiesStorage.set("accessToken", accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+      });
+    }
+
+    if (res.data) {
+      await signIn("credentials", {
+        user: JSON.stringify(res.data.user),
+        authCredentials: JSON.stringify(res.data.authCredentials),
+        onboardingStep: res.data.onboardingStep,
+        redirect: false,
+      });
+    }
+
+    return { success: true, data: res.data };
   } catch (error) {
-    let message;
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin": {
-          message = "Invalid email or password";
-          break;
-        }
-        case "CallbackRouteError": {
-          message = error.cause?.err?.message;
-          break;
-        }
-        default: {
-          message = "Unexpected error";
-        }
-      }
+    let message = "Unexpected error";
+    if (error instanceof HttpError) {
+      message = error.message;
     }
 
     return {
@@ -41,4 +57,9 @@ export async function loginAction(
   }
 }
 
-type LoginActionResponse = Promise<{ success: boolean; message?: string }>;
+type LoginActionResponse = Promise<{
+  success: boolean;
+  message?: string;
+  data?: SignInResponse;
+}>;
+type Credentials = { email: string; password: string };

@@ -16,15 +16,15 @@ const UsersPage = () => {
         <UserMatchCard
           user={{
             uid: data?.user.id || "1",
-            firstName: data?.user.firstName || "default fn",
-            lastName: data?.user.lastName || "default ln",
+            firstName: data?.user.accountInfo?.firstName || "default fn",
+            lastName: data?.user.accountInfo?.lastName || "default ln",
             age: 15,
             gender: Sex.Male,
             isOnline: true,
             description:
               "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
             location: { region: "[obl]", country: "[country]" },
-            avatar: data?.user.avatar || {
+            avatar: data?.user.accountInfo?.avatar || {
               posX: 0,
               posY: 0,
               scale: 1,

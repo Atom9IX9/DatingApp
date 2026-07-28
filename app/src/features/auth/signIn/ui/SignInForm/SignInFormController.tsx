@@ -2,11 +2,11 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { SignInResponse } from "next-auth/react";
 
 import { BackdropLoader } from "@/shared/ui";
 
 import { SignInData } from "../../types/form";
-import { LoginResponse } from "../../api/signInAPI";
 import { loginAction } from "../../api/signInAction";
 
 import SignInForm from "./SignInForm";
@@ -17,8 +17,8 @@ const CredentialsFormController: React.FC<Props> = () => {
   const { push } = useRouter();
 
   const onSubmit: SubmitHandler<SignInData> = async ({ email, password }) => {
-    const res = await loginAction(email, password);
-    if (!res.success && res.message) {
+    const res = await loginAction({ email, password });
+    if (!res.success) {
       setError("root", {
         message: res.message || "Failed to send data",
       });
@@ -47,5 +47,5 @@ const CredentialsFormController: React.FC<Props> = () => {
 export default CredentialsFormController;
 // Type describing component props.
 type Props = {
-  onSuccess?: (data: LoginResponse) => void;
+  onSuccess?: (data: SignInResponse) => void;
 };

@@ -1,35 +1,28 @@
 import "next-auth/jwt";
 import "next-auth";
-import { Avatar } from "@/entities/avatar";
-import { OnboardingStep } from "@/processes/register";
+
+import { OnboardingStep } from "@/shared/types";
+import { UserAccountInfo, UserAuth } from "@/entities/user";
 
 declare module "next-auth" {
   interface User {
-    id?: string;
-    accessToken?: string;
-    refreshToken?: string;
-    error?: unknown;
-    onboardingStep?: OnboardingStep;
-    firstName?: string;
-    lastName?: string;
-    avatar?: Avatar;
-    sessionExpire?: number;
+    authCredentials: UserAuth;
+
+    accountInfo: UserAccountInfo | null;
+
+    onboardingStep: OnboardingStep;
+
+    error?: string;
   }
 
   interface Session {
-    accessToken?: string;
-    user?: User;
-    error?: string;
+    user: User;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    accessToken?: string;
-    refreshToken?: string;
-    user?: User;
-    error?: string;
-    sessionExpire?: number;
+    user: User;
   }
 }
 

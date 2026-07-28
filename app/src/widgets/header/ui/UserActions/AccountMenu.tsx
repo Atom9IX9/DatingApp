@@ -26,9 +26,9 @@ const AccountMenu = () => {
   return (
     <>
       <AccountMenuBtn
-        firstName={data?.user.firstName}
-        lastName={data?.user.lastName}
-        avatar={data?.user.avatar}
+        firstName={data?.user.accountInfo?.firstName}
+        lastName={data?.user.accountInfo?.lastName}
+        avatar={data?.user.accountInfo?.avatar}
         handleClick={handleClick}
         isOpen={isOpen}
       />
