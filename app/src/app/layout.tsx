@@ -3,9 +3,8 @@ import { Box } from "@mui/material";
 import { Suspense } from "react";
 
 import { nunito, quicksend } from "@/shared/fonts";
-
 import "@/shared/styles/globals.scss";
-import { NextThemeProvider } from "@/root";
+import { NextProviders } from "@/root";
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -22,11 +21,12 @@ const RootLayout = ({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.variable} ${quicksend.variable}`}>
-        <NextThemeProvider>
+        {/* nextjs-specific providers */}
+        <NextProviders>
           <Box className={"wrap"}>
             <Suspense fallback="...loading root">{children}</Suspense>
           </Box>
-        </NextThemeProvider>
+        </NextProviders>
       </body>
     </html>
   );
