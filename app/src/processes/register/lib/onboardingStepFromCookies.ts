@@ -2,7 +2,7 @@ import {
   ClientOnboardingStep,
   OnboardingStep,
   ResponseOnboardingStep,
-} from "../types";
+} from "@/shared/types";
 
 export const onboardingStepFromCookies = (step?: string) => {
   if (!step) {

@@ -2,7 +2,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { SignInResponse } from "next-auth/react";
 
 import { BackdropLoader } from "@/shared/ui";
 
@@ -12,7 +11,7 @@ import { loginAction } from "../../api/signInAction";
 import SignInForm from "./SignInForm";
 import style from "./signInForm.module.scss";
 
-const CredentialsFormController: React.FC<Props> = () => {
+const CredentialsFormController: React.FC = () => {
   const { control, handleSubmit, setError, formState } = useForm<SignInData>();
   const { push } = useRouter();
 
@@ -46,6 +45,3 @@ const CredentialsFormController: React.FC<Props> = () => {
 
 export default CredentialsFormController;
 // Type describing component props.
-type Props = {
-  onSuccess?: (data: SignInResponse) => void;
-};
