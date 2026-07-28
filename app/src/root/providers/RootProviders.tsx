@@ -8,18 +8,15 @@ import { Session } from "next-auth";
 
 import ThemeProvider from "./ThemeProvider";
 import StoreProvider from "./StoreProvider";
-import NextThemeProvider from "./NextThemeProvider";
 
 const RootProviders: React.FC<Props> = ({ children, session }) => {
   return (
     <AppRouterCacheProvider>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <StoreProvider>
-          <NextThemeProvider>
-            <ThemeProvider>
-              <SessionProvider session={session}>{children}</SessionProvider>
-            </ThemeProvider>
-          </NextThemeProvider>
+          <ThemeProvider>
+            <SessionProvider session={session}>{children}</SessionProvider>
+          </ThemeProvider>
         </StoreProvider>
       </LocalizationProvider>
     </AppRouterCacheProvider>

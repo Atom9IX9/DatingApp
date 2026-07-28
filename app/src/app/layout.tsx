@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { nunito, quicksend } from "@/shared/fonts";
 
 import "@/shared/styles/globals.scss";
+import { NextThemeProvider } from "@/root";
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -21,9 +22,11 @@ const RootLayout = ({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.variable} ${quicksend.variable}`}>
-        <Box className={"wrap"}>
-          <Suspense fallback="...loadinsdfgg">{children}</Suspense>
-        </Box>
+        <NextThemeProvider>
+          <Box className={"wrap"}>
+            <Suspense fallback="...loading root">{children}</Suspense>
+          </Box>
+        </NextThemeProvider>
       </body>
     </html>
   );
