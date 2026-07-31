@@ -5,7 +5,7 @@ import { getShortValuesFromSetCookies } from "../lib/helpers/getShortValuesFromS
 export class ApiClient {
   private baseUrl: string;
 
-  constructor() {
+  constructor(private readonly injectedHeaders: HeadersInit = {}) {
     this.baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL + "/api" || "";
   }
 
@@ -19,6 +19,7 @@ export class ApiClient {
       method,
       headers: {
         "Content-Type": "application/json",
+        ...this.injectedHeaders,
         ...(options?.headers ?? {}),
       },
       body:
@@ -40,6 +41,13 @@ export class ApiClient {
         getValues: () => getShortValuesFromSetCookies(res.headers),
       },
     };
+  }
+
+  injectHeaders(headers: HeadersInit) {
+    return new ApiClient({
+      ...this.injectedHeaders,
+      ...headers,
+    });
   }
 
   async get<D>(endpoint: string) {
