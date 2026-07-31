@@ -36,7 +36,7 @@ export async function loginAction(
 
     if (res.data) {
       await signIn("credentials", {
-        user: JSON.stringify(res.data.user),
+        user: res.data.user ? JSON.stringify(res.data.user) : null,
         authCredentials: JSON.stringify(res.data.authCredentials),
         onboardingStep: res.data.onboardingStep,
         redirect: false,

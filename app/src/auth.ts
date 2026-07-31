@@ -8,18 +8,21 @@ import {
   ResponseOnboardingStep,
 } from "@/shared/types";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
   session: { strategy: "jwt" },
   providers: [
     Credentials({
       authorize: async (credentials) => {
+        const { user, authCredentials, onboardingStep } =
+          credentials as Credentials;
+
         if (credentials) {
           return {
-            accountInfo: JSON.parse(credentials.user as string),
-            authCredentials: JSON.parse(credentials.authCredentials as string),
-            onboardingStep: !credentials.accountInfo
+            accountInfo: user ? JSON.parse(user) : null,
+            authCredentials: JSON.parse(authCredentials),
+            onboardingStep: !onboardingStep
               ? ClientOnboardingStep.INFO
-              : (credentials.onboardingStep as OnboardingStep),
+              : onboardingStep,
           };
         }
 
@@ -55,3 +58,8 @@ export type CheckAuthResponseData = {
   sessionExpire: number;
 };
 export type SignInResponse = CheckAuthResponseData & { accessToken: string };
+type Credentials = {
+  user: string | null;
+  authCredentials: string;
+  onboardingStep?: OnboardingStep;
+};
