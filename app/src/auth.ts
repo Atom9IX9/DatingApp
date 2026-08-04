@@ -7,6 +7,7 @@ import {
   ClientOnboardingStep,
   ResponseOnboardingStep,
 } from "@/shared/types";
+import { onboardingStepFromStr } from "@/shared/lib/server";
 
 export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
   session: { strategy: "jwt" },
@@ -35,7 +36,12 @@ export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
       if (account && user) {
         return {
           ...token,
-          user,
+          user: {
+            ...user,
+            onboardingStep: onboardingStepFromStr(
+              user.onboardingStep as string,
+            ),
+          },
         };
       }
 

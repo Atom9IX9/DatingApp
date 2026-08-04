@@ -22,7 +22,7 @@ const CredentialsFormController: React.FC = () => {
 
     if (!res.success) {
       setError("root", {
-        message: res.message || "Failed to send data",
+        message: res.errorMessage || "Failed to send data",
       });
     } else {
       await update();

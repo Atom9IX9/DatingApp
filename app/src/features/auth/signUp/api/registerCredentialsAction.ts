@@ -4,20 +4,22 @@ import { cookies } from "next/headers";
 
 import { baseApiClient } from "@/shared/api";
 import { HttpError } from "@/shared/errors";
-import { signIn, SignInResponse } from "@/auth";
+import { signIn } from "@/auth";
+import { ClientOnboardingStep } from "@/shared/types";
 
-export async function loginAction(
-  credentials: Credentials,
-): LoginActionResponse {
+export const registerCredentialsAction = async (
+  body: RegisterCredentialsReqBody,
+): RegisterCredentialsActionResponse => {
   try {
     const cookiesStorage = await cookies();
-    const res = await baseApiClient.post<SignInResponse, Credentials>(
-      "auth/login",
-      credentials,
-    );
 
-    const accessToken = res.data?.accessToken;
-    const refreshToken = res.setCookies?.getValues()[0];
+    const { data, setCookies } = await baseApiClient.post<
+      RegisterCredentialsResponse,
+      RegisterCredentialsReqBody
+    >("auth/register/credentials", body);
+
+    const accessToken = data?.accessToken;
+    const refreshToken = setCookies?.getValues()[0];
 
     if (refreshToken && accessToken) {
       cookiesStorage.set("refreshToken", refreshToken, {
@@ -34,16 +36,16 @@ export async function loginAction(
       });
     }
 
-    if (res.data) {
+    if (data) {
       await signIn("credentials", {
-        user: res.data.user ? JSON.stringify(res.data.user) : null,
-        authCredentials: JSON.stringify(res.data.authCredentials),
-        onboardingStep: res.data.onboardingStep,
+        user: null,
+        authCredentials: JSON.stringify(data.auth),
+        onboardingStep: ClientOnboardingStep.INFO,
         redirect: false,
       });
     }
 
-    return { success: true, data: res.data };
+    return { data, success: true };
   } catch (error) {
     let message = "Unexpected error";
     if (error instanceof HttpError) {
@@ -55,11 +57,23 @@ export async function loginAction(
       errorMessage: message,
     };
   }
-}
+};
 
-type LoginActionResponse = Promise<{
+export type RegisterCredentialsReqBody = {
+  email: string;
+  password: string;
+};
+
+export type RegisterCredentialsResponse = {
+  accessToken: string;
+  auth: {
+    authId: number;
+    email: string;
+  };
+};
+
+type RegisterCredentialsActionResponse = Promise<{
   success: boolean;
   errorMessage?: string;
-  data?: SignInResponse;
+  data?: RegisterCredentialsResponse;
 }>;
-type Credentials = { email: string; password: string };

@@ -4,16 +4,16 @@ import { Hobby } from "@/entities/user";
 
 export const registerEndpoint = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    registerCredentials: builder.mutation<
-      RegisterCredentialsResponse,
-      RegisterCredentialsReqBody
-    >({
-      query: (body) => ({
-        url: "auth/register/credentials",
-        method: "POST",
-        body,
-      }),
-    }),
+    // registerCredentials: builder.mutation<
+    //   RegisterCredentialsResponse,
+    //   RegisterCredentialsReqBody
+    // >({
+    //   query: (body) => ({
+    //     url: "auth/register/credentials",
+    //     method: "POST",
+    //     body,
+    //   }),
+    // }),
     registerUserPersonalInfo: builder.mutation<
       RegisterUserPersonalInfoResponse,
       RegisterUserPersonalInfoReqBody
@@ -39,25 +39,9 @@ export const registerEndpoint = baseAPI.injectEndpoints({
 });
 
 export const {
-  useRegisterCredentialsMutation,
   useRegisterUserPersonalInfoMutation,
   useRegisterUserDescriptionMutation,
 } = registerEndpoint;
-
-// Exported type alias used for typing shared data shapes.
-export type RegisterCredentialsReqBody = {
-  email: string;
-  password: string;
-};
-
-// Exported type alias used for typing shared data shapes.
-export type RegisterCredentialsResponse = {
-  accessToken: string;
-  auth: {
-    authId: number;
-    email: string;
-  };
-};
 
 // Exported type alias used for typing shared data shapes.
 export type RegisterUserPersonalInfoReqBody = {

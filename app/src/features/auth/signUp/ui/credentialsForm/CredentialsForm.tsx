@@ -1,11 +1,9 @@
 "use client";
 import React from "react";
 import { Control } from "react-hook-form";
-import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Box } from "@mui/material";
 
 import { BaseBtn, StyledLink, TextField } from "@/shared/ui";
-import { RtkQueryResultError } from "@/shared/types";
 
 import { validateEmail } from "../../../model/validation/validateEmail";
 import { CredentialsData } from "../../types/form";
@@ -77,8 +75,6 @@ type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<CredentialsData>;
   result: {
-    error?: RtkQueryResultError;
-    status: QueryStatus;
     rootError?: string;
   };
 };

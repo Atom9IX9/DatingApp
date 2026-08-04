@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Box } from "@mui/material";
-import { Suspense } from "react";
 
 import { nunito, quicksend } from "@/shared/fonts";
 import "@/shared/styles/globals.scss";
-import { NextProviders } from "@/root";
+import { NextProviders, RootProviders } from "@/root";
 
 export const metadata: Metadata = {
   title: "Dating App",
@@ -23,9 +22,9 @@ const RootLayout = ({
       <body className={`${nunito.variable} ${quicksend.variable}`}>
         {/* nextjs-specific providers */}
         <NextProviders>
-          <Box className={"wrap"}>
-            <Suspense fallback="...loading root">{children}</Suspense>
-          </Box>
+          <RootProviders>
+            <Box className={"wrap"}>{children}</Box>
+          </RootProviders>
         </NextProviders>
       </body>
     </html>

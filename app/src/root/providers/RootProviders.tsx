@@ -3,15 +3,17 @@
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { SessionProvider } from "next-auth/react";
-import { Session } from "next-auth";
+import { Suspense } from "react";
 
 import StoreProvider from "./StoreProvider";
 
-const RootProviders: React.FC<Props> = ({ children, session }) => {
+const RootProviders: React.FC<Props> = ({ children }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <StoreProvider>
-        <SessionProvider session={session}>{children}</SessionProvider>
+        <SessionProvider>
+          <Suspense>{children}</Suspense>
+        </SessionProvider>
       </StoreProvider>
     </LocalizationProvider>
   );
@@ -20,5 +22,4 @@ const RootProviders: React.FC<Props> = ({ children, session }) => {
 export default RootProviders;
 export type Props = {
   children: React.ReactNode;
-  session: Session | null;
 };

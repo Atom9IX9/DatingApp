@@ -2,23 +2,16 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-import { useAppDispatch } from "@/shared/lib";
-import { OnboardingStep, ResponseOnboardingStep } from "@/shared/types";
-
-import { setCurrentStep } from "../model/registerProcess.slice";
+import { OnboardingStep } from "@/shared/types";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {
-  const dispatch = useAppDispatch();
   const { push } = useRouter();
 
-  const handleStepSuccess = () => {
-    const newStep = Number(currentStep) + 1;
-    dispatch(setCurrentStep(newStep));
-  };
+  const { update } = useSession();
 
   const handleLastStepSuccess = () => {
-    dispatch(setCurrentStep(ResponseOnboardingStep.REGISTERED));
     push("/home");
   };
 
@@ -27,16 +20,17 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {
       const currentForm = formOrder[i];
 
       return React.cloneElement(currentForm, {
-        onSuccess: (data: unknown) => {
+        onSuccess: async (data: unknown) => {
+          // session update after each step to ensure the latest user data is available
+          await update();
+
           if (currentForm.props.onSuccess) {
             // actions from children
             currentForm.props.onSuccess(data);
           }
-          // base onSoccess behavior
+          // base onSuccess behavior
           if (i === formOrder.length - 1) {
             handleLastStepSuccess();
-          } else {
-            handleStepSuccess();
           }
         },
       });

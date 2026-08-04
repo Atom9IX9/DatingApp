@@ -1,6 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
+import { useSession } from "next-auth/react";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import {
@@ -15,18 +16,20 @@ import {
 } from "@/entities/user";
 import { AvatarUploadForm } from "@/features/avatarCustomization";
 import { setAvatar } from "@/entities/avatar/client";
+import { ClientOnboardingStep, OnboardingStep } from "@/shared/types";
 
-import { selectCurrentStep, selectStepsCount } from "../model/selectors";
+import { selectStepsCount } from "../model/selectors";
 
 import RegisterSteps from "./RegisterSteps";
 import RegisterProcessForms from "./RegisterProcessForms";
 import style from "./registerProcessStyle.module.scss";
 
-const RegisterProcess: React.FC = () => {
-  const currentStep = useAppSelector(selectCurrentStep);
+const RegisterProcess: React.FC<Props> = ({ onboardingStep }) => {
   const stepsCount = useAppSelector(selectStepsCount);
 
   const dispatch = useAppDispatch();
+
+  const { data } = useSession();
 
   // Render the component's JSX structure.
   return (
@@ -37,9 +40,18 @@ const RegisterProcess: React.FC = () => {
     >
       <Box className={style.registerProcess}>
         <h2>Register</h2>
-        <RegisterSteps currentStep={currentStep} stepsCount={stepsCount} />
+        <RegisterSteps
+          currentStep={
+            (data?.user.onboardingStep || onboardingStep) ??
+            ClientOnboardingStep.CREDENTIALS
+          }
+          stepsCount={stepsCount}
+        />
         <RegisterProcessForms
-          currentStep={currentStep}
+          currentStep={
+            (data?.user.onboardingStep || onboardingStep) ??
+            ClientOnboardingStep.CREDENTIALS
+          }
           formOrder={[
             <CredentialsForm
               key={1}
@@ -75,3 +87,6 @@ const RegisterProcess: React.FC = () => {
 };
 
 export default RegisterProcess;
+type Props = {
+  onboardingStep?: OnboardingStep;
+};

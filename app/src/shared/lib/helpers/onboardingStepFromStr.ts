@@ -4,7 +4,7 @@ import {
   ResponseOnboardingStep,
 } from "@/shared/types";
 
-export const onboardingStepFromCookies = (step?: string) => {
+export const onboardingStepFromStr = (step?: string) => {
   if (!step) {
     return ClientOnboardingStep.CREDENTIALS;
   }
