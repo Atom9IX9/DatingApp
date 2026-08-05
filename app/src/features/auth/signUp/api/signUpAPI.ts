@@ -1,5 +1,4 @@
 import { baseAPI } from "@/shared/api";
-import { Sex } from "@/entities/user";
 import { Hobby } from "@/entities/user";
 
 export const registerEndpoint = baseAPI.injectEndpoints({
@@ -14,16 +13,16 @@ export const registerEndpoint = baseAPI.injectEndpoints({
     //     body,
     //   }),
     // }),
-    registerUserPersonalInfo: builder.mutation<
-      RegisterUserPersonalInfoResponse,
-      RegisterUserPersonalInfoReqBody
-    >({
-      query: (body) => ({
-        url: "auth/register/user-personal",
-        method: "POST",
-        body,
-      }),
-    }),
+    // registerUserPersonalInfo: builder.mutation<
+    //   RegisterUserPersonalInfoResponse,
+    //   RegisterUserPersonalInfoReqBody
+    // >({
+    //   query: (body) => ({
+    //     url: "auth/register/user-personal",
+    //     method: "POST",
+    //     body,
+    //   }),
+    // }),
     registerUserDescription: builder.mutation<
       RegisterUserDescriptionResponse,
       RegisterUserDescriptionReqBody
@@ -38,31 +37,7 @@ export const registerEndpoint = baseAPI.injectEndpoints({
   overrideExisting: false,
 });
 
-export const {
-  useRegisterUserPersonalInfoMutation,
-  useRegisterUserDescriptionMutation,
-} = registerEndpoint;
-
-// Exported type alias used for typing shared data shapes.
-export type RegisterUserPersonalInfoReqBody = {
-  firstName: string;
-  lastName: string;
-  dateOfBD: string;
-  gender: Sex;
-  genderInfo?: string;
-};
-
-// Exported type alias used for typing shared data shapes.
-export type RegisterUserPersonalInfoResponse = {
-  uid: string;
-  authId: number;
-  firstName: string;
-  lastName: string;
-  dateOfBD: string;
-  age: number;
-  gender: Sex;
-  genderInfo?: string;
-};
+export const { useRegisterUserDescriptionMutation } = registerEndpoint;
 
 // Exported type alias used for typing shared data shapes.
 export type RegisterUserDescriptionReqBody = {

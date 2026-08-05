@@ -14,7 +14,7 @@ const AuthLayout = async ({
     <>
       <Header />
       <main className="main">
-        <Suspense fallback="...loading">{children}</Suspense>
+        <Suspense fallback="...loading auth">{children}</Suspense>
       </main>
       <Footer />
     </>

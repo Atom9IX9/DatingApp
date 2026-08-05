@@ -39,7 +39,7 @@ function FieldContainer<FV extends FieldValues, P>({
       <Box>{children}</Box>
 
       {(error.field || error.root) && !hideErrorIcon && (
-        <Box className={style.errorIcon}>
+        <Box className={style.errorIcon} sx={{ pointerEvents: "none" }}>
           <ErrorIcon />
         </Box>
       )}

@@ -32,7 +32,7 @@ export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
     }),
   ],
   callbacks: {
-    jwt: async ({ token, account, user }) => {
+    jwt: async ({ token, account, user, trigger, session }) => {
       if (account && user) {
         return {
           ...token,
@@ -43,6 +43,11 @@ export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
             ),
           },
         };
+      }
+
+      if (trigger === "update" && session?.user) {
+        // Merge new data from the update call into the token
+        token.user = { ...token.user, ...session.user };
       }
 
       return token;
