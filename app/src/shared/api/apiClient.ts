@@ -1,24 +1,49 @@
 import { APIResponse } from "../types";
 import { HttpError } from "../errors";
-import { getShortValuesFromSetCookies } from "../lib/helpers/getShortValuesFromSetCookies";
 
-export class ApiClient {
-  private baseUrl: string;
+import { ApiClientRequest } from "./request";
 
-  constructor(private readonly injectedHeaders: HeadersInit = {}) {
-    this.baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL + "/api" || "";
+export class ApiClient implements ApiClientBuilder {
+  constructor(
+    private readonly injectedHeaders: HeadersInit = {},
+    private errorInterceptor: ErrorInterceptor = null,
+  ) {}
+
+  setHeaders(headers: HeadersInit) {
+    return new ApiClient(
+      {
+        ...this.injectedHeaders,
+        ...headers,
+      },
+      this.errorInterceptor,
+    );
   }
 
-  private async fetchData<D>(
+  onError(interceptor: ErrorInterceptor) {
+    return new ApiClient(this.injectedHeaders, interceptor);
+  }
+
+  // TODO: Remove from builder using CRUD
+  async get<D>(endpoint: string) {
+    return await this.buildRequest<D>(endpoint, "GET");
+  }
+
+  async post<D, B>(endpoint: string, body: B, options?: PublicOptions) {
+    return await this.buildRequest<D>(endpoint, "POST", {
+      ...options,
+      body,
+    });
+  }
+
+  private async buildRequest<D>(
     endpoint: string,
     method: Method,
     options?: FetchOptions,
   ): APIResponse<D> {
-    const res = await fetch(`${this.baseUrl}/${endpoint}`, {
+    const request = new ApiClientRequest(endpoint, {
       ...options,
       method,
       headers: {
-        "Content-Type": "application/json",
         ...this.injectedHeaders,
         ...(options?.headers ?? {}),
       },
@@ -26,46 +51,43 @@ export class ApiClient {
         options?.body !== undefined ? JSON.stringify(options.body) : undefined,
     });
 
-    if (!res.ok) {
-      const errorData: HttpError = await res.json().catch(() => null);
+    try {
+      const res = await request.execute<D>();
 
-      throw new HttpError(errorData.statusCode, errorData.message);
+      return res;
+    } catch (error) {
+      return this.interceptError<D>(error, request);
     }
-
-    const data = (await res.json()) as D;
-
-    return {
-      data,
-      setCookies: {
-        getFullValues: () => res.headers.getSetCookie(),
-        getValues: () => getShortValuesFromSetCookies(res.headers),
-      },
-    };
   }
 
-  injectHeaders(headers: HeadersInit) {
-    return new ApiClient({
-      ...this.injectedHeaders,
-      ...headers,
-    });
-  }
+  private interceptError<D>(error: unknown, request: ApiClientRequest) {
+    if (error instanceof HttpError && this.errorInterceptor) {
+      return this.errorInterceptor(error, async (extraOptions) => {
+        const retryRes = await request.execute<D>(extraOptions);
 
-  async get<D>(endpoint: string) {
-    return await this.fetchData<D>(endpoint, "GET");
-  }
-
-  async post<D, B>(endpoint: string, body: B, options?: PublicOptions) {
-    return await this.fetchData<D>(endpoint, "POST", {
-      ...options,
-      body,
-    });
+        return retryRes;
+      });
+    } else {
+      throw error;
+    }
   }
 }
 
 export const baseApiClient = new ApiClient();
+
+interface ApiClientBuilder {
+  onError(interceptor: ErrorInterceptor): ApiClientBuilder;
+  setHeaders(headers: HeadersInit): ApiClientBuilder;
+}
 
 type Method = "POST" | "GET" | "DELETE" | "PUT" | "PATCH";
 type PublicOptions = Omit<RequestInit, "body">;
 type FetchOptions = PublicOptions & {
   body?: unknown;
 };
+type ErrorInterceptor =
+  | (<D>(
+      error: HttpError,
+      retry: (req: RequestInit) => APIResponse<D>,
+    ) => APIResponse<D>)
+  | null;
