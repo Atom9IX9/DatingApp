@@ -13,7 +13,12 @@ import SignInForm from "./SignInForm";
 import style from "./signInForm.module.scss";
 
 const CredentialsFormController: React.FC = () => {
-  const { control, handleSubmit, setError, formState } = useForm<SignInData>();
+  const { control, handleSubmit, setError, formState } = useForm<SignInData>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
   const { replace } = useRouter();
   const { update } = useSession();
 

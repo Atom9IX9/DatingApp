@@ -1,3 +1,3 @@
 export { baseAPI } from "./rtkQueryInstance";
-export { baseApiClient } from "./apiClient";
+export { baseApiClient } from "./apiClient/apiClientBuilder";
 export { authApi } from "./authApi";

@@ -1,16 +1,17 @@
-import { APIResponse } from "../types";
-import { HttpError } from "../errors";
+import { APIResponse } from "../../types";
+import { HttpError } from "../../errors";
 
 import { ApiClientRequest } from "./request";
+import { ApiClient, FetchOptions, Method } from "./apiClient";
 
-export class ApiClient implements ApiClientBuilder {
+export class ApiClientBuilder implements IApiClientBuilder {
   constructor(
     private readonly injectedHeaders: HeadersInit = {},
-    private errorInterceptor: ErrorInterceptor = null,
+    private readonly errorInterceptor: ErrorInterceptor = null,
   ) {}
 
-  setHeaders(headers: HeadersInit) {
-    return new ApiClient(
+  setHeaders(headers: HeadersInit): ApiClientBuilder {
+    return new ApiClientBuilder(
       {
         ...this.injectedHeaders,
         ...headers,
@@ -19,20 +20,12 @@ export class ApiClient implements ApiClientBuilder {
     );
   }
 
-  onError(interceptor: ErrorInterceptor) {
-    return new ApiClient(this.injectedHeaders, interceptor);
+  withErrorInterceptor(interceptor: ErrorInterceptor): ApiClientBuilder {
+    return new ApiClientBuilder(this.injectedHeaders, interceptor);
   }
 
-  // TODO: Remove from builder using CRUD
-  async get<D>(endpoint: string) {
-    return await this.buildRequest<D>(endpoint, "GET");
-  }
-
-  async post<D, B>(endpoint: string, body: B, options?: PublicOptions) {
-    return await this.buildRequest<D>(endpoint, "POST", {
-      ...options,
-      body,
-    });
+  build(): ApiClient {
+    return new ApiClient(this.buildRequest.bind(this));
   }
 
   private async buildRequest<D>(
@@ -60,7 +53,10 @@ export class ApiClient implements ApiClientBuilder {
     }
   }
 
-  private interceptError<D>(error: unknown, request: ApiClientRequest) {
+  private interceptError<D>(
+    error: unknown,
+    request: ApiClientRequest,
+  ): APIResponse<D> {
     if (error instanceof HttpError && this.errorInterceptor) {
       return this.errorInterceptor(error, async (extraOptions) => {
         const retryRes = await request.execute<D>(extraOptions);
@@ -73,18 +69,14 @@ export class ApiClient implements ApiClientBuilder {
   }
 }
 
-export const baseApiClient = new ApiClient();
+export const baseApiClient = new ApiClientBuilder().build();
 
-interface ApiClientBuilder {
-  onError(interceptor: ErrorInterceptor): ApiClientBuilder;
+interface IApiClientBuilder {
+  withErrorInterceptor(interceptor: ErrorInterceptor): ApiClientBuilder;
   setHeaders(headers: HeadersInit): ApiClientBuilder;
+  build(): ApiClient;
 }
 
-type Method = "POST" | "GET" | "DELETE" | "PUT" | "PATCH";
-type PublicOptions = Omit<RequestInit, "body">;
-type FetchOptions = PublicOptions & {
-  body?: unknown;
-};
 type ErrorInterceptor =
   | (<D>(
       error: HttpError,

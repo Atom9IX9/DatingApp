@@ -1,6 +1,6 @@
-import { HttpError } from "../errors";
-import { getShortValuesFromSetCookies } from "../lib/helpers/getShortValuesFromSetCookies";
-import { APIResponse } from "../types";
+import { HttpError } from "../../errors";
+import { getShortValuesFromSetCookies } from "../../lib/helpers/getShortValuesFromSetCookies";
+import { APIResponse } from "../../types";
 
 export class ApiClientRequest implements IApiClientRequest {
   private readonly baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL + "/api";

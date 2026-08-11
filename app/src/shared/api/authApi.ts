@@ -1,18 +1,20 @@
 "use server";
 import { cookies } from "next/headers";
 
-import { baseApiClient } from "./apiClient";
+import { ApiClientBuilder, baseApiClient } from "./apiClient/apiClientBuilder";
 
 export async function authApi() {
   const cookiesStorage = await cookies();
   const accessToken = cookiesStorage.get("accessToken")?.value;
   const refreshToken = cookiesStorage.get("refreshToken")?.value;
 
-  return baseApiClient
+  const authApiClientBuilder = new ApiClientBuilder();
+
+  return authApiClientBuilder
     .setHeaders({
       Authorization: `Bearer ${accessToken}`,
     })
-    .onError(async (error, retry) => {
+    .withErrorInterceptor(async (error, retry) => {
       if (error.statusCode === 401 && refreshToken) {
         const refreshRes = await baseApiClient.post<
           { accessToken: string },
@@ -50,5 +52,6 @@ export async function authApi() {
       }
 
       throw error;
-    });
+    })
+    .build();
 }
