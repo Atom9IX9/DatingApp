@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { baseApiClient } from "@/shared/api";
 import { HttpError } from "@/shared/errors";
 import { signIn, SignInResponse } from "@/auth";
+import { setAuthTokensToBrowserCookies } from "@/shared/lib/server";
 
 export async function loginAction(
   credentials: Credentials,
@@ -16,23 +17,10 @@ export async function loginAction(
       credentials,
     );
 
-    const accessToken = res.data?.accessToken;
-    const refreshToken = res.setCookies?.getValues()[0];
-
-    if (refreshToken && accessToken) {
-      cookiesStorage.set("refreshToken", refreshToken, {
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
-        httpOnly: true,
-        maxAge: 60 * 60 * 24 * 30, //30 d
-      });
-      cookiesStorage.set("accessToken", accessToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        path: "/",
-      });
-    }
+    setAuthTokensToBrowserCookies(cookiesStorage, {
+      accessToken: res.data?.accessToken,
+      refreshToken: res.responseCookies?.getShortValues()[0],
+    });
 
     if (res.data) {
       await signIn("credentials", {

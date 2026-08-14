@@ -77,7 +77,7 @@ interface IApiClientBuilder {
   build(): ApiClient;
 }
 
-type ErrorInterceptor =
+export type ErrorInterceptor =
   | (<D>(
       error: HttpError,
       retry: (req: RequestInit) => APIResponse<D>,

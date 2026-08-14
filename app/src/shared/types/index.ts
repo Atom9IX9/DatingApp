@@ -39,8 +39,8 @@ export type TControllerField<FV extends FieldValues> = ControllerRenderProps<
 >;
 export type APIResponse<D> = Promise<{
   data?: D;
-  setCookies?: {
-    getValues: () => string[];
+  responseCookies?: {
+    getShortValues: () => string[];
     getFullValues: () => string[];
   };
 }>;

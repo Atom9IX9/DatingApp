@@ -6,6 +6,7 @@ import { baseApiClient } from "@/shared/api";
 import { HttpError } from "@/shared/errors";
 import { signIn } from "@/auth";
 import { ClientOnboardingStep } from "@/shared/types";
+import { setAuthTokensToBrowserCookies } from "@/shared/lib/server";
 
 export const registerCredentialsAction = async (
   body: RegisterCredentialsReqBody,
@@ -13,28 +14,15 @@ export const registerCredentialsAction = async (
   try {
     const cookiesStorage = await cookies();
 
-    const { data, setCookies } = await baseApiClient.post<
+    const { data, responseCookies } = await baseApiClient.post<
       RegisterCredentialsResponse,
       RegisterCredentialsReqBody
     >("auth/register/credentials", body);
 
-    const accessToken = data?.accessToken;
-    const refreshToken = setCookies?.getValues()[0];
-
-    if (refreshToken && accessToken) {
-      cookiesStorage.set("refreshToken", refreshToken, {
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
-        httpOnly: true,
-        maxAge: 60 * 60 * 24 * 30, //30 d
-      });
-      cookiesStorage.set("accessToken", accessToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        path: "/",
-      });
-    }
+    setAuthTokensToBrowserCookies(cookiesStorage, {
+      accessToken: data?.accessToken,
+      refreshToken: responseCookies?.getShortValues()[0],
+    });
 
     if (data) {
       await signIn("credentials", {

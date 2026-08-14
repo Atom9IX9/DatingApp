@@ -25,17 +25,19 @@ export class ApiClientRequest implements IApiClientRequest {
       await this.throwResponseError(res);
     }
 
-    return await this.createApiClientResponse(res);
+    return await this.createApiClientResponse<D>(res);
   }
 
-  private async createApiClientResponse<D>(response: Response) {
+  private async createApiClientResponse<D>(
+    response: Response,
+  ): Promise<APIResponse<D>> {
     const data = (await response.json()) as D;
 
     return {
       data,
-      setCookies: {
+      responseCookies: {
         getFullValues: () => response.headers.getSetCookie(),
-        getValues: () => getShortValuesFromSetCookies(response.headers),
+        getShortValues: () => getShortValuesFromSetCookies(response.headers),
       },
     };
   }
