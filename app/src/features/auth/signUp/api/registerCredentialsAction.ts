@@ -2,16 +2,15 @@
 
 import { cookies } from "next/headers";
 
-import { baseApiClient } from "@/shared/api";
-import { HttpError } from "@/shared/errors";
+import { baseApiClient, executeServerAction } from "@/shared/api";
 import { signIn } from "@/auth";
 import { ClientOnboardingStep } from "@/shared/types";
 import { setAuthTokensToBrowserCookies } from "@/shared/lib/server";
 
 export const registerCredentialsAction = async (
   body: RegisterCredentialsReqBody,
-): RegisterCredentialsActionResponse => {
-  try {
+) =>
+  executeServerAction(async () => {
     const cookiesStorage = await cookies();
 
     const { data, responseCookies } = await baseApiClient.post<
@@ -33,19 +32,8 @@ export const registerCredentialsAction = async (
       });
     }
 
-    return { data, success: true };
-  } catch (error) {
-    let message = "Unexpected error";
-    if (error instanceof HttpError) {
-      message = error.message;
-    }
-
-    return {
-      success: false,
-      errorMessage: message,
-    };
-  }
-};
+    return data;
+  });
 
 export type RegisterCredentialsReqBody = {
   email: string;
@@ -59,9 +47,3 @@ export type RegisterCredentialsResponse = {
     email: string;
   };
 };
-
-type RegisterCredentialsActionResponse = Promise<{
-  success: boolean;
-  errorMessage?: string;
-  data?: RegisterCredentialsResponse;
-}>;

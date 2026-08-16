@@ -3,26 +3,6 @@ import { Hobby } from "@/entities/user";
 
 export const registerEndpoint = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    // registerCredentials: builder.mutation<
-    //   RegisterCredentialsResponse,
-    //   RegisterCredentialsReqBody
-    // >({
-    //   query: (body) => ({
-    //     url: "auth/register/credentials",
-    //     method: "POST",
-    //     body,
-    //   }),
-    // }),
-    // registerUserPersonalInfo: builder.mutation<
-    //   RegisterUserPersonalInfoResponse,
-    //   RegisterUserPersonalInfoReqBody
-    // >({
-    //   query: (body) => ({
-    //     url: "auth/register/user-personal",
-    //     method: "POST",
-    //     body,
-    //   }),
-    // }),
     registerUserDescription: builder.mutation<
       RegisterUserDescriptionResponse,
       RegisterUserDescriptionReqBody

@@ -2,13 +2,13 @@
 
 import { unstable_update } from "@/auth";
 import { Sex } from "@/entities/user";
-import { authApi } from "@/shared/api";
+import { authApi, executeServerAction } from "@/shared/api";
 import { ResponseOnboardingStep } from "@/shared/types";
 
 export const registerPersonalInfoAction = async (
   payload: RegisterUserPersonalInfoReqBody,
-): RegisterPersonalInfoActionResponse => {
-  try {
+) =>
+  executeServerAction<RegisterUserPersonalInfoResponse>(async () => {
     const api = await authApi();
 
     const res = await api.post<
@@ -29,19 +29,8 @@ export const registerPersonalInfoAction = async (
       });
     }
 
-    return { success: true, data: res.data };
-  } catch (error) {
-    let message = "Unexpected error";
-    if (error instanceof Error) {
-      message = error.message;
-    }
-
-    return {
-      success: false,
-      errorMessage: message,
-    };
-  }
-};
+    return res.data;
+  });
 
 export type RegisterUserPersonalInfoResponse = {
   uid: string;
@@ -61,9 +50,3 @@ export type RegisterUserPersonalInfoReqBody = {
   gender: Sex;
   genderInfo?: string;
 };
-
-type RegisterPersonalInfoActionResponse = Promise<{
-  success: boolean;
-  errorMessage?: string;
-  data?: RegisterUserPersonalInfoResponse;
-}>;
