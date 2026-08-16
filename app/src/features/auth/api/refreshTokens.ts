@@ -17,7 +17,8 @@ export async function refreshTokens(token: JWT): Promise<JWT> {
     return {
       ...token,
       accessToken: refreshed.data?.accessToken,
-      refreshToken: refreshed.setCookies?.getValues()[0] || token.refreshToken,
+      refreshToken:
+        refreshed.responseCookies?.getShortValues()[0] || token.refreshToken,
       sessionExpire: Date.now() + (refreshed.data?.sessionExpire || 0) * 1000,
     };
   } catch (e) {
