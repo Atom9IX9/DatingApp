@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { baseApiClient, executeServerAction } from "@/shared/api";
 import { signIn, SignInResponse } from "@/auth";
 import { setAuthTokensToBrowserCookies } from "@/shared/lib/server";
+import { Avatar } from "@/entities/avatar";
 
 export const loginAction = async (credentials: Credentials) =>
   executeServerAction<SignInResponse>(async () => {
@@ -20,8 +21,17 @@ export const loginAction = async (credentials: Credentials) =>
     });
 
     if (res.data) {
+      let authUser = null;
+      let authAvatar: Avatar | null = null;
+      if (res.data.user) {
+        const { avatar, ...restUser } = res.data.user;
+        authAvatar = avatar;
+        authUser = restUser;
+      }
+
       await signIn("credentials", {
-        user: res.data.user ? JSON.stringify(res.data.user) : null,
+        user: authUser ? JSON.stringify(authUser) : null,
+        avatar: authAvatar ? JSON.stringify(authAvatar) : null,
         authCredentials: JSON.stringify(res.data.authCredentials),
         onboardingStep: res.data.onboardingStep,
         redirect: false,

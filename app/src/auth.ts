@@ -9,17 +9,20 @@ import {
 } from "@/shared/types";
 import { onboardingStepFromStr } from "@/shared/lib/server";
 
+import { Avatar } from "./entities/avatar";
+
 export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
   session: { strategy: "jwt" },
   providers: [
     Credentials({
       authorize: async (credentials) => {
-        const { user, authCredentials, onboardingStep } =
+        const { user, authCredentials, onboardingStep, avatar } =
           credentials as Credentials;
 
         if (credentials) {
           return {
             accountInfo: user ? JSON.parse(user) : null,
+            avatar: avatar ? JSON.parse(avatar) : null,
             authCredentials: JSON.parse(authCredentials),
             onboardingStep: !onboardingStep
               ? ClientOnboardingStep.INFO
@@ -63,14 +66,16 @@ export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
 });
 
 export type CheckAuthResponseData = {
-  user: UserAccountInfo | null;
+  user: UserAccountInfoResponse | null;
   authCredentials: UserAuth;
   onboardingStep: ResponseOnboardingStep;
   sessionExpire: number;
 };
+type UserAccountInfoResponse = UserAccountInfo & { avatar: Avatar | null };
 export type SignInResponse = CheckAuthResponseData & { accessToken: string };
 type Credentials = {
   user: string | null;
   authCredentials: string;
   onboardingStep?: OnboardingStep;
+  avatar: string | null;
 };
