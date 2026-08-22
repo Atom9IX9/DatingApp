@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
 
-import heroImg from "../../public/assets/imgs/hero.png";
-
 import style from "./guestPages.module.scss";
 
 const HeroBlock: React.FC<Props> = ({ forPageGroup }) => {
@@ -10,7 +8,7 @@ const HeroBlock: React.FC<Props> = ({ forPageGroup }) => {
   return (
     <Box className={style.heroBlock}>
       <Image
-        src={heroImg}
+        src={"/assets/imgs/hero.png"}
         alt="hero"
         sizes="64vw"
         fill

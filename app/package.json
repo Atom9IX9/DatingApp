@@ -15,7 +15,7 @@
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "cycle:madge": "madge src --extensions ts,tsx --circular",
-    "arch:fsd": "depcruise src --config dependency-cruiser.config.cjs",
+    "arch:fsd": "depcruise src --config dependency-cruiser.config.mjs",
     "arch:check": "npm run cycle:madge && npm run arch:fsd"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "jose": "^6.2.3",
     "js-cookie": "^3.0.5",
     "next": "^16.2.10",
+    "next-auth": "^5.0.0-beta.31",
     "next-themes": "^0.4.6",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",

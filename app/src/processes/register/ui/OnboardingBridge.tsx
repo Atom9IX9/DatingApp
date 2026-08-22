@@ -4,9 +4,9 @@ import { useEffect } from "react";
 
 import { TChildren } from "@/shared/types";
 import { useAppDispatch } from "@/shared/lib";
+import { OnboardingStep } from "@/shared/types";
 
 import { setCurrentStep } from "../model/registerProcess.slice";
-import { OnboardingStep } from "../types/index";
 
 const OnboardingBridge: React.FC<Props> = ({ children, onboardingStep }) => {
   const dispatch = useAppDispatch();

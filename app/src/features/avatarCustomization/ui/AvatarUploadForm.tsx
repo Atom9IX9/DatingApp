@@ -8,13 +8,13 @@ import {
   useState,
 } from "react";
 import UploadIcon from "@mui/icons-material/Upload";
-import { QueryStatus } from "@reduxjs/toolkit/query";
+import { useTransition } from "react";
 
 import { useDragAndDrop } from "@/shared/lib";
 import { BackdropLoader, BaseBtn, VisuallyHiddenInput } from "@/shared/ui";
 import { Avatar } from "@/entities/avatar";
 
-import { useUploadAvatarMutation } from "../api/avatarApi";
+import { uploadAvatarAction } from "../api/updateAvatarAction";
 
 import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
 
@@ -22,6 +22,7 @@ import AvatarEditForm, { onUploadSubmit } from "./AvatarEditForm";
 const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
   const dropAreaRef = useRef<HTMLDivElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File>();
+  const [isSubmitting, startSubmitting] = useTransition();
 
   const { isDragging, error } = useDragAndDrop(
     (file) => setSelectedFile(file),
@@ -43,15 +44,19 @@ const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
     };
   }, [avatarUrl]);
 
-  const [uploadAvatar, result] = useUploadAvatarMutation();
-
-  const onSubmit: onUploadSubmit = (data) => {
+  const onSubmit: onUploadSubmit = async (data) => {
     if (selectedFile) {
-      uploadAvatar({
-        avatar: selectedFile,
-        posX: String(data.posX),
-        posY: String(data.posY),
-        scale: String(data.scale),
+      startSubmitting(async () => {
+        const res = await uploadAvatarAction({
+          avatar: selectedFile,
+          posX: String(data.posX),
+          posY: String(data.posY),
+          scale: String(data.scale),
+        });
+
+        if (res.success && onSuccess && res.data) {
+          onSuccess(res.data);
+        }
       });
     }
   };
@@ -59,12 +64,6 @@ const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSelectedFile(e.target.files ? e.target.files[0] : undefined);
   };
-
-  useEffect(() => {
-    if (result.data && onSuccess) {
-      onSuccess(result.data);
-    }
-  }, [result.data, onSuccess]);
 
   // Render the component's JSX structure.
   return (
@@ -76,7 +75,7 @@ const UploadForm: React.FC<Props> = ({ onSuccess, sx }) => {
         ...sx,
       }}
     >
-      <BackdropLoader isOpen={result.status === QueryStatus.pending} />
+      <BackdropLoader isOpen={isSubmitting} />
       <Box
         component={"h4"}
         sx={{

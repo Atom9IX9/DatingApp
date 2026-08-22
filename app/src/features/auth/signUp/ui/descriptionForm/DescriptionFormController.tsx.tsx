@@ -1,16 +1,15 @@
 "use client";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
-import { QueryStatus } from "@reduxjs/toolkit/query";
 
-import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
 
 import {
+  registerUserDescriptionAction,
   RegisterUserDescriptionReqBody,
   RegisterUserDescriptionResponse,
-  useRegisterUserDescriptionMutation,
-} from "../../api/signUpAPI";
+} from "../../api/registerUserDescriptionAction";
 
 import DescriptionForm from "./DescriptionForm";
 import style from "./descriptionForm.module.scss";
@@ -24,19 +23,17 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
       },
     });
 
-  const [registerDescription, result] = useRegisterUserDescriptionMutation();
-
   const onSubmit: SubmitHandler<RegisterUserDescriptionReqBody> = async ({
     description,
     hobbies,
   }) => {
-    try {
-      const data = await registerDescription({ description, hobbies }).unwrap();
-      if (onSuccess) onSuccess(data);
-    } catch (err) {
+    const res = await registerUserDescriptionAction({ description, hobbies });
+
+    if (res.data && res.success) {
+      if (onSuccess) onSuccess(res.data);
+    } else {
       setError("root", {
-        message:
-          (err as RtkQueryResultError).data?.message || "Failed to send data",
+        message: res.errorMessage || "Failed to send data",
       });
     }
   };
@@ -44,13 +41,11 @@ const DescriptionFormController: React.FC<Props> = ({ onSuccess }) => {
   // Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
-      <BackdropLoader isOpen={result.status === QueryStatus.pending} />
+      <BackdropLoader isOpen={formState.isSubmitting} />
       <DescriptionForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
-          error: result.error as RtkQueryResultError,
-          status: result.status,
           rootError: formState.errors.root?.message,
         }}
       />

@@ -2,25 +2,17 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-import { useAppDispatch } from "@/shared/lib";
-import { ResponseOnboardingStep } from "@/features/auth";
-
-import { OnboardingStep } from "../types";
-import { setCurrentStep } from "../model/registerProcess.slice";
+import { OnboardingStep } from "@/shared/types";
 
 const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {
-  const dispatch = useAppDispatch();
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
-  const handleStepSuccess = () => {
-    const newStep = Number(currentStep) + 1;
-    dispatch(setCurrentStep(newStep));
-  };
+  const { update } = useSession();
 
   const handleLastStepSuccess = () => {
-    dispatch(setCurrentStep(ResponseOnboardingStep.REGISTERED));
-    push("/home");
+    replace("/home");
   };
 
   for (let i = 0; i < formOrder.length; i++) {
@@ -28,17 +20,19 @@ const RegisterProcessForms: React.FC<Props> = ({ currentStep, formOrder }) => {
       const currentForm = formOrder[i];
 
       return React.cloneElement(currentForm, {
-        onSuccess: (data: unknown) => {
+        onSuccess: async (data: unknown) => {
           if (currentForm.props.onSuccess) {
             // actions from children
-            currentForm.props.onSuccess(data);
+            await currentForm.props.onSuccess(data);
           }
-          // base onSoccess behavior
+
+          // base onSuccess behavior
           if (i === formOrder.length - 1) {
             handleLastStepSuccess();
-          } else {
-            handleStepSuccess();
           }
+
+          // session update after each step to ensure the latest user data is available
+          await update();
         },
       });
     }
@@ -49,5 +43,7 @@ export default RegisterProcessForms;
 // Type describing component props.
 type Props = {
   currentStep: OnboardingStep;
-  formOrder: React.ReactElement<{ onSuccess: (data: unknown) => void }>[];
+  formOrder: React.ReactElement<{
+    onSuccess: (data: unknown) => void | Promise<void>;
+  }>[];
 };

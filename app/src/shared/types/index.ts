@@ -37,6 +37,13 @@ export type TControllerField<FV extends FieldValues> = ControllerRenderProps<
   FV,
   Path<FV>
 >;
+export type APIResponse<D> = Promise<{
+  data?: D;
+  responseCookies?: {
+    getShortValues: () => string[];
+    getFullValues: () => string[];
+  };
+}>;
 
 export { Colors } from "./colors";
 export { PaletteColors } from "./colors";
@@ -44,3 +51,5 @@ export { type PaletteShade } from "./colors";
 export { type ThemeColor } from "./colors";
 
 export * from "./statusCodes";
+export type { OnboardingStep } from "./onboarding";
+export { ResponseOnboardingStep, ClientOnboardingStep } from "./onboarding";

@@ -1,28 +1,19 @@
 import { Box } from "@mui/material";
-import { cookies } from "next/headers";
 
-import {
-  OnboardingBridge,
-  onboardingStepFromCookies,
-  RegisterProcess,
-} from "@/processes/register";
+import { RegisterProcess } from "@/processes/register";
+import { auth } from "@/auth";
 
 import style from "../../../guestPages.module.scss";
 import HeroBlock from "../../../HeroBlock";
 
 // Server-rendered page component for the start page.
 const SignUpPage: React.FC = async () => {
-  const cookiesStorage = await cookies();
-  const onboardingStep = cookiesStorage.get("onboardingStep")?.value;
+  const session = await auth();
 
   return (
     <Box className={`${style.mainBlock} ${style.signUpPage}`}>
       <HeroBlock forPageGroup="auth" />
-      <OnboardingBridge
-        onboardingStep={onboardingStepFromCookies(onboardingStep)}
-      >
-        <RegisterProcess />
-      </OnboardingBridge>
+      <RegisterProcess onboardingStep={session?.user.onboardingStep} />
     </Box>
   );
 };

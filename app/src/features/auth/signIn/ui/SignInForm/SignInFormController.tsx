@@ -1,37 +1,37 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
-import { QueryStatus } from "@reduxjs/toolkit/query";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
 
 import { SignInData } from "../../types/form";
-import { LoginResponse } from "../../api/signInAPI";
-import { useLogin } from "../../hooks/useLogin";
+import { loginAction } from "../../api/signInAction";
 
 import SignInForm from "./SignInForm";
 import style from "./signInForm.module.scss";
 
-const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
+const CredentialsFormController: React.FC = () => {
   const { control, handleSubmit, setError, formState } = useForm<SignInData>({
     defaultValues: {
       email: "",
       password: "",
     },
   });
-
-  const { login, result } = useLogin();
+  const { replace } = useRouter();
+  const { update } = useSession();
 
   const onSubmit: SubmitHandler<SignInData> = async ({ email, password }) => {
-    try {
-      const data = await login({ email, password });
-      if (onSuccess) onSuccess(data);
-    } catch (err) {
+    const res = await loginAction({ email, password });
+
+    if (!res.success) {
       setError("root", {
-        message:
-          (err as RtkQueryResultError).data?.message || "Failed to send data",
+        message: res.errorMessage || "Failed to send data",
       });
+    } else {
+      await update();
+      replace("/home");
     }
   };
 
@@ -39,13 +39,11 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   return (
     <Box className={style.signInSectionContainer}>
       <Box component="section" className={style.signInSection}>
-        <BackdropLoader isOpen={result.status === QueryStatus.pending} />
+        <BackdropLoader isOpen={formState.isSubmitting} />
         <SignInForm
           onSubmit={handleSubmit(onSubmit)}
           control={control}
           result={{
-            error: result.error as RtkQueryResultError,
-            status: result.status,
             rootError: formState.errors.root?.message,
           }}
         />
@@ -56,6 +54,3 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
 
 export default CredentialsFormController;
 // Type describing component props.
-type Props = {
-  onSuccess?: (data: LoginResponse) => void;
-};

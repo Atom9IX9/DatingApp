@@ -1,9 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-import { ResponseOnboardingStep } from "@/features/auth";
-
-import { OnboardingStep } from "../types";
+import { OnboardingStep, ResponseOnboardingStep } from "@/shared/types";
 
 import style from "./registerStepsStyle.module.scss";
 

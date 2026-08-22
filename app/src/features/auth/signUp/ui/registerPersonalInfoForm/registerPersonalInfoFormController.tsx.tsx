@@ -1,18 +1,17 @@
 "use client";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { Box } from "@mui/material";
-import { QueryStatus } from "@reduxjs/toolkit/query";
 
-import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
 import { TransitionAlert } from "@/shared/ui";
 
 import { UserPersonalInfoFormData } from "../../types/form";
 import {
+  registerPersonalInfoAction,
   RegisterUserPersonalInfoResponse,
-  useRegisterUserPersonalInfoMutation,
-} from "../../api/signUpAPI";
+} from "../../api/registerPersonalInfoAction";
 
 import PersonalInfoForm from "./registerPersonalInfoForm";
 import style from "./registerPersonalInfoForm.module.scss";
@@ -31,29 +30,25 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
       },
     });
 
-  const [registerPersonalInfo, result] = useRegisterUserPersonalInfoMutation();
-
   const onSubmit: SubmitHandler<UserPersonalInfoFormData> = async (data) => {
     if (!data.sex) {
       setError("sex", { message: "null_sex" });
       setAlert("Please select your sex");
     } else {
       if (data.dateOfBD) {
-        try {
-          const response = await registerPersonalInfo({
-            dateOfBD: data.dateOfBD.toISOString(),
-            firstName: data.firstName,
-            gender: data.sex,
-            lastName: data.lastName,
-            genderInfo: data.genderInfo,
-          }).unwrap();
+        const res = await registerPersonalInfoAction({
+          dateOfBD: data.dateOfBD.toISOString(),
+          firstName: data.firstName,
+          gender: data.sex,
+          lastName: data.lastName,
+          genderInfo: data.genderInfo,
+        });
 
-          if (onSuccess) onSuccess(response);
-        } catch (err) {
+        if (res.data && res.success) {
+          if (onSuccess) onSuccess(res.data);
+        } else {
           setError("root", {
-            message:
-              (err as RtkQueryResultError).data?.message ||
-              "Failed to send data",
+            message: res.errorMessage || "Failed to send data",
           });
         }
       }
@@ -63,7 +58,7 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   // Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
-      <BackdropLoader isOpen={result.status === QueryStatus.pending} />
+      <BackdropLoader isOpen={formState.isSubmitting} />
       <Box sx={{ position: "absolute", bottom: 0, left: 20, right: 20 }}>
         {alert && (
           <TransitionAlert alert={alert} severity="warning" isOpen={!!alert} />
@@ -74,8 +69,6 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
-          error: result.error as RtkQueryResultError,
-          status: result.status,
           rootError: formState.errors.root?.message,
         }}
       />

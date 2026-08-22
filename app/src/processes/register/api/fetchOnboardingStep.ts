@@ -1,6 +1,8 @@
-import { ResponseOnboardingStep } from "@/features/auth";
-
-import { ClientOnboardingStep, OnboardingStep } from "../types";
+import {
+  ClientOnboardingStep,
+  OnboardingStep,
+  ResponseOnboardingStep,
+} from "@/shared/types";
 
 export const fetchOnboardingStep: FetchOnboardingStep = async (accessToken) => {
   const res = await fetch(

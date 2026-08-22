@@ -1,14 +1,12 @@
 import React from "react";
 import { Control } from "react-hook-form";
-import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Box } from "@mui/material";
 
 import { BaseBtn, MultitextField, TagsField } from "@/shared/ui";
-import { RtkQueryResultError } from "@/shared/types";
 
 import HydratedForm from "../../../ui/HydratedForm";
-import { RegisterUserDescriptionReqBody } from "../../api/signUpAPI";
 import { validateEmptyArray } from "../../model/validation/validateEmptyArray";
+import { RegisterUserDescriptionReqBody } from "../../api/registerUserDescriptionAction";
 
 import style from "./descriptionForm.module.scss";
 
@@ -71,8 +69,6 @@ type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<RegisterUserDescriptionReqBody>;
   result: {
-    error?: RtkQueryResultError;
-    status: QueryStatus;
     rootError?: string;
   };
 };

@@ -1,14 +1,14 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Box } from "@mui/material";
-import { QueryStatus } from "@reduxjs/toolkit/query";
 
-import { RtkQueryResultError } from "@/shared/types";
 import { BackdropLoader } from "@/shared/ui";
 
 import { CredentialsData } from "../../types/form";
-import { useRegisterCredentials } from "../../hooks/useRegisterCredentials";
-import { RegisterCredentialsResponse } from "../../api/signUpAPI";
+import {
+  registerCredentialsAction,
+  RegisterCredentialsResponse,
+} from "../../api/registerCredentialsAction";
 
 import CredentialsForm from "./CredentialsForm";
 import style from "./credentialsForm.module.scss";
@@ -23,9 +23,6 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
       },
     });
 
-  const { registerCredentials, ...registerCredentialsResult } =
-    useRegisterCredentials();
-
   const onSubmit: SubmitHandler<CredentialsData> = async ({
     email,
     password,
@@ -39,13 +36,12 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
       return;
     }
 
-    try {
-      const data = await registerCredentials({ email, password });
-      if (onSuccess) onSuccess(data);
-    } catch (err) {
+    const res = await registerCredentialsAction({ email, password });
+    if (res.data && res.success) {
+      if (onSuccess) onSuccess(res.data);
+    } else {
       setError("root", {
-        message:
-          (err as RtkQueryResultError).data?.message || "Failed to send data",
+        message: res.errorMessage || "Failed to send data",
       });
     }
   };
@@ -53,15 +49,11 @@ const CredentialsFormController: React.FC<Props> = ({ onSuccess }) => {
   // Render the component's JSX structure.
   return (
     <Box component="section" className={style.signUpSection}>
-      <BackdropLoader
-        isOpen={registerCredentialsResult.status === QueryStatus.pending}
-      />
+      <BackdropLoader isOpen={formState.isSubmitting} />
       <CredentialsForm
         onSubmit={handleSubmit(onSubmit)}
         control={control}
         result={{
-          error: registerCredentialsResult.error as RtkQueryResultError,
-          status: registerCredentialsResult.status,
           rootError: formState.errors.root?.message,
         }}
       />

@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
 
-import { ResponseOnboardingStep } from "@/features/auth";
-
-import { OnboardingStep } from "../types";
+import { OnboardingStep, ResponseOnboardingStep } from "@/shared/types";
 
 // State shape for initial.
 const initialState: TInitialState = {
@@ -33,8 +30,6 @@ export const setCurrentStep = createAsyncThunk(
   "registerProcess/setCurrentStep",
   async (step: OnboardingStep, { dispatch }) => {
     dispatch(setStep(step));
-
-    Cookies.set("onboardingStep", step.toString(), { expires: 60 });
   },
 );
 

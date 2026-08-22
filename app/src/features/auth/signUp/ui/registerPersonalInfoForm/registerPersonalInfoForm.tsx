@@ -1,6 +1,5 @@
 import React from "react";
 import { Control } from "react-hook-form";
-import { QueryStatus } from "@reduxjs/toolkit/query";
 import { Box } from "@mui/material";
 
 import {
@@ -10,7 +9,7 @@ import {
   RadioBtnGroup,
   TextField,
 } from "@/shared/ui";
-import { Colors, RtkQueryResultError } from "@/shared/types";
+import { Colors } from "@/shared/types";
 import { Sex } from "@/entities/user";
 
 import { UserPersonalInfoFormData } from "../../types/form";
@@ -115,7 +114,7 @@ const CredentialsForm: React.FC<CredentialsFormProps> = ({
           <Box
             color="error"
             className={style.rootError}
-            sx={{ color: "error.main" }}
+            sx={{ color: "error.main", marginBottom: "14px" }}
           >
             {result.rootError || "Failed to send data"}
           </Box>
@@ -139,8 +138,6 @@ type CredentialsFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
   control: Control<UserPersonalInfoFormData>;
   result: {
-    error?: RtkQueryResultError;
-    status: QueryStatus;
     rootError?: string;
   };
 };
