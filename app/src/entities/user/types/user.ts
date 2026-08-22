@@ -22,12 +22,6 @@ export type UserAccountInfo = {
   uid: string;
   firstName: string;
   lastName: string;
-  avatar?: {
-    posX: number;
-    posY: number;
-    scale: number;
-    url: string;
-  };
 };
 
 export enum Sex {

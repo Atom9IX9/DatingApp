@@ -11,13 +11,18 @@ export class ApiClientRequest implements IApiClientRequest {
   ) {}
 
   async execute<D>(extraOptions?: RequestInit): Promise<APIResponse<D>> {
-    const res = await fetch(`${this.baseUrl}/${this.endpoint}`, {
+    const fullOptions = {
       ...this.options,
       ...extraOptions,
+    };
+
+    const isFormData = this.options?.body instanceof FormData;
+
+    const res = await fetch(`${this.baseUrl}/${this.endpoint}`, {
+      ...fullOptions,
       headers: {
-        "Content-Type": "application/json",
-        ...this.options?.headers,
-        ...(extraOptions?.headers ?? {}),
+        ...(isFormData ? {} : { "Content-Type": "application/json" }),
+        ...(fullOptions.headers ?? {}),
       },
     });
 

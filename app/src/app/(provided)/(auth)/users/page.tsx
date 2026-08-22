@@ -24,7 +24,7 @@ const UsersPage = () => {
             description:
               "This is description for this user. It must be less, than 100 characters. Styled for cool rtk queryt. ",
             location: { region: "[obl]", country: "[country]" },
-            avatar: data?.user.accountInfo?.avatar || {
+            avatar: data?.user.avatar || {
               posX: 0,
               posY: 0,
               scale: 1,

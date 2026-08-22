@@ -3,6 +3,7 @@ import "next-auth";
 
 import { OnboardingStep } from "@/shared/types";
 import { UserAccountInfo, UserAuth } from "@/entities/user";
+import { Avatar } from "@/entities/avatar";
 
 declare module "next-auth" {
   interface User {
@@ -11,6 +12,8 @@ declare module "next-auth" {
     accountInfo: UserAccountInfo | null;
 
     onboardingStep: OnboardingStep;
+
+    avatar: Avatar;
 
     error?: string;
   }

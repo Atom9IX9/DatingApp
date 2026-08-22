@@ -11,8 +11,8 @@ const AuthPreview = () => {
   // Render the component's JSX structure.
   return (
     <Box>
-      {data?.user.accountInfo?.avatar && (
-        <PositionedAvatar avatar={data?.user.accountInfo?.avatar} size={260} />
+      {data?.user.avatar && (
+        <PositionedAvatar avatar={data?.user.avatar} size={260} />
       )}
     </Box>
   );

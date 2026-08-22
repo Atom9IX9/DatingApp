@@ -40,8 +40,7 @@ export class ApiClientBuilder implements IApiClientBuilder {
         ...this.injectedHeaders,
         ...(options?.headers ?? {}),
       },
-      body:
-        options?.body !== undefined ? JSON.stringify(options.body) : undefined,
+      body: this.serializeBody(options?.body),
     });
 
     try {
@@ -51,6 +50,14 @@ export class ApiClientBuilder implements IApiClientBuilder {
     } catch (error) {
       return this.interceptError<D>(error, request);
     }
+  }
+
+  private serializeBody(body: unknown) {
+    return body instanceof FormData
+      ? body
+      : body !== undefined
+        ? JSON.stringify(body)
+        : undefined;
   }
 
   private interceptError<D>(
