@@ -15,7 +15,7 @@
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "cycle:madge": "madge src --extensions ts,tsx --circular",
-    "arch:fsd": "depcruise src --config dependency-cruiser.config.cjs",
+    "arch:fsd": "depcruise src --config dependency-cruiser.config.mjs",
     "arch:check": "npm run cycle:madge && npm run arch:fsd"
   },
   "dependencies": {
