@@ -3,7 +3,7 @@ import { APIResponse } from "../../types";
 export class ApiClient implements IApiClient {
   constructor(private readonly buildRequest: BuildRequest) {}
 
-  get<D>(endpoint: string, options: PublicOptions): APIResponse<D> {
+  get<D>(endpoint: string, options?: PublicOptions): APIResponse<D> {
     return this.buildRequest(endpoint, "GET", options);
   }
 
