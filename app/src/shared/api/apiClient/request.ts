@@ -18,12 +18,15 @@ export class ApiClientRequest implements IApiClientRequest {
 
     const isFormData = this.options?.body instanceof FormData;
 
+    const combinedHeaders = {
+      ...(isFormData ? {} : { "Content-Type": "application/json" }),
+      ...this.options?.headers,
+      ...extraOptions?.headers,
+    };
+
     const res = await fetch(`${this.baseUrl}/${this.endpoint}`, {
       ...fullOptions,
-      headers: {
-        ...(isFormData ? {} : { "Content-Type": "application/json" }),
-        ...(fullOptions.headers ?? {}),
-      },
+      headers: combinedHeaders,
     });
 
     if (!res.ok) {

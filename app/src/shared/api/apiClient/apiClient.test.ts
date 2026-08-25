@@ -1,12 +1,18 @@
 import { ApiClient } from "./apiClient";
 
 describe("ApiClient", () => {
-  const buildReq = jest.fn();
+  let buildReq: jest.Mock;
+  let api: ApiClient;
 
-  const api = new ApiClient(buildReq);
+  const options = {
+    headers: {
+      Authorization: "Bearer token",
+    },
+  };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    buildReq = jest.fn();
+    api = new ApiClient(buildReq);
   });
 
   it("should build GET request", () => {
@@ -16,27 +22,22 @@ describe("ApiClient", () => {
   });
 
   it("should build GET request with options", () => {
-    const options = {
-      headers: {
-        Authorization: "Bearer token",
-      },
-    };
-
     api.get("/endpoint", options);
 
     expect(buildReq).toHaveBeenCalledWith("/endpoint", "GET", options);
   });
 
-  it("should build POST request with body", () => {
+  it("should build POST request with body and options", () => {
     const body = {
       email: "test@test.com",
       password: "123456",
     };
 
-    api.post("/auth/login", body);
+    api.post("/auth/login", body, options);
 
     expect(buildReq).toHaveBeenCalledWith("/auth/login", "POST", {
       body,
+      ...options,
     });
   });
 });

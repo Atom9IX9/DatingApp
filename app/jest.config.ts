@@ -1,20 +1,28 @@
 import type { Config } from "jest";
 import nextJest from "next/jest.js";
 
-// Factory helper that creates jestconfig objects or state.
 const createJestConfig = nextJest({
   dir: "./",
 });
 
-// Route matching configuration for the middleware.
-const config: Config = {
+const customJestConfig: Config = {
   coverageProvider: "v8",
-  testEnvironment: "jsdom",
+  testEnvironment: "jest-fixed-jsdom",
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };
 
-// Factory helper that creates jestconfig objects or state.
-export default createJestConfig(config);
+const makeJestConfig = async () => {
+  const config = await createJestConfig(customJestConfig)();
+
+  // Примусово дозволяємо Jest транспілювати msw та його ESM-залежності
+  config.transformIgnorePatterns = [
+    "/node_modules/(?!(until-async|msw|@mswjs|@bundled-es-modules)/)",
+  ];
+
+  return config;
+};
+
+export default makeJestConfig;
