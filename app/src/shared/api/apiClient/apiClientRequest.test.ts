@@ -1,10 +1,9 @@
-import { http, HttpResponse } from "msw";
+import { HttpResponse } from "msw";
 
 import { HttpError } from "@/shared/errors";
+import { observeRequestState } from "@/shared/tests";
 
 import { ApiClientRequest } from "./request";
-
-import { server } from "@/shared/tests";
 
 describe("ApiClientRequest", () => {
   beforeEach(() => {
@@ -12,27 +11,21 @@ describe("ApiClientRequest", () => {
   });
 
   const captureRequest = (customResponse?: CustomResponse) => {
-    const state: { request: Request | null } = { request: null };
-
-    server.use(
-      http.post("*/login", async ({ request }) => {
-        state.request = request.clone();
-
-        if (customResponse?.status && customResponse.status >= 400) {
-          return HttpResponse.json(
-            customResponse.body ?? {
-              statusCode: customResponse.status,
-              message: "Error",
-            },
-            { status: customResponse.status },
-          );
-        }
-
+    const state = observeRequestState("post", "*/login", () => {
+      if (customResponse?.status && customResponse.status >= 400) {
         return HttpResponse.json(
-          customResponse?.body ?? { accessToken: "Bearer token" },
+          customResponse.body ?? {
+            statusCode: customResponse.status,
+            message: "Error",
+          },
+          { status: customResponse.status },
         );
-      }),
-    );
+      }
+
+      return HttpResponse.json(
+        customResponse?.body ?? { accessToken: "Bearer token" },
+      );
+    });
 
     return state;
   };
@@ -43,7 +36,7 @@ describe("ApiClientRequest", () => {
     customResponse?: CustomResponse,
   ) => {
     const requestState = captureRequest(customResponse);
-    const client = new ApiClientRequest("/login", {
+    const client = new ApiClientRequest("login", {
       method: "POST",
       ...options,
     });
