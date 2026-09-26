@@ -105,7 +105,7 @@ describe("ApiClientBuilder", () => {
   });
 
   it("should rethrow HttpError when no interceptor is configured", async () => {
-    observeRequestState("post", "*/users", () =>
+    observeRequestState("get", "*/users", () =>
       HttpResponse.json(
         {
           statusCode: 401,
